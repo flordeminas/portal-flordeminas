@@ -203,6 +203,33 @@ a {
     color: var(--primary);
 }
 
+/* Reward Box for Lead Magnets in Articles */
+.reward-box {
+    background: rgba(46, 204, 113, 0.1);
+    border: 2px solid var(--primary);
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin: 4rem 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(46, 204, 113, 0.05);
+}
+
+.reward-box h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.reward-box p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.reward-box .btn {
+    margin-top: 1.5rem;
+}
+
 .article-navigation {
     display: flex;
     justify-content: space-between;
@@ -619,6 +646,13 @@ nav {
 
 #newsletter-success {
     transform: translateY(20px);
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.success-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .success-icon {
