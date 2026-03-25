@@ -8,6 +8,7 @@ def sync_layout():
     
     footer_match = re.search(r'<footer>(.*?)</footer>', index_content, re.DOTALL)
     header_match = re.search(r'<header class="site-header">(.*?)</header>', index_content, re.DOTALL)
+    ga_match = re.search(r'<!-- Google tag.*?/script>', index_content, re.DOTALL)
     og_favicon_match = re.search(r'<!-- Open Graph / Social Media -->.*?<!-- Favicon -->.*?<link.*?>', index_content, re.DOTALL)
     
     if not footer_match or not header_match:
@@ -16,6 +17,7 @@ def sync_layout():
 
     footer_source = footer_match.group(1)
     header_source = header_match.group(1)
+    ga_source = ga_match.group(0) if ga_match else ""
     og_favicon_source = og_favicon_match.group(0) if og_favicon_match else ""
 
     # 2. Files to update
@@ -34,6 +36,7 @@ def sync_layout():
                 # Prepare adjusted blocks
                 adj_footer = footer_source
                 adj_header = header_source
+                adj_ga = ga_source
                 adj_og = og_favicon_source
                 
                 # Fix relative paths in source
@@ -67,6 +70,13 @@ def sync_layout():
                         content = re.sub(r'<!-- Open Graph.*?<link.*?>', adj_og, content, flags=re.DOTALL)
                     else:
                         content = content.replace('</title>', f'</title>\n    {adj_og}')
+                
+                # Replace GA
+                if adj_ga:
+                    if "<!-- Google tag" in content:
+                        content = re.sub(r'<!-- Google tag.*?/script>', adj_ga, content, flags=re.DOTALL)
+                    else:
+                        content = content.replace('</title>', f'</title>\n    {adj_ga}')
                 
                 with open(filepath, 'w', encoding='utf-8') as f:
                     f.write(content)
