@@ -1,0 +1,26 @@
+ABA: Diário de Bordo
+Data,Semana,Fase,Altura (cm),Temp (degC),Umidade (%),pH Rega,Observações
+01/04/2026,Semana 1,Plântula,5,25,70,6.0,Germinação ok
+08/04/2026,Semana 2,Vegetativo,12,26,65,6.2,Primeiro conjunto de folhas reais
+15/04/2026,Semana 3,Vegetativo,25,26,60,6.3,Aplicado LST (Treinamento)
+
+ABA: Cronograma de Adubação
+Fase,Semanas Sugeridas,Nitrogênio (N),Fósforo (P),Potássio (K),Dose ml/L (Base)
+Vegetativo (Início),1-2,Alto,Médio,Médio,1.0
+Vegetativo (Auge),3-6,Muito Alto,Médio,Médio,2.5
+Pré-Floração,7-8,Médio,Alto,Alto,2.0
+Floração (Auge),9-12,Baixo,Muito Alto,Muito Alto,4.0
+Maturação,13,Nulo,Médio,Muito Alto,0.0
+
+ABA: Controle de Pragas (IPM)
+Data,Praga Identificada,Ação Tomada,Resultado,Próxima Aplicação
+,,Pulgão,Óleo de Neem 1%,,
+,,Mosca Branca,Sabão de Potássio,,
+,,Spider Mite,Predadores / Umidade,,
+
+ABA: Custos e Rendimento
+Item,Valor Investido (R$),Data Compra
+Sementes,150.00,25/03/2026
+Substrato,80.00,25/03/2026
+Luz (LED),1200.00,20/03/2026
+Nutrientes,200.00,25/03/2026
