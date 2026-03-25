@@ -1,6 +1,0 @@
-Netlify Token: nfp_skbk3Hnrp2Mj1f5P5ZyynHTrQ7amAgNJ1bb7
-Site ID: 89637b14-9e67-4bcd-b020-aef070fb280e
-Project: flordeminas
-
-Badge Status:
-[![Netlify Status](https://api.netlify.com/api/v1/badges/89637b14-9e67-4bcd-b020-aef070fb280e/deploy-status)](https://app.netlify.com/projects/flordeminas/deploys)
