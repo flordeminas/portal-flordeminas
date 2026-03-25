@@ -1182,10 +1182,6 @@ header.scrolled .logo img {
     }
 }
 
-/* Base resets/defaults for desktop hidden elements */
-.menu-toggle {
-    display: none;
-}
 
 @media (min-width: 768px) {
     .nav-links {
