@@ -214,28 +214,30 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section id="premium" style="padding-top: 2rem;">
+    <section class="newsletter-section" id="premium">
         <div class="container">
-            <div class="cta-section" id="newsletter-container" style="background: linear-gradient(135deg, #0d3b2a 0%, #10b981 100%); border: none; padding-top: 5rem;">
-                <div style="text-align: center; margin-bottom: 3.5rem;">
-                    <h3 style="font-size: 2.2rem; background: #fff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Assine nossa Newsletter</h3>
+            <div class="newsletter-card">
+                <div class="newsletter-header">
+                    <h3 class="newsletter-badge">Assine nossa Newsletter</h3>
                 </div>
                 
-                <div id="newsletter-form-wrapper">
-                    <div class="cta-text-content">
-                        <h2 style="color: #fff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.1);">Resumo inteligente e funcional em seu inbox</h2>
-                        <p style="color: #fff !important; opacity: 0.95;">Receba toda sexta-feira nossa curadoria científica, atualizações da ANVISA e o radar de eventos do setor.</p>
+                <div class="newsletter-grid">
+                    <div class="newsletter-text">
+                        <h2>Resumo inteligente em seu inbox</h2>
+                        <p>Receba toda sexta-feira nossa curadoria científica, atualizações da ANVISA e o radar de eventos do setor.</p>
                     </div>
                     
-                    <div class="cta-form-container" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2);">
-                        <form class="cta-form" name="newsletter" method="POST" action="https://formspree.io/f/xlgoerjy" id="newsletter-form">
-                            <input type="email" name="email" placeholder="Seu melhor e-mail" class="cta-input" required style="border: none; background: #fff !important; color: #1a1a1a !important;">
-                            <button type="submit" class="cta-btn" style="background: #fff !important; color: #10b981 !important; text-transform: none; letter-spacing: 1px; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">Assine Gratuitamente</button>
+                    <div class="newsletter-form-container">
+                        <form class="newsletter-form" name="newsletter" method="POST" action="https://formspree.io/f/xlgoerjy">
+                            <input type="email" name="email" placeholder="Seu melhor e-mail" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-button">Assine Gratuitamente</button>
                         </form>
-                        <p class="cta-footer-note" style="color: #fff; opacity: 0.8 !important;">Junte-se à maior rede de inteligência científica para pacientes.</p>
+                        <p class="newsletter-note">Junte-se à maior rede de inteligência científica para pacientes.</p>
                     </div>
                 </div>
-            </div></div></section>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
             <footer class="site-footer">
