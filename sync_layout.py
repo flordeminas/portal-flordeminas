@@ -6,7 +6,7 @@ def sync_layout():
     with open('index.html', 'r', encoding='utf-8') as f:
         index_content = f.read()
     
-    footer_match = re.search(r'<footer>(.*?)</footer>', index_content, re.DOTALL)
+    footer_match = re.search(r'<footer class="site-footer">(.*?)</footer>', index_content, re.DOTALL)
     header_match = re.search(r'<header class="site-header">(.*?)</header>', index_content, re.DOTALL)
     ga_match = re.search(r'<!-- Google tag.*?/script>', index_content, re.DOTALL)
     og_favicon_match = re.search(r'<!-- Open Graph / Social Media -->.*?<!-- Favicon -->.*?<link.*?>', index_content, re.DOTALL)
