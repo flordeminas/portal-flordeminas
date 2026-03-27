@@ -782,12 +782,23 @@ nav {
     pointer-events: none;
 }
 
-.cta-form {
+.footer-brand {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    margin: 0;
-    max-width: 100%;
+    gap: 1.5rem;
+}
+
+.footer-brand img {
+    height: 60px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .footer-brand {
+        align-items: center;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 }
 
 .cta-input {
