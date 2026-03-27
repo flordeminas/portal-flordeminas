@@ -82,29 +82,32 @@
                     <p>Conhecimentos avançados empacotados em guias definitivos de alta performance.</p>
                 </div>
 
-                <div class="featured-resource" style="margin-bottom: 5rem;">
-                    <article class="article-card" style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: row; gap: 0; min-height: 500px; border: 2px solid #10b981;">
-                        <div class="article-img" style="flex: 1; border-radius: 0; background: #0d3b2a; display: flex; align-items: center; justify-content: center; padding: 2rem;">
-                            <img src="assets/ebook_cover_terpenos.png" alt="Capa E-book Efeito Entourage" style="object-fit: contain; width: 100%; height: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+                <div class="featured-resource">
+                    <article class="featured-resource-card">
+                        <div class="featured-resource-image">
+                            <img src="assets/ebook_cover_terpenos.png" alt="Capa E-book Efeito Entourage">
                         </div>
-                        <div class="article-body" style="flex: 1.2; padding: 4rem; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="featured-resource-body">
                             <span class="article-category">E-BOOK MASTER 2026</span>
-                            <h2 style="font-size: 2.5rem; color: #10b981; margin: 1rem 0; line-height: 1.1;">O EFEITO ENTOURAGE</h2>
-                            <h3 style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 2rem;">Desvendando a Sinergia entre Canabinoides e Terpenos</h3>
-                            <p style="margin-bottom: 2.5rem; font-size: 1.1rem; line-height: 1.6;">O guia científico mais completo do Brasil sobre a fitoquímica da Cannabis. Aprenda como cada aroma direciona a cura em capítulos detalhados, com citações de estudos avançados e descritivo completo de tricomas e biosíntese.</p>
+                            <h2>O EFEITO ENTOURAGE</h2>
+                            <h3>Desvendando a Sinergia entre Canabinoides e Terpenos</h3>
+                            <p>O guia científico mais completo do Brasil sobre a fitoquímica da Cannabis. Aprenda como cada aroma direciona a cura em capítulos detalhados, com citações de estudos avançados e descritivo completo de tricomas e biosíntese.</p>
                             
-                            <ul style="margin-bottom: 2.5rem; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.95rem;">
-                                <li><i class="fas fa-check-circle" style="color:#10b981;"></i> 13 Capítulos Exclusivos</li>
-                                <li><i class="fas fa-check-circle" style="color:#10b981;"></i> +50 Citações Científicas</li>
-                                <li><i class="fas fa-check-circle" style="color:#10b981;"></i> Gráficos de Ebulição</li>
-                                <li><i class="fas fa-check-circle" style="color:#10b981;"></i> Guia de COA Avançado</li>
+                            <ul class="resource-features">
+                                <li><i class="fas fa-check-circle"></i> 13 Capítulos Exclusivos</li>
+                                <li><i class="fas fa-check-circle"></i> +50 Citações Científicas</li>
+                                <li><i class="fas fa-check-circle"></i> Gráficos de Ebulição</li>
+                                <li><i class="fas fa-check-circle"></i> Guia de COA Avançado</li>
                             </ul>
 
-                            <div style="display: flex; gap: 1.5rem; align-items: center;">
-                                <a href="#" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-weight: 800;">RESERVAR MEU EXEMPLAR</a>
-                                <span style="font-weight: 700; font-size: 1.2rem; color: var(--text-main);"><del style="opacity:0.5; font-size:0.9rem; margin-right: 0.5rem;">R$ 97</del> GRATUITO*</span>
+                            <div class="resource-actions">
+                                <a href="#" class="btn btn-primary">RESERVAR MEU EXEMPLAR</a>
+                                <div class="price-tag">
+                                    <del>R$ 97</del>
+                                    <span>GRATUITO*</span>
+                                </div>
                             </div>
-                            <p style="font-size:0.8rem; margin-top: 1rem; opacity:0.6;">*Disponível gratuitamente por tempo limitado para assinantes da nossa newsletter de inteligência.</p>
+                            <p class="resource-footer-note">*Disponível gratuitamente por tempo limitado para assinantes da nossa newsletter de inteligência.</p>
                         </div>
                     </article>
                 </div>
@@ -161,20 +164,27 @@
             </div>
         </section>
 
-        <!-- Newsletter Section (Engessando o lead para os recursos) -->
-        <section class="section-neutral" style="padding-bottom: 8rem;">
-            <div class="container" style="text-align: center;">
-                <h3 style="font-size: 2.2rem; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 3rem;">Desbloqueie sua Biblioteca Digitall</h3>
-                
-                <div class="cta-section" style="background: linear-gradient(135deg, #0d3b2a 0%, #10b981 100%); border: none;">
-                    <div class="cta-text-content">
-                        <h2 style="color: #fff !important;">Inscreva-se para baixar os recursos</h2>
-                        <p style="color: #fff !important; opacity: 0.9;">Ao se cadastrar, você recebe os links de acesso imediato por e-mail e vira um assinante da nossa rede de inteligência científica.</p>
+        <!-- Newsletter Section -->
+        <section class="newsletter-section" id="premium">
+            <div class="container">
+                <div class="newsletter-card">
+                    <div class="newsletter-header">
+                        <h3 class="newsletter-badge">Acesso Imediato</h3>
+                    </div>
+                    
+                    <div class="newsletter-grid">
+                        <div class="newsletter-text">
+                            <h2>Desbloqueie sua Biblioteca Digital</h2>
+                            <p>Inscreva-se para baixar todos os recursos técnicos, guias de dosagem e e-books exclusivos da nossa rede.</p>
+                        </div>
                         
-                        <form class="cta-form" style="max-width: 600px; margin: 3rem auto 0; display: flex; gap: 1rem;">
-                            <input type="email" placeholder="Seu melhor e-mail" style="flex:1; padding: 1rem 1.5rem; border-radius: 50px; border: none; font-size: 1rem;">
-                            <button class="btn btn-primary" style="background:#fff; color:#10b981; font-weight: 800; padding: 0 2rem;">CADASTRAR E ACESSAR</button>
-                        </form>
+                        <div class="newsletter-form-container">
+                            <form class="newsletter-form" name="resource-access" method="POST" action="https://formspree.io/f/xlgoerjy">
+                                <input type="email" name="email" placeholder="Seu melhor e-mail" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-button">CADASTRAR E ACESSAR</button>
+                            </form>
+                            <p class="newsletter-note">Links de download enviados imediatamente após a confirmação.</p>
+                        </div>
                     </div>
                 </div>
             </div>
