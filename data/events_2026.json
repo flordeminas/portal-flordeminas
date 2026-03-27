@@ -1,0 +1,56 @@
+[
+  {
+    "name": "CONIME — II Congresso Internacional de Endocanabinologia",
+    "date": "2026-03-26",
+    "end_date": "2026-03-28",
+    "location": "São Paulo, SP - Millenium Centro de Convenções",
+    "category": "Científico",
+    "description": "Foco em descobertas clínicas e Sistema Endocanabinoide.",
+    "link": "https://www.conime.com.br/"
+  },
+  {
+    "name": "CannaRio 2026",
+    "date": "2026-04-10",
+    "end_date": "2026-04-12",
+    "location": "Rio de Janeiro, RJ - Hub RJ",
+    "category": "Wellness/Cultura",
+    "description": "Evento focado em qualidade de vida e tendências.",
+    "link": "https://www.instagram.com/cannario_rio/"
+  },
+  {
+    "name": "5º Congresso Brasileiro da Cannabis Medicinal (CBCM)",
+    "date": "2026-05-21",
+    "end_date": "2026-05-23",
+    "location": "São Paulo, SP - Transamerica Expo Center",
+    "category": "Científico/Profissional",
+    "description": "O principal encontro técnico da América Latina.",
+    "link": "https://congressocannabis.com.br/"
+  },
+  {
+    "name": "Cannabis Summit Brasil 2026",
+    "date": "2026-06-25",
+    "end_date": "2026-06-26",
+    "location": "Florianópolis, SC",
+    "category": "Negócios/Tech",
+    "description": "Summit focado em tecnologia e escala industrial.",
+    "link": "https://www.cannabissummit.com.br/"
+  },
+  {
+    "name": "WeCann Summit 2026",
+    "date": "2026-10-23",
+    "end_date": "2026-10-25",
+    "location": "Campinas, SP - Royal Palm Hall",
+    "category": "Médico",
+    "description": "O maior congresso médico focado em Medicina Endocanabinoide.",
+    "link": "https://wecann.academy/"
+  },
+  {
+    "name": "ExpoCannabis Brasil 2026",
+    "date": "2026-11-20",
+    "end_date": "2026-11-22",
+    "location": "São Paulo, SP - São Paulo Expo",
+    "category": "Geral/Cultura/Negócios",
+    "description": "A maior vitrine do setor no continente.",
+    "link": "https://expocannabisbrasil.com/"
+  }
+]

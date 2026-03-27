@@ -3,24 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos Parceiros e Médicos Prescritores | Flor de Minas</title>
+    <title>Especialistas, Associações e Parceiros | Flor de Minas</title>
+    <meta name="description" content="Nossa rede curada de médicos prescritores, associações de pacientes e suporte jurídico para a medicina canabinoide no Brasil.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
-    <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
-    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/logo_brand.png">
-    <meta property="og:url" content="https://portal-flordeminas.com.br/">
-    <meta property="og:site_name" content="Flor de Minas">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
-    <meta name="description" content="Conheça a rede de profissionais de saúde e médicos prescritores parceiros da Flor de Minas.">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Theme Script (Prevent Blink) -->
+    <!-- Theme Script -->
     <script>
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
@@ -28,7 +19,7 @@
         })();
     </script>
 </head>
-<body>
+<body class="partners-page">
 
     <!-- Header -->
     <header class="site-header">
@@ -40,12 +31,9 @@
                 <ul class="nav-links">
                     <li><a href="noticias.html" class="nav-link">Notícias</a></li>
                     <li><a href="index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
-                    <li><a href="apoio-associacoes.html" class="nav-link">Associações</a></li>
+                    <li><a href="parceiros.html" class="nav-link active">Parceiros</a></li>
                     <li><a href="eventos.html" class="nav-link">Eventos</a></li>
-                    <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
-                    <li><a href="sobre-nos.html" class="nav-link">Sobre Nós</a></li>
-                    <!-- Visible only on mobile menu -->
-                    <li class="mobile-only"><a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a></li>
+                    <li><a href="recursos.html" class="nav-link">Biblioteca</a></li>
                 </ul>
                 <div class="header-right">
                     <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
@@ -53,101 +41,128 @@
                         <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
                     <a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 40vh;">
-        <div class="container">
-            <div class="hero-content" style="text-align: center; margin: 0 auto;">
-                <span class="hero-badge">Médicos e Profissionais</span>
-                <h1>Rede de Especialistas parceiros</h1>
-                <p>Facilitando a conexão com médicos e profissionais de saúde especializados em medicina canabinoide no Brasil.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero hero-fixed" style="min-height: 45vh;">
+            <div class="container hero-container" style="justify-content: center; text-align: center;">
+                <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
+                    <span class="hero-badge">Ecossistema de Cuidado</span>
+                    <h1>Rede de Apoio Especializada</h1>
+                    <p>Conectamos você aos pilares fundamentais da Cannabis medicinal: medicina de precisão, suporte jurídico seguro e acolhimento em associações.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Partners Grid -->
-    <section class="partners-section" style="background-color: var(--bg-neutral); padding: 5rem 0;">
-        <div class="container">
-            <div class="section-header text-center" style="margin-bottom: 4rem;">
-                <h2>Plataformas e Redes de Saúde</h2>
-                <p>Plataformas que facilitam a conexão entre pacientes e médicos prescritores autorizados.</p>
+        <!-- 1. Médicos e Plataformas -->
+        <section class="section-neutral">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Médicos Prescritores & Saúde</h2>
+                    <p>Plataformas e profissionais dedicados à prescrição técnica e monitoramento terapêutico.</p>
+                </div>
+                
+                <div class="articles-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏥</div>
+                        <h3>Cannect</h3>
+                        <p>Plataforma líder em telemedicina e suporte farmacêutico canabinoide no Brasil.</p>
+                        <a href="https://www.cannect.life/" target="_blank" class="nav-link" style="color:var(--primary); font-weight:700;">VISITAR PLATAFORMA</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🩺</div>
+                        <h3>Dr. Cannabis</h3>
+                        <p>Conecta pacientes a médicos experientes e facilita todo o processo de importação legal.</p>
+                        <a href="https://drcannabis.com.br/" target="_blank" class="nav-link" style="color:var(--primary); font-weight:700;">AGENDAR CONSULTA</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👨‍⚕️</div>
+                        <h3>Dr. Leandro Barroco</h3>
+                        <p>Especialista em Psiquiatria Integrativa e Medicina Canábica focada em saúde mental.</p>
+                        <a href="mailto:flor-de-minas@protonmail.com" class="nav-link" style="color:var(--primary); font-weight:700;">SOLICITAR CONTATO</a>
+                    </div>
+                </div>
             </div>
-            <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <!-- Partner 1 -->
-                <div class="service-card" style="display: flex; flex-direction: column; align-items: start; text-align: left; padding: 2.5rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1.5rem;">🏥</div>
-                    <h3 style="margin-bottom: 1rem;">Cannect</h3>
-                    <p style="margin-bottom: 1.5rem;">Maior ecossistema de cannabis medicinal da América Latina, conectando pacientes a médicos, produtos e suporte farmacêutico.</p>
-                    <a href="https://www.cannect.life/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: auto;">Conhecer Plataforma</a>
-                </div>
-                <!-- Partner 2 -->
-                <div class="service-card" style="display: flex; flex-direction: column; align-items: start; text-align: left; padding: 2.5rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1.5rem;">🍏</div>
-                    <h3 style="margin-bottom: 1rem;">Kaya Mind / Kaya Doc</h3>
-                    <p style="margin-bottom: 1.5rem;">Inteligência de mercado e suporte clínico para prescritores, otimizando a experiência do paciente e a segurança terapêutica.</p>
-                    <a href="https://kayamind.com/kayadoc" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: auto;">Ver Especialistas</a>
-                </div>
-                <!-- Partner 3 -->
-                <div class="service-card" style="display: flex; flex-direction: column; align-items: start; text-align: left; padding: 2.5rem;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1.5rem;">🩺</div>
-                    <h3 style="margin-bottom: 1rem;">Dr. Cannabis</h3>
-                    <p style="margin-bottom: 1.5rem;">Pioneira na conexão de médicos, pacientes e indústrias, facilitando agendamentos e o processo de importação.</p>
-                    <a href="https://drcannabis.com.br/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: auto;">Agendar Consulta</a>
-                </div>
-            </div>
+        </section>
 
-            <div class="section-header text-center" style="margin-top: 6rem; margin-bottom: 4rem;">
-                <h2>Médicos Especialistas em Destaque</h2>
-                <p>Profissionais com vasta experiência no Sistema Endocanabinoide e prescrição técnica.</p>
-            </div>
-            <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <!-- Doctor 1 -->
-                <div class="service-card" style="text-align: center; padding: 2.5rem;">
-                    <div class="doctor-img" style="width: 120px; height: 120px; border-radius: 50%; background: var(--primary); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">👨‍⚕️</div>
-                    <h3 style="margin-bottom: 0.5rem;">Dr. Leandro Barroco</h3>
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Psiquiatria & Medicina Canábica</p>
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Especialista em saúde mental e tratamentos para ansiedade e depressão com fitocanabinoides.</p>
-                    <a href="mailto:flor-de-minas@protonmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Solicitar Contato</a>
+        <!-- 2. Associações (Moved and Combined) -->
+        <section class="section-white" style="background: var(--bg-card); padding: 8rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Associações de Pacientes</h2>
+                    <p>O coração do acolhimento e suporte ao cultivo medicinal no Brasil.</p>
                 </div>
-                <!-- Doctor 2 -->
-                <div class="service-card" style="text-align: center; padding: 2.5rem;">
-                    <div class="doctor-img" style="width: 120px; height: 120px; border-radius: 50%; background: var(--secondary); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">👩‍⚕️</div>
-                    <h3 style="margin-bottom: 0.5rem;">Dra. Glendha Malta</h3>
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Medicina Integral e Saúde Integral</p>
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Focada na saúde equilibrada e integração de tratamentos convencionais com a medicina das plantas.</p>
-                    <a href="mailto:flor-de-minas@protonmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Solicitar Contato</a>
-                </div>
-                <!-- Doctor 3 -->
-                <div class="service-card" style="text-align: center; padding: 2.5rem;">
-                    <div class="doctor-img" style="width: 120px; height: 120px; border-radius: 50%; background: var(--accent); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">👨‍⚕️</div>
-                    <h3 style="margin-bottom: 0.5rem;">Dr. Eusamar Magalhães</h3>
-                    <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Terapia Canabinoide</p>
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Ampla experiência no suporte a pacientes com dores crônicas e doenças neurodegenerativas.</p>
-                    <a href="mailto:flor-de-minas@protonmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Solicitar Contato</a>
+                
+                <div class="articles-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌿</div>
+                        <h3>Apoio ao Cultivo</h3>
+                        <p>Auxiliamos associações no desenvolvimento de protocolos de cultivo de alta performance e auditoria científica.</p>
+                        <a href="parceiros.html" class="btn btn-outline">Ver Serviços B2B</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3>Acolhimento Flor de Minas</h3>
+                        <p>Rede de suporte para pacientes que buscam associações regionais idôneas e suporte à produção artesanal.</p>
+                        <a href="mailto:flor-de-minas@protonmail.com" class="btn btn-outline">Solicitar Indicação</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚖️</div>
+                        <h3>Blindagem Regulatória</h3>
+                        <p>Suporte técnico para garantir que os discursos e conteúdos da associação estejam em conformidade com a Anvisa.</p>
+                        <a href="mailto:flor-de-minas@protonmail.com" class="btn btn-outline">Falar com Consultor</a>
+                    </div>
                 </div>
             </div>
-            
-            <div style="margin-top: 4rem; text-align: center;">
-                <p>É médico e deseja figurar em nossa rede curada? <a href="mailto:parceiros@flordeminas.com.br" style="color: var(--primary); font-weight: 600;">Clique aqui e saiba como ser um parceiro.</a></p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
+        <!-- 3. Jurídico (New Section) -->
+        <section class="section-neutral" style="padding: 8rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Suporte Jurídico & Regulatório</h2>
+                    <p>Proteção legal para o seu direito ao tratamento e cultivo medicinal.</p>
+                </div>
+                
+                <div class="articles-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="service-card" style="display: flex; gap: 2rem; align-items: center; text-align: left;">
+                        <div style="font-size: 3rem;">👩‍⚖️</div>
+                        <div>
+                            <h3>Habeas Corpus de Cultivo</h3>
+                            <p>Especialidade em consultoria jurídica para obtenção de salvo-conduto para cultivo doméstico e extração de óleos medicinais.</p>
+                        </div>
+                    </div>
+                    <div class="service-card" style="display: flex; gap: 2rem; align-items: center; text-align: left;">
+                        <div style="font-size: 3rem;">🏛️</div>
+                        <div>
+                            <h3>Direito ao Acesso</h3>
+                            <p>Suporte jurídico para garantir que planos de saúde e o SUS forneçam medicamentos de Cannabis quando prescritos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join the Network CTA -->
+        <section class="section-white" style="text-align: center; padding: 6rem 0;">
+            <div class="container">
+                <h2>Seja um Parceiro Flor de Minas</h2>
+                <p style="max-width: 600px; margin: 1.5rem auto 3rem;">É médico, advogado ou diretor de associação? Junte-se à nossa rede curada e ajude a transformar a vida de milhares de pacientes.</p>
+                <a href="mailto:parceiros@flordeminas.com.br" class="btn btn-primary" style="padding: 1.2rem 3.5rem; font-size: 1.1rem; border-radius: 50px;">Entrar para a Rede</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-about">
+                <div class="footer-brand">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/logo_brand.png" alt="Flor de Minas"></a>
+                        <img src="assets/logo_brand.png" alt="Flor de Minas">
                     </div>
                     <p>Facilitando o acesso à medicina canabinoide através de informação, apoio jurídico e conexão com especialistas em todo o Brasil.</p>
                 </div>
@@ -156,8 +171,9 @@
                     <ul>
                         <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="index.html#guia-paciente">Guia do Paciente</a></li>
-                        <li><a href="apoio-associacoes.html">Associações</a></li>
+                        <li><a href="parceiros.html">Parceiros</a></li>
                         <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="recursos.html">Biblioteca</a></li>
                         <li><a href="sobre-nos.html">Sobre Nós</a></li>
                     </ul>
                 </div>
@@ -178,6 +194,7 @@
                         <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                         <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.youtube.com/@flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
             </div>
@@ -189,7 +206,7 @@
             </div>
         </div>
     </footer>
-    <!-- JS -->
+
     <script src="js/main.js"></script>
 </body>
 </html>

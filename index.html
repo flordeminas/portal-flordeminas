@@ -54,12 +54,18 @@
                 <ul class="nav-links">
                     <li><a href="noticias.html" class="nav-link">Notícias</a></li>
                     <li><a href="index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
-                    <li><a href="apoio-associacoes.html" class="nav-link">Associações</a></li>
+                    <li><a href="parceiros.html" class="nav-link">Associações</a></li>
                     <li><a href="eventos.html" class="nav-link">Eventos</a></li>
-                    <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
-                    <li><a href="sobre-nos.html" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="recursos.html" class="nav-link">Biblioteca</a></li>
+                    
                     <!-- Visible only on mobile menu -->
                     <li class="mobile-only"><a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a></li>
+                
+                    <li><a href="noticias.html" class="nav-link">Notícias</a></li>
+                    <li><a href="index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
+                    <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
+                    <li><a href="eventos.html" class="nav-link">Eventos</a></li>
+                    <li><a href="recursos.html" class="nav-link">Biblioteca</a></li>
                 </ul>
                 <div class="header-right">
                     <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
@@ -86,7 +92,7 @@
                 <p>Conectamos pacientes a médicos e associações. Descubra como acessar seu tratamento natural, obter sua receita de forma fácil ou aprender a cultivar a sua própria medicina.</p>
                 <div class="hero-actions">
                     <a href="#guia-paciente" class="btn btn-primary">Começar meu Tratamento</a>
-                    <a href="apoio-associacoes.html" class="btn btn-outline">Encontrar uma Associação</a>
+                    <a href="parceiros.html" class="btn btn-outline">Encontrar uma Associação</a>
                 </div>
             </div>
             <div class="hero-image-container">
@@ -216,52 +222,53 @@
     </section>
 
     <!-- Newsletter Section -->
+    <section id="premium"><div class="container">
+    <!-- Newsletter Section -->
     <section id="premium">
         <div class="container">
-            <div class="cta-section" id="newsletter-container">
+            <!-- Preview do Recurso Premium (already fixed) -->
+            <div class="resource-highlight" style="margin-bottom: 5rem;">
+                <article class="article-card" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: row; gap: 0; overflow: hidden; height: auto;">
+                    <div class="article-img" style="flex: 1; border-radius: 0; min-height: 100%;">
+                        <img src="assets/spreadsheet_hero_3.png" alt="Planilha Mestra 3.0" style="object-fit: cover; height: 100%;">
+                    </div>
+                    <div class="article-body" style="flex: 1.2; padding: 3rem; display: flex; flex-direction: column; justify-content: center; background: rgba(16, 185, 129, 0.05);">
+                        <span class="article-category">RECURSO TÉCNICO V3.0</span>
+                        <h2 style="font-size: 2rem; margin: 1rem 0; line-height: 1.2;">A FERRAMENTA DEFINITIVA PARA O CULTIVO LEGAL</h2>
+                        <p style="margin-bottom: 2rem; opacity: 0.9;">A Planilha Mestra Flor de Minas v3.0 centraliza seu cronograma, adubação e monitoramento diário. Tenha o controle total do seu Grow na palma da mão.</p>
+                        <a href="guia/artigo-planilha.html" class="nav-link" style="font-weight: 700; color: var(--primary);"><i class="fas fa-book-open"></i> VER DETALHES TÉCNICOS</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="cta-section" id="newsletter-container" style="background: linear-gradient(135deg, #0d3b2a 0%, #10b981 100%); border: none; padding-top: 5rem;">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <h3 style="font-size: 2.2rem; background: #fff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Assine nossa Newsletter</h3>
+                </div>
+                
                 <div id="newsletter-form-wrapper">
                     <div class="cta-text-content">
-                        <h2>Resumo de Inteligência em seu Inbox</h2>
-                        <p>Receba toda sexta-feira um resumo das notícias mais quentes e importantes da semana, diretamente pela nossa equipe de investigadores on-chain e cientistas. Tudo o que impactou o mercado e a sua saúde.</p>
+                        <h2 style="color: #fff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.1);">Resumo inteligente e funcional em seu inbox</h2>
+                        <p style="color: #fff !important; opacity: 0.95;">Receba toda sexta-feira nossa curadoria científica, atualizações da ANVISA e o radar de eventos do setor.</p>
                     </div>
                     
-                    <div class="cta-form-container">
+                    <div class="cta-form-container" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2);">
                         <form class="cta-form" name="newsletter" method="POST" action="https://formspree.io/f/xlgoerjy" id="newsletter-form">
-                            <input type="email" name="email" placeholder="Seu e-mail" class="cta-input" required>
-                            <button type="submit" class="cta-btn">Assinar Inteligência</button>
+                            <input type="email" name="email" placeholder="Seu melhor e-mail" class="cta-input" required style="border: none; background: #fff !important; color: #1a1a1a !important;">
+                            <button type="submit" class="cta-btn" style="background: #fff !important; color: #10b981 !important; text-transform: none; letter-spacing: 1px; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">Assine Gratuitamente</button>
                         </form>
-                        <p class="cta-footer-note">Junte-se à maior rede de inteligência científica para pacientes e profissionais.</p>
+                        <p class="cta-footer-note" style="color: #fff; opacity: 0.8 !important;">Junte-se à maior rede de inteligência científica para pacientes.</p>
                     </div>
                 </div>
-
-                <!-- Success Message (Initialy Hidden) -->
-                <div id="newsletter-success" style="display: none;">
-                    <div class="success-icon success-icon-container success-emoji">🎉</div>
-                    <h2>Inscrição Confirmada!</h2>
-                    <p>Obrigado por se juntar à nossa rede de inteligência científica. Como prometido, aqui está o seu **Combo de Produtos Digitais** para acelerar sua jornada:</p>
-                    <div class="articles-grid-mini" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem;">
-                        <a href="guia/download-planilha.html" class="btn btn-primary" style="font-size: 0.85rem;">
-                            <i class="fas fa-file-excel"></i> Planilha Mestra 2.0
-                        </a>
-                        <a href="guia/guia-dosagem.html" class="btn btn-outline" style="font-size: 0.85rem;">
-                            <i class="fas fa-flask"></i> Guia de Dosagem
-                        </a>
-                        <a href="guia/mapa-terpenos.html" class="btn btn-outline" style="font-size: 0.85rem;">
-                            <i class="fas fa-map"></i> Mapa de Terpenos
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </div></div></section>
 
     <!-- Footer -->
-    <footer>
+            <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-about">
+                <div class="footer-brand">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/logo_brand.png" alt="Flor de Minas"></a>
+                        <img src="assets/logo_brand.png" alt="Flor de Minas">
                     </div>
                     <p>Facilitando o acesso à medicina canabinoide através de informação, apoio jurídico e conexão com especialistas em todo o Brasil.</p>
                 </div>
@@ -270,8 +277,9 @@
                     <ul>
                         <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="index.html#guia-paciente">Guia do Paciente</a></li>
-                        <li><a href="apoio-associacoes.html">Associações</a></li>
+                        <li><a href="parceiros.html">Parceiros</a></li>
                         <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="recursos.html">Biblioteca</a></li>
                         <li><a href="sobre-nos.html">Sobre Nós</a></li>
                     </ul>
                 </div>
@@ -292,6 +300,7 @@
                         <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                         <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.youtube.com/@flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
             </div>
