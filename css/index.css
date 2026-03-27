@@ -286,12 +286,18 @@ nav {
     gap: 1.5rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
 .logo img {
-    height: 60px; /* More compact logo for standard header */
+    height: 60px; /* Standardize height */
     width: auto;
     display: block;
-    transition: var(--transition);
-    box-sizing: border-box;
 }
 
 [data-theme="dark"] .logo img {
