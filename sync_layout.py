@@ -48,6 +48,7 @@ def sync_layout():
                     adj_footer = adj_footer.replace('href="eventos.html', f'href="{prefix}eventos.html')
                     adj_footer = adj_footer.replace('href="sobre-nos.html', f'href="{prefix}sobre-nos.html')
                     adj_footer = adj_footer.replace('href="parceiros.html', f'href="{prefix}parceiros.html')
+                    adj_footer = adj_footer.replace('href="recursos.html', f'href="{prefix}recursos.html')
 
                     adj_header = adj_header.replace('src="assets/', f'src="{prefix}assets/')
                     adj_header = adj_header.replace('href="index.html', f'href="{prefix}index.html')
@@ -56,6 +57,7 @@ def sync_layout():
                     adj_header = adj_header.replace('href="eventos.html', f'href="{prefix}eventos.html')
                     adj_header = adj_header.replace('href="sobre-nos.html', f'href="{prefix}sobre-nos.html')
                     adj_header = adj_header.replace('href="parceiros.html', f'href="{prefix}parceiros.html')
+                    adj_header = adj_header.replace('href="recursos.html', f'href="{prefix}recursos.html')
                     adj_header = adj_header.replace('href="#"', f'href="{prefix}index.html"')
 
                     adj_og = adj_og.replace('href="assets/favicon.png"', f'href="{prefix}assets/favicon.png"')
