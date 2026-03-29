@@ -106,6 +106,10 @@ a {
     padding: 5rem 0;
 }
 
+.section-no-top-pad {
+    padding-top: 0 !important;
+}
+
 .category-tag {
     display: inline-block;
     color: var(--secondary);
@@ -177,26 +181,26 @@ a {
     margin-top: 6rem;
     padding-top: 3rem;
     border-top: 1px solid var(--border);
+    gap: 2rem;
 }
 
 .nav-prev, .nav-next {
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .nav-next {
     text-align: right;
+    align-items: flex-end;
 }
 
-.nav-prev span, .nav-next span {
-    font-size: 0.8rem;
+.article-navigation span {
+    font-size: 0.85rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--text-muted);
-    font-weight: 700;
     margin-bottom: 0.5rem;
-}
-
-.nav-prev a, .nav-next a {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--primary);
@@ -256,8 +260,8 @@ section {
     right: 0;
     z-index: 9999 !important; /* Extremely high to guarantee visibility across all nested layers */
     background: var(--header-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     padding: 0.75rem 0;
     transition: var(--transition);
@@ -814,32 +818,44 @@ nav {
 }
 
 .newsletter-card {
-    background: linear-gradient(135deg, #0d3b2a 0%, #10b981 100%);
-    border-radius: 30px;
-    padding: 5rem;
-    box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+    background: linear-gradient(135deg, #051a11 0%, #0d3b2a 100%);
+    border-radius: 40px;
+    padding: 6rem 5rem;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.newsletter-card::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .newsletter-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .newsletter-badge {
     display: inline-block;
-    padding: 0.8rem 2rem;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
+    padding: 0.8rem 2.5rem;
+    background: rgba(16, 185, 129, 0.1);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 185, 129, 0.3);
     border-radius: 50px;
-    color: #fff;
-    font-size: 1.1rem;
+    color: #10b981;
+    font-size: 1rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .newsletter-grid {
@@ -866,8 +882,8 @@ nav {
 
 .newsletter-form-container {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     padding: 3rem;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1168,6 +1184,37 @@ header.scrolled .logo img {
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem; /* Tightened space between H1 and P */
+}
+
+.icon-primary {
+    color: var(--primary);
+}
+
+.table-medicinal {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table-medicinal th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid var(--primary);
+}
+
+.table-medicinal td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.list-plain {
+    list-style: none;
+    padding-left: 0;
+}
+
+.backdrop-blur {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 /* ... (previous styles remain the same up to line 634) ... */
@@ -1947,11 +1994,36 @@ header.scrolled .logo img {
     display: flex;
     gap: 2rem;
     align-items: center;
+    margin-top: 2rem;
+}
+
+.resource-form {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.resource-input {
+    flex: 1;
+    padding: 1.1rem 1.6rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--bg-neutral);
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.resource-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
 .price-tag {
     display: flex;
     flex-direction: column;
+    min-width: 110px;
 }
 
 .price-tag del {
@@ -1966,10 +2038,31 @@ header.scrolled .logo img {
     color: var(--primary);
 }
 
-.resource-footer-note {
-    margin-top: 1.5rem;
-    font-size: 0.8rem;
-    opacity: 0.6;
+.article-actions {
+    margin-top: 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-download {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.article-download:hover {
+    color: var(--primary-light);
+}
+
+.badge-free {
+    background: #10b981;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
 }
 
 @media (max-width: 992px) {
@@ -2000,8 +2093,21 @@ header.scrolled .logo img {
     
     .resource-actions {
         flex-direction: column;
-        align-items: stretch;
-        gap: 1.5rem;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .resource-form {
+        flex-direction: column;
+    }
+
+    .resource-input {
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .btn-primary {
+        width: 100%;
     }
     
     .price-tag {
@@ -2018,3 +2124,392 @@ header.scrolled .logo img {
         font-size: 1.8rem;
     }
 }
+
+/* ── CultivoApp Banner (index.html) ────────────────────────── */
+.cultivoapp-banner {
+    background: linear-gradient(135deg, #0d1f14 0%, #132b1c 50%, #1a3824 100%);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+.cultivoapp-banner::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(82,183,120,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+.cultivoapp-banner-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+}
+.cultivoapp-banner-icon {
+    font-size: 4rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.cultivoapp-banner-tag {
+    display: inline-block;
+    background: rgba(82,183,120,0.15);
+    border: 1px solid rgba(82,183,120,0.3);
+    color: #52b778;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+.cultivoapp-banner-content h2 {
+    font-size: 2rem;
+    color: #e8f0e9;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+.cultivoapp-banner-content p {
+    font-size: 1rem;
+    color: rgba(232,240,233,0.65);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.cultivoapp-banner-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.btn-app-primary {
+    background: #52b778;
+    color: #0d1f14;
+    padding: 0.85rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.btn-app-primary:hover {
+    background: #3d9a60;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(82,183,120,0.3);
+}
+.btn-app-secondary {
+    background: transparent;
+    color: #52b778;
+    border: 1.5px solid rgba(82,183,120,0.4);
+    padding: 0.85rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.btn-app-secondary:hover {
+    border-color: #52b778;
+    background: rgba(82,183,120,0.1);
+}
+.cultivoapp-banner-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+.app-feature-chip {
+    background: rgba(82,183,120,0.08);
+    border: 1px solid rgba(82,183,120,0.2);
+    color: rgba(232,240,233,0.75);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+/* ── CultivoApp Featured Card (recursos.html) ───────────────── */
+.cultivoapp-featured-card {
+    border: 2px solid var(--primary);
+    background: linear-gradient(135deg, rgba(45,90,39,0.04) 0%, rgba(212,175,55,0.04) 100%);
+}
+.cultivoapp-card-image {
+    background: #0d1f14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cultivoapp-card-inner {
+    text-align: center;
+    padding: 2rem;
+}
+.cultivoapp-card-emoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+.cultivoapp-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    color: #52b778;
+    font-weight: 700;
+}
+.cultivoapp-card-sub {
+    font-size: 0.9rem;
+    color: rgba(232,240,233,0.5);
+    margin-top: 0.5rem;
+}
+.cultivoapp-chips-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+.cultivoapp-chip {
+    background: rgba(82,183,120,0.15);
+    border: 1px solid rgba(82,183,120,0.3);
+    color: #52b778;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.btn-app-link {
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+}
+.app-tutorial-link {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+.app-tutorial-link a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ── Responsive: CultivoApp Banner ──────────────────────────── */
+@media (max-width: 900px) {
+    .cultivoapp-banner-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .cultivoapp-banner-icon { display: none; }
+    .cultivoapp-banner-chips {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .cultivoapp-banner-actions { justify-content: center; }
+}
+
+/* ── Utility helpers ─────────────────────────────────────────── */
+.featured-resource--app { margin-top: 2rem; }
+.install-intro {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+.step-layout.reverse { direction: rtl; }
+
+/* ── "Em Breve" / Coming Soon badges ────────────────────────── */
+.btn-app-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(232,164,58,0.15);
+    border: 1.5px solid rgba(232,164,58,0.4);
+    color: #D4AF37;
+    padding: 0.85rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    cursor: default;
+    animation: pulse-soon 2.5s ease-in-out infinite;
+}
+.btn-dark-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(232,164,58,0.12);
+    border: 1.5px solid rgba(232,164,58,0.35);
+    color: #E8A43A;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: default;
+    animation: pulse-soon 2.5s ease-in-out infinite;
+}
+.app-soon-header-badge {
+    background: rgba(232,164,58,0.15) !important;
+    color: #D4AF37 !important;
+    border: 1px solid rgba(232,164,58,0.35) !important;
+    cursor: default;
+    animation: pulse-soon 2.5s ease-in-out infinite;
+}
+.app-coming-soon-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: rgba(232,164,58,0.05);
+    border: 1px solid rgba(232,164,58,0.2);
+    border-radius: 16px;
+}
+.app-soon-badge {
+    display: inline-block;
+    background: rgba(232,164,58,0.15);
+    border: 1px solid rgba(232,164,58,0.35);
+    color: #D4AF37;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    width: fit-content;
+}
+.app-soon-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 !important;
+}
+.footer-app-soon {
+    color: var(--text-muted);
+    font-size: inherit;
+}
+.footer-app-soon s {
+    opacity: 0.6;
+}
+@keyframes pulse-soon {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ── Waitlist Form ─────────────────────────────────────────── */
+.app-waitlist-form {
+    width: 100%;
+}
+.app-waitlist-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+.app-waitlist-input {
+    flex: 1;
+    padding: 0.75rem 1.1rem;
+    border-radius: 50px;
+    border: 1.5px solid rgba(82,183,120,0.35);
+    background: rgba(255,255,255,0.06);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.app-waitlist-input:focus {
+    border-color: var(--primary);
+    background: rgba(82,183,120,0.05);
+}
+.app-waitlist-input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.app-waitlist-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 1.4rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+.app-waitlist-btn:hover {
+    background: #3d9a60;
+    transform: translateY(-1px);
+}
+
+/* Hero variants (tutorial page) */
+.app-waitlist-form--hero {
+    max-width: 560px;
+    margin: 0 auto 1.5rem;
+}
+.app-waitlist-row--hero { gap: 0.6rem; }
+.app-waitlist-input--hero {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-color: rgba(232,240,233,0.25);
+    background: rgba(255,255,255,0.08);
+    color: #e8f0e9;
+}
+.app-waitlist-input--hero::placeholder { color: rgba(232,240,233,0.45); }
+.app-waitlist-input--hero:focus {
+    border-color: #52b778;
+    background: rgba(82,183,120,0.1);
+}
+.app-waitlist-btn--hero {
+    padding: 1rem 1.75rem;
+    font-size: 1rem;
+    background: #52b778;
+    color: #0d1f14;
+}
+.app-waitlist-btn--hero:hover { background: #3d9a60; }
+
+.app-waitlist-disclaimer {
+    font-size: 0.8rem;
+    color: rgba(232,240,233,0.4);
+    margin-top: 0.75rem;
+    text-align: center;
+}
+.app-waitlist-features {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+.app-waitlist-feat {
+    background: rgba(232,240,233,0.07);
+    border: 1px solid rgba(232,240,233,0.12);
+    color: rgba(232,240,233,0.65);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .app-waitlist-row,
+    .app-waitlist-row--hero {
+        flex-direction: column;
+    }
+    .app-waitlist-input,
+    .app-waitlist-input--hero {
+        border-radius: 12px;
+    }
+    .app-waitlist-btn,
+    .app-waitlist-btn--hero {
+        border-radius: 12px;
+        text-align: center;
+    }
+}
+
+
+
+

@@ -14,7 +14,7 @@
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
-    <meta name="description" content="Explore nossa biblioteca de recursos digitais: guias de dosagem, planilhas de cultivo, mapas de terpenos e e-books científicos exclusivos sobre Cannabis medicinal.">
+    <meta name="description" content="Explore nossa biblioteca digital: o e-book O Efeito Entourage, guias de dosagem, mapas de terpenos e recursos científicos exclusivos sobre Cannabis medicinal.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
     <link rel="stylesheet" href="css/index.css">
@@ -93,7 +93,10 @@
                             <h3>Desvendando a Sinergia entre Canabinoides e Terpenos</h3>
                             <p>O guia científico mais completo do Brasil sobre a fitoquímica da Cannabis. Aprenda como cada aroma direciona a cura em capítulos detalhados, com citações de estudos avançados e descritivo completo de tricomas e biosíntese.</p>
                             <div class="resource-actions">
-                                <a href="#" class="btn btn-primary">RESERVAR MEU EXEMPLAR</a>
+                                <form action="https://formspree.io/f/xlgoerjy" method="POST" class="resource-form">
+                                    <input type="email" name="email" class="resource-input" placeholder="Seu melhor e-mail" required>
+                                    <button type="submit" class="btn btn-primary">RESERVAR MEU EXEMPLAR</button>
+                                </form>
                                 <div class="price-tag">
                                     <del>R$ 97</del>
                                     <span>GRATUITO*</span>
@@ -103,51 +106,97 @@
                     </article>
                 </div>
 
-                <div class="articles-grid">
-                    <!-- Produto 1: Planilha Mestra -->
-                    <article class="article-card">
-                        <div class="article-img">
-                            <img src="assets/spreadsheet_tool.png" alt="Planilha Mestra 3.0">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Manual Técnico</span>
-                            <h3>Planilha Mestra de Cultivo v3.0</h3>
-                            <p>Automação de cronograma, monitoramento de adubação preventiva e registro de VPD.</p>
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                                <a href="guia/artigo-planilha.html" class="nav-link" style="font-weight:700; color:var(--primary);"><i class="fas fa-download"></i> DOWNLOAD</a>
-                                <span class="badge" style="background:#10b981; color:white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size:0.7rem;">GRÁTIS</span>
+
+                <!-- CultivoApp Featured Card -->
+                <div class="featured-resource featured-resource--app">
+                    <article class="featured-resource-card cultivoapp-featured-card">
+                        <div class="featured-resource-image cultivoapp-card-image">
+                            <div class="cultivoapp-card-inner">
+                                <div class="cultivoapp-card-emoji">🌿</div>
+                                <div class="cultivoapp-card-title">CultivoApp</div>
+                                <div class="cultivoapp-card-sub">Flor de Minas</div>
+                                <div class="cultivoapp-chips-row">
+                                    <span class="cultivoapp-chip">165+ Genéticas</span>
+                                    <span class="cultivoapp-chip">Funciona Offline</span>
+                                    <span class="cultivoapp-chip">PWA Gratuita</span>
+                                </div>
                             </div>
                         </div>
+                        <div class="featured-resource-body">
+                            <span class="article-category">APP GRATUITO — PWA 2026</span>
+                            <h2>CULTIVOAPP</h2>
+                            <h3>Seu Jardim Medicinal em um Só Lugar</h3>
+                            <p>O único app de gerenciamento de jardim medicinal 100% em português. Cronograma automático por fase, protocolo de adubação semana a semana (BioBizz, Remo, SuperSoil), MIP orgânico preventivo e guia de parâmetros de temperatura, pH e umidade.</p>
+                            <div class="resource-actions">
+                                <div class="app-coming-soon-block">
+                                    <span class="app-soon-badge">🚀 Em Desenvolvimento</span>
+                                    <p class="app-soon-text">O app está em fase final de desenvolvimento. Deixe seu e-mail e seja o primeiro a saber quando lançar.</p>
+                                    <form class="app-waitlist-form" action="https://formspree.io/f/xlgoerjy" method="POST">
+                                        <input type="hidden" name="origem" value="CultivoApp - Lista de Espera (Recursos)">
+                                        <div class="app-waitlist-row">
+                                            <input type="email" name="email" class="app-waitlist-input" placeholder="Seu melhor e-mail" required>
+                                            <button type="submit" class="app-waitlist-btn">Entrar na Lista →</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="price-tag">
+                                    <del>Pago</del>
+                                    <span>GRATUITO</span>
+                                </div>
+                            </div>
+                            <p class="app-tutorial-link">
+                                <a href="guia/cultivoapp-tutorial.html">Ver tutorial completo passo a passo →</a>
+                            </p>
+                        </div>
                     </article>
+                </div>
 
-                    <!-- Produto 2: Guia de Dosagem -->
+
+                <div class="articles-grid">
+                    <!-- Produto 1: Guia de Dosagem -->
                     <article class="article-card">
                         <div class="article-img">
-                            <img src="assets/dosage_tool.png" alt="Guia de Dosagem">
+                            <img src="assets/dosage_tool.png" alt="Guia de Dosagem CBD/THC">
                         </div>
                         <div class="article-body">
                             <span class="article-category">Apoio Terapêutico</span>
                             <h3>Protocolo de Dosagem CBD/THC</h3>
-                            <p>Domine a arte da titulação lenta com nosso guia prático de dosimetria individualizada.</p>
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                                <a href="guia/guia-dosagem.html" class="nav-link" style="font-weight:700; color:var(--primary);"><i class="fas fa-book"></i> ACESSAR GUIA</a>
-                                <span class="badge" style="background:#10b981; color:white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size:0.7rem;">GRÁTIS</span>
+                            <p>Domine a arte da titulação lenta. Um guia prático de dosimetria individualizada para você e seu médico ajustarem a terapia com segurança.</p>
+                            <div class="article-actions">
+                                <a href="guia/guia-dosagem.html" class="article-download"><i class="fas fa-book"></i> ACESSAR GUIA</a>
+                                <span class="badge badge-free">GRÁTIS</span>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Produto 3: Mapa de Terpenos -->
+                    <!-- Produto 2: Mapa de Terpenos -->
                     <article class="article-card">
                         <div class="article-img">
                             <img src="assets/terpene_map_tool.png" alt="Mapa Visual de Terpenos">
                         </div>
                         <div class="article-body">
-                            <span class="article-category">Infográfico</span>
+                            <span class="article-category">Infográfico Científico</span>
                             <h3>Mapa Visual de Terpenos</h3>
-                            <p>Infográfico interativo de alta resolução para identificação visual e sensorial dos aromas da cura.</p>
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                                <a href="guia/mapa-terpenos.html" class="nav-link" style="font-weight:700; color:var(--primary);"><i class="fas fa-eye"></i> VER MAPA</a>
-                                <span class="badge" style="background:#10b981; color:white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size:0.7rem;">GRÁTIS</span>
+                            <p>Identifique os compostos aromáticos que potencializam o efeito terapêutico. Aprenda a usar o aroma como indicador clínico na escolha da sua genética.</p>
+                            <div class="article-actions">
+                                <a href="guia/mapa-terpenos.html" class="article-download"><i class="fas fa-eye"></i> VER MAPA</a>
+                                <span class="badge badge-free">GRÁTIS</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 3: Guia do Paciente -->
+                    <article class="article-card">
+                        <div class="article-img">
+                            <img src="assets/patient_journey_hero.png" alt="Guia Completo do Paciente">
+                        </div>
+                        <div class="article-body">
+                            <span class="article-category">Jornada Terapêutica</span>
+                            <h3>Guia Completo do Paciente</h3>
+                            <p>Do primeiro contato com a medicina canabinoide até a autonomia terapêutica. Seis passos práticos e seguros para você acessar seu tratamento sem preconceitos.</p>
+                            <div class="article-actions">
+                                <a href="../index.html#guia-paciente" class="article-download"><i class="fas fa-map-signs"></i> VER GUIA</a>
+                                <span class="badge badge-free">GRÁTIS</span>
                             </div>
                         </div>
                     </article>
