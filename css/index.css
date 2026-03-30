@@ -655,35 +655,6 @@ nav {
     gap: 2rem;
 }
 
-/* Scroll Wrapper for Articles (Home Experience) */
-.articles-scroll-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 20px 0 40px;
-    margin: 0 -20px;
-    padding-left: 20px;
-}
-
-.articles-scroll-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-.articles-scroll-wrapper .articles-grid {
-    display: flex !important;
-    grid-template-columns: none !important;
-    gap: 1.5rem;
-    width: max-content;
-    padding-right: 40px;
-}
-
-.articles-scroll-wrapper .article-card {
-    flex: 0 0 320px !important; /* Force articles to keep fixed width for horizontal scrolling */
-    scroll-snap-align: center;
-}
 
 .article-card {
     background: var(--bg-card);
