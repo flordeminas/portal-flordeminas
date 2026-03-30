@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial E-Book O Efeito Entourage — Preview | Flor de Minas</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NEBGFQHKZ3');
+    </script>
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
+    <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
+    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/logo_brand.png">
+    <meta property="og:url" content="https://portal-flordeminas.com.br/">
+    <meta property="og:site_name" content="Flor de Minas">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+    <meta name="description" content="Tutorial completo do CultivoApp Flor de Minas: como instalar, configurar seu primeiro cultivo, entender o cronograma, protocolo de adubação, MIP orgânico e guia de parâmetros.">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <style>
+        /* ── Tutorial-specific styles ── */
+        .tutorial-hero {
+            background: linear-gradient(135deg, #0d1f14 0%, #1a3824 60%, #2D5A27 100%);
+            padding: 5rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .tutorial-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(82,183,120,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .tutorial-hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .tutorial-hero .hero-badge {
+            background: rgba(82,183,120,0.15);
+            color: #52b778;
+            border: 1px solid rgba(82,183,120,0.3);
+        }
+        .tutorial-hero h1 {
+            font-size: 3rem;
+            color: #e8f0e9;
+            margin: 1.5rem 0 1rem;
+            line-height: 1.15;
+        }
+        .tutorial-hero p {
+            font-size: 1.2rem;
+            color: rgba(232,240,233,0.7);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tutorial-hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-dark-primary {
+            background: #52b778;
+            color: #0d1f14;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-dark-primary:hover {
+            background: #3d9a60;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(82,183,120,0.3);
+        }
+        .btn-dark-outline {
+            background: transparent;
+            color: #52b778;
+            border: 2px solid rgba(82,183,120,0.4);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-dark-outline:hover {
+            border-color: #52b778;
+            background: rgba(82,183,120,0.1);
+        }
+
+        /* Feature chips */
+        .app-features-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 2rem 0 0;
+        }
+        .app-chip {
+            background: rgba(82,183,120,0.1);
+            border: 1px solid rgba(82,183,120,0.25);
+            color: #52b778;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Tutorial step layout */
+        .tutorial-step {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .tutorial-step:nth-child(even) {
+            background-color: var(--bg-neutral);
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .step-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        .step-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .step-layout.reverse > * { direction: ltr; }
+        .step-screenshot {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .step-screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .screenshot-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(13,31,20,0.85);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            color: #52b778;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(82,183,120,0.3);
+        }
+        .step-content p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+        .step-content ul {
+            margin: 1rem 0 1.5rem 1.25rem;
+        }
+        .step-content li {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        .step-content li strong {
+            color: var(--text-main);
+        }
+
+        /* Info boxes */
+        .tip-box {
+            background: rgba(45,90,39,0.08);
+            border: 1px solid rgba(45,90,39,0.2);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        .tip-box .tip-label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .warn-box {
+            background: rgba(232,164,58,0.07);
+            border: 1px solid rgba(232,164,58,0.25);
+            border-left: 4px solid #D4AF37;
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        .warn-box .warn-label {
+            font-weight: 700;
+            color: #D4AF37;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Table */
+        .tutorial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .tutorial-table th {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .tutorial-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        .tutorial-table tr:last-child td { border-bottom: none; }
+        .tutorial-table tr:hover td { background: var(--bg-neutral); }
+        .tutorial-table td:first-child { font-weight: 600; color: var(--text-main); }
+
+        /* Install steps */
+        .install-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .install-card {
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+        .install-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .install-card ol {
+            padding-left: 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .install-card li { margin-bottom: 0.5rem; line-height: 1.5; }
+
+        /* Flow diagram */
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+        }
+        .flow-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .flow-text { font-size: 1rem; color: var(--text-muted); }
+        .flow-text strong { color: var(--text-main); }
+        .flow-arrow {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            padding: 0.2rem 0 0.2rem 40px;
+        }
+
+        /* CTA Section */
+        .app-cta-section {
+            background: linear-gradient(135deg, #0d1f14 0%, #1a3824 100%);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .app-cta-section h2 {
+            font-size: 2.5rem;
+            color: #e8f0e9;
+            margin-bottom: 1rem;
+        }
+        .app-cta-section p {
+            font-size: 1.15rem;
+            color: rgba(232,240,233,0.65);
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .step-layout { grid-template-columns: 1fr; }
+            .step-layout.reverse { direction: ltr; }
+            .tutorial-hero h1 { font-size: 2.2rem; }
+            .install-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <style>
+        :root {
+            --ebook-primary: #52b778;
+            --ebook-dark: #06110f;
+            --ebook-card: #0d1f14;
+            --ebook-text: #e8f0e9;
+            --ebook-accent: #2da15f;
+            --glass-bg: rgba(13, 31, 20, 0.7);
+            --glass-border: rgba(82, 183, 120, 0.2);
+        }
+        
+        .ebook-landing {
+            background-color: var(--ebook-dark);
+            color: var(--ebook-text);
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .ebook-hero {
+            position: relative;
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 100%, #0d2b1c 0%, var(--ebook-dark) 80%);
+            overflow: hidden;
+        }
+        
+        .ebook-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('../assets/efeito_entourage.jpg') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .ebook-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ebook-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--ebook-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ebook-subtitle {
+            font-size: 1.25rem;
+            color: rgba(232, 240, 233, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .ebook-cta {
+            display: inline-block;
+            background: var(--ebook-primary);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(82, 183, 120, 0.4);
+        }
+
+        .ebook-cta:hover {
+            background: var(--ebook-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(82, 183, 120, 0.6);
+        }
+
+        .preview-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--ebook-primary);
+            margin-bottom: 1rem;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .preview-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(82, 183, 120, 0.4);
+        }
+
+        .preview-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-image-wrapper img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .preview-card:hover .preview-image-wrapper img {
+            transform: scale(1.02);
+        }
+
+        .preview-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .preview-info p {
+            color: rgba(232, 240, 233, 0.7);
+            line-height: 1.5;
+        }
+        
+        .cta-bottom {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--ebook-dark) 0%, #081a12 100%);
+        }
+
+    </style>
+</head>
+
+<body class="ebook-landing">
+<header class="site-header">
+        <div class="container">
+            <nav>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo_brand.png" alt="Flor de Minas">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../noticias.html" class="nav-link">Notícias</a></li>
+                    <li><a href="../index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
+                    <li><a href="../parceiros.html" class="nav-link">Parceiros</a></li>
+                    <li><a href="../eventos.html" class="nav-link">Eventos</a></li>
+                    <li><a href="../recursos.html" class="nav-link">Biblioteca</a></li>
+                    <li class="mobile-only"><a href="../sobre-nos.html" class="header-cta">Fale Conosco</a></li>
+                </ul>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <a href="../sobre-nos.html" class="header-cta">Fale Conosco</a>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+<main>
+    <section class="ebook-hero">
+        <div class="ebook-hero-content">
+            <h1 class="ebook-title">O Efeito Entourage</h1>
+            <p class="ebook-subtitle">
+                Desvende a ciência por trás da sinergia entre canabinoides e terpenos. Um guia definitivo e ricamente embasado para maximizar o potencial terapêutico da Cannabis Medicinal.
+            </p>
+            <a href="#preview" class="ebook-cta">Visualizar Amostra Grátis</a>
+        </div>
+    </section>
+
+    <section id="preview" class="preview-section">
+        <div class="section-header">
+            <h2>Por dentro do E-Book</h2>
+            <p style="color: rgba(232,240,233,0.7); max-width: 600px; margin: 0 auto;">Confira algumas páginas exclusivas da nossa edição premium e descubra o padrão científico Flor de Minas.</p>
+        </div>
+
+        <div class="preview-grid">
+            <!-- Capa -->
+            <div class="preview-card">
+                <div class="preview-image-wrapper">
+                    <img src="../assets/prints_Ebook/ebook_page_0.png" alt="Capa Oficial do Ebook">
+                </div>
+                <div class="preview-info">
+                    <h3>Capa & Apresentação</h3>
+                    <p>Design premium que reflete a seriedade e o rigor científico do conteúdo elaborado pela nossa equipe de especialistas.</p>
+                </div>
+            </div>
+
+            <!-- Sumário -->
+            <div class="preview-card">
+                <div class="preview-image-wrapper">
+                    <img src="../assets/prints_Ebook/ebook_page_3.png" alt="Índice Analítico">
+                </div>
+                <div class="preview-info">
+                    <h3>Índice Analítico</h3>
+                    <p>Uma jornada estruturada de aprendizado, passando da teoria do Sistema Endocanabinoide até aplicações clínicas avançadas.</p>
+                </div>
+            </div>
+            
+            <!-- Capítulo 1 -->
+            <div class="preview-card">
+                <div class="preview-image-wrapper">
+                    <img src="../assets/prints_Ebook/ebook_page_6.png" alt="A Ciência da Cannabis">
+                </div>
+                <div class="preview-info">
+                    <h3>Fundamentos Científicos</h3>
+                    <p>Mergulhe na base de como os fitocanabinoides interagem com nossos receptores CB1 e CB2 de forma sinérgica.</p>
+                </div>
+            </div>
+
+            <!-- Terpenos -->
+            <div class="preview-card">
+                <div class="preview-image-wrapper">
+                    <img src="../assets/prints_Ebook/ebook_page_28.png" alt="Exemplo prático de terpenos">
+                </div>
+                <div class="preview-info">
+                    <h3>Catálogo de Terpenos</h3>
+                    <p>Análises detalhadas dos principais terpenos da cannabis, como o Mirceno, abordando seus perfis aromáticos e terapêuticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-bottom">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #fff;">Sua cópia está liberada!</h2>
+        <p style="color: rgba(232,240,233,0.8); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            Adquira o conhecimento definitivo para entender as associações entre os compostos da Cannabis e alcance uma terapia altamente otimizada.
+        </p>
+        <a href="../assets/O_Efeito_Entourage_FlorDeMinas.pdf" download class="ebook-cta" style="padding: 1.2rem 3rem; font-size: 1.2rem; background: #7C3AED; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);">Baixar PDF Completo (Download Automático)</a>
+    </section>
+</main>
+<footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../assets/logo_brand.png" alt="Flor de Minas">
+                    </div>
+                    <p>Facilitando o acesso à medicina canabinoide.</p>
+                </div>
+                
+                
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        
+                        <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+                        <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" id="compliance">
+                <p class="disclaimer-scientific">
+                    Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.
+                </p>
+                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

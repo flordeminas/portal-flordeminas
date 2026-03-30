@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Terpenos (O Aroma da Cura) | Flor de Minas</title>
-    <meta name="description" content="Descubra os benefícios dos terpenos da cannabis: Mirceno, Limoneno, Pineno e mais. Mapa completo dos perfis aromáticos e efeitos terapêuticos.">
+    <title>Mapa Interativo de Terpenos | Flor de Minas</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <meta name="description" content="Descubra como os terpenos (Mirceno, Limoneno, Linalol) determinam os efeitos do seu tratamento com Cannabis. Guia visual para pacientes iniciantes.">
+    <meta name="keywords" content="mapa de terpenos da cannabis, o que são terpenos, efeitos dos terpenos, mirceno, limoneno, maconha medicinal">
+    
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
     <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
@@ -15,12 +19,226 @@
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Base CSS -->
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            /* Premium Terpene Palette */
+            --terp-myrcene: hsl(125, 60%, 45%);
+            --terp-limonene: hsl(45, 90%, 55%);
+            --terp-linalool: hsl(265, 65%, 60%);
+            --terp-caryophyllene: hsl(0, 0%, 50%);
+            --terp-pinene: hsl(150, 70%, 35%);
+            
+            --glass-bg: var(--bg-neutral);
+            --glass-border: var(--border);
+            --glass-shadow: var(--shadow-sm);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Hero Terpenes */
+        .terpene-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge-terp {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.2); }
+            100% { box-shadow: 0 0 20px 0 rgba(16, 185, 129, 0.4); }
+        }
+
+        .terpene-hero h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .terpene-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Interactive Map Grid */
+        .terpene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            padding: 40px 0 80px;
+            align-items: flex-start; /* Fix grid items stretching together */
+        }
+
+        .terp-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .terp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Specific Card Accents */
+        .card-myrcene:hover { border-color: var(--terp-myrcene); }
+        .card-limonene:hover { border-color: var(--terp-limonene); }
+        .card-linalool:hover { border-color: var(--terp-linalool); }
+        .card-caryophyllene:hover { border-color: var(--terp-caryophyllene); }
+        .card-pinene:hover { border-color: var(--terp-pinene); }
+
+        .terp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .card-myrcene .terp-icon { color: var(--terp-myrcene); }
+        .card-limonene .terp-icon { color: var(--terp-limonene); }
+        .card-linalool .terp-icon { color: var(--terp-linalool); }
+        .card-caryophyllene .terp-icon { color: var(--terp-caryophyllene); }
+        .card-pinene .terp-icon { color: var(--terp-pinene); }
+
+        .terp-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .terp-flavor {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .terp-effect-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .terp-tag {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .terp-details {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .terp-card.active .terp-details {
+            height: auto;
+            opacity: 1;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .expand-btn {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .terp-card.active .expand-btn {
+            transform: rotate(180deg);
+            color: var(--text-main);
+        }
+
+        /* Lead Magnet Integration */
+        .entourage-promo {
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .entourage-promo h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .entourage-promo p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+    </style>
 </head>
-<body class="article-page">
+<body>
+
+    <!-- Header Padrão -->
     <header class="site-header">
         <div class="container">
             <nav>
@@ -33,14 +251,14 @@
                     <li><a href="../parceiros.html" class="nav-link">Parceiros</a></li>
                     <li><a href="../eventos.html" class="nav-link">Eventos</a></li>
                     <li><a href="../recursos.html" class="nav-link">Biblioteca</a></li>
-                    <li class="mobile-only"><a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a></li>
+                    <li class="mobile-only"><a href="../sobre-nos.html" class="header-cta">Fale Conosco</a></li>
                 </ul>
                 <div class="header-right">
                     <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
                         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                         <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
-                    <a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a>
+                    <a href="../sobre-nos.html" class="header-cta">Fale Conosco</a>
                     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
                         <span></span>
                         <span></span>
@@ -52,129 +270,129 @@
     </header>
 
     <main class="container">
-        <div class="breadcrumbs">
-            <a href="../index.html">Início</a> > <a href="../noticias.html">Produtos</a> > <span>Mapa de Terpenos</span>
-        </div>
+        <!-- Hero -->
+        <section class="terpene-hero">
+            <span class="hero-badge-terp">Guia Interativo para Iniciantes</span>
+            <h1>Mapa Visual de<br>Terpenos da Cannabis</h1>
+            <p>Selecione um composto abaixo para descobrir como o aroma da sua flor pode prever se ela irá te relaxar, dar energia, ou aliviar dores sem causar sonolência.</p>
+        </section>
 
-        <article class="article-content">
-            <header class="article-header">
-                <span class="category-tag">Guia Científico Avançado</span>
-                <h1>Mapa de Terpenos: A Ciência por trás do Aroma</h1>
-                <p class="article-lead">Muito além do cheiro, os terpenos são os maestros químicos que direcionam o efeito terapêutico da Cannabis no seu organismo.</p>
-            </header>
-
-            <div class="article-hero" style="height: auto; max-height: none; background: none; box-shadow: none; border-radius: 0; margin-bottom: 4rem;">
-                <img src="../assets/terpenes_hero_v3.png" alt="Mapa Visual de Terpenos Flor de Minas" style="object-fit: contain; width: 100%; border-radius: 30px; box-shadow: var(--shadow);">
-            </div>
-
-            <section class="content-body">
-                <p>Na Cannabis medicinal, a eficácia do tratamento não depende apenas da concentração de THC ou CBD. O segredo reside no <strong>Efeito Entourage (Efeito de Entorno)</strong>, onde os canabinoides e terpenos trabalham em sinergia para potencializar os benefícios e mitigar efeitos colaterais.</p>
-                
-                <p>Abaixo, detalhamos os sete principais terpenos encontrados na planta e como eles influenciam sua saúde:</p>
-
-                <div class="terpene-detail-grid" style="display: grid; gap: 3rem; margin: 4rem 0;">
-                    <!-- Mirceno -->
-                    <div class="terpene-card" style="border-left: 5px solid #10b981; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #10b981;">1. Mirceno (Myrcene) — O Sedativo Natural</h2>
-                        <p><strong>Aroma:</strong> Terroso, herbal, com notas de cravo e manga madura.</p>
-                        <p>O mirceno é o terpeno mais comum na Cannabis. Ele é conhecido por aumentar a permeabilidade da barreira hematoencefálica, o que permite que os canabinoides cheguem mais rápido ao cérebro. Seus efeitos são predominantemente relaxantes e sedativos, sendo ideal para pacientes com insônia e dores crônicas severas.</p>
-                    </div>
-
-                    <!-- Limoneno -->
-                    <div class="terpene-card" style="border-left: 5px solid #06b6d4; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #06b6d4;">2. Limoneno (Limonene) — Foco e Humor</h2>
-                        <p><strong>Aroma:</strong> Cítrico intenso, limão e laranja.</p>
-                        <p>Presente também nas cascas de frutas cítricas, o limoneno é um potente ansiolítico e antidepressivo. Ele estimula a produção de serotonina e dopamina, ajudando no foco mental e na redução do estresse. É excelente para uso diurno e tratamentos psicológicos.</p>
-                    </div>
-
-                    <!-- Linalol -->
-                    <div class="terpene-card" style="border-left: 5px solid #8b5cf6; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #8b5cf6;">3. Linalol (Linalool) — A Calma da Lavanda</h2>
-                        <p><strong>Aroma:</strong> Floral e doce (lavanda).</p>
-                        <p>Famoso por suas propriedades anticonvulsivantes e calmantes, o linalol é um dos pilares no tratamento da epilepsia e distúrbios de pânico. Ele ajuda a modular a excitabilidade neuronal, promovendo um estado de paz profunda sem necessariamente causar sono pesado.</p>
-                    </div>
-
-                    <!-- Pineno -->
-                    <div class="terpene-card" style="border-left: 5px solid #059669; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #059669;">4. Pineno (Alpha-Pinene) — O Respirar da Floresta</h2>
-                        <p><strong>Aroma:</strong> Pinheiro, agulhas de pinho e Alecrim.</p>
-                        <p>O pineno é um broncodilatador natural e anti-inflamatório. Além de ajudar na respiração, ele combate a perda de memória de curto prazo (um efeito comum de doses altas de THC), mantendo o paciente alerta e concentrado.</p>
-                    </div>
-
-                    <!-- Cariofileno -->
-                    <div class="terpene-card" style="border-left: 5px solid #d97706; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #d97706;">5. Beta-Cariofileno — O Terpeno Anti-Inflamatório</h2>
-                        <p><strong>Aroma:</strong> Picante, pimenta-do-reino, madeira e canela.</p>
-                        <p>Este é um terpeno único: ele é o único capaz de se ligar diretamente aos receptores CB2 do sistema endocanabinoide, agindo como um "canabinoide honorário". É um dos analgésicos e anti-inflamatórios mais potentes da natureza, sendo fundamental no tratamento de artrite e doenças autoimunes.</p>
-                    </div>
-
-                    <!-- Humuleno -->
-                    <div class="terpene-card" style="border-left: 5px solid #4ade80; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #4ade80;">6. Humuleno (Humulene) — Supressão Literária</h2>
-                        <p><strong>Aroma:</strong> Lenhoso, terroso e com notas de lúpulo.</p>
-                        <p>Ao contrário do que muitos pensam, nem toda Cannabis dá fome. O humuleno é conhecido por suprimir o apetite, além de ser um excelente antifúngico e antibacteriano tópico e sistêmico.</p>
-                    </div>
-
-                    <!-- Terpinoleno -->
-                    <div class="terpene-card" style="border-left: 5px solid #2dd4bf; padding-left: 2rem;">
-                        <h2 style="margin-bottom: 1rem; color: #2dd4bf;">7. Terpinoleno (Terpinolene) — Complexidade Oculta</h2>
-                        <p><strong>Aroma:</strong> Floral com toques de ervas e pinho.</p>
-                        <p>Embora presente em quantidades menores, o terpinoleno é um antioxidante poderoso e possui propriedades antineoplásicas (antitumorais) em estudos preliminares. Ele oferece um relaxamento suave e uma sensação de bem-estar generalizado.</p>
-                    </div>
+        <!-- Interactive Grid -->
+        <section class="terpene-grid">
+            
+            <!-- Myrcene -->
+            <article class="terp-card card-myrcene" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-leaf terp-icon"></i>
+                <h3>Mirceno</h3>
+                <span class="terp-flavor">Terroso · Musgo · Manga</span>
+                <div class="terp-effect-tags">
+                    <span class="terp-tag">Relaxamento Profundo</span>
+                    <span class="terp-tag">Sedativo</span>
+                    <span class="terp-tag">Alívio Muscular</span>
                 </div>
-
-                <div class="info-box" style="background: rgba(16, 185, 129, 0.1); border-radius: 20px; padding: 2.5rem; margin-top: 4rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Importância Prática para o Paciente</h3>
-                    <p>Ao ler o certificado de análise (COA) do seu medicamento, não olhe apenas para os níveis de CBD/THC. Verifique o **Perfil de Terpenos**. Se o seu objetivo é dormir, procure variedades ricas em **Mirceno e Linalol**. Se precisa de foco para o trabalho, o **Limoneno e o Pineno** são seus melhores aliados.</p>
+                <div class="terp-details">
+                    O mirceno atua como um facilitador: ele aumenta a permeabilidade da barreira hematoencefálica, permitindo que os canabinoides entrem mais rápido no cérebro. É o responsável pelo clássico efeito "Couch-Lock" (ficar preso no sofá). Ideal para pacientes que buscam tratamento para insônia severa ou tensão muscular noturna.
                 </div>
+                <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i></button>
+            </article>
 
-                <div class="cta-box" style="margin-top: 5rem; text-align: center; border-top: 1px solid var(--border); padding-top: 4rem;">
-                    <h2>Pronto para uma consulta personalizada?</h2>
-                    <p style="margin-bottom: 2rem;">Conectamos você aos melhores médicos do Brasil que entendem a ciência dos terpenos e prescrevem com precisão.</p>
-                    <a href="../parceiros.html" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 50px;">Agendar Consulta com Especialista</a>
+            <!-- Limonene -->
+            <article class="terp-card card-limonene" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-lemon terp-icon"></i>
+                <h3>Limoneno</h3>
+                <span class="terp-flavor">Cítrico · Limão · Fresco</span>
+                <div class="terp-effect-tags">
+                    <span class="terp-tag">Elevação de Humor</span>
+                    <span class="terp-tag">Energia</span>
+                    <span class="terp-tag">Antidepressivo</span>
                 </div>
-            </section>
-        </article>
+                <div class="terp-details">
+                    O oposto do Mirceno. O Limoneno é um elevador de humor estudado por suas potentes propriedades antidepressivas e ansiolíticas. Ideal para o uso diurno, ele promove energia, foco e alívio do estresse sem sedação. Se você precisa trabalhar e tratar a ansiedade ao mesmo tempo, procure flores com notas cítricas pungentes.
+                </div>
+                <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i></button>
+            </article>
+
+            <!-- Linalool -->
+            <article class="terp-card card-linalool" onclick="this.classList.toggle('active')">
+                <i class="fa-brands fa-pagelines terp-icon"></i>
+                <h3>Linalol</h3>
+                <span class="terp-flavor">Floral · Lavanda · Doce</span>
+                <div class="terp-effect-tags">
+                    <span class="terp-tag">Antiansiedade Profunda</span>
+                    <span class="terp-tag">Calmante</span>
+                    <span class="terp-tag">Anticonvulsivante</span>
+                </div>
+                <div class="terp-details">
+                    Presente também na lavanda, o Linalol atua em receptores cerebrais específicos (NMDA/GABA) reduzindo excitabilidade química. É uma ferramenta fundamental para pacientes com Transtorno de Ansiedade Generalizada (TAG), autismo ou agitação extrema, promovendo um "desligar" mental suave e reparador.
+                </div>
+                <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i></button>
+            </article>
+
+            <!-- Caryophyllene -->
+            <article class="terp-card card-caryophyllene" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-fire-flame-curved terp-icon"></i>
+                <h3>β-Cariofileno</h3>
+                <span class="terp-flavor">Pimenta Preta · Cravo · Especiarias</span>
+                <div class="terp-effect-tags">
+                    <span class="terp-tag">Anti-inflamatório</span>
+                    <span class="terp-tag">Proteção Gástrica</span>
+                    <span class="terp-tag">Não-psicoativo</span>
+                </div>
+                <div class="terp-details">
+                    Uma anomalia botânica: é o único terpeno que age como um canabinoide, ligando-se fisicamente ao receptor CB2 do corpo humano. O resultado? Uma ação anti-inflamatória e analgésica poderosa sem nenhum efeito na mente. Perfeito para pacientes com dores crônicas, neuropatia e inflamações autoimunes.
+                </div>
+                <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i></button>
+            </article>
+
+            <!-- Pinene -->
+            <article class="terp-card card-pinene" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-tree terp-icon"></i>
+                <h3>Pineno</h3>
+                <span class="terp-flavor">Pinho · Floresta · Alecrim</span>
+                <div class="terp-effect-tags">
+                    <span class="terp-tag">Foco & Memória</span>
+                    <span class="terp-tag">Broncodilatador</span>
+                    <span class="terp-tag">Vigília</span>
+                </div>
+                <div class="terp-details">
+                    O terpeno mais comum na natureza. O Pineno não só abre as vias aéreas (bom para asmáticos), mas atua inibindo a acetilcolinesterase. Na prática médica, ele anula a perda de memória de curto prazo causada pelo THC, garantindo uma mente lúcida e analítica mesmo sob efeito floral.
+                </div>
+                <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i></button>
+            </article>
+
+        </section>
+
+        <!-- Seamless Integration of Lead Magnet (Closer CTA) -->
+        <section class="entourage-promo" id="download">
+            <h2>Quer se aprofundar na Ciência?</h2>
+            <p>Criamos um e-book 100% gratuito que detalha a fitoquímica completa da Cannabis e como a sinergia dos terpenos e canabinoides (O Efeito Entourage) pode revolucionar o seu tratamento.</p>
+            
+            <form name="newsletter_terpenes" method="POST" action="https://formspree.io/f/xlgoerjy" style="display: flex; gap: 1rem; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+                <input type="hidden" name="_next" value="https://portal-flordeminas.com.br/guia/ebook-entourage.html">
+                <input type="email" name="email" placeholder="Digite seu melhor e-mail" required style="flex: 1; padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-main); color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1rem; min-width: 250px;">
+                <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Baixar E-book</button>
+            </form>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 16px;">Ao baixar, você recebe acesso à nossa Newsletter semanal sobre inovações botânicas.</p>
+        </section>
     </main>
 
-            <footer class="site-footer">
+    <!-- Footer Padrão -->
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
                         <img src="../assets/logo_brand.png" alt="Flor de Minas">
                     </div>
-                    <p>Facilitando o acesso à medicina canabinoide através de informação, apoio jurídico e conexão com especialistas em todo o Brasil.</p>
+                    <p>Facilitando o acesso à medicina canabinoide.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <ul>
-                        <li><a href="../noticias.html">Notícias</a></li>
-                        <li><a href="../index.html#guia-paciente">Guia do Paciente</a></li>
-                        <li><a href="../parceiros.html">Parceiros</a></li>
-                        <li><a href="../eventos.html">Eventos</a></li>
-                        <li><a href="../recursos.html">Biblioteca</a></li>
-                        <li><a href="../sobre-nos.html">Sobre Nós</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#">Telemedicina Conectada</a></li>
-                        <li><a href="#">Apoio Jurídico Especializado</a></li>
-                        <li><a href="#">Monitoramento Sandbox</a></li>
-                        <li><a href="#">Mentoria de Cultivo Legal</a></li>
-                        <li><a href="#">Inteligência Científica</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-links">
                     <h4>Contato</h4>
                     <ul>
-                        <li><a href="mailto:flor-de-minas@protonmail.com"><i class="fas fa-envelope"></i> flor-de-minas@protonmail.com</a></li>
                         <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                         <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -187,6 +405,40 @@
         </div>
     </footer>
 
+    <!-- Dependências Funcionais -->
     <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form[name="newsletter_terpenes"]');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = form.querySelector('button');
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Enviando...';
+                    btn.disabled = true;
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            body: new FormData(form),
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        if (response.ok) {
+                            window.location.href = form.querySelector('input[name="_next"]').value;
+                        } else {
+                            alert('Erro ao assinar. Tente novamente.');
+                            btn.innerText = originalText;
+                            btn.disabled = false;
+                        }
+                    } catch (err) {
+                        alert('Erro ao de rede. Verifique a conexão.');
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

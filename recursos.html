@@ -18,7 +18,7 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Theme Script -->
@@ -44,14 +44,14 @@
                     <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
                     <li><a href="eventos.html" class="nav-link">Eventos</a></li>
                     <li><a href="recursos.html" class="nav-link">Biblioteca</a></li>
-                    <li class="mobile-only"><a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a></li>
+                    <li class="mobile-only"><a href="sobre-nos.html" class="header-cta">Fale Conosco</a></li>
                 </ul>
                 <div class="header-right">
                     <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
                         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                         <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </button>
-                    <a href="mailto:flor-de-minas@protonmail.com" class="header-cta">Fale Conosco</a>
+                    <a href="sobre-nos.html" class="header-cta">Fale Conosco</a>
                     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
                         <span></span>
                         <span></span>
@@ -68,89 +68,68 @@
             <div class="container">
                 <div class="hero-content hero-centered">
                     <span class="hero-badge">Recursos Premium</span>
-                    <h1>Biblioteca Digital Flor de Minas</h1>
+                    <h1>Biblioteca Digital</h1>
                     <p>O centro de inteligência para acelerar sua jornada de saúde e domínio técnico na medicina canabinoide.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Premium Products (E-books, Apps) -->
+        <!-- Ebook Lead Magnet (Compact & Elegant Layout instead of huge card) -->
+        <section class="lead-magnet" id="ebook-entourage" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="lead-magnet-card" style="box-shadow: var(--shadow-md);">
+                    <span class="lead-magnet-badge" style="top: -10px;">E-Book Master 2026</span>
+                    <div class="lead-magnet-image">
+                        <img src="assets/ebook_cover_terpenos.png" alt="Capa E-book Efeito Entourage">
+                    </div>
+                    <div class="lead-magnet-content">
+                        <h3>O Efeito Entourage: Sinergia Clínica</h3>
+                        <p>Um material fundamentado na ciência sobre a fitoquímica da Cannabis. Aprenda como cada aroma direciona a cura em capítulos detalhados, com citações de estudos avançados.</p>
+                        <form name="newsletter_ebook_recursos" method="POST" action="https://formspree.io/f/xlgoerjy" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                            <input type="hidden" name="_next" value="https://portal-flordeminas.com.br/guia/ebook-entourage.html">
+                            <input type="email" name="email" placeholder="Seu melhor e-mail para receber" required style="flex: 1; min-width: 250px; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-neutral); color: var(--text-main); font-family: 'Inter', sans-serif;">
+                            <button type="submit" class="btn btn-primary">Assinar & Receber Grátis</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Banner Section (Imported from Index to avoid giant cards) -->
+        <section class="cultivoapp-banner" style="margin: 3rem auto;">
+            <div class="container">
+                <div class="cultivoapp-banner-inner">
+                    <div class="cultivoapp-banner-icon">🌿</div>
+                    <div class="cultivoapp-banner-content">
+                        <span class="cultivoapp-banner-tag">App Gratuito · PWA · Offline</span>
+                        <h2>CultivoApp Flor de Minas</h2>
+                        <p>Gerencie seu jardim medicinal com cronograma automático, protocolo de adubação e controle de pragas orgânico. O aplicativo definitivo para o cultivador nacional.</p>
+                        <div class="cultivoapp-banner-actions">
+                            <span class="btn-app-soon">🚀 Em Desenvolvimento</span>
+                            <a href="guia/cultivoapp-tutorial.html" class="btn-app-secondary">Ver Dashboard Completo →</a>
+                        </div>
+                    </div>
+                    <!-- Waitlist Inline Form -->
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; padding-left: 2rem; border-left: 1px solid rgba(255,255,255,0.1);">
+                        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">Entre na lista de espera para o Beta fechado:</p>
+                        <form style="display: flex; gap: 0.5rem;" action="https://formspree.io/f/xlgoerjy" method="POST">
+                            <input type="hidden" name="origem" value="CultivoApp - Lista de Espera">
+                            <input type="hidden" name="_next" value="https://portal-flordeminas.com.br/guia/cultivoapp-tutorial.html">
+                            <input type="email" name="email" placeholder="E-mail" required style="flex: 1; padding: 0.8rem; border-radius: 6px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                            <button type="submit" style="padding: 0.8rem 1.2rem; border: none; border-radius: 6px; background: var(--primary); color: #fff; font-weight: 600; cursor: pointer;">Entrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Cards Section -->
         <section class="section-neutral">
             <div class="container">
                 <div class="section-header">
-                    <h2>Lançamentos de Elite</h2>
-                    <p>Conhecimentos avançados empacotados em guias definitivos de alta performance.</p>
+                    <h2>Guias Clínicos</h2>
+                    <p>Recursos indispensáveis para o seu protocolo de tratamento.</p>
                 </div>
-
-                <div class="featured-resource">
-                    <article class="featured-resource-card">
-                        <div class="featured-resource-image">
-                            <img src="assets/ebook_cover_terpenos.png" alt="Capa E-book Efeito Entourage">
-                        </div>
-                        <div class="featured-resource-body">
-                            <span class="article-category">E-BOOK MASTER 2026</span>
-                            <h2>O EFEITO ENTOURAGE</h2>
-                            <h3>Desvendando a Sinergia entre Canabinoides e Terpenos</h3>
-                            <p>O guia científico mais completo do Brasil sobre a fitoquímica da Cannabis. Aprenda como cada aroma direciona a cura em capítulos detalhados, com citações de estudos avançados e descritivo completo de tricomas e biosíntese.</p>
-                            <div class="resource-actions">
-                                <form action="https://formspree.io/f/xlgoerjy" method="POST" class="resource-form">
-                                    <input type="email" name="email" class="resource-input" placeholder="Seu melhor e-mail" required>
-                                    <button type="submit" class="btn btn-primary">RESERVAR MEU EXEMPLAR</button>
-                                </form>
-                                <div class="price-tag">
-                                    <del>R$ 97</del>
-                                    <span>GRATUITO*</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <!-- CultivoApp Featured Card -->
-                <div class="featured-resource featured-resource--app">
-                    <article class="featured-resource-card cultivoapp-featured-card">
-                        <div class="featured-resource-image cultivoapp-card-image">
-                            <div class="cultivoapp-card-inner">
-                                <div class="cultivoapp-card-emoji">🌿</div>
-                                <div class="cultivoapp-card-title">CultivoApp</div>
-                                <div class="cultivoapp-card-sub">Flor de Minas</div>
-                                <div class="cultivoapp-chips-row">
-                                    <span class="cultivoapp-chip">165+ Genéticas</span>
-                                    <span class="cultivoapp-chip">Funciona Offline</span>
-                                    <span class="cultivoapp-chip">PWA Gratuita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-resource-body">
-                            <span class="article-category">APP GRATUITO — PWA 2026</span>
-                            <h2>CULTIVOAPP</h2>
-                            <h3>Seu Jardim Medicinal em um Só Lugar</h3>
-                            <p>O único app de gerenciamento de jardim medicinal 100% em português. Cronograma automático por fase, protocolo de adubação semana a semana (BioBizz, Remo, SuperSoil), MIP orgânico preventivo e guia de parâmetros de temperatura, pH e umidade.</p>
-                            <div class="resource-actions">
-                                <div class="app-coming-soon-block">
-                                    <span class="app-soon-badge">🚀 Em Desenvolvimento</span>
-                                    <p class="app-soon-text">O app está em fase final de desenvolvimento. Deixe seu e-mail e seja o primeiro a saber quando lançar.</p>
-                                    <form class="app-waitlist-form" action="https://formspree.io/f/xlgoerjy" method="POST">
-                                        <input type="hidden" name="origem" value="CultivoApp - Lista de Espera (Recursos)">
-                                        <div class="app-waitlist-row">
-                                            <input type="email" name="email" class="app-waitlist-input" placeholder="Seu melhor e-mail" required>
-                                            <button type="submit" class="app-waitlist-btn">Entrar na Lista →</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="price-tag">
-                                    <del>Pago</del>
-                                    <span>GRATUITO</span>
-                                </div>
-                            </div>
-                            <p class="app-tutorial-link">
-                                <a href="guia/cultivoapp-tutorial.html">Ver tutorial completo passo a passo →</a>
-                            </p>
-                        </div>
-                    </article>
-                </div>
-
 
                 <div class="articles-grid">
                     <!-- Produto 1: Guia de Dosagem -->
@@ -162,9 +141,9 @@
                             <span class="article-category">Apoio Terapêutico</span>
                             <h3>Protocolo de Dosagem CBD/THC</h3>
                             <p>Domine a arte da titulação lenta. Um guia prático de dosimetria individualizada para você e seu médico ajustarem a terapia com segurança.</p>
-                            <div class="article-actions">
-                                <a href="guia/guia-dosagem.html" class="article-download"><i class="fas fa-book"></i> ACESSAR GUIA</a>
-                                <span class="badge badge-free">GRÁTIS</span>
+                            <div class="article-actions" style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                                <a href="guia/guia-dosagem.html" style="color: var(--primary-hover); font-weight: 600; text-decoration: none;"><i class="fas fa-book"></i> Acessar Guia</a>
+                                <span class="badge badge-free" style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">GRÁTIS</span>
                             </div>
                         </div>
                     </article>
@@ -175,12 +154,12 @@
                             <img src="assets/terpene_map_tool.png" alt="Mapa Visual de Terpenos">
                         </div>
                         <div class="article-body">
-                            <span class="article-category">Infográfico Científico</span>
+                            <span class="article-category">Infográfico Interativo</span>
                             <h3>Mapa Visual de Terpenos</h3>
-                            <p>Identifique os compostos aromáticos que potencializam o efeito terapêutico. Aprenda a usar o aroma como indicador clínico na escolha da sua genética.</p>
-                            <div class="article-actions">
-                                <a href="guia/mapa-terpenos.html" class="article-download"><i class="fas fa-eye"></i> VER MAPA</a>
-                                <span class="badge badge-free">GRÁTIS</span>
+                            <p>Identifique os compostos aromáticos que potencializam o efeito terapêutico. Aprenda a usar o aroma como indicador clínico na escolha da flor.</p>
+                            <div class="article-actions" style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                                <a href="guia/mapa-terpenos.html" style="color: var(--primary-hover); font-weight: 600; text-decoration: none;"><i class="fas fa-eye"></i> Ver Interativo</a>
+                                <span class="badge badge-free" style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">GRÁTIS</span>
                             </div>
                         </div>
                     </article>
@@ -191,41 +170,15 @@
                             <img src="assets/patient_journey_hero.png" alt="Guia Completo do Paciente">
                         </div>
                         <div class="article-body">
-                            <span class="article-category">Jornada Terapêutica</span>
-                            <h3>Guia Completo do Paciente</h3>
-                            <p>Do primeiro contato com a medicina canabinoide até a autonomia terapêutica. Seis passos práticos e seguros para você acessar seu tratamento sem preconceitos.</p>
-                            <div class="article-actions">
-                                <a href="../index.html#guia-paciente" class="article-download"><i class="fas fa-map-signs"></i> VER GUIA</a>
-                                <span class="badge badge-free">GRÁTIS</span>
+                            <span class="article-category">Jornada Inicial</span>
+                            <h3>Guia do Paciente 2026</h3>
+                            <p>Do primeiro contato até a receita médica. Passo a passo simplificado para você ter a documentação da Anvisa corretamente aprovada.</p>
+                            <div class="article-actions" style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                                <a href="index.html#guia-paciente" style="color: var(--primary-hover); font-weight: 600; text-decoration: none;"><i class="fas fa-map-signs"></i> Iniciar Jornada</a>
+                                <span class="badge badge-free" style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">GRÁTIS</span>
                             </div>
                         </div>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Section -->
-        <section class="newsletter-section" id="premium">
-            <div class="container">
-                <div class="newsletter-card">
-                    <div class="newsletter-header">
-                        <h3 class="newsletter-badge">Acesso Imediato</h3>
-                    </div>
-                    
-                    <div class="newsletter-grid">
-                        <div class="newsletter-text">
-                            <h2>Desbloqueie sua Biblioteca Digital</h2>
-                            <p>Inscreva-se para baixar todos os recursos técnicos, guias de dosagem e e-books exclusivos da nossa rede.</p>
-                        </div>
-                        
-                        <div class="newsletter-form-container">
-                            <form class="newsletter-form" name="resource-access" method="POST" action="https://formspree.io/f/xlgoerjy">
-                                <input type="email" name="email" placeholder="Seu melhor e-mail" class="newsletter-input" required>
-                                <button type="submit" class="newsletter-button">CADASTRAR E ACESSAR</button>
-                            </form>
-                            <p class="newsletter-note">Links de download enviados imediatamente após a confirmação.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -238,37 +191,15 @@
                     <div class="logo">
                         <img src="assets/logo_brand.png" alt="Flor de Minas">
                     </div>
-                    <p>Facilitando o acesso à medicina canabinoide através de informação, apoio jurídico e conexão com especialistas em todo o Brasil.</p>
+                    <p>Facilitando o acesso à medicina canabinoide.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <ul>
-                        <li><a href="noticias.html">Notícias</a></li>
-                        <li><a href="index.html#guia-paciente">Guia do Paciente</a></li>
-                        <li><a href="parceiros.html">Parceiros</a></li>
-                        <li><a href="eventos.html">Eventos</a></li>
-                        <li><a href="recursos.html">Biblioteca</a></li>
-                        <li><a href="sobre-nos.html">Sobre Nós</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#">Telemedicina Conectada</a></li>
-                        <li><a href="#">Apoio Jurídico Especializado</a></li>
-                        <li><a href="#">Monitoramento Sandbox</a></li>
-                        <li><a href="#">Mentoria de Cultivo Legal</a></li>
-                        <li><a href="#">Inteligência Científica</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-links">
                     <h4>Contato</h4>
                     <ul>
-                        <li><a href="mailto:flor-de-minas@protonmail.com"><i class="fas fa-envelope"></i> flor-de-minas@protonmail.com</a></li>
                         <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                         <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        
                     </ul>
                 </div>
             </div>

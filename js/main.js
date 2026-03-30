@@ -19,6 +19,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Universal Formspree Ajax Interceptor (Bypasses Localhost redirect blocks)
+    const formspreeForms = document.querySelectorAll('form[action^="https://formspree.io"]');
+    formspreeForms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const action = form.getAttribute('action');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+            
+            if(submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Aguarde...';
+                submitBtn.disabled = true;
+            }
+
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Pega a URL do _next se existir
+                    const nextInput = form.querySelector('input[name="_next"]');
+                    if (nextInput && nextInput.value) {
+                        // Redireciona localmente via JS (não depende do Formspree autorizar Cross-Domain na URL)
+                        window.location.href = nextInput.value;
+                    } else {
+                        if(submitBtn) {
+                            submitBtn.innerHTML = '<i class="fas fa-check"></i> Sucesso!';
+                            submitBtn.style.backgroundColor = '#10b981';
+                        }
+                        form.reset();
+                    }
+                } else {
+                    throw new Error('Falha no Formspree');
+                }
+            } catch (error) {
+                console.error(error);
+                if(submitBtn) {
+                    submitBtn.innerHTML = 'Erro na rede. Tente de novo.';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }
+            }
+        });
+    });
+
     // Handle Newsletter form submission (Formspree or AJAX)
     const newsletterForm = document.getElementById('newsletter-form');
     const formWrapper = document.getElementById('newsletter-form-wrapper');
