@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Dosagem Canabinoide (CBD/THC) | Flor de Minas</title>
-    <meta name="description" content="Aprenda a iniciar seu tratamento com cannabis medicinal de forma segura. Guia de dosagem (CBD/THC) baseado no peso e sintomas.">
+    <title>Calculadora de Dosagem Canabinoide (CBD/THC) | Flor de Minas</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <meta name="description" content="Encontre a faixa de dosagem para seu tratamento com cannabis medicinal. Ferramenta interativa baseada em peso e intensidade dos sintomas.">
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
     <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
@@ -15,12 +17,402 @@
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
-    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Theme Script (Prevent Blink) -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <style>
+        /* ── Calculadora: Design System Local ── */
+        .calc-hero {
+            padding: 3rem 0 0;
+            text-align: left;
+        }
+        .calc-hero .category-tag { margin-bottom: 0.75rem; }
+        .calc-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin-bottom: 1rem;
+            line-height: 1.15;
+            font-weight: 900;
+        }
+        .calc-hero .lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /* ── Layout principal da calculadora ── */
+        .calc-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0 4rem;
+            align-items: start;
+        }
+
+        /* ── Painel de Controles (esquerda) ── */
+        .calc-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            position: sticky;
+            top: 100px;
+        }
+        .calc-panel h2 {
+            font-size: 1.15rem;
+            font-weight: 900;
+            margin-bottom: 1.75rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* ── Grupo de filtro ── */
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+        .filter-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Filtros pill (sintoma) */
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .pill {
+            padding: 0.45rem 0.9rem;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.18s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .pill:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-1px);
+        }
+        .pill.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: #fff;
+        }
+
+        /* Slider de peso */
+        .weight-display {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            margin-bottom: 0.75rem;
+        }
+        .weight-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--secondary);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .weight-unit {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid var(--bg-card);
+            box-shadow: 0 0 0 2px var(--secondary);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .range-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+        /* Filtros de gravidade */
+        .severity-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+        .severity-btn {
+            padding: 0.6rem 0.4rem;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-muted);
+            text-align: center;
+            transition: all 0.18s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .severity-btn .sev-icon { font-size: 1rem; }
+        .severity-btn:hover { border-color: var(--secondary); color: var(--secondary); }
+        .severity-btn.active { background: var(--secondary); border-color: var(--secondary); color: #fff; }
+        .severity-btn.active-medium { background: #F59E0B; border-color: #F59E0B; color: #fff; }
+        .severity-btn.active-severe { background: #EF4444; border-color: #EF4444; color: #fff; }
+
+        /* ── Painel de Resultados (direita) ── */
+        .result-panel { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        /* Card de resultado principal */
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .result-card.highlight {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.12);
+        }
+
+        .result-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .result-tier-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+        .result-badge {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-match { background: rgba(16,185,129,0.12); color: var(--secondary); }
+        .badge-possible { background: var(--bg-neutral); color: var(--text-muted); }
+        .badge-out { background: rgba(239,68,68,0.08); color: #EF4444; }
+
+        .dose-range-display {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .dose-min, .dose-max {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .dose-separator { font-size: 2rem; color: var(--text-muted); align-self: flex-end; padding-bottom: 4px; }
+        .dose-unit-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; align-self: flex-end; padding-bottom: 8px; }
+
+        .dose-bar-track {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+        .dose-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--secondary);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .result-conditions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+        .condition-chip {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-neutral);
+            border-radius: 2px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .result-tip {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-neutral);
+            border-left: 3px solid var(--secondary);
+            padding: 0.75rem 1rem;
+            border-radius: 0 3px 3px 0;
+            line-height: 1.5;
+        }
+
+        /* Tabela filtrada */
+        .result-table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .result-table-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .result-table-header h3 { font-size: 0.9rem; font-weight: 800; margin: 0; }
+        .table-count { font-size: 0.8rem; color: var(--text-muted); }
+
+        table.dosage-table { width: 100%; border-collapse: collapse; }
+        table.dosage-table th {
+            background: var(--bg-neutral);
+            padding: 0.75rem 1.25rem;
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        table.dosage-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+            vertical-align: middle;
+        }
+        table.dosage-table tr:last-child td { border-bottom: none; }
+        table.dosage-table tr.row-match td { background: rgba(16,185,129,0.04); }
+        table.dosage-table tr.row-hidden { display: none; }
+
+        .tier-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+        .ind-micro { background: var(--secondary); }
+        .ind-standard { background: #F59E0B; }
+        .ind-macro { background: #EF4444; }
+        .tier-name { font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; }
+        .dose-string { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text-main); }
+        .per-kg { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px; }
+
+        /* ── Aviso clínico ── */
+        .clinical-disclaimer {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1rem;
+        }
+        .disc-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .disc-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+        .disc-text strong { color: var(--text-main); display: block; margin-bottom: 0.2rem; }
+
+        /* ── Seção metodológica ── */
+        .method-section { margin: 4rem 0; }
+        .method-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
+        .method-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+        .method-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+        .method-card h3 { 
+            font-size: 0.95rem; 
+            margin-bottom: 0.5rem; 
+            font-weight: 900;
+            line-height: 1.2;
+        }
+        .method-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin: 0; font-weight: 400; }
+
+        .cta-box {
+            background: var(--bg-footer);
+            color: #fff;
+            border-radius: 4px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        .cta-box h3 { color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .cta-box p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin: 0; }
+
+        /* ── Info box ── */
+        .info-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .info-box.accent { border-left: 4px solid var(--secondary); }
+        .info-box h3 { font-size: 1rem; margin-bottom: 0.75rem; }
+        .info-box p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-layout { grid-template-columns: 1fr; }
+            .calc-panel { position: static; }
+            .method-grid { grid-template-columns: 1fr; }
+            .cta-box { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .severity-group { grid-template-columns: 1fr 1fr 1fr; }
+            .dose-min, .dose-max { font-size: 2.2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+        }
+    </style>
 </head>
 <body class="article-page">
+
+    <!-- Header -->
     <header class="site-header">
         <div class="container">
             <nav>
@@ -52,75 +444,192 @@
     </header>
 
     <main class="container">
+        <!-- Breadcrumbs -->
         <div class="breadcrumbs">
-            <a href="../index.html">Início</a> > <a href="../noticias.html">Produtos</a> > <span>Guia de Dosagem</span>
+            <a href="../index.html">Início</a> > <a href="../recursos.html">Biblioteca</a> > <span>Calculadora de Dosagem</span>
         </div>
 
-        <article class="article-content">
-            <header class="article-header">
-                <span class="category-tag">Ferramenta de Apoio</span>
-                <h1>Guia de Dosagem: Como Iniciar seu Tratamento</h1>
-                <p class="article-lead">A dose correta não é uma receita bolo; é um ajuste fino baseado no seu peso, metabolismo e sintomas.</p>
-            </header>
+        <!-- Hero da página -->
+        <div class="calc-hero">
+            <span class="category-tag">Ferramenta Interativa • Baseada em Evidências</span>
+            <h1>Calculadora de Dosagem Canabinoide</h1>
+            <p class="lead">Selecione seu perfil de sintoma, ajuste o peso corporal e descubra a faixa de dose orientativa para iniciar seu tratamento — seguindo o protocolo <strong>Start Low, Go Slow</strong>.</p>
+        </div>
 
-            <div class="article-hero">
-                <img src="../assets/dosage_hero_v3.png" alt="Laboratório de precisão canabinoide">
+        <!-- Layout principal -->
+        <div class="calc-layout">
+
+            <!-- Painel de Controles -->
+            <aside class="calc-panel">
+                <h2>⚙️ Filtros de Perfil</h2>
+
+                <!-- Sintoma principal -->
+                <div class="filter-group">
+                    <span class="filter-label">Sintoma / Condição Principal</span>
+                    <div class="pill-group" id="symptom-filters">
+                        <button class="pill active" data-symptom="geral" id="pill-geral">🌿 Bem-estar Geral</button>
+                        <button class="pill" data-symptom="dor" id="pill-dor">⚡ Dor Crônica</button>
+                        <button class="pill" data-symptom="ansiedade" id="pill-ansiedade">🧠 Ansiedade</button>
+                        <button class="pill" data-symptom="insonia" id="pill-insonia">🌙 Insônia</button>
+                        <button class="pill" data-symptom="inflamacao" id="pill-inflamacao">🔥 Inflamação</button>
+                        <button class="pill" data-symptom="motor" id="pill-motor">🦾 Condição Motora</button>
+                        <button class="pill" data-symptom="oncologico" id="pill-oncologico">⚕️ Suporte Oncológico</button>
+                    </div>
+                </div>
+
+                <!-- Peso corporal -->
+                <div class="filter-group">
+                    <span class="filter-label">Peso Corporal</span>
+                    <div class="weight-display">
+                        <span class="weight-value" id="weight-display">70</span>
+                        <span class="weight-unit">kg</span>
+                    </div>
+                    <input type="range" id="weight-slider" min="40" max="150" value="70" step="5" aria-label="Peso corporal em kg">
+                    <div class="range-labels"><span>40 kg</span><span>95 kg</span><span>150 kg</span></div>
+                </div>
+
+                <!-- Gravidade do sintoma -->
+                <div class="filter-group">
+                    <span class="filter-label">Intensidade do Sintoma</span>
+                    <div class="severity-group">
+                        <button class="severity-btn active" data-severity="mild" id="sev-mild">
+                            <span class="sev-icon">🟢</span>
+                            <span>Leve</span>
+                        </button>
+                        <button class="severity-btn" data-severity="moderate" id="sev-moderate">
+                            <span class="sev-icon">🟡</span>
+                            <span>Moderado</span>
+                        </button>
+                        <button class="severity-btn" data-severity="severe" id="sev-severe">
+                            <span class="sev-icon">🔴</span>
+                            <span>Intenso</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Aviso clínico compacto -->
+                <div class="clinical-disclaimer">
+                    <span class="disc-icon">⚠️</span>
+                    <p class="disc-text">
+                        <strong>Uso educacional apenas.</strong>
+                        Esta ferramenta é orientativa. A prescrição final — com concentração, frequência e via de administração — é responsabilidade do seu médico.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- Painel de Resultados -->
+            <div class="result-panel">
+
+                <!-- Card de resultado recomendado -->
+                <div class="result-card highlight" id="result-main">
+                    <div class="result-card-header">
+                        <span class="result-tier-label" id="res-tier-label">Micro-dose</span>
+                        <span class="result-badge badge-match" id="res-badge">✓ Perfil correspondente</span>
+                    </div>
+                    <div class="dose-range-display">
+                        <span class="dose-min" id="res-dmin">0,5</span>
+                        <span class="dose-separator">–</span>
+                        <span class="dose-max" id="res-dmax">20</span>
+                        <span class="dose-unit-label">mg/dia (CBD)</span>
+                    </div>
+                    <div class="dose-bar-track">
+                        <div class="dose-bar-fill" id="res-bar" style="width: 25%"></div>
+                    </div>
+                    <div class="result-conditions" id="res-conditions">
+                        <span class="condition-chip">Bem-estar geral</span>
+                        <span class="condition-chip">Foco</span>
+                        <span class="condition-chip">Estresse leve</span>
+                    </div>
+                    <p class="result-tip" id="res-tip">
+                        💡 Iniciantes devem começar em <strong>0,5 mg/dia</strong> e aumentar 20% a cada 3–5 dias até o "sweet spot" (ponto de equilíbrio sem efeitos adversos).
+                    </p>
+                </div>
+
+                <!-- Tabela filtrada completa -->
+                <div class="result-table-card">
+                    <div class="result-table-header">
+                        <h3>Tabela de Referência Completa</h3>
+                        <span class="table-count" id="table-count">3 faixas disponíveis</span>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table class="dosage-table" id="dosage-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Indicação Principal</th>
+                                    <th>Dose CBD / Dia</th>
+                                    <th>Dose / kg</th>
+                                    <th>Intensidade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Gerado via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Info box sobre fatores -->
+                <div class="info-box accent">
+                    <h3>📊 Fatores que modulam a dose ideal</h3>
+                    <p>
+                        <strong>Peso corporal</strong> influencia diretamente o volume de distribuição. <strong>Metabolismo hepático</strong> (enzimas CYP450) determina a velocidade de eliminação — usuários de estatinas ou anticoagulantes devem informar o médico. <strong>Via de administração</strong> altera drasticamente a biodisponibilidade: sublingual (~35%) vs. oral (~6–19%) vs. inalação (~56%).
+                    </p>
+                </div>
+
             </div>
+        </div>
 
-            <section class="content-body">
-                <p>O mantra da medicina canabinoide é: <strong>"Start Low, Go Slow"</strong> (Comece baixo, vá devagar). Nosso corpo precisa de tempo para saturar os receptores do Sistema Endocanabinoide.</p>
-
-                <div class="article-table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nível de Dose</th>
-                                <th>Indicação Comum</th>
-                                <th>Dose Estimada (mg/dia)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Micro-dose</strong></td>
-                                <td>Estresse, foco, bem-estar geral.</td>
-                                <td>0.5mg a 20mg</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dose Padrão</strong></td>
-                                <td>Dor crônica, ansiedade moderada, insônia.</td>
-                                <td>10mg a 100mg</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Macro-dose</strong></td>
-                                <td>Condições motoras graves, suporte oncológico.</td>
-                                <td>50mg a 800mg+</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- Seção metodológica -->
+        <div class="method-section">
+            <div class="section-header" style="text-align:left;">
+                <h2>Como usar esta calculadora</h2>
+                <p style="max-width:600px;">Três passos para chegar à sua faixa de referência personalizada.</p>
+            </div>
+            <div class="method-grid">
+                <div class="method-card">
+                    <span class="method-icon">1️⃣</span>
+                    <h3>Selecione seu sintoma</h3>
+                    <p>Escolha a condição que você deseja tratar. Cada perfil carrega dados de dosagem de estudos clínicos específicos.</p>
                 </div>
-
-                <div class="info-box">
-                    <h3>Importante: A regra dos 20%</h3>
-                    <p>Ao iniciar, aumente sua dose em apenas 20% a cada 3 dias até encontrar o seu "sweet spot" (ponto de equilíbrio). Se sentir efeitos indesejados, volte um degrau.</p>
+                <div class="method-card">
+                    <span class="method-icon">2️⃣</span>
+                    <h3>Ajuste o peso</h3>
+                    <p>Mova o slider para seu peso corporal aproximado. A faixa de dose é recalculada em tempo real usando mg/kg.</p>
                 </div>
-
-                <h2>Fatores que Influenciam a Dose</h2>
-                <ul>
-                    <li><strong>Peso Corporal:</strong> Indivíduos maiores geralmente precisam de doses maiores.</li>
-                    <li><strong>Química Corporal:</strong> O metabolismo de cada um reage de forma única ao CBD e THC.</li>
-                    <li><strong>Gravidade do Sintoma:</strong> Dor neuropática pode exigir doses sublinguais mais frequentes.</li>
-                </ul>
-
-                <div class="cta-box">
-                    <h3>Consulte sua Receita Médica</h3>
-                    <p>Este guia é educacional. A dosagem final deve ser validada pelo seu médico prescritor.</p>
-                    <a href="../parceiros.html" class="btn btn-primary">Fale com um médico especialista</a>
+                <div class="method-card">
+                    <span class="method-icon">3️⃣</span>
+                    <h3>Indique a intensidade</h3>
+                    <p>Sintomas leves toleram micro-doses; condições graves e crônicas podem exigir macro-doses sob supervisão médica rigorosa.</p>
                 </div>
-            </section>
-        </article>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <div>
+                <h3>Tem um médico prescritor?</h3>
+                <p>Leve esta referência para sua consulta. Nossos parceiros médicos conhecem a ferramenta e podem orientar a prescrição.</p>
+            </div>
+            <a href="../parceiros.html" class="btn btn-primary" style="white-space:nowrap;">Ver Médicos Parceiros</a>
+        </div>
+
+        <!-- Navegação entre guias -->
+        <div class="article-navigation">
+            <div class="nav-prev">
+                <span>← Anterior</span>
+                <a href="mapa-terpenos.html">Mapa Interativo de Terpenos</a>
+            </div>
+            <div class="nav-next">
+                <span>Próximo →</span>
+                <a href="guia-passo1.html">Guia do Paciente: Passo 1</a>
+            </div>
+        </div>
+
     </main>
 
-            <footer class="site-footer">
+    <!-- Footer -->
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -129,16 +638,12 @@
                     </div>
                     <p>Facilitando o acesso à medicina canabinoide.</p>
                 </div>
-                
-                
                 <div class="footer-links">
                     <h4>Contato</h4>
                     <ul>
-                        
                         <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                         <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -146,11 +651,195 @@
                 <p class="disclaimer-scientific">
                     Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.
                 </p>
-                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
+                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+    // ─────────────────────────────────────────────
+    //  Calculadora de Dosagem — Lógica Principal
+    // ─────────────────────────────────────────────
+
+    /**
+     * Base de dados de dosagem por sintoma.
+     * dose_mg_kg: [min, max] por kg de peso corporal
+     * Tier: micro (leve) | standard (moderado) | macro (intenso)
+     */
+    const DOSE_DB = {
+        geral: {
+            label: 'Bem-estar Geral',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.02, 0.2],  abs: [0.5, 20],  bar: 15, conditions: ['Bem-estar geral','Foco','Estresse leve'],   tip: 'Iniciantes devem começar em <strong>0,5 mg/dia</strong> e aumentar 20% a cada 3–5 dias.' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.15, 0.5],  abs: [15, 50],   bar: 40, conditions: ['Estresse crônico','Humor','Energia'],        tip: 'Dividir em <strong>2 tomadas</strong> (manhã e noite) melhora a estabilidade do efeito.' },
+                severe:   { name: 'Dose Padrão+', mgKg: [0.3, 0.8],   abs: [30, 100],  bar: 60, conditions: ['Prevenção sistêmica','Bem-estar avançado'],   tip: 'Acima de 50 mg/dia considere acompanhamento regular com exames de enzimas hepáticas.' },
+            }
+        },
+        dor: {
+            label: 'Dor Crônica',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.1, 0.4],   abs: [5, 40],    bar: 25, conditions: ['Dor nociceptiva leve','Dor muscular'],        tip: 'Via sublingual acelera o onset de ação para <strong>15–45 min</strong> vs. oral (1–2h).' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.3, 1.0],   abs: [20, 100],  bar: 55, conditions: ['Dor crônica','Fibromialgia','Artrite'],       tip: 'Para dor neuropática, a combinação CBD:THC (1:1 a 20:1) pode ser superior ao CBD isolado.' },
+                severe:   { name: 'Macro-dose',   mgKg: [0.8, 3.0],   abs: [50, 400],  bar: 80, conditions: ['Dor neuropática grave','CRPS','Dor oncológica'], tip: 'Macro-doses exigem titulação supervisionada. Monitorar pressão arterial e cognição.' },
+            }
+        },
+        ansiedade: {
+            label: 'Ansiedade',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.07, 0.3],  abs: [5, 25],    bar: 20, conditions: ['Ansiedade situacional','Estresse pré-evento'],  tip: 'CBD em doses baixas tem efeito ansiolítico. Doses muito altas podem ter efeito paradoxal em alguns pacientes.' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.2, 0.7],   abs: [15, 75],   bar: 45, conditions: ['TAG','Ansiedade social','Pânico moderado'],     tip: 'Para TAG, estudos evidenciam dose diária consistente (não SOS) como mais eficaz.' },
+                severe:   { name: 'Dose Padrão+', mgKg: [0.5, 1.5],   abs: [40, 150],  bar: 65, conditions: ['TEPT','Ansiedade refratária','Fobia social grave'], tip: 'TEPT pode se beneficiar de cannabis de Espectro Completo. Avalie THC em microdoses com médico.' },
+            }
+        },
+        insonia: {
+            label: 'Insônia',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.1, 0.35],  abs: [5, 35],    bar: 22, conditions: ['Dificuldade de adormecer','Sono leve'],         tip: 'Cultivares ricas em Mirceno potencializam o efeito sedativo. Tome <strong>1–2h antes</strong> de dormir.' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.25, 0.9],  abs: [20, 90],   bar: 50, conditions: ['Insônia crônica','Fragmentação do sono'],        tip: 'CBN (canabinoide menor) é conhecidamente sedativo — verifique formulações com CBN+CBD.' },
+                severe:   { name: 'Dose Padrão+', mgKg: [0.6, 2.0],   abs: [50, 200],  bar: 70, conditions: ['Insônia refratária','Apneia funcional','TEPT noturno'], tip: 'Para insônia grave, a combinação com THC (≤5 mg) pode ser necessária — supervisão obrigatória.' },
+            }
+        },
+        inflamacao: {
+            label: 'Inflamação',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.1, 0.4],   abs: [5, 40],    bar: 22, conditions: ['Inflamação muscular','Pós-exercício'],           tip: 'CBD atua no receptor TRPV1 e inibe COX-2 — mecanismo semelhante ao ibuprofeno sem riscos gástricos.' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.3, 1.0],   abs: [20, 100],  bar: 55, conditions: ['Artrite reumatoide','Doença de Crohn','EII'],     tip: 'Via oral/cápsula tem maior persistência sistêmica para condições inflamatórias crônicas.' },
+                severe:   { name: 'Macro-dose',   mgKg: [0.8, 3.0],   abs: [50, 400],  bar: 80, conditions: ['Doenças autoimunes','Inflamação sistêmica grave'], tip: 'Espectro Completo é preferível a isolados para inflamação sistêmica (maximiza Efeito Entourage).' },
+            }
+        },
+        motor: {
+            label: 'Condição Motora',
+            tiers: {
+                mild:     { name: 'Dose Padrão',  mgKg: [0.3, 1.0],   abs: [20, 100],  bar: 50, conditions: ['Espasticidade leve','Tremor','Fraqueza muscular'], tip: 'Espasticidade frequentemente responde bem à combinação CBD:THC (Sativex® usa proporção 1:1).' },
+                moderate: { name: 'Dose Padrão+', mgKg: [0.7, 2.0],   abs: [50, 200],  bar: 65, conditions: ['Esclerose Múltipla','Parkinson inicial','Espasticidade moderada'], tip: 'Para Parkinson, estudos mostraram benefício em doses de 75–300 mg/dia de CBD.' },
+                severe:   { name: 'Macro-dose',   mgKg: [1.5, 5.0],   abs: [100, 600], bar: 90, conditions: ['Epilepsia (Dravet/LGS)','EM avançada','ELA'],      tip: 'Epilepsia refratária: Epidiolex® (FDA) aprovado em doses de <strong>10–20 mg/kg/dia</strong>.' },
+            }
+        },
+        oncologico: {
+            label: 'Suporte Oncológico',
+            tiers: {
+                mild:     { name: 'Micro-dose',   mgKg: [0.1, 0.5],   abs: [5, 50],    bar: 28, conditions: ['Náusea por quimio','Apetite','Qualidade de vida'], tip: 'CBD pode reduzir a náusea induzida pela quimioterapia. Informe o oncologista — interações medicamentosas possíveis.' },
+                moderate: { name: 'Dose Padrão',  mgKg: [0.4, 1.5],   abs: [30, 150],  bar: 58, conditions: ['Dor oncológica','Ansiedade oncológica','Nutrição'], tip: 'Cannabis não substitui o tratamento oncológico — é suporte paliativo adjuvante.' },
+                severe:   { name: 'Macro-dose',   mgKg: [1.0, 5.0],   abs: [80, 600],  bar: 88, conditions: ['Dor oncológica refratária','TEPT oncológico'],      tip: 'Macro-doses oncológicas exigem perfil rico em THC em muitos casos — prescrição especializada obrigatória.' },
+            }
+        }
+    };
+
+    // Estado global
+    let state = { symptom: 'geral', weight: 70, severity: 'mild' };
+
+    // ── Refs DOM ──
+    const weightSlider   = document.getElementById('weight-slider');
+    const weightDisplay  = document.getElementById('weight-display');
+    const tableBody      = document.getElementById('table-body');
+    const tableCount     = document.getElementById('table-count');
+
+    // ── Calcular dose ajustada por peso ──
+    function calcDose(tier, weight) {
+        const base = tier.mgKg;
+        const rawMin = base[0] * weight;
+        const rawMax = base[1] * weight;
+        // Clamp nos valores absolutos documentados
+        const min = Math.max(tier.abs[0], Math.min(rawMin, tier.abs[1]));
+        const max = Math.min(tier.abs[1], Math.max(rawMax, tier.abs[0]));
+        return { min: +min.toFixed(1), max: +max.toFixed(0) };
+    }
+
+    // ── Formatar número BR ──
+    function fmtBR(n) {
+        return String(n).replace('.', ',');
+    }
+
+    // ── Renderizar resultado principal ──
+    function renderMain() {
+        const db   = DOSE_DB[state.symptom];
+        const tier = db.tiers[state.severity];
+        const dose = calcDose(tier, state.weight);
+
+        document.getElementById('res-tier-label').textContent = tier.name;
+        document.getElementById('res-dmin').textContent = fmtBR(dose.min);
+        document.getElementById('res-dmax').textContent = fmtBR(dose.max);
+        document.getElementById('res-bar').style.width  = tier.bar + '%';
+        document.getElementById('res-tip').innerHTML    = '💡 ' + tier.tip;
+
+        const condEl = document.getElementById('res-conditions');
+        condEl.innerHTML = tier.conditions.map(c => `<span class="condition-chip">${c}</span>`).join('');
+    }
+
+    // ── Renderizar tabela completa ──
+    function renderTable() {
+        const db     = DOSE_DB[state.symptom];
+        const order  = ['mild','moderate','severe'];
+        const names  = { mild: 'Leve', moderate: 'Moderado', severe: 'Intenso' };
+        const indCls = { mild: 'ind-micro', moderate: 'ind-standard', severe: 'ind-macro' };
+
+        let rows = '';
+        order.forEach(sev => {
+            const tier  = db.tiers[sev];
+            const dose  = calcDose(tier, state.weight);
+            const isCur = sev === state.severity;
+            const perKg = `${fmtBR(tier.mgKg[0])}–${fmtBR(tier.mgKg[1])} mg/kg`;
+
+            rows += `
+            <tr class="${isCur ? 'row-match' : ''}" data-sev="${sev}">
+                <td>
+                    <span class="tier-name">
+                        <span class="tier-indicator ${indCls[sev]}"></span>
+                        ${tier.name}
+                    </span>
+                </td>
+                <td>${tier.conditions.slice(0,2).join(', ')}</td>
+                <td><span class="dose-string">${fmtBR(dose.min)} – ${fmtBR(dose.max)} mg</span></td>
+                <td><span class="per-kg">${perKg}</span></td>
+                <td>${names[sev]}</td>
+            </tr>`;
+        });
+
+        tableBody.innerHTML = rows;
+        tableCount.textContent = '3 faixas disponíveis';
+    }
+
+    // ── Atualizar tudo ──
+    function update() {
+        renderMain();
+        renderTable();
+    }
+
+    // ── Eventos: sintoma pills ──
+    document.getElementById('symptom-filters').addEventListener('click', e => {
+        const pill = e.target.closest('.pill');
+        if (!pill) return;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state.symptom = pill.dataset.symptom;
+        update();
+    });
+
+    // ── Eventos: slider peso ──
+    weightSlider.addEventListener('input', () => {
+        state.weight = parseInt(weightSlider.value);
+        weightDisplay.textContent = state.weight;
+        update();
+    });
+
+    // ── Eventos: gravidade ──
+    document.querySelectorAll('.severity-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.severity-btn').forEach(b => {
+                b.classList.remove('active','active-medium','active-severe');
+            });
+            const sev = btn.dataset.severity;
+            if (sev === 'moderate') btn.classList.add('active-medium');
+            else if (sev === 'severe') btn.classList.add('active-severe');
+            else btn.classList.add('active');
+            state.severity = sev;
+            update();
+        });
+    });
+
+    // ── Init ──
+    update();
+    </script>
 </body>
 </html>

@@ -30,7 +30,7 @@
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css?v=1.03">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,55 +193,89 @@
                 <h2>Conhecimento de Fronteira</h2>
                 <p>Acesse análises aprofundadas sobre canabinoides, legislação e o cenário da Cannabis medicinal no Brasil.</p>
             </div>
-            <div class="articles-grid">
-                <!-- Artigo 1: RDC 1.015 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-rdc-1015.html">
-                        <div class="article-img">
-                            <img src="assets/pharmacy_hero.png" alt="Farmacêutico manipulando produtos de Cannabis medicinal">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Regulação Farmacêutica</span>
-                            <h3>RDC 1.015/2026: CBD em Farmácias e Manipulação Magistral</h3>
-                            <p>O novo marco que permite a personalização de doses de CBD e amplia o acesso através de drogarias nacionais.</p>
-                            <div class="article-meta">
-                                <span>#Fitocanabinoides</span>
+            <div class="articles-scroll-wrapper">
+                <div class="articles-grid">
+                    <!-- Artigo 1: Efeito Entourage Clínico -->
+                    <article class="article-card">
+                        <a href="artigos/artigo-entourage-clinico.html">
+                            <div class="article-img">
+                                <img src="assets/entourage_clinica.png" alt="Efeito Entourage Prática Clínica">
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 2: RDC 1.014 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-rdc-1014.html">
-                        <div class="article-img">
-                            <img src="assets/sandbox_hero.png" alt="Estufa tecnológica de Cannabis medicinal">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Regulação e Ciência</span>
-                            <h3>Guia RDC 1.014/2026: O Sandbox Regulatório e Associações</h3>
-                            <p>Entenda como o novo ambiente experimental da ANVISA permitirá o cultivo e produção por associações de pacientes.</p>
-                            <div class="article-meta">
-                                <span>#FlorDeMinasScience</span>
+                            <div class="article-body">
+                                <span class="article-category">Clínica & Evidência</span>
+                                <h3>Efeito Entourage na Prática: Por Que Espectro Completo é Superior</h3>
+                                <p>Protocolo de decisão clínica: quando escolher Full Spectrum, Broad Spectrum ou Isolado.</p>
+                                <div class="article-meta">
+                                    <span>#FullSpectrum</span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 3 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-cultivo-dados.html">
-                        <div class="article-img">
-                            <img src="assets/cultivo_hero.png" alt="Anotações agronômicas em campo ensolarado">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Manual Técnico Avançado</span>
-                            <h3>Guia Avançado: Boas Práticas e Padronização no Cultivo de Cannabis Medicinal</h3>
-                            <p>Manual técnico sobre manejo edafoclimático, controle de VPD e protocolos de pós-colheita para garantir a qualidade farmacêutica da colheita.</p>
-                            <div class="article-meta">
-                                <span>#BoasPraticasAgricolas</span>
+                        </a>
+                    </article>
+                    <!-- Artigo 2: Vias de Administração -->
+                    <article class="article-card">
+                        <a href="artigos/artigo-vias-administracao.html">
+                            <div class="article-img">
+                                <img src="assets/dosage_hero_v3.png" alt="Vias de Administração Cannabis Medicinal">
                             </div>
-                        </div>
-                    </a>
-                </article>
+                            <div class="article-body">
+                                <span class="article-category">Farmacologia Clínica</span>
+                                <h3>Vias de Administração: Como o CBD Chega ao Sangue</h3>
+                                <p>A mesma dose absorvida 6% ou 56% dependendo da via. Oral e inalação comparados.</p>
+                                <div class="article-meta">
+                                    <span>#Biodisponibilidade</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- Artigo 3: Canabinoides Menores -->
+                    <article class="article-card">
+                        <a href="artigos/artigo-canabinoides-menores.html">
+                            <div class="article-img">
+                                <img src="assets/minor_cannabinoids.png" alt="CBG CBN CBC Canabinoides Menores">
+                            </div>
+                            <div class="article-body">
+                                <span class="article-category">Fitoquímica Avançada</span>
+                                <h3>Canabinoides Menores: CBG, CBN e CBC — Coadjuvantes</h3>
+                                <p>Os compostos que determinam a superioridade do Espectro Completo sobre o isolado.</p>
+                                <div class="article-meta">
+                                    <span>#EfeitoEntourage</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- Artigo 4: RDC 1.015 -->
+                    <article class="article-card">
+                        <a href="artigos/artigo-rdc-1015.html">
+                            <div class="article-img">
+                                <img src="assets/pharmacy_hero.png" alt="CBD em Farmácias">
+                            </div>
+                            <div class="article-body">
+                                <span class="article-category">Regulação</span>
+                                <h3>RDC 1.015/2026: CBD em Farmácias e Manipulação</h3>
+                                <p>O novo marco que permite a personalização de doses e amplia o acesso no Brasil.</p>
+                                <div class="article-meta">
+                                    <span>#Fitocanabinoides</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- Artigo 5: RDC 1.014 -->
+                    <article class="article-card">
+                        <a href="artigos/artigo-rdc-1014.html">
+                            <div class="article-img">
+                                <img src="assets/sandbox_hero.png" alt="Sandbox Regulatório">
+                            </div>
+                            <div class="article-body">
+                                <span class="article-category">Sandbox Científico</span>
+                                <h3>Guia RDC 1.014/2026: Sandbox e Associações</h3>
+                                <p>Como o novo ambiente da ANVISA permitirá o cultivo por associações.</p>
+                                <div class="article-meta">
+                                    <span>#FlorDeMinasScience</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
             </div>
         </div>
     </section>

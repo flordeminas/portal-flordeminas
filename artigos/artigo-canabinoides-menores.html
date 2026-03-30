@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canabinoides Menores: CBG, CBN e CBC — Os Coadjuvantes Essenciais | Flor de Minas</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <meta name="description" content="Conheça CBG, CBN e CBC — os canabinoides menores que potencializam o Efeito Entourage e ampliam o espectro terapêutico da cannabis medicinal.">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
+    <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
+    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/logo_brand.png">
+    <meta property="og:url" content="https://portal-flordeminas.com.br/">
+    <meta property="og:site_name" content="Flor de Minas">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Theme Script (Prevent Blink) -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <style>
+        .cannabinoid-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin: 2.5rem 0;
+        }
+        .cannabinoid-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .cannabinoid-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .cannabinoid-card.cbg::before { background: var(--secondary); }
+        .cannabinoid-card.cbn::before { background: #F59E0B; }
+        .cannabinoid-card.cbc::before { background: #3B82F6; }
+        .cannabinoid-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .cb-symbol {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.25rem;
+            line-height: 1;
+        }
+        .cbg .cb-symbol { color: var(--secondary); }
+        .cbn .cb-symbol { color: #F59E0B; }
+        .cbc .cb-symbol { color: #3B82F6; }
+        .cb-name { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 1rem; }
+        .cb-property {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .cb-property:last-child { border-bottom: none; }
+        .cb-property span:first-child { font-size: 0.9rem; }
+
+        .synergy-diagram {
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .synergy-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 1.25rem 0;
+        }
+        .synergy-molecule {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            padding: 0.5rem 1rem;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+        .synergy-plus { color: var(--text-muted); font-size: 1.25rem; }
+        .synergy-result {
+            background: var(--secondary);
+            color: #fff;
+            border-radius: 3px;
+            padding: 0.6rem 1.25rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .info-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .info-box.accent { border-left: 4px solid var(--secondary); }
+        .info-box.amber { border-left: 4px solid #F59E0B; }
+        .info-box h3 { font-size: 1rem; margin-bottom: 0.75rem; }
+        .info-box p { font-size: 0.95rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+
+        .cta-box {
+            background: var(--bg-neutral);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        .cta-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .cta-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+
+        @media (max-width: 767px) {
+            .cannabinoid-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="article-page">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo_brand.png" alt="Flor de Minas">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../noticias.html" class="nav-link">Notícias</a></li>
+                    <li><a href="../index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
+                    <li><a href="../parceiros.html" class="nav-link">Parceiros</a></li>
+                    <li><a href="../eventos.html" class="nav-link">Eventos</a></li>
+                    <li><a href="../recursos.html" class="nav-link">Biblioteca</a></li>
+                    <li class="mobile-only"><a href="../sobre-nos.html" class="header-cta">Fale Conosco</a></li>
+                </ul>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <a href="../sobre-nos.html" class="header-cta">Fale Conosco</a>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="../index.html">Início</a> > <a href="../noticias.html">Notícias</a> > <span>Canabinoides Menores</span>
+        </div>
+
+        <article class="article-content">
+            <header class="article-header">
+                <span class="category-tag">Fitoquímica Avançada • O Efeito Entourage</span>
+                <h1>Canabinoides Menores: CBG, CBN e CBC — Os Coadjuvantes Essenciais</h1>
+                <p class="article-lead">Por décadas, o foco recaiu sobre THC e CBD. Mas são os canabinoides menores — presentes em frações milimétricas — que determinam a diferença entre um isolado e uma formulação de Espectro Completo verdadeiramente eficaz.</p>
+            </header>
+
+            <div class="article-hero">
+                <img src="../assets/terpenes_laboratory.png" alt="Análise molecular de canabinoides em laboratório">
+            </div>
+
+            <section class="content-body">
+                <p>O genoma da Cannabis sativa é capaz de sintetizar mais de <strong>140 fitocannabinoides identificados</strong>. Destes, o THC e o CBD representam tipicamente 80–95% do perfil canabinoide das flores processadas. O restante — chamados de <strong>canabinoides menores</strong> — é frequentemente descartado pelo mercado, mas é estudado com crescente interesse pela farmacologia clínica.</p>
+
+                <p>A tese central do <em>Efeito Entourage</em> (Russo, 2011) é que esses compostos menores não são passageiros: eles são <strong>moduladores ativos</strong> da atividade dos canabinoides maiores e possuem mecanismos de ação próprios e independentes.</p>
+
+                <h2>Os Três Protagonistas Emergentes</h2>
+                <p>Dentre os canabinoides menores com maior volume de evidência clínica e relevância terapêutica, destacam-se três:</p>
+
+                <div class="cannabinoid-grid">
+                    <!-- CBG -->
+                    <div class="cannabinoid-card cbg">
+                        <div class="cb-symbol">CBG</div>
+                        <div class="cb-name">Canabigerol</div>
+                        <div class="cb-property"><span>🌱</span><span>Precursor de todos os canabinoides</span></div>
+                        <div class="cb-property"><span>🔬</span><span>Agonista parcial CB1 e CB2</span></div>
+                        <div class="cb-property"><span>💊</span><span>Anti-inflamatório intestinal</span></div>
+                        <div class="cb-property"><span>🧠</span><span>Neuroprotetor em modelos ELA</span></div>
+                        <div class="cb-property"><span>👁️</span><span>Reduz pressão intraocular (glaucoma)</span></div>
+                    </div>
+
+                    <!-- CBN -->
+                    <div class="cannabinoid-card cbn">
+                        <div class="cb-symbol">CBN</div>
+                        <div class="cb-name">Canabinol</div>
+                        <div class="cb-property"><span>🌙</span><span>Forma-se da oxidação do THC</span></div>
+                        <div class="cb-property"><span>💤</span><span>Forte efeito sedativo sinérgico</span></div>
+                        <div class="cb-property"><span>🦠</span><span>Antibacteriano (MRSA)</span></div>
+                        <div class="cb-property"><span>🩴</span><span>Analgésico tópico</span></div>
+                        <div class="cb-property"><span>⏳</span><span>Aumenta com envelhecimento do extrato</span></div>
+                    </div>
+
+                    <!-- CBC -->
+                    <div class="cannabinoid-card cbc">
+                        <div class="cb-symbol">CBC</div>
+                        <div class="cb-name">Canabicrômeno</div>
+                        <div class="cb-property"><span>⚡</span><span>Terceiro canabinoide mais abundante</span></div>
+                        <div class="cb-property"><span>🧬</span><span>Não se liga a CB1/CB2 (outros alvos)</span></div>
+                        <div class="cb-property"><span>😊</span><span>Antidepressivo via TRPV4</span></div>
+                        <div class="cb-property"><span>🧠</span><span>Estimula neurogênese adulta</span></div>
+                        <div class="cb-property"><span>🔥</span><span>Anti-inflamatório tópico potente</span></div>
+                    </div>
+                </div>
+
+                <h2>CBG: A Molécula-Mãe</h2>
+                <p>O Canabigerol tem um status único no metabolismo da planta: ele é o <strong>precursor biossintético</strong> de todos os outros canabinoides. O ácido canabigerólico (CBGA) é convertido enzimaticamente em THCA, CBDA ou CBCA antes de amadurecer. Por isso, plantas jovens têm naturalmente concentrações altas de CBG — que cai ao mínimo na planta adulta.</p>
+
+                <div class="info-box accent">
+                    <h3>Aplicação Clínica do CBG</h3>
+                    <p>Estudos em modelos animais de Doença Inflamatória Intestinal (DII) demonstraram redução significativa de marcadores pró-inflamatórios (TNF-α, IL-1β) com CBG. Pesquisas em esclerose lateral amiotrófica (ELA) mostraram retardo na progressão motora. Para glaucoma, o mecanismo é direto: CBG reduz a produção de humor aquoso, diminuindo a pressão intraocular sem os efeitos cognitivos do THC.</p>
+                </div>
+
+                <h2>CBN: O Guardião do Sono</h2>
+                <p>O Canabinol é o único canabinoide que se forma predominantemente pela <strong>degradação oxidativa do THC</strong>. Isso significa que extratos mais antigos ou armazenados de forma inadequada terão concentrações maiores de CBN. Na clínica, isso é relevante: pacientes que reportam efeitos sedativos marcantes com extratos de origem desconhecida frequentemente usam produtos com alta presença de CBN.</p>
+
+                <p>Seu mecanismo de ação é complexo: age em receptores CB1 (com baixíssima afinidade comparada ao THC), em receptores TRPV2, e apresenta ação modulatória em canais de sódio — explicando parcialmente seus efeitos analgésicos.</p>
+
+                <div class="info-box amber">
+                    <h3>CBN e Insônia: Uma Relação Dose-Dependente</h3>
+                    <p>Estudos de 2024 (Corroon et al.) indicam que o CBN isolado tem efeito sedativo modesto. O efeito dramático surge na sua combinação com CBD e Mirceno — terpeno abundante em cultivares tipo "Indica". A sinergismo nesses três compostos produz hipnose e indução ao sono mais eficaz que qualquer componente isolado, validando o Efeito Entourage para esta indicação.</p>
+                </div>
+
+                <h2>CBC: O Estimulador de Neurônios</h2>
+                <p>O Canabicrômeno é talvez o menos compreendido pelo público, mas o com maior potencial emergente em neurologia. Sua peculiaridade: ao contrário de praticamente todos os outros canabinoides, o CBC <strong>não interage com CB1 ou CB2</strong>. Seus alvos são os receptores TRPV1, TRPV4, TRPA1 e os receptores de anandamida (AEA) — uma via completamente distinta.</p>
+
+                <p>O dado mais impactante vem da neurociência: estudos in vitro mostraram que o CBC <strong>aumenta a viabilidade de células precursoras neurais</strong> — o processo de neurogênese adulta. Se confirmado em humanos, isso abre perspectivas inéditas para condições como depressão resistente e doenças neurodegenerativas.</p>
+
+                <h2>A Sinergia que Torna o Espectro Completo Superior</h2>
+
+                <div class="synergy-diagram">
+                    <p style="font-size:0.8rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">Exemplo de Sinergia — Insônia severa</p>
+                    <div class="synergy-row">
+                        <span class="synergy-molecule">CBD 60mg</span>
+                        <span class="synergy-plus">+</span>
+                        <span class="synergy-molecule">CBN 5mg</span>
+                        <span class="synergy-plus">+</span>
+                        <span class="synergy-molecule">Mirceno</span>
+                        <span class="synergy-plus">=</span>
+                        <span class="synergy-result">✓ Efeito Entourage Máximo</span>
+                    </div>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1rem;">vs. CBD isolado (mesma dose) — resposta significativamente inferior em estudos clínicos.</p>
+                </div>
+
+                <p>Esta é a razão pela qual a comunidade médico-científica converge para a preferência por <strong>extratos de Espectro Completo</strong> (full spectrum) sobre isolados e broadspectrum em condições complexas: a remoção de qualquer componente da matriz fitoquímica representa uma perda terapêutica mensurável.</p>
+
+                <div class="cta-card-premium">
+                    <h3>🌿 Aprofunde-se no Efeito Entourage</h3>
+                    <p>Baixe gratuitamente o e-book "O Efeito Entourage" — um guia completo sobre fitoquímica, canabinoides menores, terpenos e como escolher a formulação certa para cada condição.</p>
+                    <a href="../guia/ebook-entourage.html" class="btn btn-primary">Baixar E-book Grátis</a>
+                </div>
+            </section>
+
+            <!-- Navegação entre artigos -->
+            <div class="article-navigation">
+                <div class="nav-prev">
+                    <span>← Anterior</span>
+                    <a href="artigo-terpenos.html">Perfil de Terpenos: Mirceno e Limoneno</a>
+                </div>
+                <div class="nav-next">
+                    <span>Próximo →</span>
+                    <a href="artigo-vias-administracao.html">Vias de Administração: Como o CBD chega ao sangue</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../assets/logo_brand.png" alt="Flor de Minas">
+                    </div>
+                    <p>Facilitando o acesso à medicina canabinoide.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+                        <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" id="compliance">
+                <p class="disclaimer-scientific">Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.</p>
+                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
