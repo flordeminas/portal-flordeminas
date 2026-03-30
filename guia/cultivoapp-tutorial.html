@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial CultivoApp — Guia Completo de Uso | Flor de Minas</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutorial CultivoApp — Guia Completo de Uso | Flor de Minas</title>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-NEBGFQHKZ3');
     </script>
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
-    <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
-    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/logo_brand.png">
-    <meta property="og:url" content="https://portal-flordeminas.com.br/">
-    <meta property="og:site_name" content="Flor de Minas">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
-    <meta name="description" content="Tutorial completo do CultivoApp Flor de Minas: como instalar, configurar seu primeiro cultivo, entender o cronograma, protocolo de adubação, MIP orgânico e guia de parâmetros.">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script>
+<!-- Open Graph / Social Media -->
+<meta content="Tutorial CultivoApp — Guia Completo de Uso | Flor de Minas" property="og:title"/>
+<meta content="Tutorial completo do CultivoApp Flor de Minas: como instalar, configurar seu primeiro cultivo, entender o cronograma, protocolo de adubação, MIP orgânico e guia de parâmetros." property="og:description"/>
+<meta content="https://portal-flordeminas.com.br/assets/cultivoapp_jardim.png" property="og:image"/>
+<meta content="https://portal-flordeminas.com.br/guia/cultivoapp-tutorial.html" property="og:url"/>
+<meta content="Flor de Minas" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<!-- Favicon -->
+<link href="../assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<meta content="Tutorial completo do CultivoApp Flor de Minas: como instalar, configurar seu primeiro cultivo, entender o cronograma, protocolo de adubação, MIP orgânico e guia de parâmetros." name="description"/>
+<link href="../css/index.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+<script>
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
-    <style>
+<style>
         /* ── Tutorial-specific styles ── */
         .tutorial-hero {
             background: linear-gradient(135deg, #0d1f14 0%, #1a3824 60%, #2D5A27 100%);
@@ -375,430 +374,403 @@
     </style>
 </head>
 <body class="article-page">
-
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container">
-            <nav>
-                <a href="../index.html" class="logo">
-                    <img src="../assets/logo_brand.png" alt="Flor de Minas">
-                </a>
-                <ul class="nav-links">
-                    <li><a href="../noticias.html" class="nav-link">Notícias</a></li>
-                    <li><a href="../index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
-                    <li><a href="../parceiros.html" class="nav-link">Parceiros</a></li>
-                    <li><a href="../eventos.html" class="nav-link">Eventos</a></li>
-                    <li><a href="../recursos.html" class="nav-link">Biblioteca</a></li>
-                    <li class="mobile-only"><a href="../sobre-nos.html" class="header-cta">Fale Conosco</a></li>
-                </ul>
-                <div class="header-right">
-                    <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
-                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    </button>
-                    <a href="../sobre-nos.html" class="header-cta">Fale Conosco</a>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <!-- ── Hero ── -->
-        <section class="tutorial-hero">
-            <div class="tutorial-hero-inner">
-                <span class="hero-badge">📱 App Gratuito · PWA · Funciona Offline</span>
-                <h1>CultivoApp<br>Flor de Minas</h1>
-                <p>O único app de gerenciamento de jardim medicinal em português. Cronograma automático, adubação semana a semana e MIP orgânico para pacientes em autocultivo.</p>
-                <div class="tutorial-hero-cta">
-                    <span class="btn-dark-soon">🚀 App em Desenvolvimento</span>
-                    <a href="../index.html#newsletter-container" class="btn-dark-outline">
-                        <i class="fas fa-bell"></i> Entrar na Lista de Espera
+<!-- Header -->
+<header class="site-header">
+<div class="container">
+<nav>
+<a class="logo" href="../index.html">
+<img alt="Flor de Minas" src="../assets/logo_brand.png"/>
+</a>
+<ul class="nav-links">
+<li><a class="nav-link" href="../noticias.html">Notícias</a></li>
+<li><a class="nav-link" href="../index.html#guia-paciente">Guia do Paciente</a></li>
+<li><a class="nav-link" href="../parceiros.html">Parceiros</a></li>
+<li><a class="nav-link" href="../eventos.html">Eventos</a></li>
+<li><a class="nav-link" href="../recursos.html">Biblioteca</a></li>
+<li class="mobile-only"><a class="header-cta" href="../sobre-nos.html">Fale Conosco</a></li>
+</ul>
+<div class="header-right">
+<button class="theme-toggle" id="theme-toggle" title="Alternar tema">
+<svg class="sun-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
+<svg class="moon-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+<a class="header-cta" href="../sobre-nos.html">Fale Conosco</a>
+<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</nav>
+</div>
+</header>
+<main>
+<!-- ── Hero ── -->
+<section class="tutorial-hero">
+<div class="tutorial-hero-inner">
+<span class="hero-badge">📱 App Gratuito · PWA · Funciona Offline</span>
+<h1>CultivoApp<br/>Flor de Minas</h1>
+<p>O único app de gerenciamento de jardim medicinal em português. Cronograma automático, adubação semana a semana e MIP orgânico para pacientes em autocultivo.</p>
+<div class="tutorial-hero-cta">
+<span class="btn-dark-soon">🚀 App em Desenvolvimento</span>
+<a class="btn-dark-outline" href="../index.html#newsletter-container">
+<i class="fas fa-bell"></i> Entrar na Lista de Espera
                     </a>
-                </div>
-                <div class="app-features-strip">
-                    <span class="app-chip">✅ 100% Gratuito</span>
-                    <span class="app-chip">🌿 165+ Genéticas</span>
-                    <span class="app-chip">💊 BioBizz · Remo · SuperSoil</span>
-                    <span class="app-chip">🐛 MIP Orgânico</span>
-                    <span class="app-chip">📴 Funciona Offline</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── Breadcrumbs ── -->
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="../index.html">Início</a> > <a href="../recursos.html">Biblioteca</a> > <span>Tutorial CultivoApp</span>
-            </div>
-        </div>
-
-        <!-- ══ PASSO 0: Instalação ══ -->
-        <section class="tutorial-step" id="passo-0">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">0</div>
-                    <h2>Como Instalar (Opcional mas Recomendado)</h2>
-                </div>
-                <p class="install-intro">O CultivoApp é uma <strong>PWA (Progressive Web App)</strong> — você pode usar direto no navegador sem precisar instalar nada. Mas ao adicionar à tela inicial, ele funciona como um app nativo, com acesso offline e tela cheia.</p>
-                <div class="install-grid">
-                    <div class="install-card">
-                        <h4>🍎 iPhone / iPad (Safari)</h4>
-                        <ol>
-                            <li>Acesse <strong>portal-flordeminas.com.br</strong> e inscreva-se na lista de espera</li>
-                            <li>Toque no ícone <strong>Compartilhar</strong> (seta para cima)</li>
-                            <li>Role a lista e toque em <strong>"Adicionar à Tela de Início"</strong></li>
-                            <li>Confirme com <strong>"Adicionar"</strong></li>
-                        </ol>
-                    </div>
-                    <div class="install-card">
-                        <h4>🤖 Android (Chrome)</h4>
-                        <ol>
-                            <li>Abra a URL no Chrome</li>
-                            <li>Aparecerá um banner na tela: <strong>"Adicionar CultivoApp à tela inicial"</strong></li>
-                            <li>Toque em <strong>"Instalar"</strong></li>
-                            <li>Pronto — ícone aparece na sua tela inicial</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="tip-box">
-                    <span class="tip-label">💡 Dica</span>
+</div>
+<div class="app-features-strip">
+<span class="app-chip">✅ 100% Gratuito</span>
+<span class="app-chip">🌿 165+ Genéticas</span>
+<span class="app-chip">💊 BioBizz · Remo · SuperSoil</span>
+<span class="app-chip">🐛 MIP Orgânico</span>
+<span class="app-chip">📴 Funciona Offline</span>
+</div>
+</div>
+</section>
+<!-- ── Breadcrumbs ── -->
+<div class="container">
+<div class="breadcrumbs">
+<a href="../index.html">Início</a> &gt; <a href="../recursos.html">Biblioteca</a> &gt; <span>Tutorial CultivoApp</span>
+</div>
+</div>
+<!-- ══ PASSO 0: Instalação ══ -->
+<section class="tutorial-step" id="passo-0">
+<div class="container">
+<div class="step-header">
+<div class="step-number">0</div>
+<h2>Como Instalar (Opcional mas Recomendado)</h2>
+</div>
+<p class="install-intro">O CultivoApp é uma <strong>PWA (Progressive Web App)</strong> — você pode usar direto no navegador sem precisar instalar nada. Mas ao adicionar à tela inicial, ele funciona como um app nativo, com acesso offline e tela cheia.</p>
+<div class="install-grid">
+<div class="install-card">
+<h4>🍎 iPhone / iPad (Safari)</h4>
+<ol>
+<li>Acesse <strong>portal-flordeminas.com.br</strong> e inscreva-se na lista de espera</li>
+<li>Toque no ícone <strong>Compartilhar</strong> (seta para cima)</li>
+<li>Role a lista e toque em <strong>"Adicionar à Tela de Início"</strong></li>
+<li>Confirme com <strong>"Adicionar"</strong></li>
+</ol>
+</div>
+<div class="install-card">
+<h4>🤖 Android (Chrome)</h4>
+<ol>
+<li>Abra a URL no Chrome</li>
+<li>Aparecerá um banner na tela: <strong>"Adicionar CultivoApp à tela inicial"</strong></li>
+<li>Toque em <strong>"Instalar"</strong></li>
+<li>Pronto — ícone aparece na sua tela inicial</li>
+</ol>
+</div>
+</div>
+<div class="tip-box">
+<span class="tip-label">💡 Dica</span>
                     Se preferir, acesse direto pelo link sem instalar. O app funciona igualmente no navegador.
                 </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 1: Jardim ══ -->
-        <section class="tutorial-step" id="passo-1">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <h2>Conhecendo o Jardim — Tela Inicial</h2>
-                </div>
-                <div class="step-layout">
-                    <div class="step-content">
-                        <p>Ao abrir o app, você encontra a tela <strong>"Meu Jardim"</strong> — o painel central onde todos os seus cultivos ficam organizados.</p>
-                        <p>O que você vê:</p>
-                        <ul>
-                            <li><strong>AÇÕES DE HOJE</strong> — painel que mostra o que cada planta precisa no dia de hoje</li>
-                            <li><strong>Card de cada cultivo</strong> — nome, cepa, fase atual, dias totais e protocolo de nutrição</li>
-                            <li><strong>Barra colorida</strong> — visualização proporcional de todas as fases do ciclo (🟢 Clone · 🔵 Vegetativo · 🟣 Floração · 🔴 Flush)</li>
-                            <li><strong>Botão "＋ Adicionar cultivo"</strong> — para registrar um novo ciclo</li>
-                        </ul>
-                        <div class="tip-box">
-                            <span class="tip-label">💡 Dica do Dia</span>
+</div>
+</section>
+<!-- ══ PASSO 1: Jardim ══ -->
+<section class="tutorial-step" id="passo-1">
+<div class="container">
+<div class="step-header">
+<div class="step-number">1</div>
+<h2>Conhecendo o Jardim — Tela Inicial</h2>
+</div>
+<div class="step-layout">
+<div class="step-content">
+<p>Ao abrir o app, você encontra a tela <strong>"Meu Jardim"</strong> — o painel central onde todos os seus cultivos ficam organizados.</p>
+<p>O que você vê:</p>
+<ul>
+<li><strong>AÇÕES DE HOJE</strong> — painel que mostra o que cada planta precisa no dia de hoje</li>
+<li><strong>Card de cada cultivo</strong> — nome, cepa, fase atual, dias totais e protocolo de nutrição</li>
+<li><strong>Barra colorida</strong> — visualização proporcional de todas as fases do ciclo (🟢 Clone · 🔵 Vegetativo · 🟣 Floração · 🔴 Flush)</li>
+<li><strong>Botão "＋ Adicionar cultivo"</strong> — para registrar um novo ciclo</li>
+</ul>
+<div class="tip-box">
+<span class="tip-label">💡 Dica do Dia</span>
                             Consulte o painel "Ações de Hoje" toda manhã antes de entrar no grow. Ele mostra a fase atual de cada planta e se é um dia normal ou de adubação.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">📱 Tela Jardim</span>
-                        <img src="../assets/cultivoapp_jardim.png" alt="CultivoApp — Tela do Jardim com múltiplos cultivos" loading="lazy"
-                             onerror="this.style.background='#1a3824';this.style.height='400px';this.alt='Screenshot do Jardim';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 2: Novo Cultivo ══ -->
-        <section class="tutorial-step" id="passo-2">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <h2>Criando seu Primeiro Cultivo</h2>
-                </div>
-                <div class="step-layout reverse">
-                    <div class="step-content">
-                        <p>Toque em <strong>"＋ Adicionar cultivo ao jardim"</strong>. Uma janela surgirá na parte inferior da tela. Preencha os campos:</p>
-                        <table class="tutorial-table">
-                            <thead>
-                                <tr><th>Campo</th><th>O que é</th><th>Exemplo</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>🏷️ Nome</td><td>Apelido do cultivo</td><td>"Tent A"</td></tr>
-                                <tr><td>🌿 Strain</td><td>Genética da planta</td><td>"Amnesia Haze"</td></tr>
-                                <tr><td>🎨 Cor</td><td>Cor do card no jardim</td><td>Verde, Azul, Roxo…</td></tr>
-                                <tr><td>📅 Dia 1</td><td>Data que recebeu o clone</td><td>2026-03-25</td></tr>
-                                <tr><td>🌱 Clone</td><td>Semanas de enraizamento</td><td>2 semanas</td></tr>
-                                <tr><td>🌿 Vegetativo</td><td>Semanas com 18h/dia</td><td>6 semanas</td></tr>
-                                <tr><td>🌸 Floração</td><td>Semanas com 12h/dia</td><td>9 semanas</td></tr>
-                                <tr><td>💊 Protocolo</td><td>Linha de nutrição usada</td><td>BioBizz</td></tr>
-                            </tbody>
-                        </table>
-                        <div class="warn-box">
-                            <span class="warn-label">⭐ Dica Importante</span>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">📱 Tela Jardim</span>
+<img alt="CultivoApp — Tela do Jardim com múltiplos cultivos" loading="lazy" onerror="this.style.background='#1a3824';this.style.height='400px';this.alt='Screenshot do Jardim';" src="../assets/cultivoapp_jardim.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 2: Novo Cultivo ══ -->
+<section class="tutorial-step" id="passo-2">
+<div class="container">
+<div class="step-header">
+<div class="step-number">2</div>
+<h2>Criando seu Primeiro Cultivo</h2>
+</div>
+<div class="step-layout reverse">
+<div class="step-content">
+<p>Toque em <strong>"＋ Adicionar cultivo ao jardim"</strong>. Uma janela surgirá na parte inferior da tela. Preencha os campos:</p>
+<table class="tutorial-table">
+<thead>
+<tr><th>Campo</th><th>O que é</th><th>Exemplo</th></tr>
+</thead>
+<tbody>
+<tr><td>🏷️ Nome</td><td>Apelido do cultivo</td><td>"Tent A"</td></tr>
+<tr><td>🌿 Strain</td><td>Genética da planta</td><td>"Amnesia Haze"</td></tr>
+<tr><td>🎨 Cor</td><td>Cor do card no jardim</td><td>Verde, Azul, Roxo…</td></tr>
+<tr><td>📅 Dia 1</td><td>Data que recebeu o clone</td><td>2026-03-25</td></tr>
+<tr><td>🌱 Clone</td><td>Semanas de enraizamento</td><td>2 semanas</td></tr>
+<tr><td>🌿 Vegetativo</td><td>Semanas com 18h/dia</td><td>6 semanas</td></tr>
+<tr><td>🌸 Floração</td><td>Semanas com 12h/dia</td><td>9 semanas</td></tr>
+<tr><td>💊 Protocolo</td><td>Linha de nutrição usada</td><td>BioBizz</td></tr>
+</tbody>
+</table>
+<div class="warn-box">
+<span class="warn-label">⭐ Dica Importante</span>
                             O campo <strong>Strain</strong> tem autocomplete. Comece a digitar e o app sugere cepas do banco de dados com 165+ genéticas, preenchendo automaticamente THC, CBD, terpenos e dica de cultivo.
                         </div>
-                        <p>Toque em <strong>"Salvar cultivo →"</strong> para confirmar.</p>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">➕ Novo Cultivo</span>
-                        <img src="../assets/cultivoapp_novo.png" alt="CultivoApp — Modal de criação de novo cultivo" loading="lazy"
-                             onerror="this.style.background='#132b1c';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 3: Cronograma ══ -->
-        <section class="tutorial-step" id="passo-3">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <h2>Aba Cronograma 📅</h2>
-                </div>
-                <div class="step-layout">
-                    <div class="step-content">
-                        <p>Toque em qualquer card do jardim para abrir o detalhe do cultivo. A primeira aba é o <strong>Cronograma</strong>.</p>
-                        <ul>
-                            <li><strong>Anel de progresso</strong> — % de conclusão do ciclo total</li>
-                            <li><strong>Dia atual</strong> — ex: "Dia 3 de 126"</li>
-                            <li><strong>Duração total</strong> em dias</li>
-                            <li><strong>Data de colheita estimada</strong> — calculada automaticamente!</li>
-                            <li><strong>Fase atual</strong> — Clone / Vegetativo / Floração / Flush</li>
-                            <li><strong>Dias até a colheita</strong></li>
-                            <li><strong>Card da Cepa</strong> — THC, CBD, terpenos, linhagem e efeitos</li>
-                        </ul>
-                        <div class="tip-box">
-                            <span class="tip-label">💡 Como funciona o cálculo?</span>
+<p>Toque em <strong>"Salvar cultivo →"</strong> para confirmar.</p>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">➕ Novo Cultivo</span>
+<img alt="CultivoApp — Modal de criação de novo cultivo" loading="lazy" onerror="this.style.background='#132b1c';this.style.height='500px';" src="../assets/cultivoapp_novo.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 3: Cronograma ══ -->
+<section class="tutorial-step" id="passo-3">
+<div class="container">
+<div class="step-header">
+<div class="step-number">3</div>
+<h2>Aba Cronograma 📅</h2>
+</div>
+<div class="step-layout">
+<div class="step-content">
+<p>Toque em qualquer card do jardim para abrir o detalhe do cultivo. A primeira aba é o <strong>Cronograma</strong>.</p>
+<ul>
+<li><strong>Anel de progresso</strong> — % de conclusão do ciclo total</li>
+<li><strong>Dia atual</strong> — ex: "Dia 3 de 126"</li>
+<li><strong>Duração total</strong> em dias</li>
+<li><strong>Data de colheita estimada</strong> — calculada automaticamente!</li>
+<li><strong>Fase atual</strong> — Clone / Vegetativo / Floração / Flush</li>
+<li><strong>Dias até a colheita</strong></li>
+<li><strong>Card da Cepa</strong> — THC, CBD, terpenos, linhagem e efeitos</li>
+</ul>
+<div class="tip-box">
+<span class="tip-label">💡 Como funciona o cálculo?</span>
                             A data de colheita é: <strong>Dia 1 + (clone + vegetativo + floração) em dias</strong>. O app recalcula automaticamente conforme você avança as fases.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">📅 Cronograma</span>
-                        <img src="../assets/cultivoapp_cronograma.png" alt="CultivoApp — Aba Cronograma com progresso e data de colheita" loading="lazy"
-                             onerror="this.style.background='#1a3824';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 4: Adubação ══ -->
-        <section class="tutorial-step" id="passo-4">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <h2>Aba Adubação 💊</h2>
-                </div>
-                <div class="step-layout reverse">
-                    <div class="step-content">
-                        <p>A aba <strong>Adubação</strong> mostra o protocolo de nutrição escolhido, semana a semana, com produtos e doses exatas.</p>
-                        <ul>
-                            <li><strong>Nome do protocolo</strong> com pH e EC ideais para o sistema (ex: BioBizz — pH 6.2-6.5)</li>
-                            <li><strong>Cada semana é um card</strong> com: produto, dose em mL/L, pH/EC e observação técnica</li>
-                            <li><strong>Agrupado por fase</strong> — Clone → Vegetativo → Floração → Flush</li>
-                        </ul>
-                        <p>Protocolos disponíveis:</p>
-                        <table class="tutorial-table">
-                            <thead><tr><th>Protocolo</th><th>Tipo</th><th>Substrato</th></tr></thead>
-                            <tbody>
-                                <tr><td>🌿 BioBizz</td><td>Orgânico certificado</td><td>Solo</td></tr>
-                                <tr><td>⚗️ Remo Nutrients</td><td>Mineral/Orgânico</td><td>Multi</td></tr>
-                                <tr><td>📦 General Organics</td><td>GO Box</td><td>Solo</td></tr>
-                                <tr><td>🌍 SuperSoil</td><td>Solo vivo</td><td>Cobertura</td></tr>
-                                <tr><td>✏️ Genérico</td><td>Personalizado</td><td>Qualquer</td></tr>
-                            </tbody>
-                        </table>
-                        <div class="tip-box">
-                            <span class="tip-label">💡 Como usar no dia a dia</span>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">📅 Cronograma</span>
+<img alt="CultivoApp — Aba Cronograma com progresso e data de colheita" loading="lazy" onerror="this.style.background='#1a3824';this.style.height='500px';" src="../assets/cultivoapp_cronograma.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 4: Adubação ══ -->
+<section class="tutorial-step" id="passo-4">
+<div class="container">
+<div class="step-header">
+<div class="step-number">4</div>
+<h2>Aba Adubação 💊</h2>
+</div>
+<div class="step-layout reverse">
+<div class="step-content">
+<p>A aba <strong>Adubação</strong> mostra o protocolo de nutrição escolhido, semana a semana, com produtos e doses exatas.</p>
+<ul>
+<li><strong>Nome do protocolo</strong> com pH e EC ideais para o sistema (ex: BioBizz — pH 6.2-6.5)</li>
+<li><strong>Cada semana é um card</strong> com: produto, dose em mL/L, pH/EC e observação técnica</li>
+<li><strong>Agrupado por fase</strong> — Clone → Vegetativo → Floração → Flush</li>
+</ul>
+<p>Protocolos disponíveis:</p>
+<table class="tutorial-table">
+<thead><tr><th>Protocolo</th><th>Tipo</th><th>Substrato</th></tr></thead>
+<tbody>
+<tr><td>🌿 BioBizz</td><td>Orgânico certificado</td><td>Solo</td></tr>
+<tr><td>⚗️ Remo Nutrients</td><td>Mineral/Orgânico</td><td>Multi</td></tr>
+<tr><td>📦 General Organics</td><td>GO Box</td><td>Solo</td></tr>
+<tr><td>🌍 SuperSoil</td><td>Solo vivo</td><td>Cobertura</td></tr>
+<tr><td>✏️ Genérico</td><td>Personalizado</td><td>Qualquer</td></tr>
+</tbody>
+</table>
+<div class="tip-box">
+<span class="tip-label">💡 Como usar no dia a dia</span>
                             Abra a aba Adubação antes de preparar sua solução nutritiva. O card da semana atual está sempre visível no topo.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">💊 Adubação</span>
-                        <img src="../assets/cultivoapp_adubacao.png" alt="CultivoApp — Protocolo de adubação BioBizz semana a semana" loading="lazy"
-                             onerror="this.style.background='#132b1c';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 5: MIP ══ -->
-        <section class="tutorial-step" id="passo-5">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <h2>Aba MIP — Controle de Pragas 🐛</h2>
-                </div>
-                <div class="step-layout">
-                    <div class="step-content">
-                        <p>A aba <strong>MIP (Manejo Integrado de Pragas)</strong> traz o protocolo preventivo orgânico, indica quando aplicar cada defensivo e como.</p>
-                        <ul>
-                            <li><strong>Banner de alerta</strong> — avisos de segurança críticos (ex: "Nunca misturar Calda Sulfocálcica + Nim")</li>
-                            <li><strong>Cronograma preventivo por fase</strong> — aplicações programadas semana a semana</li>
-                            <li><strong>Para cada aplicação:</strong> produto, dose, via (foliar/solo) e observação</li>
-                        </ul>
-                        <p>Defensivos incluídos (padrão):</p>
-                        <table class="tutorial-table">
-                            <thead><tr><th>Produto</th><th>Fase</th><th>Dose</th><th>Via</th></tr></thead>
-                            <tbody>
-                                <tr><td>Nim (Neem)</td><td>Clone e Vega</td><td>2 mL/L</td><td>Foliar</td></tr>
-                                <tr><td>Beauveria bassiana</td><td>Clone e Vega</td><td>5 g/L</td><td>Foliar + Solo</td></tr>
-                                <tr><td>Calda Sulfocálcica</td><td>Vega tardio</td><td>Rotacional</td><td>Foliar</td></tr>
-                            </tbody>
-                        </table>
-                        <div class="warn-box">
-                            <span class="warn-label">⚠️ Importante</span>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">💊 Adubação</span>
+<img alt="CultivoApp — Protocolo de adubação BioBizz semana a semana" loading="lazy" onerror="this.style.background='#132b1c';this.style.height='500px';" src="../assets/cultivoapp_adubacao.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 5: MIP ══ -->
+<section class="tutorial-step" id="passo-5">
+<div class="container">
+<div class="step-header">
+<div class="step-number">5</div>
+<h2>Aba MIP — Controle de Pragas 🐛</h2>
+</div>
+<div class="step-layout">
+<div class="step-content">
+<p>A aba <strong>MIP (Manejo Integrado de Pragas)</strong> traz o protocolo preventivo orgânico, indica quando aplicar cada defensivo e como.</p>
+<ul>
+<li><strong>Banner de alerta</strong> — avisos de segurança críticos (ex: "Nunca misturar Calda Sulfocálcica + Nim")</li>
+<li><strong>Cronograma preventivo por fase</strong> — aplicações programadas semana a semana</li>
+<li><strong>Para cada aplicação:</strong> produto, dose, via (foliar/solo) e observação</li>
+</ul>
+<p>Defensivos incluídos (padrão):</p>
+<table class="tutorial-table">
+<thead><tr><th>Produto</th><th>Fase</th><th>Dose</th><th>Via</th></tr></thead>
+<tbody>
+<tr><td>Nim (Neem)</td><td>Clone e Vega</td><td>2 mL/L</td><td>Foliar</td></tr>
+<tr><td>Beauveria bassiana</td><td>Clone e Vega</td><td>5 g/L</td><td>Foliar + Solo</td></tr>
+<tr><td>Calda Sulfocálcica</td><td>Vega tardio</td><td>Rotacional</td><td>Foliar</td></tr>
+</tbody>
+</table>
+<div class="warn-box">
+<span class="warn-label">⚠️ Importante</span>
                             O protocolo MIP do app é 100% orgânico — sem agrotóxicos. Essencial para manter a pureza do seu remédio e cumprir as exigências do cultivo medicinal.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">🐛 MIP</span>
-                        <img src="../assets/cultivoapp_mip.png" alt="CultivoApp — Controle de pragas com Nim e Beauveria" loading="lazy"
-                             onerror="this.style.background='#1a3824';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 6: Guia ══ -->
-        <section class="tutorial-step" id="passo-6">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">6</div>
-                    <h2>Aba Guia — Parâmetros Ideais 📖</h2>
-                </div>
-                <div class="step-layout reverse">
-                    <div class="step-content">
-                        <p>A aba <strong>Guia</strong> é uma tabela de referência rápida com todos os parâmetros ideais para cannabis medicinal indoor.</p>
-                        <table class="tutorial-table">
-                            <thead><tr><th>Parâmetro</th><th>Clone</th><th>Vegetativo</th><th>Flora S5+</th></tr></thead>
-                            <tbody>
-                                <tr><td>Temperatura (dia)</td><td>23-26°C</td><td>22-26°C</td><td>22-26°C</td></tr>
-                                <tr><td>Umidade</td><td>70-80%</td><td>55-70%</td><td>35-45%</td></tr>
-                                <tr><td>pH (terra orgânica)</td><td>6.0-6.8</td><td>6.0-6.8</td><td>6.0-6.5</td></tr>
-                                <tr><td>pH (coco coir)</td><td>5.8-6.2</td><td>5.8-6.2</td><td>5.8-6.0</td></tr>
-                            </tbody>
-                        </table>
-                        <div class="tip-box">
-                            <span class="tip-label">💡 Disponível offline</span>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">🐛 MIP</span>
+<img alt="CultivoApp — Controle de pragas com Nim e Beauveria" loading="lazy" onerror="this.style.background='#1a3824';this.style.height='500px';" src="../assets/cultivoapp_mip.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 6: Guia ══ -->
+<section class="tutorial-step" id="passo-6">
+<div class="container">
+<div class="step-header">
+<div class="step-number">6</div>
+<h2>Aba Guia — Parâmetros Ideais 📖</h2>
+</div>
+<div class="step-layout reverse">
+<div class="step-content">
+<p>A aba <strong>Guia</strong> é uma tabela de referência rápida com todos os parâmetros ideais para cannabis medicinal indoor.</p>
+<table class="tutorial-table">
+<thead><tr><th>Parâmetro</th><th>Clone</th><th>Vegetativo</th><th>Flora S5+</th></tr></thead>
+<tbody>
+<tr><td>Temperatura (dia)</td><td>23-26°C</td><td>22-26°C</td><td>22-26°C</td></tr>
+<tr><td>Umidade</td><td>70-80%</td><td>55-70%</td><td>35-45%</td></tr>
+<tr><td>pH (terra orgânica)</td><td>6.0-6.8</td><td>6.0-6.8</td><td>6.0-6.5</td></tr>
+<tr><td>pH (coco coir)</td><td>5.8-6.2</td><td>5.8-6.2</td><td>5.8-6.0</td></tr>
+</tbody>
+</table>
+<div class="tip-box">
+<span class="tip-label">💡 Disponível offline</span>
                             O Guia funciona sem internet. Consulte sempre que precisar checar temperatura, umidade ou pH, mesmo sem sinal.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">📖 Guia Rápido</span>
-                        <img src="../assets/cultivoapp_guia.png" alt="CultivoApp — Guia de parâmetros: temperatura, umidade e pH" loading="lazy"
-                             onerror="this.style.background='#132b1c';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PASSO 7: Manual ══ -->
-        <section class="tutorial-step" id="passo-7">
-            <div class="container">
-                <div class="step-header">
-                    <div class="step-number">7</div>
-                    <h2>Aba Manual de Instruções 📘</h2>
-                </div>
-                <div class="step-layout">
-                    <div class="step-content">
-                        <p>O CultivoApp é intuitivo, mas pode conter termos técnicos novos para produtores iniciantes. A aba <strong>Manual</strong> resolve isso sendo a documentação embutida do app.</p>
-                        <ul>
-                            <li><strong>Conceitos básicos</strong> — explicação clara sobre o que significa cada campo, como o "Dia 1"</li>
-                            <li><strong>Definição das fases</strong> — duração e objetivo de cada fase de transição (Clone, Vegetativo, Floração, Flush)</li>
-                            <li><strong>FAQ integrado</strong> — aprenda como preencher e ler as informações de tela sem sair do aplicativo</li>
-                        </ul>
-                        <div class="tip-box">
-                            <span class="tip-label">💡 Sempre à mão</span>
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">📖 Guia Rápido</span>
+<img alt="CultivoApp — Guia de parâmetros: temperatura, umidade e pH" loading="lazy" onerror="this.style.background='#132b1c';this.style.height='500px';" src="../assets/cultivoapp_guia.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ PASSO 7: Manual ══ -->
+<section class="tutorial-step" id="passo-7">
+<div class="container">
+<div class="step-header">
+<div class="step-number">7</div>
+<h2>Aba Manual de Instruções 📘</h2>
+</div>
+<div class="step-layout">
+<div class="step-content">
+<p>O CultivoApp é intuitivo, mas pode conter termos técnicos novos para produtores iniciantes. A aba <strong>Manual</strong> resolve isso sendo a documentação embutida do app.</p>
+<ul>
+<li><strong>Conceitos básicos</strong> — explicação clara sobre o que significa cada campo, como o "Dia 1"</li>
+<li><strong>Definição das fases</strong> — duração e objetivo de cada fase de transição (Clone, Vegetativo, Floração, Flush)</li>
+<li><strong>FAQ integrado</strong> — aprenda como preencher e ler as informações de tela sem sair do aplicativo</li>
+</ul>
+<div class="tip-box">
+<span class="tip-label">💡 Sempre à mão</span>
                             Esqueceu como o app calcula os ciclos ou tem dúvidas sobre algum acrônimo? Abra a aba Manual e consulte o guia nativo a qualquer momento.
                         </div>
-                    </div>
-                    <div class="step-screenshot">
-                        <span class="screenshot-label">📘 Manual</span>
-                        <img src="../assets/cultivoapp_manual.png" alt="CultivoApp — Manual de instruções embutido" loading="lazy"
-                             onerror="this.style.background='#132b1c';this.style.height='500px';">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ Fluxo Resumido ══ -->
-        <section class="tutorial-step" id="fluxo">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Fluxo Completo de Uso</h2>
-                    <p>Do primeiro acesso ao monitoramento diário do seu jardim medicinal.</p>
-                </div>
-                <div class="flow-diagram">
-                    <div class="flow-item"><div class="flow-icon">📱</div><div class="flow-text"><strong>Cadastre-se na lista de espera</strong> — acesse portal-flordeminas.com.br</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">🏡</div><div class="flow-text"><strong>Tela Jardim</strong> → veja "Ações de Hoje" para todas as plantas</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">➕</div><div class="flow-text"><strong>"Adicionar cultivo"</strong> → preencha nome, cepa, data e protocolo</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">📅</div><div class="flow-text"><strong>Aba Cronograma</strong> → data de colheita calculada automaticamente</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">💊</div><div class="flow-text"><strong>Aba Adubação</strong> → produtos e doses exatos desta semana</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">🐛</div><div class="flow-text"><strong>Aba MIP</strong> → defensivos preventivos conforme a fase</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">📖</div><div class="flow-text"><strong>Aba Guia</strong> → parâmetros ideais de temperatura, umidade e pH</div></div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-item"><div class="flow-icon">📘</div><div class="flow-text"><strong>Aba Manual</strong> → consulte tirar dúvidas sobre como usar o aplicativo</div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ Lista de Espera ══ -->
-        <section class="app-cta-section" id="lista-espera">
-            <div class="container">
-                <h2>Entre na Lista de Espera</h2>
-                <p>O CultivoApp está em fase final de desenvolvimento. Cadastre seu e-mail e seja notificado no lançamento — com acesso antecipado e conteúdo exclusivo.</p>
-
-                <form class="app-waitlist-form app-waitlist-form--hero" action="https://formspree.io/f/xlgoerjy" method="POST">
-                    <input type="hidden" name="origem" value="CultivoApp - Lista de Espera (Tutorial)">
-                    <div class="app-waitlist-row app-waitlist-row--hero">
-                        <input type="email" name="email" class="app-waitlist-input app-waitlist-input--hero" placeholder="Seu melhor e-mail" required>
-                        <button type="submit" class="app-waitlist-btn app-waitlist-btn--hero">🌿 Quero ser Avisado</button>
-                    </div>
-                    <p class="app-waitlist-disclaimer">Sem spam. Só avisamos quando estiver pronto.</p>
-                </form>
-
-                <div class="app-waitlist-features">
-                    <div class="app-waitlist-feat">✅ Acesso antecipado</div>
-                    <div class="app-waitlist-feat">🌿 100% gratuito</div>
-                    <div class="app-waitlist-feat">📴 Funciona no celular</div>
-                    <div class="app-waitlist-feat">🔒 Dados protegidos</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <img src="../assets/logo_brand.png" alt="Flor de Minas">
-                    </div>
-                    <p>Facilitando o acesso à medicina canabinoide.</p>
-                </div>
-                
-                
-                <div class="footer-links">
-                    <h4>Contato</h4>
-                    <ul>
-                        
-                        <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
-                        <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom" id="compliance">
-                <p class="disclaimer-scientific">
+</div>
+<div class="step-screenshot">
+<span class="screenshot-label">📘 Manual</span>
+<img alt="CultivoApp — Manual de instruções embutido" loading="lazy" onerror="this.style.background='#132b1c';this.style.height='500px';" src="../assets/cultivoapp_manual.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ Fluxo Resumido ══ -->
+<section class="tutorial-step" id="fluxo">
+<div class="container">
+<div class="section-header">
+<h2>Fluxo Completo de Uso</h2>
+<p>Do primeiro acesso ao monitoramento diário do seu jardim medicinal.</p>
+</div>
+<div class="flow-diagram">
+<div class="flow-item"><div class="flow-icon">📱</div><div class="flow-text"><strong>Cadastre-se na lista de espera</strong> — acesse portal-flordeminas.com.br</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">🏡</div><div class="flow-text"><strong>Tela Jardim</strong> → veja "Ações de Hoje" para todas as plantas</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">➕</div><div class="flow-text"><strong>"Adicionar cultivo"</strong> → preencha nome, cepa, data e protocolo</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">📅</div><div class="flow-text"><strong>Aba Cronograma</strong> → data de colheita calculada automaticamente</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">💊</div><div class="flow-text"><strong>Aba Adubação</strong> → produtos e doses exatos desta semana</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">🐛</div><div class="flow-text"><strong>Aba MIP</strong> → defensivos preventivos conforme a fase</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">📖</div><div class="flow-text"><strong>Aba Guia</strong> → parâmetros ideais de temperatura, umidade e pH</div></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-item"><div class="flow-icon">📘</div><div class="flow-text"><strong>Aba Manual</strong> → consulte tirar dúvidas sobre como usar o aplicativo</div></div>
+</div>
+</div>
+</section>
+<!-- ══ Lista de Espera ══ -->
+<section class="app-cta-section" id="lista-espera">
+<div class="container">
+<h2>Entre na Lista de Espera</h2>
+<p>O CultivoApp está em fase final de desenvolvimento. Cadastre seu e-mail e seja notificado no lançamento — com acesso antecipado e conteúdo exclusivo.</p>
+<form action="https://formspree.io/f/xlgoerjy" class="app-waitlist-form app-waitlist-form--hero" method="POST">
+<input name="origem" type="hidden" value="CultivoApp - Lista de Espera (Tutorial)"/>
+<div class="app-waitlist-row app-waitlist-row--hero">
+<input class="app-waitlist-input app-waitlist-input--hero" name="email" placeholder="Seu melhor e-mail" required="" type="email"/>
+<button class="app-waitlist-btn app-waitlist-btn--hero" type="submit">🌿 Quero ser Avisado</button>
+</div>
+<p class="app-waitlist-disclaimer">Sem spam. Só avisamos quando estiver pronto.</p>
+</form>
+<div class="app-waitlist-features">
+<div class="app-waitlist-feat">✅ Acesso antecipado</div>
+<div class="app-waitlist-feat">🌿 100% gratuito</div>
+<div class="app-waitlist-feat">📴 Funciona no celular</div>
+<div class="app-waitlist-feat">🔒 Dados protegidos</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">
+<img alt="Flor de Minas" src="../assets/logo_brand.png"/>
+</div>
+<p>Facilitando o acesso à medicina canabinoide.</p>
+</div>
+<div class="footer-links">
+<h4>Contato</h4>
+<ul>
+<li><a href="https://www.instagram.com/flordeminas2026/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+<li><a href="https://x.com/flordeminas_" rel="noopener noreferrer" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+<li><a href="https://linkedin.com/company/flordeminas" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom" id="compliance">
+<p class="disclaimer-scientific">
                     Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.
                 </p>
-                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/main.js"></script>
+<p class="copyright">© 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
 </body>
 </html>

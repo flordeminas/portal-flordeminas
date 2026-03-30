@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias e Artigos Científicos | Flor de Minas</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Flor de Minas — Saúde, Educação e Cultura">
-    <meta property="og:description" content="Facilitando o acesso à cannabis medicinal.">
-    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/logo_brand.png">
-    <meta property="og:url" content="https://portal-flordeminas.com.br/">
-    <meta property="og:site_name" content="Flor de Minas">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
-    <meta name="description" content="Acesse as últimas notícias, artigos técnicos e pesquisas sobre Cannabis medicinal no Brasil e no mundo.">
-    <link rel="stylesheet" href="css/index.css?v=1.03">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Theme Script (Prevent Blink) -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notícias e Artigos Científicos | Flor de Minas</title>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+<!-- Open Graph / Social Media -->
+<meta content="Notícias e Artigos Científicos | Flor de Minas" property="og:title"/>
+<meta content="Acesse as últimas notícias, artigos técnicos e pesquisas sobre Cannabis medicinal no Brasil e no mundo." property="og:description"/>
+<meta content="https://portal-flordeminas.com.br/assets/entourage_clinica.png" property="og:image"/>
+<meta content="https://portal-flordeminas.com.br/noticias.html" property="og:url"/>
+<meta content="Flor de Minas" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<!-- Favicon -->
+<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<meta content="Acesse as últimas notícias, artigos técnicos e pesquisas sobre Cannabis medicinal no Brasil e no mundo." name="description"/>
+<link href="css/index.css?v=1.03" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+<!-- Theme Script (Prevent Blink) -->
+<script>
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
@@ -29,280 +28,267 @@
     </script>
 </head>
 <body>
-
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">
-                    <img src="assets/logo_brand.png" alt="Flor de Minas">
-                </a>
-                <ul class="nav-links">
-                    <li><a href="noticias.html" class="nav-link">Notícias</a></li>
-                    <li><a href="index.html#guia-paciente" class="nav-link">Guia do Paciente</a></li>
-                    <li><a href="parceiros.html" class="nav-link">Parceiros</a></li>
-                    <li><a href="eventos.html" class="nav-link">Eventos</a></li>
-                    <li><a href="recursos.html" class="nav-link">Biblioteca</a></li>
-                    <li class="mobile-only"><a href="sobre-nos.html" class="header-cta">Fale Conosco</a></li>
-                </ul>
-                <div class="header-right">
-                    <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
-                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    </button>
-                    <a href="sobre-nos.html" class="header-cta">Fale Conosco</a>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero hero-fixed">
-        <div class="container">
-            <div class="hero-content hero-centered">
-                <span class="hero-badge">Blog & Atualidades</span>
-                <h1>Notícias e Inteligência Científica</h1>
-                <p>Informação de autoridade para pacientes, médicos e profissionais do ecossistema da Cannabis medicinal.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Articles Grid -->
-    <section id="artigos" class="section-neutral">
-        <div class="container">
-
-                <div class="articles-grid">
-                <!-- Artigo 8 — NOVO: Efeito Entourage Clínico -->
-                <article class="article-card">
-                    <a href="artigos/artigo-entourage-clinico.html">
-                        <div class="article-img">
-                            <img src="assets/entourage_clinica.png" alt="Efeito Entourage Prática Clínica">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Clínica & Evidência</span>
-                            <h3>Efeito Entourage na Prática: Por Que Espectro Completo é Superior</h3>
-                            <p>Protocolo de decisão clínica: quando escolher Full Spectrum, Broad Spectrum ou Isolado — em 6 cenários reais.</p>
-                            <div class="article-meta">
-                                <span>#FullSpectrum</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 7 — NOVO: Vias de Administração -->
-                <article class="article-card">
-                    <a href="artigos/artigo-vias-administracao.html">
-                        <div class="article-img">
-                            <img src="assets/dosage_hero_v3.png" alt="Vias de Administração Cannabis Medicinal">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Farmacologia Clínica</span>
-                            <h3>Vias de Administração: Como o CBD Chega ao Sangue</h3>
-                            <p>A mesma dose absorvida 6% ou 56% dependendo da via. Sublingual, oral e inalação comparados com dados clínicos.</p>
-                            <div class="article-meta">
-                                <span>#Biodisponibilidade</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 6 — NOVO: Canabinoides Menores -->
-                <article class="article-card">
-                    <a href="artigos/artigo-canabinoides-menores.html">
-                        <div class="article-img">
-                            <img src="assets/minor_cannabinoids.png" alt="CBG CBN CBC Canabinoides Menores">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Fitoquímica Avançada</span>
-                            <h3>Canabinoides Menores: CBG, CBN e CBC — Os Coadjuvantes Essenciais</h3>
-                            <p>Os compostos além do THC e CBD que determinam a superioridade do Espectro Completo sobre o isolado.</p>
-                            <div class="article-meta">
-                                <span>#EfeitoEntourage</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 1: RDC 1.015 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-rdc-1015.html">
-                        <div class="article-img">
-                            <img src="assets/pharmacy_hero.png" alt="Farmacêutico manipulando produtos de Cannabis medicinal">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Regulação Farmacêutica</span>
-                            <h3>RDC 1.015/2026: CBD em Farmácias e Manipulação Magistral</h3>
-                            <p>O novo marco que permite a personalização de doses de CBD e amplia o acesso através de drogarias nacionais.</p>
-                            <div class="article-meta">
-                                <span>#MedicinaPersonalizada</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 2: RDC 1.014 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-rdc-1014.html">
-                        <div class="article-img">
-                            <img src="assets/sandbox_hero.png" alt="Estufa tecnológica de Cannabis medicinal">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Regulação e Ciência</span>
-                            <h3>Guia RDC 1.014/2026: O Sandbox Regulatório e Associações</h3>
-                            <p>Entenda como o novo ambiente experimental da ANVISA permitirá o cultivo e produção por associações de pacientes.</p>
-                            <div class="article-meta">
-                                <span>#FlorDeMinasScience</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 5 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-endocanabinoides.html">
-                        <div class="article-img">
-                            <img src="assets/benefits_hero.png" alt="Sistema Endocanabinoide Humano">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Fisiologia Humana</span>
-                            <h3>O Sistema Endocanabinoide: O Maestro da Homeostase</h3>
-                            <p>Entenda como os receptores CB1 e CB2 regulam o equilíbrio do seu corpo.</p>
-                            <div class="article-meta">
-                                <span>#BiologiaCelular</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 4 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-terpenos.html">
-                        <div class="article-img">
-                            <img src="assets/terpenes_laboratory.png" alt="Terpenos em frascos de laboratório">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Farmacologia</span>
-                            <h3>Perfil de Terpenos: O Papel do Mirceno e Limoneno</h3>
-                            <p>Como os compostos aromáticos influenciam a biodisponibilidade e o efeito de entorno.</p>
-                            <div class="article-meta">
-                                <span>#Fitoquimica</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <!-- Artigo 3 -->
-                <article class="article-card">
-                    <a href="artigos/artigo-cultivo-dados.html">
-                        <div class="article-img">
-                            <img src="assets/cultivo_hero.png" alt="Anotações agronômicas em campo ensolarado">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Manual Técnico Avançado</span>
-                            <h3>Guia Avançado: Boas Práticas e Padronização no Cultivo de Cannabis Medicinal</h3>
-                            <p>Manual técnico sobre manejo edafoclimático, controle de VPD e protocolos de pós-colheita para garantir a qualidade farmacêutica da colheita.</p>
-                            <div class="article-meta">
-                                <span>#BoasPraticasAgricolas</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div> <!-- articles-grid -->
-
-    </div> <!-- container -->
+<!-- Header -->
+<header class="site-header">
+<div class="container">
+<nav>
+<a class="logo" href="index.html">
+<img alt="Flor de Minas" src="assets/logo_brand.png"/>
+</a>
+<ul class="nav-links">
+<li><a class="nav-link" href="noticias.html">Notícias</a></li>
+<li><a class="nav-link" href="index.html#guia-paciente">Guia do Paciente</a></li>
+<li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
+<li><a class="nav-link" href="eventos.html">Eventos</a></li>
+<li><a class="nav-link" href="recursos.html">Biblioteca</a></li>
+<li class="mobile-only"><a class="header-cta" href="sobre-nos.html">Fale Conosco</a></li>
+</ul>
+<div class="header-right">
+<button class="theme-toggle" id="theme-toggle" title="Alternar tema">
+<svg class="sun-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
+<svg class="moon-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+<a class="header-cta" href="sobre-nos.html">Fale Conosco</a>
+<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</nav>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero hero-fixed">
+<div class="container">
+<div class="hero-content hero-centered">
+<span class="hero-badge">Blog &amp; Atualidades</span>
+<h1>Notícias e Inteligência Científica</h1>
+<p>Informação de autoridade para pacientes, médicos e profissionais do ecossistema da Cannabis medicinal.</p>
+</div>
+</div>
 </section>
-
-    <!-- Recursos e Produtos Digitais -->
-    <section id="recursos" class="section-neutral section-no-top-pad">
-        <div class="container">
-            <div class="section-header">
-                <h2>Recursos & Ferramentas Profissionais</h2>
-                <p>Acelere sua jornada de saúde com nossos guias práticos e ferramentas de monitoramento técnico.</p>
-            </div>
-            <div class="articles-grid">
-                <!-- Produto 1: Mapa de Terpenos (MAIS RECENTE) -->
-                <article class="article-card">
-                    <a href="guia/mapa-terpenos.html">
-                        <div class="article-img">
-                            <img src="assets/terpene_map_tool.png" alt="Mapa Visual de Terpenos">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Botânica Sensorial</span>
-                            <h3>Mapa Visual de Terpenos</h3>
-                            <p>Entenda o aroma como indicador clínico e aprenda a escolher as genéticas para seus sintomas.</p>
-                            <div class="article-meta">
-                                <span>#AromaHealing</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- E-book Efeito Entourage -->
-                <article class="article-card">
-                    <a href="recursos.html">
-                        <div class="article-img">
-                            <img src="assets/ebook_cover_terpenos.png" alt="E-book O Efeito Entourage 2026">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">E-book Exclusivo (Grátis)</span>
-                            <h3>O Efeito Entourage: Canabinoides e Terpenos</h3>
-                            <p>O guia científico mais completo do Brasil sobre sinergia fitoquímica. 13 capítulos com citações clínicas.</p>
-                            <div class="article-meta">
-                                <span>#EfeitoEntourage</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Produto 3: Guia de Dosagem -->
-                <article class="article-card">
-                    <a href="guia/guia-dosagem.html">
-                        <div class="article-img">
-                            <img src="assets/dosage_tool.png" alt="Guia de Dosagem Precisão">
-                        </div>
-                        <div class="article-body">
-                            <span class="article-category">Apoio Terapêutico</span>
-                            <h3>Guia de Dosagem CBD/THC</h3>
-                            <p>Manual técnico para titulação lenta e segura de fitofármacos baseado no seu perfil.</p>
-                            <div class="article-meta">
-                                <span>#MicrodoseToMacrodose</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-            <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <img src="assets/logo_brand.png" alt="Flor de Minas">
-                    </div>
-                    <p>Facilitando o acesso à medicina canabinoide.</p>
-                </div>
-                
-                
-                <div class="footer-links">
-                    <h4>Contato</h4>
-                    <ul>
-                        
-                        <li><a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://x.com/flordeminas_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
-                        <li><a href="https://linkedin.com/company/flordeminas" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom" id="compliance">
-                <p class="disclaimer-scientific">
+<!-- Articles Grid -->
+<section class="section-neutral" id="artigos">
+<div class="container">
+<div class="articles-grid">
+<!-- Artigo 8 — NOVO: Efeito Entourage Clínico -->
+<article class="article-card">
+<a href="artigos/artigo-entourage-clinico.html">
+<div class="article-img">
+<img alt="Efeito Entourage Prática Clínica" src="assets/entourage_clinica.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Clínica &amp; Evidência</span>
+<h3>Efeito Entourage na Prática: Por Que Espectro Completo é Superior</h3>
+<p>Protocolo de decisão clínica: quando escolher Full Spectrum, Broad Spectrum ou Isolado — em 6 cenários reais.</p>
+<div class="article-meta">
+<span>#FullSpectrum</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 7 — NOVO: Vias de Administração -->
+<article class="article-card">
+<a href="artigos/artigo-vias-administracao.html">
+<div class="article-img">
+<img alt="Vias de Administração Cannabis Medicinal" src="assets/dosage_hero_v3.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Farmacologia Clínica</span>
+<h3>Vias de Administração: Como o CBD Chega ao Sangue</h3>
+<p>A mesma dose absorvida 6% ou 56% dependendo da via. Sublingual, oral e inalação comparados com dados clínicos.</p>
+<div class="article-meta">
+<span>#Biodisponibilidade</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 6 — NOVO: Canabinoides Menores -->
+<article class="article-card">
+<a href="artigos/artigo-canabinoides-menores.html">
+<div class="article-img">
+<img alt="CBG CBN CBC Canabinoides Menores" src="assets/minor_cannabinoids.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Fitoquímica Avançada</span>
+<h3>Canabinoides Menores: CBG, CBN e CBC — Os Coadjuvantes Essenciais</h3>
+<p>Os compostos além do THC e CBD que determinam a superioridade do Espectro Completo sobre o isolado.</p>
+<div class="article-meta">
+<span>#EfeitoEntourage</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 1: RDC 1.015 -->
+<article class="article-card">
+<a href="artigos/artigo-rdc-1015.html">
+<div class="article-img">
+<img alt="Farmacêutico manipulando produtos de Cannabis medicinal" src="assets/pharmacy_hero.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Regulação Farmacêutica</span>
+<h3>RDC 1.015/2026: CBD em Farmácias e Manipulação Magistral</h3>
+<p>O novo marco que permite a personalização de doses de CBD e amplia o acesso através de drogarias nacionais.</p>
+<div class="article-meta">
+<span>#MedicinaPersonalizada</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 2: RDC 1.014 -->
+<article class="article-card">
+<a href="artigos/artigo-rdc-1014.html">
+<div class="article-img">
+<img alt="Estufa tecnológica de Cannabis medicinal" src="assets/sandbox_hero.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Regulação e Ciência</span>
+<h3>Guia RDC 1.014/2026: O Sandbox Regulatório e Associações</h3>
+<p>Entenda como o novo ambiente experimental da ANVISA permitirá o cultivo e produção por associações de pacientes.</p>
+<div class="article-meta">
+<span>#FlorDeMinasScience</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 5 -->
+<article class="article-card">
+<a href="artigos/artigo-endocanabinoides.html">
+<div class="article-img">
+<img alt="Sistema Endocanabinoide Humano" src="assets/benefits_hero.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Fisiologia Humana</span>
+<h3>O Sistema Endocanabinoide: O Maestro da Homeostase</h3>
+<p>Entenda como os receptores CB1 e CB2 regulam o equilíbrio do seu corpo.</p>
+<div class="article-meta">
+<span>#BiologiaCelular</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 4 -->
+<article class="article-card">
+<a href="artigos/artigo-terpenos.html">
+<div class="article-img">
+<img alt="Terpenos em frascos de laboratório" src="assets/terpenes_laboratory.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Farmacologia</span>
+<h3>Perfil de Terpenos: O Papel do Mirceno e Limoneno</h3>
+<p>Como os compostos aromáticos influenciam a biodisponibilidade e o efeito de entorno.</p>
+<div class="article-meta">
+<span>#Fitoquimica</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Artigo 3 -->
+<article class="article-card">
+<a href="artigos/artigo-cultivo-dados.html">
+<div class="article-img">
+<img alt="Anotações agronômicas em campo ensolarado" src="assets/cultivo_hero.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Manual Técnico Avançado</span>
+<h3>Guia Avançado: Boas Práticas e Padronização no Cultivo de Cannabis Medicinal</h3>
+<p>Manual técnico sobre manejo edafoclimático, controle de VPD e protocolos de pós-colheita para garantir a qualidade farmacêutica da colheita.</p>
+<div class="article-meta">
+<span>#BoasPraticasAgricolas</span>
+</div>
+</div>
+</a>
+</article>
+</div> <!-- articles-grid -->
+</div> <!-- container -->
+</section>
+<!-- Recursos e Produtos Digitais -->
+<section class="section-neutral section-no-top-pad" id="recursos">
+<div class="container">
+<div class="section-header">
+<h2>Recursos &amp; Ferramentas Profissionais</h2>
+<p>Acelere sua jornada de saúde com nossos guias práticos e ferramentas de monitoramento técnico.</p>
+</div>
+<div class="articles-grid">
+<!-- Produto 1: Mapa de Terpenos (MAIS RECENTE) -->
+<article class="article-card">
+<a href="guia/mapa-terpenos.html">
+<div class="article-img">
+<img alt="Mapa Visual de Terpenos" src="assets/terpene_map_tool.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Botânica Sensorial</span>
+<h3>Mapa Visual de Terpenos</h3>
+<p>Entenda o aroma como indicador clínico e aprenda a escolher as genéticas para seus sintomas.</p>
+<div class="article-meta">
+<span>#AromaHealing</span>
+</div>
+</div>
+</a>
+</article>
+<!-- E-book Efeito Entourage -->
+<article class="article-card">
+<a href="recursos.html">
+<div class="article-img">
+<img alt="E-book O Efeito Entourage 2026" src="assets/ebook_cover_terpenos.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">E-book Exclusivo (Grátis)</span>
+<h3>O Efeito Entourage: Canabinoides e Terpenos</h3>
+<p>O guia científico mais completo do Brasil sobre sinergia fitoquímica. 13 capítulos com citações clínicas.</p>
+<div class="article-meta">
+<span>#EfeitoEntourage</span>
+</div>
+</div>
+</a>
+</article>
+<!-- Produto 3: Guia de Dosagem -->
+<article class="article-card">
+<a href="guia/guia-dosagem.html">
+<div class="article-img">
+<img alt="Guia de Dosagem Precisão" src="assets/dosage_tool.png"/>
+</div>
+<div class="article-body">
+<span class="article-category">Apoio Terapêutico</span>
+<h3>Guia de Dosagem CBD/THC</h3>
+<p>Manual técnico para titulação lenta e segura de fitofármacos baseado no seu perfil.</p>
+<div class="article-meta">
+<span>#MicrodoseToMacrodose</span>
+</div>
+</div>
+</a>
+</article>
+</div>
+</div>
+</section>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">
+<img alt="Flor de Minas" src="assets/logo_brand.png"/>
+</div>
+<p>Facilitando o acesso à medicina canabinoide.</p>
+</div>
+<div class="footer-links">
+<h4>Contato</h4>
+<ul>
+<li><a href="https://www.instagram.com/flordeminas2026/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+<li><a href="https://x.com/flordeminas_" rel="noopener noreferrer" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+<li><a href="https://linkedin.com/company/flordeminas" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom" id="compliance">
+<p class="disclaimer-scientific">
                     Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.
                 </p>
-                <p class="copyright">&copy; 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
-            </div>
-        </div>
-    </footer>
-    <!-- JS -->
-    <script src="js/main.js"></script>
+<p class="copyright">© 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
+</div>
+</div>
+</footer>
+<!-- JS -->
+<script src="js/main.js"></script>
 </body>
 </html>
