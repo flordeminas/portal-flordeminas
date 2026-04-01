@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Terpenos da Cannabis — Guia Científico 2026 | Flor de Minas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --green:        #064E3B;
+      --green-mid:    #065F46;
+      --green-pale:   #D1FAE5;
+      --green-bg:     #F0FDF4;
+      --gold:         #B45309;
+      --gold-light:   #D97706;
+      --gold-pale:    #FEF3C7;
+      --text:         #0F172A;
+      --text-muted:   #475569;
+      --text-light:   #94A3B8;
+      --white:        #FFFFFF;
+      --cover-bg:     #06110F;
+      --border:       #E2E8F0;
+      /* Benefit category colors */
+      --cat-sleep:    #1D4ED8;
+      --cat-anxiety:  #064E3B;
+      --cat-pain:     #C2410C;
+      --cat-focus:    #0369A1;
+      --cat-inflam:   #7C3AED;
+      --cat-mood:     #0F766E;
+      --cat-neuro:    #B45309;
+      --cat-antifung: #065F46;
+    }
+
+    /* ===== BASE ===== */
+    html, body {
+      background: var(--white);
+      color: var(--text);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10pt;
+      line-height: 1.6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ===== TOOLBAR (browser only) ===== */
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: var(--white);
+      border-bottom: 3px solid var(--green);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .toolbar-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .toolbar-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+    .toolbar-hint strong { color: var(--gold); }
+    .btn-export {
+      margin-left: auto;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 7px;
+      padding: 9px 22px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s;
+    }
+    .btn-export:hover { background: var(--green-mid); }
+
+    /* ===== PAGE WRAPPER ===== */
+    .page-wrapper {
+      padding-top: 56px; /* toolbar height */
+    }
+
+    /* ===== A4 PAGE ===== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 12px auto;
+      background: var(--white);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .page--cover {
+      background: var(--cover-bg);
+    }
+
+    /* ===== PAGE 1 — COVER ===== */
+    .cover {
+      width: 100%;
+      height: 297mm;
+      background: var(--cover-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 48px 40px;
+      position: relative;
+    }
+    .cover-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #4ADE80;
+      margin-bottom: 40px;
+    }
+    .cover-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #6EE7B7;
+      margin-bottom: 18px;
+    }
+    .cover-title {
+      font-family: 'Merriweather', serif;
+      font-size: 36pt;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+    .cover-title span {
+      color: #4ADE80;
+    }
+    .cover-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14pt;
+      font-weight: 300;
+      color: #A7F3D0;
+      margin-bottom: 40px;
+    }
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(74,222,128,0.12);
+      border: 1px solid rgba(74,222,128,0.35);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 600;
+      color: #6EE7B7;
+      letter-spacing: 0.5px;
+      margin-bottom: 64px;
+    }
+    .cover-badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ADE80;
+    }
+    .cover-logo-block {
+      position: absolute;
+      bottom: 40px;
+      left: 0; right: 0;
+      text-align: center;
+    }
+    .cover-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 16pt;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .cover-logo span {
+      color: #F59E0B;
+    }
+    .cover-logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      color: #6EE7B7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    /* decorative orb */
+    .cover-orb {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+    }
+    .cover-orb-1 {
+      width: 340px; height: 340px;
+      background: #4ADE80;
+      top: -80px; right: -80px;
+    }
+    .cover-orb-2 {
+      width: 220px; height: 220px;
+      background: #F59E0B;
+      bottom: 80px; left: -60px;
+    }
+
+    /* ===== INNER PAGES ===== */
+    .page-inner {
+      padding: 20mm 18mm 16mm 18mm;
+      min-height: 297mm;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--green);
+      margin-bottom: 20px;
+    }
+    .page-header-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .page-header-logo span { color: var(--gold); }
+    .page-header-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .page-footer {
+      position: absolute;
+      bottom: 12mm;
+      left: 18mm; right: 18mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 5px;
+    }
+    .page-footer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      color: var(--text-light);
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .section-title-line {
+      width: 44px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .section-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    /* ===== INTRO PAGE CONTENT ===== */
+    .intro-body {
+      font-family: 'Merriweather', serif;
+      font-size: 9.5pt;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .intro-body p { margin-bottom: 10px; }
+    .intro-body strong { color: var(--green); font-weight: 700; }
+
+    .callout-box {
+      background: var(--green-bg);
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+    }
+    .callout-box p {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      color: var(--green);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .callout-box strong { color: var(--green); }
+
+    .gold-callout {
+      background: var(--gold-pale);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+    }
+    .gold-callout p {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      color: #78350F;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .step-card {
+      background: var(--green-bg);
+      border: 1px solid var(--green-pale);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .step-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 18pt;
+      font-weight: 900;
+      color: var(--green-pale);
+      line-height: 1;
+      min-width: 30px;
+    }
+    .step-body h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 3px;
+    }
+    .step-body p {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ===== TERPENE CARD ===== */
+    .terpene-half {
+      height: calc(297mm / 2 - 36mm);
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 14px;
+    }
+    .terpene-half:last-child { margin-bottom: 0; }
+
+    .terpene-card {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    .terpene-card-stripe {
+      width: 5px;
+      flex-shrink: 0;
+    }
+    .terpene-card-body {
+      flex: 1;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Card header row */
+    .terpene-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .terpene-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 26pt;
+      font-weight: 900;
+      color: var(--green-pale);
+      line-height: 1;
+      min-width: 44px;
+    }
+    .terpene-name-block { flex: 1; }
+    .terpene-emoji { font-size: 14pt; line-height: 1; margin-bottom: 1px; }
+    .terpene-name {
+      font-family: 'Merriweather', serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.15;
+    }
+    .terpene-aroma {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .terpene-temp {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      background: var(--gold-pale);
+      padding: 3px 8px;
+      border-radius: 100px;
+      height: fit-content;
+    }
+
+    /* Strains chips */
+    .terpene-strains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .strain-chip {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      font-weight: 600;
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-pale);
+      border-radius: 100px;
+      padding: 2px 8px;
+    }
+
+    /* Benefits */
+    .terpene-benefits {
+      flex: 1;
+    }
+    .benefits-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .benefits-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--text);
+      display: flex;
+      gap: 5px;
+      align-items: flex-start;
+      line-height: 1.4;
+    }
+    .benefits-list li::before {
+      content: '●';
+      color: var(--green);
+      font-size: 6pt;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Synergy + Evidence row */
+    .terpene-footer {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .synergy-block {
+      flex: 1;
+      background: var(--green-bg);
+      border-radius: 6px;
+      padding: 6px 8px;
+    }
+    .synergy-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--green);
+      margin-bottom: 2px;
+    }
+    .synergy-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .evidence-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .evidence-ii {
+      background: #DCFCE7;
+      color: #166534;
+    }
+    .evidence-ii-iii {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    .evidence-iii {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    .evidence-iii-iv {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    /* Category stripe colors */
+    .stripe-sleep    { background: var(--cat-sleep); }
+    .stripe-anxiety  { background: var(--cat-anxiety); }
+    .stripe-pain     { background: var(--cat-pain); }
+    .stripe-focus    { background: var(--cat-focus); }
+    .stripe-inflam   { background: var(--cat-inflam); }
+    .stripe-mood     { background: var(--cat-mood); }
+    .stripe-neuro    { background: var(--cat-neuro); }
+    .stripe-antifung { background: var(--cat-antifung); }
+
+    /* ===== TABLE PAGE ===== */
+    .master-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+    }
+    .master-table thead tr {
+      background: var(--green);
+    }
+    .master-table thead th {
+      color: var(--white);
+      font-weight: 700;
+      padding: 8px 7px;
+      text-align: left;
+      font-size: 7pt;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .master-table tbody tr:nth-child(even) {
+      background: var(--green-bg);
+    }
+    .master-table tbody tr:nth-child(odd) {
+      background: var(--white);
+    }
+    .master-table tbody tr:hover { background: var(--green-pale); }
+    .master-table td {
+      padding: 7px 7px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      line-height: 1.4;
+      color: var(--text);
+    }
+    .master-table td:first-child {
+      font-weight: 700;
+      color: var(--green);
+    }
+    .table-temp {
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .table-evidence {
+      font-size: 6.5pt;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .table-footer-note {
+      margin-top: 14px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--text-muted);
+      background: var(--green-bg);
+      border: 1px dashed var(--green-pale);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .table-footer-note strong { color: var(--green); }
+
+    /* ===== AROMA GUIDE PAGE ===== */
+    .aroma-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .aroma-step {
+      background: var(--green-bg);
+      border: 1px solid var(--green-pale);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .aroma-step-icon {
+      font-size: 20pt;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .aroma-step-content h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .aroma-step-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .aroma-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+    }
+    .aroma-table thead tr { background: var(--green); }
+    .aroma-table thead th {
+      color: var(--white);
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .aroma-table tbody tr:nth-child(even) { background: var(--green-bg); }
+    .aroma-table tbody tr:nth-child(odd)  { background: var(--white); }
+    .aroma-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      color: var(--text);
+    }
+    .aroma-table td:first-child { font-size: 11pt; }
+    .aroma-table td:nth-child(2) { font-weight: 700; color: var(--green); }
+    .aroma-table td:last-child { color: var(--text-muted); font-style: italic; }
+
+    /* ===== REFERENCES PAGE ===== */
+    .refs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .refs-list li {
+      font-family: 'Merriweather', serif;
+      font-size: 7.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      padding-left: 20px;
+      position: relative;
+    }
+    .refs-list li::before {
+      position: absolute;
+      left: 0;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 7pt;
+    }
+    .refs-list li:nth-child(1)::before  { content: "1."; }
+    .refs-list li:nth-child(2)::before  { content: "2."; }
+    .refs-list li:nth-child(3)::before  { content: "3."; }
+    .refs-list li:nth-child(4)::before  { content: "4."; }
+    .refs-list li:nth-child(5)::before  { content: "5."; }
+    .refs-list li:nth-child(6)::before  { content: "6."; }
+    .refs-list li:nth-child(7)::before  { content: "7."; }
+    .refs-list li:nth-child(8)::before  { content: "8."; }
+    .refs-list li:nth-child(9)::before  { content: "9."; }
+    .refs-list li:nth-child(10)::before { content: "10."; }
+    .refs-list li:nth-child(11)::before { content: "11."; }
+    .refs-list li:nth-child(12)::before { content: "12."; }
+
+    .refs-doi {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .disclaimer-box {
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-left: 5px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .disclaimer-box h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .disclaimer-box p, .disclaimer-box li {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: #78350F;
+      line-height: 1.6;
+    }
+    .disclaimer-box ul {
+      padding-left: 14px;
+      margin-top: 4px;
+    }
+
+    .brand-footer {
+      text-align: center;
+      padding: 14px;
+      background: var(--green);
+      border-radius: 8px;
+      color: var(--white);
+    }
+    .brand-footer .brand-name {
+      font-family: 'Merriweather', serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .brand-footer .brand-name span { color: #F59E0B; }
+    .brand-footer p {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: #6EE7B7;
+      margin-top: 4px;
+    }
+
+    /* ===== DIVIDER ===== */
+    .terpene-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 10px 0;
+    }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      @page { size: A4; margin: 0; }
+
+      body {
+        background: #ffffff !important;
+        padding: 0;
+        margin: 0;
+      }
+
+      .toolbar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
+        page-break-before: always;
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+
+      .page:first-child { page-break-before: auto; }
+
+      /* Cover preserves dark bg */
+      .page--cover,
+      .cover {
+        background: #06110F !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Force all colored backgrounds to print */
+      .terpene-card-stripe,
+      .master-table thead tr,
+      .aroma-table thead tr,
+      .callout-box,
+      .gold-callout,
+      .step-card,
+      .synergy-block,
+      .evidence-ii,
+      .evidence-ii-iii,
+      .evidence-iii,
+      .evidence-iii-iv,
+      .strain-chip,
+      .terpene-temp,
+      .master-table tbody tr:nth-child(even),
+      .aroma-table tbody tr:nth-child(even),
+      .brand-footer,
+      .disclaimer-box,
+      .table-footer-note,
+      .aroma-step {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page-inner { padding: 14mm 16mm 20mm 16mm; }
+      .page-footer { bottom: 8mm; left: 16mm; right: 16mm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOOLBAR (browser only) -->
+<div class="toolbar">
+  <span class="toolbar-title">🗺️ Mapa de Terpenos — Produto PDF</span>
+  <span class="toolbar-hint">Dica: escolha <strong>A4</strong>, sem margens, habilite <strong>"Gráficos em segundo plano"</strong></span>
+  <button class="btn-export" onclick="window.print()">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/>
+    </svg>
+    Exportar PDF (Ctrl+P)
+  </button>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- ==========================================
+       PÁGINA 1 — CAPA
+       ========================================== -->
+  <div class="page page--cover">
+    <div class="cover">
+      <div class="cover-orb cover-orb-1"></div>
+      <div class="cover-orb cover-orb-2"></div>
+
+      <div class="cover-eyebrow">Flor de Minas · Guia Científico</div>
+
+      <div class="cover-title">
+        Mapa de Terpenos<br>da <span>Cannabis</span>
+      </div>
+      <div class="cover-subtitle">Guia Científico Completo 2026</div>
+
+      <div class="cover-badge">
+        <span class="cover-badge-dot"></span>
+        12 Terpenos
+        <span class="cover-badge-dot"></span>
+        Evidências Científicas
+        <span class="cover-badge-dot"></span>
+        Tabela Mestra
+      </div>
+
+      <div class="cover-logo-block">
+        <div class="cover-logo">Flor de <span>Minas</span></div>
+        <div class="cover-logo-sub">Cannabis · Ciência · Educação</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 2 — INTRODUÇÃO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Mapa de Terpenos 2026</span>
+      </div>
+
+      <div class="section-subtitle">Fundamentos Científicos</div>
+      <div class="section-title">O Que São Terpenos?</div>
+      <div class="section-title-line"></div>
+
+      <div class="intro-body">
+        <p>Os terpenos são compostos orgânicos produzidos pelas glândulas tricomas da Cannabis — as mesmas estruturas que sintetizam THC, CBD e outros canabinoides. Mais de <strong>200 compostos terpênicos</strong> já foram identificados na Cannabis, mas os 12 deste guia respondem pela maior parte da atividade farmacológica documentada.</p>
+
+        <p>Do ponto de vista evolutivo, os terpenos repelem herbívoros, atraem polinizadores e protegem a planta contra patógenos. Do ponto de vista clínico, representam uma camada adicional de informação farmacológica que o aroma da planta comunica diretamente.</p>
+
+        <p>Estudos indicam que os terpenos não são apenas "aromatizantes" — eles interagem com receptores no sistema nervoso, modulam neurotransmissores e potencializam os efeitos dos canabinoides. Esta interação é o que a ciência chama de <strong>Efeito Entourage</strong>.</p>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <div class="section-subtitle" style="margin-top:14px;">Farmacologia</div>
+      <div class="section-title" style="font-size:14pt;">O Efeito Entourage: Quando 1 + 1 = 3</div>
+      <div class="section-title-line"></div>
+
+      <div class="intro-body">
+        <p>Em 2011, o neurocientista Ethan Russo publicou na <em>British Journal of Pharmacology</em> o artigo seminal <strong>"Taming THC: potential cannabis synergy and phytocannabinoid-terpenoid entourage effects"</strong> (PMID: 21749363). A tese: a Cannabis é mais que a soma de seus componentes individuais.</p>
+      </div>
+
+      <div class="callout-box">
+        <p><strong>Exemplos de Efeito Entourage segundo estudos:</strong><br>
+        • <strong>Linalol + CBD</strong> → efeito ansiolítico potencializado em modelos de ansiedade<br>
+        • <strong>β-Cariofileno + CBD</strong> → ação anti-inflamatória amplificada via CB2 + 5-HT1A<br>
+        • <strong>α-Pineno + THC</strong> → o pineno pode antagonizar déficits de memória induzidos pelo THC<br>
+        • <strong>Mirceno + THC</strong> → efeito sedativo potencializado; mirceno pode aumentar permeabilidade da barreira hematoencefálica</p>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <div class="section-subtitle" style="margin-top:14px;">Como Usar Este Guia</div>
+      <div class="section-title" style="font-size:14pt;">4 Passos Para Escolher Pelo Aroma</div>
+      <div class="section-title-line"></div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>Identifique seu Sintoma Principal</h4>
+            <p>Qual é o alvo terapêutico prioritário? Ansiedade, dor crônica, insônia ou inflamação?</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>Localize os Terpenos Correspondentes</h4>
+            <p>Use a Tabela Mestra (pág. 9) para identificar quais terpenos têm evidências para seu sintoma.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>Memorize o Aroma-Alvo</h4>
+            <p>Use óleos essenciais de referência: lavanda para linalol, limão para limoneno, pimenta preta para cariofileno.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>Teste na Prática</h4>
+            <p>Respire fundo ao abrir a embalagem e identifique a nota dominante. Peça o laudo de análise terpênica do laboratório.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 3 — MIRCENO + LIMONENO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 1 de 6</span>
+      </div>
+
+      <!-- TERPENO 01: MIRCENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-sleep"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">01</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌿</div>
+                <div class="terpene-name">Mirceno (β-Mirceno)</div>
+                <div class="terpene-aroma">Terra molhada · Musgo · Manga madura · Herbal</div>
+              </div>
+              <div class="terpene-temp">🌡️ 167°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">OG Kush</span>
+              <span class="strain-chip">Blue Dream</span>
+              <span class="strain-chip">Granddaddy Purple</span>
+              <span class="strain-chip">AK-47</span>
+              <span class="strain-chip">White Widow</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Potencialização de efeitos sedativos em sinergia com o THC</li>
+                <li>Propriedades analgésicas mediadas por receptores opióides (pré-clínico)</li>
+                <li>Ação anti-inflamatória por inibição de mediadores pró-inflamatórios</li>
+                <li>Potencial miorrelaxante em modelos experimentais</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Mirceno + THC amplificam sedação; pode aumentar permeabilidade da barreira hematoencefálica para canabinoides</div>
+              </div>
+              <div class="evidence-badge evidence-iii">Nível III<br>Pré-Clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 02: LIMONENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-mood"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">02</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🍋</div>
+                <div class="terpene-name">Limoneno</div>
+                <div class="terpene-aroma">Cítrico intenso · Limão · Laranja · Bergamota</div>
+              </div>
+              <div class="terpene-temp">🌡️ 176°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Super Lemon Haze</span>
+              <span class="strain-chip">Lemon Skunk</span>
+              <span class="strain-chip">Jack Herer</span>
+              <span class="strain-chip">Durban Poison</span>
+              <span class="strain-chip">Cinderella 99</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Estudos clínicos preliminares: redução de marcadores de ansiedade por aromaterapia</li>
+                <li>Modelos animais: atividade antidepressiva via receptores serotoninérgicos (5-HT1A)</li>
+                <li>Ação antifúngica e antibacteriana in vitro</li>
+                <li>d-Limoneno oral sugere benefício para desconforto digestivo</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Limoneno + CBD potencializam suporte ao humor e redução de ansiedade via mecanismos serotoninérgicos e endocanabinoides</div>
+              </div>
+              <div class="evidence-badge evidence-ii-iii">Nível II-III<br>Pré-Clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 4 — LINALOL + β-CARIOFILENO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 2 de 6</span>
+      </div>
+
+      <!-- TERPENO 03: LINALOL -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-anxiety"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">03</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">💜</div>
+                <div class="terpene-name">Linalol</div>
+                <div class="terpene-aroma">Lavanda · Floral suave · Madeira levemente picante</div>
+              </div>
+              <div class="terpene-temp">🌡️ 198°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Amnesia Haze</span>
+              <span class="strain-chip">LA Confidential</span>
+              <span class="strain-chip">OG Shark</span>
+              <span class="strain-chip">Lavender</span>
+              <span class="strain-chip">Granddaddy Purple</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Mecanismo GABAérgico bem caracterizado — modula receptores GABA-A (análogo às benzodiazepinas)</li>
+                <li>Estudos clínicos: redução de ansiedade e melhora de parâmetros de sono</li>
+                <li>Propriedades anticonvulsivantes em modelos pré-clínicos</li>
+                <li>Ação em receptores NMDA: potencial para dor neuropática</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Linalol + CBD amplificam efeito ansiolítico; mecanismos GABAérgico e endocanabinoide atuam em vias complementares</div>
+              </div>
+              <div class="evidence-badge evidence-ii">Nível II<br>Clínico Preliminar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 04: β-CARIOFILENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-inflam"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">04</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌶️</div>
+                <div class="terpene-name">β-Cariofileno</div>
+                <div class="terpene-aroma">Pimenta preta · Cravo · Especiarias quentes · Madeiroso</div>
+              </div>
+              <div class="terpene-temp">🌡️ 160°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Girl Scout Cookies</span>
+              <span class="strain-chip">Bubba Kush</span>
+              <span class="strain-chip">Sour Diesel</span>
+              <span class="strain-chip">Chemdawg</span>
+              <span class="strain-chip">Original Glue</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li><strong>Único terpeno com ação direta no endocanabinoide</strong> — agonista seletivo do receptor CB2 (Gertsch et al., 2008 — PNAS)</li>
+                <li>Mecanismo anti-inflamatório sem efeitos psicoativos via CB2 periférico</li>
+                <li>Estudos: propriedades analgésicas e possível ação ansiolítica/antidepressiva via CB2</li>
+                <li>Reconhecido como "canabinoide dietético" — presente em pimenta preta, cravo e manjericão</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">β-Cariofileno + CBD amplificam ação anti-inflamatória via CB2 + 5-HT1A em efeito sinérgico documentado</div>
+              </div>
+              <div class="evidence-badge evidence-ii">Nível II<br>CB2 Estabelecido</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 5 — α-PINENO + TERPINOLENO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 3 de 6</span>
+      </div>
+
+      <!-- TERPENO 05: α-PINENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-focus"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">05</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌲</div>
+                <div class="terpene-name">α-Pineno</div>
+                <div class="terpene-aroma">Pinheiro · Abeto · Ar de floresta · Eucalipto</div>
+              </div>
+              <div class="terpene-temp">🌡️ 155°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Jack Herer</span>
+              <span class="strain-chip">Trainwreck</span>
+              <span class="strain-chip">Blue Dream</span>
+              <span class="strain-chip">Romulan</span>
+              <span class="strain-chip">OG Kush</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Inibição da acetilcolinesterase (AChE) — aumenta acetilcolina disponível (mecanismo similar a fármacos para Alzheimer)</li>
+                <li>Pode antagonizar déficits de memória de curto prazo associados ao THC</li>
+                <li>Estudos in vitro: inibição de COX-1 e COX-2 (ação anti-inflamatória)</li>
+                <li>Efeitos ansiolíticos sugeridos por estudos de aromaterapia</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">α-Pineno + THC: o pineno pode contrariar déficits de memória induzidos pelo THC via inibição colinérgica</div>
+              </div>
+              <div class="evidence-badge evidence-ii-iii">Nível II-III<br>Colinérgico Doc.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 06: TERPINOLENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-sleep" style="background:#0D9488;"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">06</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌸</div>
+                <div class="terpene-name">Terpinoleno</div>
+                <div class="terpene-aroma">Ervas frescas · Floral-frutal · Pinheiro suave · Erva-cidreira</div>
+              </div>
+              <div class="terpene-temp">🌡️ 186°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Jack Herer</span>
+              <span class="strain-chip">Ghost Train Haze</span>
+              <span class="strain-chip">XJ-13</span>
+              <span class="strain-chip">Golden Goat</span>
+              <span class="strain-chip">Dutch Treat</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Atividade antioxidante relevante por inibição de espécies reativas de oxigênio (ROS)</li>
+                <li>Estudos pré-clínicos indicam possível efeito sedativo em doses mais elevadas</li>
+                <li>Atividade antimicrobiana in vitro documentada</li>
+                <li>"Camaleão" aromático — múltiplas notas simultâneas (floral, frutal, herbal, pinheiro)</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Terpinoleno + CBD em cultivares da família Jack Herer: perfil de efeito equilibrado entre leveza e clareza mental</div>
+              </div>
+              <div class="evidence-badge evidence-iii-iv">Nível III-IV<br>Estudos Limitados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 6 — HUMULENO + OCIMENO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 4 de 6</span>
+      </div>
+
+      <!-- TERPENO 07: HUMULENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-inflam"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">07</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🍺</div>
+                <div class="terpene-name">Humuleno</div>
+                <div class="terpene-aroma">Lúpulo · Terroso · Amadeirado · Herbal seco</div>
+              </div>
+              <div class="terpene-temp">🌡️ 198°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Girl Scout Cookies</span>
+              <span class="strain-chip">Headband</span>
+              <span class="strain-chip">Sour Diesel</span>
+              <span class="strain-chip">Skywalker OG</span>
+              <span class="strain-chip">White Widow</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Potente ação anti-inflamatória por inibição da via NF-κB (regulador mestre da inflamação)</li>
+                <li>Em alguns modelos, comparado à dexametasona em eficácia anti-inflamatória</li>
+                <li>Propriedades anorexígenas — modulação de sinais de apetite em pré-clínico</li>
+                <li>Atividade antibacteriana in vitro contra patógenos relevantes</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Humuleno + β-Cariofileno são isômeros que co-ocorrem frequentemente, somando ação anti-inflamatória via vias complementares</div>
+              </div>
+              <div class="evidence-badge evidence-iii">Nível III<br>Pré-Clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 08: OCIMENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-antifung"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">08</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌿</div>
+                <div class="terpene-name">Ocimeno</div>
+                <div class="terpene-aroma">Manjericão · Madeira doce · Frutal leve · Hortelã suave</div>
+              </div>
+              <div class="terpene-temp">🌡️ 176°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Clementine</span>
+              <span class="strain-chip">Golden Goat</span>
+              <span class="strain-chip">Dream Queen</span>
+              <span class="strain-chip">Space Queen</span>
+              <span class="strain-chip">J1</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Atividade antifúngica bem documentada in vitro</li>
+                <li>Pesquisas emergentes investigam propriedades antivirais (inibição de proteases virais)</li>
+                <li>Estudos pré-clínicos com indicação de atividade anti-inflamatória</li>
+                <li>Perfil aromático tropical: manjericão fresco com notas de frutas tropicais</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Ocimeno em cultivares tropicais contribui para o perfil herbal-frutal junto ao limoneno e mirceno em sinergia de espectro completo</div>
+              </div>
+              <div class="evidence-badge evidence-iii-iv">Nível III-IV<br>Emergente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 7 — BISABOLOL + NEROLIDOL
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 5 de 6</span>
+      </div>
+
+      <!-- TERPENO 09: BISABOLOL -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-anxiety"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">09</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌼</div>
+                <div class="terpene-name">Bisabolol</div>
+                <div class="terpene-aroma">Camomila · Mel · Floral suave · Frutal delicado</div>
+              </div>
+              <div class="terpene-temp">🌡️ 153°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">ACDC</span>
+              <span class="strain-chip">Pink Kush</span>
+              <span class="strain-chip">Headband</span>
+              <span class="strain-chip">Master Kush</span>
+              <span class="strain-chip">OG Shark</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Propriedades anti-irritantes e cicatrizantes bem documentadas na literatura cosmética e dermatológica</li>
+                <li>Ação anti-inflamatória via inibição de NF-κB</li>
+                <li>Estudos de aromaterapia: efeitos levemente sedativos e ansiolíticos</li>
+                <li>Sinergia proposta com CBD em modelos de inflamação cutânea</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Bisabolol + CBD: sinergia em modelos de inflamação; cultivares CBD-dominantes com bisabolol são frequentes em protocolos de uso diurno</div>
+              </div>
+              <div class="evidence-badge evidence-ii-iii">Nível II-III<br>Cosmético Sólido</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 10: NEROLIDOL -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-sleep"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">10</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌹</div>
+                <div class="terpene-name">Nerolidol</div>
+                <div class="terpene-aroma">Rosa · Madeira clara · Maçã verde · Floral sofisticado</div>
+              </div>
+              <div class="terpene-temp">🌡️ 122°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Chemdawg 91</span>
+              <span class="strain-chip">Jack Herer</span>
+              <span class="strain-chip">Island Sweet Skunk</span>
+              <span class="strain-chip">Skywalker OG</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Propriedades sedativas mediadas pelo sistema GABAérgico (modelos pré-clínicos)</li>
+                <li>Atividade antifúngica bem estabelecida in vitro</li>
+                <li>Co-ocorrência frequente com mirceno e linalol em cultivares de efeito sedativo</li>
+                <li>Temperatura de vaporização mais baixa deste guia — relevante para usuários de vaporizadores</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Nerolidol + Mirceno + Linalol: tríade de terpenos sedativos que juntos formam o perfil típico de cultivares para insônia</div>
+              </div>
+              <div class="evidence-badge evidence-iii">Nível III<br>Pré-Clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 7</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 8 — GERANIOL + Δ3-CARENO
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Os 12 Terpenos · Página 6 de 6</span>
+      </div>
+
+      <!-- TERPENO 11: GERANIOL -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-neuro"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">11</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌺</div>
+                <div class="terpene-name">Geraniol</div>
+                <div class="terpene-aroma">Rosas frescas · Gerânio · Floral doce · Frutal leve</div>
+              </div>
+              <div class="terpene-temp">🌡️ 230°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Amnesia Haze</span>
+              <span class="strain-chip">Headband</span>
+              <span class="strain-chip">Master Kush</span>
+              <span class="strain-chip">OG Shark</span>
+              <span class="strain-chip">Afghani</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Propriedades neuroprotetoras mediadas pela via Nrf2 (fator de resposta antioxidante) em pré-clínico</li>
+                <li>Modelos de neuropatia diabética: resultados promissores na modulação de dor neuropática</li>
+                <li>Atividade antifúngica sólida e propriedades repelentes naturais bem documentadas</li>
+                <li>Temperatura de vaporização mais alta do guia: 230°C — exige vaporizador de alta temperatura</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Geraniol + CBD em cultivares de alto CBD: sinergia investigada para suporte neuroprotector e modulação de dor crônica</div>
+              </div>
+              <div class="evidence-badge evidence-iii">Nível III<br>Pré-Clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="terpene-divider"></div>
+
+      <!-- TERPENO 12: Δ3-CARENO -->
+      <div class="terpene-half">
+        <div class="terpene-card">
+          <div class="terpene-card-stripe stripe-focus"></div>
+          <div class="terpene-card-body">
+            <div class="terpene-header">
+              <div class="terpene-num">12</div>
+              <div class="terpene-name-block">
+                <div class="terpene-emoji">🌲</div>
+                <div class="terpene-name">Δ3-Careno</div>
+                <div class="terpene-aroma">Cedro · Pinho doce · Resinoso · Terra limpa</div>
+              </div>
+              <div class="terpene-temp">🌡️ 168°C</div>
+            </div>
+
+            <div class="terpene-strains">
+              <span class="strain-chip">Super Silver Haze</span>
+              <span class="strain-chip">Arjan's Ultra Haze</span>
+              <span class="strain-chip">Skunk XL</span>
+              <span class="strain-chip">Trainwreck</span>
+            </div>
+
+            <div class="terpene-benefits">
+              <div class="benefits-title">Benefícios — Evidências Científicas</div>
+              <ul class="benefits-list">
+                <li>Estimulação de osteoblastos (células formadoras de osso) — interesse investigativo para saúde óssea</li>
+                <li>Perfil etnobotânico e observacional associa a efeitos levemente estimulantes</li>
+                <li>Evidências preliminares de ação anti-inflamatória</li>
+                <li>⚠️ Propriedades secantes: pode intensificar boca seca (xerostomia) e olhos secos — mantenha-se hidratado</li>
+              </ul>
+            </div>
+
+            <div class="terpene-footer">
+              <div class="synergy-block">
+                <div class="synergy-label">Sinergia</div>
+                <div class="synergy-text">Δ3-Careno nas cultivares Haze em combinação com terpinoleno e α-pineno: perfil aromático de floresta de coníferas, associado a clareza mental</div>
+              </div>
+              <div class="evidence-badge evidence-iii-iv">Nível III-IV<br>Observacional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 8</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 9 — TABELA MESTRA
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Tabela Mestra de Referência Rápida</span>
+      </div>
+
+      <div class="section-subtitle">Consulta Rápida</div>
+      <div class="section-title">Tabela Mestra dos 12 Terpenos</div>
+      <div class="section-title-line"></div>
+
+      <table class="master-table">
+        <thead>
+          <tr>
+            <th>Terpeno</th>
+            <th>Aroma</th>
+            <th>Benefício Principal</th>
+            <th>Strains Típicas</th>
+            <th>Temp.</th>
+            <th>Evidência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🌿 Mirceno</td>
+            <td>Terra, Manga</td>
+            <td>Sono, Relaxamento</td>
+            <td>OG Kush, Blue Dream, GDP</td>
+            <td class="table-temp">167°C</td>
+            <td><span class="table-evidence evidence-iii">Nível III</span></td>
+          </tr>
+          <tr>
+            <td>🍋 Limoneno</td>
+            <td>Cítrico, Limão</td>
+            <td>Ansiedade, Humor</td>
+            <td>Super Lemon Haze, Jack Herer</td>
+            <td class="table-temp">176°C</td>
+            <td><span class="table-evidence evidence-ii-iii">Nível II-III</span></td>
+          </tr>
+          <tr>
+            <td>💜 Linalol</td>
+            <td>Lavanda, Floral</td>
+            <td>Ansiedade, Sono</td>
+            <td>Amnesia Haze, Lavender</td>
+            <td class="table-temp">198°C</td>
+            <td><span class="table-evidence evidence-ii">Nível II</span></td>
+          </tr>
+          <tr>
+            <td>🌶️ β-Cariofileno</td>
+            <td>Pimenta, Cravo</td>
+            <td>Inflamação, Dor</td>
+            <td>GSC, Bubba Kush, Chemdawg</td>
+            <td class="table-temp">160°C</td>
+            <td><span class="table-evidence evidence-ii">Nível II</span></td>
+          </tr>
+          <tr>
+            <td>🌲 α-Pineno</td>
+            <td>Pinheiro, Abeto</td>
+            <td>Foco, Memória</td>
+            <td>Jack Herer, Trainwreck</td>
+            <td class="table-temp">155°C</td>
+            <td><span class="table-evidence evidence-ii-iii">Nível II-III</span></td>
+          </tr>
+          <tr>
+            <td>🌸 Terpinoleno</td>
+            <td>Herbal, Floral</td>
+            <td>Antioxidante, Sono</td>
+            <td>Jack Herer, Ghost Train Haze</td>
+            <td class="table-temp">186°C</td>
+            <td><span class="table-evidence evidence-iii-iv">Nível III-IV</span></td>
+          </tr>
+          <tr>
+            <td>🍺 Humuleno</td>
+            <td>Lúpulo, Amadeirado</td>
+            <td>Inflamação</td>
+            <td>GSC, Headband, Sour Diesel</td>
+            <td class="table-temp">198°C</td>
+            <td><span class="table-evidence evidence-iii">Nível III</span></td>
+          </tr>
+          <tr>
+            <td>🌿 Ocimeno</td>
+            <td>Manjericão, Frutal</td>
+            <td>Antifúngico, Antiviral</td>
+            <td>Clementine, Golden Goat</td>
+            <td class="table-temp">176°C</td>
+            <td><span class="table-evidence evidence-iii-iv">Nível III-IV</span></td>
+          </tr>
+          <tr>
+            <td>🌼 Bisabolol</td>
+            <td>Camomila, Mel</td>
+            <td>Ansiedade, Anti-inflamatório</td>
+            <td>ACDC, Pink Kush, Master Kush</td>
+            <td class="table-temp">153°C</td>
+            <td><span class="table-evidence evidence-ii-iii">Nível II-III</span></td>
+          </tr>
+          <tr>
+            <td>🌹 Nerolidol</td>
+            <td>Rosa, Madeira</td>
+            <td>Sono, Antifúngico</td>
+            <td>Chemdawg 91, Jack Herer</td>
+            <td class="table-temp">122°C</td>
+            <td><span class="table-evidence evidence-iii">Nível III</span></td>
+          </tr>
+          <tr>
+            <td>🌺 Geraniol</td>
+            <td>Rosas, Gerânio</td>
+            <td>Neuroproteção, Dor</td>
+            <td>Amnesia Haze, Headband</td>
+            <td class="table-temp">230°C</td>
+            <td><span class="table-evidence evidence-iii">Nível III</span></td>
+          </tr>
+          <tr>
+            <td>🌲 Δ3-Careno</td>
+            <td>Cedro, Resinoso</td>
+            <td>Saúde Óssea, Estimulante</td>
+            <td>Super Silver Haze, Trainwreck</td>
+            <td class="table-temp">168°C</td>
+            <td><span class="table-evidence evidence-iii-iv">Nível III-IV</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="table-footer-note">
+        <strong>Legenda de Evidência:</strong> Nível II = mecanismo estabelecido + estudos clínicos preliminares &nbsp;·&nbsp; Nível III = estudos pré-clínicos robustos &nbsp;·&nbsp; Nível IV = estudos preliminares/observacionais<br>
+        Todas as indicações baseiam-se em estudos científicos publicados. Os benefícios são potenciais e não constituem garantias terapêuticas. &nbsp;·&nbsp; <strong>Imprima esta página como referência rápida.</strong>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 9</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 10 — COMO ESCOLHER PELO AROMA
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Guia Prático de Seleção</span>
+      </div>
+
+      <div class="section-subtitle">Método Prático</div>
+      <div class="section-title">Como Escolher Pelo Aroma</div>
+      <div class="section-title-line"></div>
+
+      <div class="aroma-steps">
+        <div class="aroma-step">
+          <div class="aroma-step-icon">🎯</div>
+          <div class="aroma-step-content">
+            <h4>Passo 1 — Defina seu Objetivo Terapêutico</h4>
+            <p>Identifique o sintoma principal: ansiedade, insônia, dor crônica, inflamação ou foco. Isso determina qual família de terpenos buscar.</p>
+          </div>
+        </div>
+        <div class="aroma-step">
+          <div class="aroma-step-icon">🔎</div>
+          <div class="aroma-step-content">
+            <h4>Passo 2 — Consulte a Tabela Mestra</h4>
+            <p>Use a tabela da página anterior para identificar os terpenos com evidências para seu sintoma. Priorize aqueles com Nível II ou II-III.</p>
+          </div>
+        </div>
+        <div class="aroma-step">
+          <div class="aroma-step-icon">👃</div>
+          <div class="aroma-step-content">
+            <h4>Passo 3 — Treine seu Olfato</h4>
+            <p>Use óleos essenciais de referência: lavanda (linalol), limão siciliano (limoneno), pimenta preta moída (cariofileno), pinheiro (pineno), camomila (bisabolol).</p>
+          </div>
+        </div>
+        <div class="aroma-step">
+          <div class="aroma-step-icon">📋</div>
+          <div class="aroma-step-content">
+            <h4>Passo 4 — Peça o Laudo Terpênico</h4>
+            <p>Exija laudo de análise de laboratório credenciado com percentual de cada terpeno. O terpeno com maior concentração define o perfil terapêutico primário do produto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subtitle" style="margin-top:16px;">Decodificando Aromas</div>
+      <div class="section-title" style="font-size:13pt;">Se Você Sente Este Aroma → Provavelmente É → Benefício Esperado</div>
+      <div class="section-title-line"></div>
+
+      <table class="aroma-table">
+        <thead>
+          <tr>
+            <th>Aroma Percebido</th>
+            <th>Terpeno Provável</th>
+            <th>Benefício Primário Documentado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🌿 Terra molhada, musgo, manga</td>
+            <td>Mirceno</td>
+            <td>Relaxamento muscular, suporte ao sono, analgesia</td>
+          </tr>
+          <tr>
+            <td>🍋 Limão espremido, casca de laranja</td>
+            <td>Limoneno</td>
+            <td>Melhora do humor, redução de ansiedade</td>
+          </tr>
+          <tr>
+            <td>💜 Lavanda, floral limpo</td>
+            <td>Linalol</td>
+            <td>Ansiedade, qualidade do sono, anticonvulsivante</td>
+          </tr>
+          <tr>
+            <td>🌶️ Pimenta preta moída, cravo</td>
+            <td>β-Cariofileno</td>
+            <td>Anti-inflamatório, analgesia, ansiedade (CB2)</td>
+          </tr>
+          <tr>
+            <td>🌲 Floresta de pinheiros, eucalipto</td>
+            <td>α-Pineno</td>
+            <td>Foco, clareza mental, anti-inflamatório</td>
+          </tr>
+          <tr>
+            <td>🌸 Floral-frutal complexo, erva-cidreira</td>
+            <td>Terpinoleno</td>
+            <td>Antioxidante, sedativo (doses altas)</td>
+          </tr>
+          <tr>
+            <td>🍺 Cerveja artesanal, lúpulo, terroso seco</td>
+            <td>Humuleno</td>
+            <td>Anti-inflamatório potente, inibição NF-κB</td>
+          </tr>
+          <tr>
+            <td>🌿 Manjericão fresco, frutas tropicais</td>
+            <td>Ocimeno</td>
+            <td>Antifúngico, propriedades antivirais emergentes</td>
+          </tr>
+          <tr>
+            <td>🌼 Chá de camomila com mel</td>
+            <td>Bisabolol</td>
+            <td>Ansiedade suave, anti-inflamatório dérmico</td>
+          </tr>
+          <tr>
+            <td>🌹 Rosa velha, maçã verde, madeira</td>
+            <td>Nerolidol</td>
+            <td>Sedativo, sono, antifúngico</td>
+          </tr>
+          <tr>
+            <td>🌺 Pétalas de rosa frescas, gerânio</td>
+            <td>Geraniol</td>
+            <td>Neuroproteção, dor neuropática</td>
+          </tr>
+          <tr>
+            <td>🌲 Cedro, marcenaria, sauna de madeira</td>
+            <td>Δ3-Careno</td>
+            <td>Levemente estimulante, saúde óssea (investigativo)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="gold-callout" style="margin-top:14px;">
+        <p><strong>Dica Profissional:</strong> O olfato é uma ferramenta diagnóstica real. Ao sentir o aroma dominante de uma cultivar, você já está identificando o terpeno principal e, com ele, o perfil terapêutico primário do produto. Cultive seu olfato com óleos essenciais de referência antes da consulta médica.</p>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 10</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PÁGINA 11 — REFERÊNCIAS + DISCLAIMER
+       ========================================== -->
+  <div class="page">
+    <div class="page-inner">
+      <div class="page-header">
+        <span class="page-header-logo">Flor de <span>Minas</span></span>
+        <span class="page-header-label">Referências Científicas e Informações Legais</span>
+      </div>
+
+      <div class="section-subtitle">Base Científica</div>
+      <div class="section-title">Referências Bibliográficas</div>
+      <div class="section-title-line"></div>
+
+      <ol class="refs-list">
+        <li>
+          <strong>Russo EB.</strong> Taming THC: potential cannabis synergy and phytocannabinoid-terpenoid entourage effects. <em>Br J Pharmacol.</em> 2011;163(7):1344-1364.
+          <a class="refs-doi" href="https://doi.org/10.1111/j.1476-5381.2011.01238.x">DOI: 10.1111/j.1476-5381.2011.01238.x</a> · PMID: 21749363
+        </li>
+        <li>
+          <strong>Gertsch J, Leonti M, Raduner S, et al.</strong> Beta-caryophyllene is a dietary cannabinoid. <em>Proc Natl Acad Sci USA.</em> 2008;105(26):9099-9104.
+          <a class="refs-doi" href="https://doi.org/10.1073/pnas.0803601105">DOI: 10.1073/pnas.0803601105</a> · PMID: 18574142
+        </li>
+        <li>
+          <strong>Surendran S, Qassadi F, Surendran G, Lilley D, Heinrich M.</strong> Myrcene — What Are the Potential Health Benefits of This Flavouring and Aroma Agent? <em>Front Nutr.</em> 2021;8:699666.
+          <a class="refs-doi" href="https://doi.org/10.3389/fnut.2021.699666">DOI: 10.3389/fnut.2021.699666</a>
+        </li>
+        <li>
+          <strong>Bento AF, Marcon R, Dutra RC, et al.</strong> β-Caryophyllene Inhibits Dextran Sulfate Sodium-induced Colitis in Mice through CB2 Receptor Activation and PPARγ Pathway. <em>J Immunol.</em> 2011;187(8):4154-4166.
+          <a class="refs-doi" href="https://doi.org/10.4049/jimmunol.1101171">DOI: 10.4049/jimmunol.1101171</a>
+        </li>
+        <li>
+          <strong>Peana AT, D'Aquila PS, Chessa ML, et al.</strong> (–)-Linalool produces antinociception in two experimental models of pain. <em>Eur J Pharmacol.</em> 2003;460(1):37-41.
+          <a class="refs-doi" href="https://doi.org/10.1016/S0014-2999(02)02856-X">DOI: 10.1016/S0014-2999(02)02856-X</a> · PMID: 12535857
+        </li>
+        <li>
+          <strong>Kamatou GPP, Viljoen AM.</strong> A Review of the Application and Pharmacological Properties of α-Bisabolol and α-Bisabolol-Rich Oils. <em>J Am Oil Chem Soc.</em> 2010;87(1):1-7.
+          <a class="refs-doi" href="https://doi.org/10.1007/s11746-009-1483-3">DOI: 10.1007/s11746-009-1483-3</a>
+        </li>
+        <li>
+          <strong>Rufino AT, Ribeiro M, Judas F, et al.</strong> Anti-inflammatory and chondroprotective activity of (+)-α-pinene: structural and enantiomeric selectivity. <em>J Nat Prod.</em> 2014;77(2):264-269.
+          <a class="refs-doi" href="https://doi.org/10.1021/np400828x">DOI: 10.1021/np400828x</a> · PMID: 24428547
+        </li>
+        <li>
+          <strong>Fernandes ES, Passos GF, Medeiros R, et al.</strong> Anti-inflammatory effects of compounds alpha-humulene and (−)-trans-caryophyllene isolated from the essential oil of Cordia verbenacea. <em>Eur J Pharmacol.</em> 2007;569(3):228-236.
+          <a class="refs-doi" href="https://doi.org/10.1016/j.ejphar.2007.05.059">DOI: 10.1016/j.ejphar.2007.05.059</a>
+        </li>
+        <li>
+          <strong>Rekha KR, Selvakumar GP.</strong> Gene expression regulation of Bcl2, Bax and cytochrome-C by geraniol on chronic MPTP/probenecid induced C57BL/6 mice model of Parkinson's disease. <em>Mol Biol Rep.</em> 2014;41(7):4455-4468.
+          <a class="refs-doi" href="https://doi.org/10.1007/s11033-014-3317-6">DOI: 10.1007/s11033-014-3317-6</a>
+        </li>
+        <li>
+          <strong>Bahi A, Al Mansouri S, Al Memari E, et al.</strong> β-Caryophyllene, a CB2 receptor agonist produces multiple behavioral changes relevant to anxiety and depression in mice. <em>Physiol Behav.</em> 2014;135:119-124.
+          <a class="refs-doi" href="https://doi.org/10.1016/j.physbeh.2014.06.003">DOI: 10.1016/j.physbeh.2014.06.003</a>
+        </li>
+        <li>
+          <strong>Perry NS, Bollen C, Perry EK, Ballard C.</strong> Salvia for dementia therapy: review of pharmacological activity and pilot tolerability clinical trial. <em>Pharmacol Biochem Behav.</em> 2003;75(3):651-659.
+          <a class="refs-doi" href="https://doi.org/10.1016/S0091-3057(03)00108-4">DOI: 10.1016/S0091-3057(03)00108-4</a>
+        </li>
+        <li>
+          <strong>Bhatt P, Bhatt K, Sharma A, et al.</strong> Biotechnological basis of essential oil production in medicinal and aromatic plants. <em>Molecules.</em> 2020;25(4):938.
+          <a class="refs-doi" href="https://doi.org/10.3390/molecules25040938">DOI: 10.3390/molecules25040938</a>
+        </li>
+      </ol>
+
+      <div class="disclaimer-box">
+        <h4>⚠️ Disclaimer Médico Completo</h4>
+        <p>Este guia tem finalidade <strong>exclusivamente educacional e informativa</strong>. Todo o conteúdo é baseado em estudos científicos publicados e deve ser interpretado como informação científica geral, não como aconselhamento médico individual.</p>
+        <ul>
+          <li>Não constitui diagnóstico médico nem substitui consulta com profissional de saúde habilitado</li>
+          <li>Não é prescrição de tratamento e não garante resultados terapêuticos específicos</li>
+          <li>O uso de Cannabis medicinal no Brasil requer <strong>prescrição médica</strong> e acompanhamento profissional</li>
+          <li>A automedicação com Cannabis é desaconselhada e potencialmente ilegal sem prescrição adequada</li>
+        </ul>
+        <p style="margin-top:6px;">Afirmações sobre benefícios usam linguagem hedged ("estudos sugerem", "evidências indicam") porque a ciência dos terpenos está em desenvolvimento ativo.</p>
+      </div>
+
+      <div class="brand-footer">
+        <div class="brand-name">Flor de <span>Minas</span></div>
+        <p>Cannabis · Ciência · Educação &nbsp;·&nbsp; flordeminas.com.br &nbsp;·&nbsp; © 2026 — Todos os direitos reservados</p>
+        <p style="margin-top:4px;font-size:6.5pt;color:#A7F3D0;">Conteúdo produzido com rigor científico para fins exclusivamente educacionais.</p>
+      </div>
+
+      <div class="page-footer">
+        <span class="page-footer-text">© 2026 Flor de Minas — Conteúdo Exclusivamente Educacional</span>
+        <span class="page-footer-text">Página 11</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<script>
+  // Ctrl+P / Cmd+P shortcut
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+      e.preventDefault();
+      window.print();
+    }
+  });
+</script>
+</body>
+</html>
