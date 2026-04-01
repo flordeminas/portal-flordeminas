@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Flor de Minas Store | Produtos Técnicos Individuais</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Adquira produtos técnicos e científicos individuais da Flor de Minas. E-books, ferramentas de cultivo e inteligência canabinoide sem assinatura.">
+    
+    <!-- Favicon -->
+    <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link href="css/index.css?v=1.03" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+
+    <!-- Theme Script (Prevent Blink) -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --fm-forest: #15803d;
+            --fm-dark: #064e3b;
+            --fm-sage: #86efac;
+            --fm-gold: #fbbf24;
+            --fm-light: #f8fafc;
+        }
+
+        body.store-page {
+            background-color: var(--fm-light);
+            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            padding-top: 90px;
+        }
+
+        [data-theme="dark"] body.store-page {
+            background-color: #09090b;
+            color: #f1f5f9;
+        }
+
+        .store-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .store-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            color: var(--fm-dark);
+        }
+
+        [data-theme="dark"] .store-hero h1 {
+            color: #fff;
+        }
+
+        .store-hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 40px 0 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        [data-theme="dark"] .product-card {
+            background: #18181b;
+            border-color: rgba(255,255,255,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 240px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .product-image {
+            background: #27272a;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .product-info {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--fm-forest);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--fm-dark);
+        }
+
+        [data-theme="dark"] .product-info h3 {
+            color: #fff;
+        }
+
+        .product-info p {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .product-price-row {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] .product-price-row {
+            border-top-color: rgba(255,255,255,0.05);
+        }
+
+        .price-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--fm-dark);
+        }
+
+        [data-theme="dark"] .price-val {
+            color: #fff;
+        }
+
+        .btn-buy-product {
+            background: var(--fm-forest);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .club-cross-sell {
+            background: var(--fm-dark);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 32px;
+            text-align: center;
+            margin: 40px auto 100px;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .club-cross-sell h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .club-cross-sell p {
+            color: var(--fm-sage);
+            margin-bottom: 30px;
+        }
+
+        .btn-upgrade-club {
+            background: var(--fm-gold);
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .guarantee-bar {
+            background: #fff;
+            padding: 20px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        [data-theme="dark"] .guarantee-bar {
+            background: #09090b;
+        }
+
+        .gar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .store-hero h1 { font-size: 2.5rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="store-page">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav>
+                <a class="logo" href="index.html">
+                    <img alt="Flor de Minas" src="assets/logo_brand.png"/>
+                </a>
+                <ul class="nav-links">
+                    <li><a class="nav-link" href="noticias.html">Notícias</a></li>
+                    <li><a class="nav-link" href="index.html#guia-paciente">Guia do Paciente</a></li>
+                    <li><a class="nav-link active" href="loja.html">Loja</a></li>
+                    <li><a class="nav-link" href="recursos.html">Clube VIP</a></li>
+                    <li class="mobile-only"><a class="header-cta" href="recursos.html" style="background: var(--fm-forest);">Assinar Clube</a></li>
+                </ul>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" title="Alternar tema">
+                        <svg class="sun-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
+                        <svg class="moon-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                    <a class="header-cta" href="recursos.html" style="background: var(--fm-forest);">Assinar Clube</a>
+                    <button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="store-hero">
+            <div class="container">
+                <h1>Produtos Digitais.</h1>
+                <p>Inteligência científica e ferramentas práticas para sua jornada canabinoide, agora disponíveis para aquisição individual.</p>
+            </div>
+        </section>
+
+        <section class="product-grid">
+            <!-- Produto 1: E-book Master -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/ebook_cover_terpenos.png" alt="E-book O Efeito Entourage">
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Literatura Técnica</span>
+                    <h3>E-book: O Efeito Entourage</h3>
+                    <p>O guia definitivo sobre fitoquímica aplicada. Aprenda como a sinergia de canabinoides e terpenos define o sucesso clínico.</p>
+                    <div class="product-price-row">
+                        <span class="price-val">R$ 67,00</span>
+                        <a href="venda-ebook.html" class="btn-buy-product">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 2: CultivoApp PRO Individual -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/cultivoapp_jardim.png" alt="CultivoApp PRO">
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Software de Cultivo</span>
+                    <h3>CultivoApp PRO (Individual)</h3>
+                    <p>Licença individual para o assistente de cultivo nº 1 do Brasil. Genéticas ilimitadas, diários e banco de dados PRO.</p>
+                    <div class="product-price-row">
+                        <span class="price-val">R$ 47,00</span>
+                        <a href="#" class="btn-buy-product">Comprar Agora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 3: Kit de Mapas de Terpenos -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span style="font-size: 5rem;">🗺️</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Material para Clínicas</span>
+                    <h3>Kit de Mapas de Terpenos</h3>
+                    <p>Coleção de 15 mapas de alta resolução para impressão. Ideal para prescritores e pacientes organizarem seus produtos.</p>
+                    <div class="product-price-row">
+                        <span class="price-val">R$ 27,00</span>
+                        <a href="#" class="btn-buy-product">Comprar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Club Cross-sell -->
+        <section class="club-cross-sell">
+            <div class="container">
+                <h2>Quer levar tudo isso (e muito mais) por menos?</h2>
+                <p>O <strong>Clube Flor de Minas</strong> inclui todos os itens acima + Drop Semanal de conteúdo por apenas <strong>R$ 197,00/ano</strong>.</p>
+                <a href="recursos.html" class="btn-upgrade-club">Ver Vantagens do Clube VIP →</a>
+            </div>
+        </section>
+
+        <section class="guarantee-bar">
+            <div class="container" style="display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap;">
+                <div class="gar-item"><i class="fas fa-shield-alt"></i> Pagamento Seguro Hotmart</div>
+                <div class="gar-item"><i class="fas fa-bolt"></i> Acesso Imediato</div>
+                <div class="gar-item"><i class="fas fa-undo"></i> 7 Dias de Garantia</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img alt="Flor de Minas" src="assets/logo_brand.png"/>
+                    </div>
+                    <p>Facilitando o acesso à medicina canabinoide.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/flordeminas2026/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://x.com/flordeminas_" rel="noopener noreferrer" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+                        <li><a href="https://linkedin.com/company/flordeminas" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" id="compliance">
+                <p class="disclaimer-scientific">
+                    Este conteúdo é informativo e educacional. Não constitui recomendação médica ou jurídica. Baseado na RDC 1.014/2026 e 1.015/2026 (ANVISA). Consulte sempre profissionais qualificados. PROIBIDO O USO RECREATIVO.
+                </p>
+                <p class="copyright">© 2026 Flor de Minas. Todos os direitos reservados. Design by Flor de Minas Squad.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
