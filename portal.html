@@ -57,8 +57,7 @@
 
         /* Sidebar / Header */
         header {
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
+            background: #064E3B;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             padding: 15px 40px;
             display: flex;
@@ -305,7 +304,16 @@
                 <div class="card-icon"><i class="fas fa-book-medical"></i></div>
                 <h3>O Efeito Entourage</h3>
                 <p>Seu guia bíblico de fitoquímica. Entenda como terpenos e canabinoides trabalham juntos para a saúde.</p>
-                <a href="#" class="btn-action">Baixar PDF</a>
+                <a href="../agencia_de_conteudo/outputs/ebook_entourage/ebook-studio.html" target="_blank" class="btn-action">Ler E-book</a>
+            </div>
+
+            <!-- Mapa de Terpenos Interativo -->
+            <div class="resource-card">
+                <span class="tag-new">Novo</span>
+                <div class="card-icon">🗺️</div>
+                <h3>Mapa de Terpenos Interativo</h3>
+                <p>Filtre os 12 terpenos por sintoma, explore correlações clínicas e acesse a tabela mestra completa.</p>
+                <a href="guia/mapa-terpenos.html" target="_blank" class="btn-action">Abrir Mapa</a>
             </div>
 
             <!-- Terpenes Maps -->
@@ -313,7 +321,7 @@
                 <div class="card-icon"><i class="fas fa-map-location-dot"></i></div>
                 <h3>Kit de Mapas Visuais</h3>
                 <p>Conjunto de infográficos de alta resolução para impressão. Ideal para clínicas e homegrowers.</p>
-                <a href="#" class="btn-action">Baixar Kit ZIP</a>
+                <a href="guia/mapa-terpenos-print.html" target="_blank" class="btn-action">Abrir Mapa de Terpenos</a>
             </div>
 
             <!-- Terpenes Maps -->
@@ -321,7 +329,7 @@
                 <div class="card-icon"><i class="fas fa-microscope"></i></div>
                 <h3>Protocolos de Laboratório</h3>
                 <p>Guia de extrações e dosagens farmacêuticas artesanais seguras. Exclusivo para membros.</p>
-                <a href="#" class="btn-action">Acessar Guia</a>
+                <a href="#" class="btn-action" style="opacity:0.5; cursor:not-allowed;" onclick="return false;">Em breve</a>
             </div>
         </div>
 
@@ -392,7 +400,7 @@
           <li><a href="#">Política de Privacidade</a></li>
           <li><a href="#">Termos de Uso</a></li>
           <li><a href="sobre-nos.html">Sobre Nós</a></li>
-          <li><a href="sobre-nos.html">Contato</a></li>
+          <li><a href="clube.html">Clube</a></li>
         </ul>
       </div>
     </div>
@@ -418,7 +426,7 @@
                 const { data: { user } } = await supabaseClient.auth.getUser();
                 
                 if (!user) {
-                    window.location.href = 'entrar.html';
+                    window.location.href = 'clube.html';
                     return;
                 }
 
@@ -446,7 +454,7 @@
 
             } catch (err) {
                 console.error(err);
-                window.location.href = 'entrar.html';
+                window.location.href = 'clube.html';
             }
         }
 

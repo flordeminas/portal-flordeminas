@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CultivoApp PRO | O Assistente de Inteligência para Cultivadores</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Automatize seu cultivo com o CultivoApp PRO. Cronogramas, BioBizz, Remo, SuperSoil, 165+ genéticas e MIP integrado. O estado da arte no gerenciamento de jardins medicinais.">
+    
+    <!-- Favicon -->
+    <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link href="css/index.css?v=1.03" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --fm-forest: #15803d;
+            --fm-sage: #86efac;
+            --fm-gold: #fbbf24;
+            --fm-dark: #064e3b;
+            --fm-black: #09090b;
+        }
+
+        body.app-sales-page {
+            background-color: var(--fm-black);
+            font-family: 'Inter', sans-serif;
+            color: #f1f5f9;
+            padding-top: 0;
+        }
+
+        .hero-section {
+            padding: 140px 0 100px;
+            background: radial-gradient(circle at top right, rgba(21, 128, 61, 0.15), transparent),
+                        linear-gradient(180deg, #022c22 0%, #000 100%);
+            text-align: center;
+        }
+
+        .app-badge {
+            background: var(--fm-gold);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .main-headline {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, #fff, #86efac);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-headline {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background: var(--fm-gold);
+            color: #000;
+            padding: 20px 48px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.4);
+        }
+
+        .prints-showcase {
+            padding: 100px 0;
+            background: #000;
+        }
+
+        .prints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .print-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .print-card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            filter: brightness(0.9);
+        }
+
+        .print-card:hover {
+            border-color: var(--fm-sage);
+            transform: translateY(-10px);
+        }
+
+        .print-card:hover img {
+            filter: brightness(1.1);
+        }
+
+        .features-section {
+            padding: 100px 0;
+            background: #09090b;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--fm-sage);
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .feature-item p {
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .main-headline { font-size: 2.8rem; }
+            .feature-item { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body class="app-sales-page">
+
+    <header class="site-header">
+        <div class="container">
+            <nav>
+                <a class="logo" href="index.html">Flor de <span>Minas</span></a>
+                <ul class="nav-links">
+                    <li><a class="nav-link" href="noticias.html">Notícias</a></li>
+                    <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
+                    <li><a class="nav-link" href="eventos.html">Eventos</a></li>
+                    <li><a class="nav-link" href="loja.html">Loja</a></li>
+                </ul>
+                <div class="header-right">
+                    <a class="header-cta" href="clube.html">Clube</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <span class="app-badge">Software de Inteligência 2026</span>
+                <h1 class="main-headline">O Cérebro do seu Jardim <span style="color: var(--fm-sage)">Digitalizado.</span></h1>
+                <p class="sub-headline">Esqueça os cadernos e a adivinhação. O CultivoApp PRO traz o banco de dados mestre de 165+ genéticas e algoritmos de cronograma para o seu bolso.</p>
+                <a href="#" class="cta-btn">Quero Acesso ao App PRO</a>
+                <p style="margin-top: 24px; color: #64748b; font-size: 0.9rem;"><i class="fas fa-lock"></i> Compra Segura via Hotmart | Acesso Vitalício</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div>
+                            <h3>Cronograma Automático</h3>
+                            <p>O algoritmo calcula as transições de luz e fertilização baseado na morfologia da planta e linhagem genética.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-vial"></i></div>
+                        <div>
+                            <h3>Calculadora de Fertilizantes</h3>
+                            <p>Módulos integrados para BioBizz, Remo Nutrients e SuperSoil. Saiba exatamente quanto despejar em cada fase.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-bug"></i></div>
+                        <div>
+                            <h3>MIP & Prevenção</h3>
+                            <p>Banco de dados de pragas e doenças com protocolos orgânicos de tratamento e calendários preventivos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="prints-showcase">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-family: 'Outfit'; font-size: 2.5rem;">Por dentro do App</h2>
+                    <p style="color: #94a3b8;">Veja como é simples gerenciar jardins profissionais.</p>
+                </div>
+                <div class="prints-grid">
+                    <div class="print-card">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.48.jpeg" alt="Interface App 1">
+                    </div>
+                    <div class="print-card">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.32.20.jpeg" alt="Interface App 2">
+                    </div>
+                    <div class="print-card">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.30.20.jpeg" alt="Interface App Doctor">
+                    </div>
+                    <div class="print-card">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.07.jpeg" alt="Interface App 3">
+                    </div>
+                    <div class="print-card">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.28.08.jpeg" alt="Interface App 4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 100px 0; background: linear-gradient(180deg, #000 0%, #022c22 100%); text-align: center;">
+            <div class="container">
+                <h2 style="font-family: 'Outfit'; font-size: 2.5rem; margin-bottom: 20px;">Pronto para profissionalizar sua colheita?</h2>
+                <p style="color: #94a3b8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Junte-se a centenas de cultivadores que já automatizaram seus jardins com a Flor de Minas.</p>
+                <div style="font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 20px;">R$ 47,00 <span style="font-size: 1rem; color: #64748b; font-weight: 400;">PAGAMENTO ÚNICO</span></div>
+                <a href="#" class="cta-btn" style="background: #fff; color: #000;">Garantir Minha Licença PRO</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div style="text-align: center; color: #64748b; font-size: 0.85rem;">
+                © 2026 Flor de Minas — Software destinado a fins educacionais e de pesquisa científica.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

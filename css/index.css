@@ -85,7 +85,7 @@ a {
     margin-bottom: 3rem;
     position: relative !important;
     top: auto !important;
-    padding-top: 2rem;
+    padding-top: 6rem; /* Increased to avoid fixed header overlap */
 }
 
 .section-neutral {
@@ -245,15 +245,20 @@ section {
     top: 0 !important;
     left: 0;
     right: 0;
-    z-index: 9999 !important; /* Extremely high to guarantee visibility across all nested layers */
-    background: var(--header-bg);
+    z-index: 9999 !important;
+    background: var(--primary); /* Keep background consistently dark */
     color: #fff;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding: 0.75rem 0;
+    padding: 0.4rem 0;
     transition: var(--transition);
-    min-height: 80px;
+    min-height: 65px;
     display: flex;
     align-items: center;
+}
+
+.site-header .container {
+    max-width: 1100px; /* Reduced as requested to match reference */
+    padding: 0 1.25rem;
 }
 
 .site-header.scrolled {
@@ -330,18 +335,21 @@ nav {
 }
 
 .header-cta {
-    background: var(--primary);
+    background: var(--secondary); /* Gold for highlight */
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px; /* Rounded pill shape as requested */
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.3);
 }
 
 .header-cta:hover {
-    background: var(--primary-light);
+    background: var(--secondary-light);
     transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    box-shadow: 0 6px 20px rgba(180, 83, 9, 0.4);
 }
 
 .menu-toggle {
@@ -376,7 +384,7 @@ nav {
     background: var(--bg-hero);
     position: relative;
     overflow: hidden;
-    padding: 40px 0;
+    padding: 80px 0 40px; /* Increased top padding to avoid header overlap */
 }
 
 .hero-container {
@@ -1308,9 +1316,14 @@ header.scrolled .logo img {
     }
 
     .nav-link {
-        font-size: 1.35rem; /* Slightly smaller to fit everything */
+        font-size: 1.35rem;
         display: block;
         padding: 0.5rem 0;
+        color: var(--text-main); /* FIX: Dark color for light mobile menu background */
+    }
+
+    .nav-link:hover, .nav-link.active {
+        color: var(--primary);
     }
 
     .menu-toggle {

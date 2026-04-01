@@ -32,12 +32,18 @@
             background-color: var(--fm-dark-accent);
             background-image: radial-gradient(circle at 10% 20%, rgba(21, 128, 61, 0.15) 0%, transparent 20%),
                               radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 20%);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             margin: 0;
             padding: 20px;
+        }
+
+        body.login-page .site-footer {
+            width: 100%;
+            margin-top: auto;
         }
 
         .login-card {
@@ -206,7 +212,7 @@
         </form>
 
         <div class="login-footer">
-            <p>Ainda não é assinante? <a href="recursos.html">Conheça o Clube VIP</a></p>
+            <p>Ainda não é assinante? <a href="clube.html">Conheça o Clube VIP</a></p>
             <p style="margin-top: 10px;"><a href="#" id="forgot-password" style="font-size: 0.75rem; color: #64748b;">Esqueci minha senha</a></p>
         </div>
     </div>
@@ -316,6 +322,16 @@
                 btnSubmit.querySelector('span').innerText = 'Entrar no Clube';
             }
         });
+
+        // Tratar erro de assinatura inativa vindo do portal
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error') === 'no_sub') {
+                const box = document.getElementById('error-box');
+                box.innerText = 'Sua assinatura não está ativa. Adquira o Clube para ter acesso.';
+                box.style.display = 'block';
+            }
+        })();
 
         // Forgot password
         document.getElementById('forgot-password').addEventListener('click', async (e) => {

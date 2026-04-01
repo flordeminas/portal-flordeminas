@@ -210,10 +210,9 @@
                     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
                     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
                     <li><a class="nav-link" href="loja.html">Loja</a></li>
-                    <li><a class="nav-link active" href="clube.html">Clube</a></li>
+                    <li><a class="nav-link" href="entrar.html" style="color: var(--fm-gold); font-weight: 700;">🔒 Entrar</a></li>
                 </ul>
                 <div class="header-right">
-                    <a class="header-cta" href="sobre-nos.html">Fale Conosco</a>
                     <button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
                         <span></span>
                         <span></span>
@@ -238,7 +237,7 @@
                         <span class="club-card-icon">🗺️</span>
                         <h3>Mapa de Terpenos <span class="tag-pro">MASTER</span></h3>
                         <p>O guia definitivo para identificar genéticas pelo aroma. 12 terpenos, 70+ correlações clínicas e o Efeito Entourage explicado.</p>
-                        <img src="assets/ebook_cover_terpenos.png" alt="Mapa de Terpenos" class="demo-img">
+                        <img src="assets/terpene_map_tool.png" alt="Mapa de Terpenos" class="demo-img">
                     </div>
 
                     <!-- Produto 2: App PRO -->
@@ -260,40 +259,11 @@
 
                 <div style="margin-top: 60px; text-align: center;">
                     <div style="font-size: 1.5rem; margin-bottom: 10px; color: #94a3b8;">Apenas <span style="color: #fff; font-weight: 800;">R$ 197,00/ano</span></div>
-                    <a href="#" class="master-cta">Quero me Tornar Membro VIP</a>
+                    <a href="https://pay.hotmart.com/N105171946F" class="master-cta">Quero me Tornar Membro VIP</a>
                     <p style="margin-top: 20px; color: #64748b; font-size: 0.9rem;">Menos de R$ 17,00 por mês para dominar o setor.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Login Unificada -->
-        <section id="login-portal" style="padding: 100px 0; background: #000;">
-            <div class="container">
-                <div style="max-width: 420px; margin: 0 auto; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 40px; text-align: center;">
-                    <h2 style="font-family: 'Outfit', sans-serif; color: #fff; font-size: 1.8rem; margin-bottom: 8px;">Portal do Membro</h2>
-                    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 30px;">Já é membro VIP? Entre com suas credenciais.</p>
-                    
-                    <div id="error-box" style="background: rgba(239, 68, 68, 0.1); color: #f87171; padding: 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 20px; display: none; text-align: left; border: 1px solid rgba(239, 68, 68, 0.2);"></div>
-
-                    <form id="login-form">
-                        <div style="margin-bottom: 20px; text-align: left;">
-                            <label style="display: block; color: #ccc; font-size: 0.85rem; margin-bottom: 6px;">E-mail de Cadastro</label>
-                            <input type="email" id="email" placeholder="seu@email.com" required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; color: #fff; font-size: 1rem; outline: none;">
-                        </div>
-                        <div style="margin-bottom: 20px; text-align: left;">
-                            <label style="display: block; color: #ccc; font-size: 0.85rem; margin-bottom: 6px;">Senha</label>
-                            <input type="password" id="password" placeholder="••••••••" required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; color: #fff; font-size: 1rem; outline: none;">
-                        </div>
-
-                        <button type="submit" id="btn-submit" style="width: 100%; background: var(--fm-forest); color: #fff; border: none; padding: 16px; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                            <span>Entrar no Clube</span>
-                            <div id="btn-spinner" style="display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-                        </button>
-                    </form>
-
-                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: #64748b;">
-                        <p><a href="#" id="forgot-password" style="color: var(--fm-sage); text-decoration: none;">Esqueci minha senha</a></p>
-                    </div>
+                    <p style="margin-top: 16px; font-size: 0.9rem; color: #64748b;">
+                      Já é membro? <a href="entrar.html" style="color: var(--fm-sage); font-weight: 600;">Acessar minha área →</a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -311,79 +281,6 @@
             </div>
         </section>
     </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        const SUPABASE_URL = "https://eqyhbbiizmckjcfuqwrv.supabase.co"; 
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeWhiYmlpem1ja2pjZnVxd3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NDc2MzUsImV4cCI6MjA5MDUyMzYzNX0.4X3r0ATjKoUQ9lvL_dmcpJzeIqZ6l103QVdpP0JjG0U";
-        
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        const loginForm = document.getElementById('login-form');
-        const errorBox = document.getElementById('error-box');
-        const btnSubmit = document.getElementById('btn-submit');
-        const spinner = document.getElementById('btn-spinner');
-
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            errorBox.style.display = 'none';
-            btnSubmit.disabled = true;
-            spinner.style.display = 'block';
-            btnSubmit.querySelector('span').innerText = 'Verificando...';
-
-            try {
-                const { data, error } = await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password,
-                });
-
-                if (error) throw error;
-
-                const { data: profile, error: profileError } = await supabaseClient
-                    .from('profiles')
-                    .select('is_premium')
-                    .eq('id', data.user.id)
-                    .single();
-
-                if (profileError || !profile.is_premium) {
-                    await supabaseClient.auth.signOut();
-                    throw new Error("Sua assinatura ainda não está ativa ou este acesso é restrito a membros VIP.");
-                }
-
-                window.location.href = 'portal.html';
-
-            } catch (err) {
-                errorBox.innerText = err.message === 'Invalid login credentials' ? 'E-mail ou senha incorretos.' : err.message;
-                errorBox.style.display = 'block';
-                btnSubmit.disabled = false;
-                spinner.style.display = 'none';
-                btnSubmit.querySelector('span').innerText = 'Entrar no Clube';
-            }
-        });
-
-        document.getElementById('forgot-password').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            if (!email) {
-                alert("Por favor, digite seu e-mail no campo acima para recuperar a senha.");
-                return;
-            }
-            
-            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-                redirectTo: window.location.origin + '/clube.html',
-            });
-
-            if (error) {
-                alert("Erro ao enviar e-mail de recuperação: " + error.message);
-            } else {
-                alert("E-mail de recuperação enviado! Verifique sua caixa de entrada.");
-            }
-        });
-    </script>
 
 <footer class="site-footer" role="contentinfo">
   <div class="container">
