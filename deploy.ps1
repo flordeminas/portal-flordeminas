@@ -5,7 +5,7 @@ $cwd = "c:\Projetos\ZHC\website"
 Set-Location -Path $cwd
 
 # Sync layouts first
-python sync_layout.py
+python _maintenance_scripts/sync_layout.py
 
 # Check for changes
 $status = git status --porcelain
