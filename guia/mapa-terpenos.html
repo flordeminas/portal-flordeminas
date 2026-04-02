@@ -654,6 +654,178 @@
       .site-header, #back-top, .nav-cta { display: none; }
       .hero { background: var(--green) !important; -webkit-print-color-adjust: exact; }
     }
+
+    /* ===== FREEMIUM / PAYWALL ===== */
+
+    /* Fade out no texto da intro */
+    .content-fade {
+      position: relative;
+      height: 60px;
+      margin-top: -60px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    /* Bloco de teaser de introdução */
+    .content-locked {
+      background: var(--bg-card);
+      border: 1.5px dashed var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .content-locked .lock-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+    .content-locked p { color: var(--text-muted); font-size: .9rem; margin-bottom: 1rem; }
+
+    /* Botões de desbloqueio */
+    .btn-unlock {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: .65rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-unlock:hover { background: var(--gold-light); text-decoration: none; }
+
+    .btn-unlock-small {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .78rem;
+      text-decoration: none;
+      margin-top: .5rem;
+    }
+
+    /* Cards bloqueados (preview desfocado) */
+    .card-locked-preview {
+      position: relative;
+      overflow: hidden;
+    }
+    .card-locked-preview .card-body {
+      filter: blur(3px);
+      user-select: none;
+      pointer-events: none;
+    }
+    .card-lock-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(2px);
+      gap: .5rem;
+      padding: 1.5rem;
+      text-align: center;
+      z-index: 2;
+    }
+    .card-lock-overlay span { font-size: 2rem; }
+    .card-lock-overlay p { font-size: .85rem; color: var(--text-muted); margin: 0; }
+
+    /* Paywall block — 7 terpenos bloqueados */
+    .paywall-block {
+      grid-column: 1 / -1;
+      background: var(--bg-card);
+      border: 2px dashed var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .paywall-preview-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .paywall-card-ghost {
+      background: #F1F5F9;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .6rem 1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+      filter: blur(1.5px);
+      user-select: none;
+    }
+    .paywall-cta h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+    .paywall-cta p { color: var(--text-muted); font-size: .9rem; max-width: 480px; margin: 0 auto .75rem; }
+    .paywall-lock { font-size: 2.5rem; margin-bottom: .75rem; }
+    .paywall-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .paywall-pills span {
+      background: var(--green-pale);
+      color: var(--green);
+      border-radius: 999px;
+      padding: .3rem .85rem;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    .paywall-note { font-size: .75rem; color: var(--text-light); margin-top: .75rem; }
+
+    /* Tabela mestra bloqueada */
+    .table-locked-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      max-height: 280px;
+    }
+    .table-locked-wrapper table,
+    .table-locked-wrapper .table-wrap {
+      filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+    }
+    .table-blur-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(250,250,247,0.6) 30%, rgba(250,250,247,0.97) 60%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 2rem;
+    }
+    .table-lock-box {
+      text-align: center;
+      padding: 1.5rem 2rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+      max-width: 420px;
+    }
+    .table-lock-box span { font-size: 1.75rem; display: block; margin-bottom: .5rem; }
+    .table-lock-box h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .table-lock-box p { font-size: .85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    /* FAQ bloqueado */
+    .faq-locked {
+      padding: 1rem 1.25rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: .88rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+    }
+    .faq-locked a { color: var(--gold); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -667,34 +839,22 @@
 <!-- HEADER -->
 <header class="site-header" role="banner">
   <div class="container">
-    <a class="logo" href="../index.html" style="text-decoration:none;">Flor de <span>Minas</span></a>
+    <a class="logo" href="../website/index.html" style="text-decoration:none;">Flor de <span>Minas</span></a>
     
-    <ul class="nav-links" style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; align-items: center;">
-      <li><a class="nav-link" href="../noticias.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Notícias</a></li>
-      <li><a class="nav-link" href="../parceiros.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Parceiros</a></li>
-      <li><a class="nav-link" href="../eventos.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Eventos</a></li>
-      <li><a class="nav-link" href="../loja.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Loja</a></li>
-      <li><a class="nav-link" href="../clube.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Clube</a></li>
-    </ul>
+    <nav class="nav-menu">
+      <ul class="nav-links" style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; align-items: center;">
+        <li><a class="nav-link" href="../website/noticias.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Notícias</a></li>
+        <li><a class="nav-link" href="../website/parceiros.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Parceiros</a></li>
+        <li><a class="nav-link" href="../website/eventos.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Eventos</a></li>
+        <li><a class="nav-link" href="../website/loja.html" style="color:rgba(255,255,255,0.85); font-weight:500; font-size:0.9rem;">Loja</a></li>
+      </ul>
+    </nav>
 
-    <div class="header-right" style="display:flex; align-items:center; gap: 1rem;">
-      <a href="../clube.html" class="nav-cta" style="background:var(--gold); color:#fff; padding:.5rem 1.25rem; border-radius:99px; font-weight:700; font-size:.85rem; text-decoration:none;">Clube</a>
+    <div class="header-right" style="display:flex; align-items:center; gap: 1.5rem;">
+      <a href="../website/clube.html" class="nav-cta" style="background:var(--gold); color:#fff; padding:.5rem 1.25rem; border-radius:99px; font-weight:700; font-size:.85rem; text-decoration:none;">Clube</a>
     </div>
   </div>
 </header>
-
-<style>
-  /* Fix for header width to match reference pattern */
-  .site-header .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-  
-  @media (max-width: 768px) {
-    .nav-links { display: none !important; } /* Hide on mobile to avoid overcrowding; use main menu toggle if needed */
-  }
-</style>
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-title">
@@ -734,35 +894,16 @@
     <p>Você já pegou uma flor de Cannabis, sentiu aquele aroma terroso e se perguntou de onde vem — e por que algumas variedades cheiram a limão, outras a lavanda, outras a pimenta preta?</p>
     <p>A resposta está nos <strong>terpenos</strong>: compostos orgânicos produzidos pelas glândulas ressinosas da planta que determinam não apenas o aroma, mas — segundo evidências crescentes — também contribuem de forma significativa para os efeitos terapêuticos.</p>
     <p>Aprender a reconhecer terpenos é uma habilidade clínica real. Quando você sente lavanda, está identificando o <strong>linalol</strong> — cujo mecanismo GABAérgico é associado a propriedades ansiolíticas. O aroma de pimenta preta indica o <strong>β-Cariofileno</strong> — o único terpeno que age como canabinoide ao se ligar ao receptor CB2.</p>
-    <div class="alert alert-info">
-      <strong>A Cannabis produz mais de 200 compostos terpênicos identificados.</strong> Os 12 terpenos deste guia respondem pela maior parte da atividade farmacológica documentada na literatura científica.
+
+    <!-- FADE OUT + TEASER -->
+    <div class="content-fade">
+      <div class="content-fade-overlay"></div>
     </div>
-
-    <div class="divider"></div>
-
-    <h2>O Efeito Entourage: Quando 1 + 1 = 3</h2>
-    <p>Em 2011, o neurocientista Ethan Russo publicou na <em>British Journal of Pharmacology</em> um artigo seminal: <em>"Taming THC: potential cannabis synergy and phytocannabinoid-terpenoid entourage effects"</em> (PMID: 21749363).</p>
-    <p>A tese central: a Cannabis é mais que a soma de seus componentes. Terpenos e canabinoides coexistindo na mesma planta produzem efeitos terapêuticos superiores ao que cada composto produziria isoladamente.</p>
-
-    <div class="entourage-grid" style="background: var(--green); border-radius: var(--radius); padding: 1.5rem; margin-top: 1.25rem;">
-      <div class="entourage-card">
-        <h4>Linalol + CBD</h4>
-        <p>Efeito ansiolítico potencializado em modelos de ansiedade</p>
-      </div>
-      <div class="entourage-card">
-        <h4>β-Cariofileno + CBD</h4>
-        <p>Ação anti-inflamatória amplificada via receptores CB2 + 5-HT1A</p>
-      </div>
-      <div class="entourage-card">
-        <h4>α-Pineno + THC</h4>
-        <p>Pineno pode antagonizar déficits de memória induzidos pelo THC via AChE</p>
-      </div>
-      <div class="entourage-card">
-        <h4>Mirceno + THC</h4>
-        <p>Efeito sedativo potencializado; mirceno pode aumentar permeabilidade da barreira hematoencefálica</p>
-      </div>
+    <div class="content-locked">
+      <div class="lock-icon">🔒</div>
+      <p><strong>O guia completo inclui:</strong> O Efeito Entourage explicado com estudos, 4 sinergias chave CBD+terpenos, mecanismos de ação farmacológica — e os 9 terpenos restantes.</p>
+      <a href="#cta-section" class="btn-unlock">Desbloquear Guia Completo</a>
     </div>
-    <p class="text-muted mt-2" style="font-size:.82rem">Nota científica: O Efeito Entourage é campo de pesquisa ativo. A maioria das evidências é pré-clínica ou observacional. Estudos clínicos rigorosos estão em andamento.</p>
   </div>
 </section>
 
@@ -884,7 +1025,7 @@
       </article>
 
       <!-- 4. B-CARIOFILENO -->
-      <article class="terpene-card" data-benefits="ansiedade dor inflamacao humor neuroprotecao">
+      <article class="terpene-card card-locked-preview" data-benefits="ansiedade dor inflamacao humor neuroprotecao">
         <div class="card-header">
           <div class="card-emoji">🌶️</div>
           <div class="card-title-group">
@@ -917,10 +1058,15 @@
             <span style="margin-left:.5rem; font-size:.75rem; color:var(--gold); font-weight:700;">★ Destaque: único terpeno-canabinoide</span>
           </div>
         </div>
+        <div class="card-lock-overlay">
+          <span>🔒</span>
+          <p>Desbloqueie para ver estudos, strains e mecanismo de ação</p>
+          <a href="#cta-section" class="btn-unlock-small">Ver completo</a>
+        </div>
       </article>
 
       <!-- 5. ALPHA-PINENO -->
-      <article class="terpene-card" data-benefits="ansiedade dor foco inflamacao neuroprotecao">
+      <article class="terpene-card card-locked-preview" data-benefits="ansiedade dor foco inflamacao neuroprotecao">
         <div class="card-header">
           <div class="card-emoji">🌲</div>
           <div class="card-title-group">
@@ -950,217 +1096,36 @@
           </div>
           <div class="mt-2"><span class="evidence-badge evidence-II">Evidência nível II-III</span></div>
         </div>
-      </article>
-
-      <!-- 6. TERPINOLENO -->
-      <article class="terpene-card" data-benefits="sono">
-        <div class="card-header">
-          <div class="card-emoji">🌸</div>
-          <div class="card-title-group">
-            <div class="card-name">Terpinoleno</div>
-            <div class="card-pronunciation">Pronúncia: ter-pi-no-LE-no</div>
-          </div>
-          <div class="card-temp">186°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Ervas frescas · Floral-frutal · Pinheiro suave · Erva-cidreira</span>
-          </div>
-          <p class="card-description">O "camaleão" dos terpenos — perfil aromático múltiplo: floral, frutal, herbal e levemente pinho simultâneos. Terpeno definidor de variedades como Jack Herer.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Sono ✓</span>
-            <span class="benefit-tag">Antioxidante ◎</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Atividade antioxidante relevante (inibição de ROS); possível efeito sedativo em doses mais elevadas; atividade antimicrobiana in vitro.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Jack Herer, Ghost Train Haze, XJ-13, Golden Goat, Dutch Treat
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-IV">Evidência nível III-IV</span></div>
+        <div class="card-lock-overlay">
+          <span>🔒</span>
+          <p>Desbloqueie para ver estudos, strains e mecanismo de ação</p>
+          <a href="#cta-section" class="btn-unlock-small">Ver completo</a>
         </div>
       </article>
 
-      <!-- 7. HUMULENO -->
-      <article class="terpene-card" data-benefits="inflamacao">
-        <div class="card-header">
-          <div class="card-emoji">🍺</div>
-          <div class="card-title-group">
-            <div class="card-name">Humuleno</div>
-            <div class="card-pronunciation">Pronúncia: hu-MU-le-no</div>
-          </div>
-          <div class="card-temp">198°C</div>
+      <!-- PAYWALL BLOCK -->
+      <div class="paywall-block" id="paywall-cards">
+        <div class="paywall-preview-grid">
+          <div class="paywall-card-ghost">🌸 Terpinoleno</div>
+          <div class="paywall-card-ghost">🍺 Humuleno</div>
+          <div class="paywall-card-ghost">🌳 Ocimeno</div>
+          <div class="paywall-card-ghost">🌼 Bisabolol</div>
+          <div class="paywall-card-ghost">🌹 Nerolidol</div>
+          <div class="paywall-card-ghost">🌺 Geraniol</div>
+          <div class="paywall-card-ghost">🌲 Δ3-Careno</div>
         </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Lúpulo · Terroso · Amadeirado · Herbal seco</span>
+        <div class="paywall-cta">
+          <div class="paywall-lock">🔒</div>
+          <h3>+ 7 Terpenos Bloqueados</h3>
+          <p>Você já viu 3 dos 12 terpenos. Os outros 9 — incluindo os 7 abaixo — estão disponíveis no guia completo com todos os estudos, strains e mecanismos de ação.</p>
+          <div class="paywall-pills">
+            <span>Terpinoleno</span><span>Humuleno</span><span>Ocimeno</span>
+            <span>Bisabolol</span><span>Nerolidol</span><span>Geraniol</span><span>Δ3-Careno</span>
           </div>
-          <p class="card-description">O terpeno da cerveja artesanal — responsável pelo aroma do lúpulo (<em>Humulus lupulus</em>). Isômero do β-Cariofileno, compartilha parte de suas propriedades anti-inflamatórias.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Inflamação ✓✓</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Potente ação anti-inflamatória por inibição da via NF-κB; em modelos comparado à dexametasona em efeito anti-inflamatório; propriedades anorexígenas em modelos pré-clínicos; atividade antibacteriana in vitro.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Girl Scout Cookies, Headband, Sour Diesel, Skywalker OG, White Widow
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-III">Evidência nível III</span></div>
+          <a href="#cta-section" class="btn-unlock">Desbloquear todos os 12 →</a>
+          <p class="paywall-note">PDF completo a partir de R$ 47 · Acesso imediato</p>
         </div>
-      </article>
-
-      <!-- 8. OCIMENO -->
-      <article class="terpene-card" data-benefits="inflamacao">
-        <div class="card-header">
-          <div class="card-emoji">🌿</div>
-          <div class="card-title-group">
-            <div class="card-name">Ocimeno</div>
-            <div class="card-pronunciation">Pronúncia: o-SI-me-no</div>
-          </div>
-          <div class="card-temp">176°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Manjericão · Madeira doce · Frutal leve · Hortelã suave</span>
-          </div>
-          <p class="card-description">O terpeno do manjericão fresco — o aroma que você reconhece ao rasgar uma folha de manjericão italiano. Confere perfil mais adocicado e herbal, com notas tropicais.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Inflamação ✓</span>
-            <span class="benefit-tag">Antifúngico ◎</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Atividade antifúngica bem documentada in vitro; pesquisas emergentes investigam propriedades antivirais; estudos pré-clínicos com indicação de atividade anti-inflamatória.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Clementine, Golden Goat, Dream Queen, Space Queen, J1
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-IV">Evidência nível III-IV</span></div>
-        </div>
-      </article>
-
-      <!-- 9. BISABOLOL -->
-      <article class="terpene-card" data-benefits="ansiedade sono inflamacao">
-        <div class="card-header">
-          <div class="card-emoji">🌼</div>
-          <div class="card-title-group">
-            <div class="card-name">Bisabolol</div>
-            <div class="card-pronunciation">Pronúncia: bi-sa-BO-lol</div>
-          </div>
-          <div class="card-temp">153°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Camomila · Mel · Floral suave · Frutal delicado</span>
-          </div>
-          <p class="card-description">Amplamente usado na cosmética por suas propriedades anti-irritantes e calmantes. Na Cannabis contribui para cultivares de efeito gentil, com sinergia proposta com o CBD em modelos de inflamação.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Ansiedade ✓</span>
-            <span class="benefit-tag">Sono ✓</span>
-            <span class="benefit-tag">Inflamação ✓</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Propriedades anti-irritantes e cicatrizantes bem documentadas na literatura dermatológica; evidências de ação anti-inflamatória via NF-κB; efeitos levemente sedativos e ansiolíticos por aromaterapia.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> ACDC, Pink Kush, Headband, Master Kush, OG Shark
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-II">Evidência nível II-III</span></div>
-        </div>
-      </article>
-
-      <!-- 10. NEROLIDOL -->
-      <article class="terpene-card" data-benefits="ansiedade sono">
-        <div class="card-header">
-          <div class="card-emoji">🌹</div>
-          <div class="card-title-group">
-            <div class="card-name">Nerolidol</div>
-            <div class="card-pronunciation">Pronúncia: ne-ro-LI-dol</div>
-          </div>
-          <div class="card-temp">122°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Rosa · Madeira clara · Maçã verde · Floral sofisticado</span>
-          </div>
-          <p class="card-description">Apresenta a menor temperatura de vaporização deste guia — relevante para quem usa vaporizadores. Sua elevada lipofilia permite que penetre facilmente em membranas biológicas.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Sono ✓✓</span>
-            <span class="benefit-tag">Ansiedade ✓</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Propriedades sedativas mediadas pelo sistema GABAérgico (modelos pré-clínicos); atividade antifúngica bem estabelecida; frequente co-ocorrência com mirceno e linalol em cultivares sedativas.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Chemdawg 91, Jack Herer, Island Sweet Skunk, Skywalker OG
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-III">Evidência nível III</span></div>
-        </div>
-      </article>
-
-      <!-- 11. GERANIOL -->
-      <article class="terpene-card" data-benefits="dor neuroprotecao">
-        <div class="card-header">
-          <div class="card-emoji">🌺</div>
-          <div class="card-title-group">
-            <div class="card-name">Geraniol</div>
-            <div class="card-pronunciation">Pronúncia: ge-RA-ni-ol</div>
-          </div>
-          <div class="card-temp">230°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Rosas frescas · Gerânio · Floral doce · Frutal leve</span>
-          </div>
-          <p class="card-description">Possui a maior temperatura de vaporização deste guia — quem vaporiza em temperaturas baixas pode não extrair todo seu potencial. É o composto responsável pelo aroma característico de rosas e gerânios.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Neuroproteção ✓</span>
-            <span class="benefit-tag">Dor ✓</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Propriedades neuroprotetoras mediadas pela via Nrf2 (pré-clínico); estudos em modelos de neuropatia diabética mostram modulação de dor neuropática; atividade antifúngica sólida e propriedades repelentes naturais.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Amnesia Haze, Headband, Master Kush, OG Shark, Afghani
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-III">Evidência nível III</span></div>
-        </div>
-      </article>
-
-      <!-- 12. DELTA3-CARENO -->
-      <article class="terpene-card" data-benefits="foco inflamacao">
-        <div class="card-header">
-          <div class="card-emoji">🌲</div>
-          <div class="card-title-group">
-            <div class="card-name">Δ3-Careno</div>
-            <div class="card-pronunciation">Pronúncia: DEL-ta-tres-CA-re-no</div>
-          </div>
-          <div class="card-temp">168°C</div>
-        </div>
-        <div class="card-body">
-          <div class="card-aroma">
-            <span class="card-aroma-label">Aroma:</span>
-            <span>Cedro · Pinho doce · Resinoso · Terra limpa</span>
-          </div>
-          <p class="card-description">O aroma mais "limpo" entre os terpenos terrosos — cedro fresco, resinoso, que evoca madeira trabalhada e ar de floresta de coníferas. Alto em algumas cultivares Haze.</p>
-          <div class="card-benefits">
-            <span class="benefit-tag">Foco ◎</span>
-            <span class="benefit-tag">Inflamação ◎</span>
-          </div>
-          <div class="card-studies">
-            <strong>O que estudos sugerem:</strong> Estimulação de osteoblastos (células formadoras de osso) — potencial investigativo para saúde óssea; perfil observacional associa cultivares ricas em careno a efeitos levemente estimulantes. <strong>Nota:</strong> pode intensificar xerostomia — hidrate-se bem.
-          </div>
-          <div class="card-strains">
-            <strong>Strains típicas:</strong> Super Silver Haze, Arjan's Ultra Haze, Skunk XL, Trainwreck
-          </div>
-          <div class="mt-2"><span class="evidence-badge evidence-IV">Evidência nível III-IV</span></div>
-        </div>
-      </article>
+      </div>
 
     </div><!-- /cards-grid -->
 
@@ -1175,169 +1140,179 @@
     <h2 id="tabela-title">Tabela Mestra de Referência Rápida</h2>
     <p class="text-muted">Consulta rápida: terpeno × benefício × aroma × temperatura de vaporização.</p>
 
-    <div class="table-wrapper" role="region" aria-label="Tabela de terpenos">
-      <table>
-        <thead>
-          <tr>
-            <th>Terpeno</th>
-            <th>Aroma</th>
-            <th>Ansiedade</th>
-            <th>Dor</th>
-            <th>Sono</th>
-            <th>Foco</th>
-            <th>Inflam.</th>
-            <th>Humor</th>
-            <th>Neuroprot.</th>
-            <th>Temp.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🌿 Mirceno</td>
-            <td>Terra, Manga</td>
-            <td class="check-maybe">◎</td>
-            <td class="check-yes">✓</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">167°C</span></td>
-          </tr>
-          <tr>
-            <td>🍋 Limoneno</td>
-            <td>Cítrico, Limão</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">176°C</span></td>
-          </tr>
-          <tr>
-            <td>💜 Linalol</td>
-            <td>Lavanda, Floral</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-yes">✓</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">198°C</span></td>
-          </tr>
-          <tr>
-            <td>🌶️ β-Cariofileno</td>
-            <td>Pimenta, Cravo</td>
-            <td class="check-yes">✓</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-yes">✓</td>
-            <td class="check-yes">✓</td>
-            <td><span class="temp-badge">160°C</span></td>
-          </tr>
-          <tr>
-            <td>🌲 α-Pineno</td>
-            <td>Pinheiro, Abeto</td>
-            <td class="check-yes">✓</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td><span class="temp-badge">155°C</span></td>
-          </tr>
-          <tr>
-            <td>🌸 Terpinoleno</td>
-            <td>Herbal, Floral</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-maybe">◎</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">186°C</span></td>
-          </tr>
-          <tr>
-            <td>🍺 Humuleno</td>
-            <td>Lúpulo, Amadeirado</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">198°C</span></td>
-          </tr>
-          <tr>
-            <td>🌿 Ocimeno</td>
-            <td>Manjericão, Frutal</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">176°C</span></td>
-          </tr>
-          <tr>
-            <td>🌼 Bisabolol</td>
-            <td>Camomila, Mel</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">153°C</span></td>
-          </tr>
-          <tr>
-            <td>🌹 Nerolidol</td>
-            <td>Rosa, Madeira</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-strong">✓✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">122°C</span></td>
-          </tr>
-          <tr>
-            <td>🌺 Geraniol</td>
-            <td>Rosas, Gerânio</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-yes">✓</td>
-            <td><span class="temp-badge">230°C</span></td>
-          </tr>
-          <tr>
-            <td>🌲 Δ3-Careno</td>
-            <td>Cedro, Resinoso</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td class="check-maybe">◎</td>
-            <td class="check-yes">✓</td>
-            <td class="check-no">—</td>
-            <td class="check-no">—</td>
-            <td><span class="temp-badge">168°C</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="table-locked-wrapper">
+      <div class="table-wrapper" role="region" aria-label="Tabela de terpenos">
+        <table>
+          <thead>
+            <tr>
+              <th>Terpeno</th>
+              <th>Aroma</th>
+              <th>Ansiedade</th>
+              <th>Dor</th>
+              <th>Sono</th>
+              <th>Foco</th>
+              <th>Inflam.</th>
+              <th>Humor</th>
+              <th>Neuroprot.</th>
+              <th>Temp.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🌿 Mirceno</td>
+              <td>Terra, Manga</td>
+              <td class="check-maybe">◎</td>
+              <td class="check-yes">✓</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">167°C</span></td>
+            </tr>
+            <tr>
+              <td>🍋 Limoneno</td>
+              <td>Cítrico, Limão</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">176°C</span></td>
+            </tr>
+            <tr>
+              <td>💜 Linalol</td>
+              <td>Lavanda, Floral</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-yes">✓</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">198°C</span></td>
+            </tr>
+            <tr>
+              <td>🌶️ β-Cariofileno</td>
+              <td>Pimenta, Cravo</td>
+              <td class="check-yes">✓</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-yes">✓</td>
+              <td class="check-yes">✓</td>
+              <td><span class="temp-badge">160°C</span></td>
+            </tr>
+            <tr>
+              <td>🌲 α-Pineno</td>
+              <td>Pinheiro, Abeto</td>
+              <td class="check-yes">✓</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td><span class="temp-badge">155°C</span></td>
+            </tr>
+            <tr>
+              <td>🌸 Terpinoleno</td>
+              <td>Herbal, Floral</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-maybe">◎</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">186°C</span></td>
+            </tr>
+            <tr>
+              <td>🍺 Humuleno</td>
+              <td>Lúpulo, Amadeirado</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">198°C</span></td>
+            </tr>
+            <tr>
+              <td>🌿 Ocimeno</td>
+              <td>Manjericão, Frutal</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">176°C</span></td>
+            </tr>
+            <tr>
+              <td>🌼 Bisabolol</td>
+              <td>Camomila, Mel</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">153°C</span></td>
+            </tr>
+            <tr>
+              <td>🌹 Nerolidol</td>
+              <td>Rosa, Madeira</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-strong">✓✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">122°C</span></td>
+            </tr>
+            <tr>
+              <td>🌺 Geraniol</td>
+              <td>Rosas, Gerânio</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-yes">✓</td>
+              <td><span class="temp-badge">230°C</span></td>
+            </tr>
+            <tr>
+              <td>🌲 Δ3-Careno</td>
+              <td>Cedro, Resinoso</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td class="check-maybe">◎</td>
+              <td class="check-yes">✓</td>
+              <td class="check-no">—</td>
+              <td class="check-no">—</td>
+              <td><span class="temp-badge">168°C</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-blur-overlay">
+        <div class="table-lock-box">
+          <span>🔒</span>
+          <h3>Tabela Mestra Completa</h3>
+          <p>12 terpenos × sintoma × aroma × temperatura × evidência — em uma única tabela para consulta rápida. Disponível no guia completo.</p>
+          <a href="#cta-section" class="btn-unlock">Desbloquear Tabela</a>
+        </div>
+      </div>
     </div>
 
     <p class="table-legend">
@@ -1367,7 +1342,7 @@
             <li>✓ 11 referências científicas com DOI</li>
             <li>✓ Download imediato em PDF</li>
           </ul>
-          <a class="btn-cta-primary" href="https://pay.hotmart.com/M105174742Q" target="_blank">Baixar PDF — R$ 47</a>
+          <a class="btn-cta-primary" href="mapa-terpenos-print.html" target="_blank">Baixar PDF — R$ 47</a>
           <p class="cta-garantia">Garantia de 7 dias. Sem risco.</p>
         </div>
 
@@ -1384,7 +1359,7 @@
             <li>✓ Acesso ao portal de recursos premium</li>
             <li>✓ Atualizações automáticas 2026</li>
           </ul>
-          <a class="btn-cta-featured" href="https://pay.hotmart.com/N105171946F" target="_blank">Entrar no Clube — R$ 197/ano</a>
+          <a class="btn-cta-featured" href="#" target="_blank">Entrar no Clube — R$ 197/ano</a>
           <p class="cta-garantia">= R$ 16,41/mês · Cancele quando quiser.</p>
         </div>
       </div>
@@ -1465,54 +1440,9 @@
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Terpenos têm efeito terapêutico comprovado?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          Estudos científicos indicam que terpenos possuem atividade farmacológica relevante. O <strong>β-Cariofileno é oficialmente reconhecido como agonista do receptor CB2</strong> — dado estabelecido na literatura (Gertsch et al., PNAS 2008). Para outros terpenos, a maioria das evidências é pré-clínica. Estudos clínicos em humanos estão em andamento. A ciência é promissora mas ainda em desenvolvimento — linguagem como "estudos sugerem" é usada deliberadamente.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Qual a diferença entre mirceno e limoneno?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          São dois dos terpenos mais comuns, mas com perfis completamente diferentes: o <strong>mirceno</strong> tem aroma terroso/frutado-musgo e é associado a relaxamento e sedação (estimula sono em estudos). O <strong>limoneno</strong> tem aroma cítrico/limão e é associado a humor e redução de ansiedade. Ambos podem coexistir em uma mesma cultivar, com um sendo dominante e definindo o perfil terapêutico primário.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          O que é efeito entourage?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          Efeito Entourage é a sinergia entre os múltiplos compostos da Cannabis — canabinoides (THC, CBD, CBG etc.) e terpenos — que produz efeitos superiores ao que qualquer composto isolado produziria. O conceito foi formalizado por Ethan Russo em 2011 (<em>British Journal of Pharmacology</em>, PMID: 21749363) e hoje é central no entendimento da farmacologia da Cannabis <em>full-spectrum</em>. É por isso que produtos full-spectrum costumam ser preferidos na prática clínica.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Qual terpeno ajuda no sono?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <strong>Mirceno</strong> é o principal — cultivares com teores elevados são frequentemente indicadas em protocolos de insônia. <strong>Linalol</strong> (lavanda) e <strong>Nerolidol</strong> também apresentam propriedades sedativas documentadas em estudos. Procure cultivares com aroma terroso/musgo (mirceno dominante) ou floral de lavanda (linalol dominante). Use sempre com orientação médica.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          Como os terpenos interagem com o CBD?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          Terpenos potencializam e modulam os efeitos do CBD através do Efeito Entourage. Exemplos documentados: <strong>β-Cariofileno + CBD</strong> amplificam ação anti-inflamatória; <strong>Linalol + CBD</strong> amplificam efeito ansiolítico; <strong>Limoneno + CBD</strong> potencializam o suporte ao humor. Por isso produtos <em>full-spectrum</em> (que preservam terpenos naturais) costumam ser preferidos na prática clínica em relação a isolados de CBD puro.
-        </div>
+      <div class="faq-locked">
+        <span>🔒</span> Mais 5 perguntas disponíveis no guia completo
+        <a href="#cta-section">Desbloquear →</a>
       </div>
 
     </div>
@@ -1536,7 +1466,7 @@
       <div class="step-card" style="border-left: 4px solid var(--green);">
         <h3 style="color:var(--green);">Clube Flor de Minas</h3>
         <p>Acesse conteúdos exclusivos mensais, guias de cultivares brasileiras, protocolos terapêuticos e suporte educacional contínuo com a nossa comunidade.</p>
-        <a href="clube.html" class="btn btn-primary" style="margin-top:1rem; padding:.6rem 1.25rem; font-size:.85rem;">Conhecer o Clube</a>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; padding:.6rem 1.25rem; font-size:.85rem;">Conhecer o Clube</a>
       </div>
       <div class="step-card" style="border-left: 4px solid var(--gold);">
         <h3 style="color:var(--gold);">Guia de Cultivares Brasileiras</h3>
@@ -1585,7 +1515,7 @@
       <div class="footer-col">
         <h4>Guias</h4>
         <ul>
-          <li><a href="https://pay.hotmart.com/N105171946F" class="master-cta">Quero me Tornar Membro VIP</a></li>
+          <li><a href="#">Mapa de Terpenos</a></li>
           <li><a href="#">Guia de Cultivares Brasileiras</a></li>
           <li><a href="#">Glossário Cannabis Medicinal</a></li>
           <li><a href="#">Efeito Entourage — Guia Completo</a></li>

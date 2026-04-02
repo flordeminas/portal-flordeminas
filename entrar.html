@@ -236,27 +236,24 @@
         <h4>Conteúdo</h4>
         <ul>
           <li><a href="noticias.html">Notícias</a></li>
-          <li><a href="recursos.html">Recursos Premium</a></li>
+          <li><a href="clube.html">Clube VIP</a></li>
           <li><a href="index.html#guia-paciente">Guia do Paciente</a></li>
-          <li><a href="../guia/mapa-terpenos.html">Mapa de Terpenos</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Clube</h4>
+        <h4>Recursos</h4>
         <ul>
-          <li><a href="clube.html">Clube Flor de Minas</a></li>
           <li><a href="loja.html">Loja</a></li>
-          <li><a href="parceiros.html">Parceiros</a></li>
-          <li><a href="eventos.html">Eventos</a></li>
+          <li><a href="parceiros.html">Associações</a></li>
+          <li><a href="guia/mapa-terpenos.html">Mapa de Terpenos</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#">Política de Privacidade</a></li>
-          <li><a href="#">Termos de Uso</a></li>
           <li><a href="sobre-nos.html">Sobre Nós</a></li>
           <li><a href="sobre-nos.html">Contato</a></li>
+          <li><a href="#">Privacidade</a></li>
         </ul>
       </div>
     </div>
@@ -291,28 +288,34 @@
             btnSubmit.querySelector('span').innerText = 'Verificando...';
 
             try {
-                const { data, error } = await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password,
-                });
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            if (error) throw error;
 
-                if (error) throw error;
+            console.log("Login de autenticação sucesso. Verificando perfil para ID:", data.user.id);
+            
+            const { data: profile, error: profileError } = await supabaseClient
+                .from('profiles')
+                .select('is_premium')
+                .eq('id', data.user.id)
+                .single();
 
-                // Check if user is premium
-                const { data: profile, error: profileError } = await supabaseClient
-                    .from('profiles')
-                    .select('is_premium')
-                    .eq('id', data.user.id)
-                    .single();
-
-                if (profileError || !profile.is_premium) {
-                    // Not a subscriber yet
-                    await supabaseClient.auth.signOut();
-                    throw new Error("Sua assinatura ainda não está ativa ou este acesso é restrito a membros VIP.");
+            if (profileError) {
+                console.error("Erro ao buscar perfil:", profileError);
+                // Caso não exista perfil, tentaremos ver se é apenas falta do registro
+                if (profileError.code === 'PGRST116') {
+                    throw new Error("Perfil não encontrado. Sua conta pode não ter sido ativada corretamente.");
                 }
+                throw profileError;
+            }
 
-                // Success! Redirect to Portal
-                window.location.href = 'portal.html';
+            if (!profile.is_premium) {
+                console.warn("Usuário autenticado mas is_premium é falso.");
+                await supabaseClient.auth.signOut();
+                throw new Error("Sua assinatura ainda não está ativa ou este acesso é restrito a membros VIP.");
+            }
+
+            // Sucesso
+            window.location.href = 'portal.html';
 
             } catch (err) {
                 errorBox.innerText = err.message === 'Invalid login credentials' ? 'E-mail ou senha incorretos.' : err.message;

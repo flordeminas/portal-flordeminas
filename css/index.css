@@ -11,6 +11,9 @@
     --secondary: #B45309; /* var(--gold) */
     --secondary-light: #F59E0B;
     --secondary-pale: #FEF3C7;
+    --fm-forest: #15803D;
+    --fm-gold: #FBBF24;
+    --fm-sage: #86EFAC;
     --bg-main: #FAFAF7;
     --bg-neutral: #F1F5F9;
     --bg-hero: #FAFAF7;
@@ -241,23 +244,25 @@ section {
 
 /* Site Header & Navigation */
 .site-header {
-    position: fixed !important;
-    top: 0 !important;
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    z-index: 9999 !important;
-    background: var(--primary); /* Keep background consistently dark */
-    color: #fff;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding: 0.4rem 0;
-    transition: var(--transition);
-    min-height: 65px;
+    width: 100%;
+    height: 70px;
+    background: var(--header-bg); /* Floral Green from reference */
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
 }
 
 .site-header .container {
-    max-width: 1100px; /* Reduced as requested to match reference */
+    max-width: 1100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0 1.25rem;
 }
 
@@ -271,15 +276,16 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 4rem; /* Safe distance between logo and navigation group */
+    width: 100%;
+    height: 100%;
+    gap: 3rem; /* Minimum safe distance between logo and navigation */
 }
-
-/* ... logo definition moved below for consistency ... */
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
+    height: 100%;
 }
 
 .logo {
@@ -291,65 +297,66 @@ nav {
     font-weight: 700;
     letter-spacing: -0.01em;
     text-decoration: none;
+    flex-shrink: 0; /* Prevent logo from squeezing */
+    margin-right: 1rem;
 }
 
 .logo span {
-    display: inline;
-    color: var(--secondary-light);
+    color: var(--secondary-light); /* var(--gold-light) */
     margin-left: 4px;
 }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem; /* More generous spacing between words */
-    align-items: center;
+    gap: 2.5rem; /* Increased spacing between guides as requested */
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+    height: 100%;
+    margin-left: auto; /* Push navigation to the right, balanced by header-right */
 }
 
 .nav-link {
-    font-weight: 500;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.95rem;
-    position: relative;
-}
-
-.nav-link:hover, .nav-link.active {
-    color: #fff;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 0.95rem; /* Slightly larger for better readability */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
     transition: var(--transition);
+    white-space: nowrap;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
-    width: 100%;
+.nav-link:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
-.header-cta {
-    background: var(--secondary); /* Gold for highlight */
-    color: white;
-    padding: 0.6rem 1.5rem;
-    border-radius: 999px; /* Rounded pill shape as requested */
-    font-weight: 800;
+/* Special style for the login link in navigation */
+.nav-link.login-link {
+    color: var(--secondary-light) !important;
+    font-weight: 700;
+}
+
+.header-cta, .nav-cta {
+    display: inline-block;
+    background: var(--secondary); /* var(--gold) */
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
     font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.3);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--transition);
 }
 
-.header-cta:hover {
+.header-cta:hover, .nav-cta:hover {
     background: var(--secondary-light);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(180, 83, 9, 0.4);
+    color: #fff;
+    text-decoration: none;
 }
 
 .menu-toggle {
@@ -370,6 +377,10 @@ nav {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 5px;
     transition: var(--transition);
+}
+
+.menu-toggle.active span {
+    background: var(--text-main);
 }
 
 .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
