@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Checklist de Consulta Médica | Flor de Minas</title>
+    <meta content="Prepare-se para sua consulta de Cannabis medicinal com nosso checklist técnico focado em associações e regulação ANVISA 2026." name="description"/>
+    <link href="../css/index.css?v=1.03" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #1A3A2A;
+            --secondary: #064E3B;
+            --fm-cream: #F5F0E8;
+            --fm-gold: #C8B89A;
+        }
+        body { background-color: var(--fm-cream); color: var(--primary); font-family: 'Inter', sans-serif; line-height: 1.6; }
+        .checklist-container { max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .checklist-header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid var(--fm-cream); padding-bottom: 20px; }
+        .checklist-header h1 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+        .checklist-header p { color: #64748b; font-size: 1.1rem; }
+        .checklist-section { margin-bottom: 30px; }
+        .checklist-section h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .checklist-item { display: flex; align-items: flex-start; gap: 15px; padding: 15px; border-radius: 8px; transition: background 0.2s; cursor: pointer; border: 1px solid transparent; }
+        .checklist-item:hover { background: var(--fm-cream); border-color: var(--fm-gold); }
+        .checkbox-custom { width: 22px; height: 22px; border: 2px solid var(--fm-gold); border-radius: 4px; flex-shrink: 0; margin-top: 2px; position: relative; }
+        .checklist-item.checked .checkbox-custom { background: var(--secondary); border-color: var(--secondary); }
+        .checklist-item.checked .checkbox-custom::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: #fff; font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .checklist-text { font-size: 1.05rem; }
+        .checklist-text strong { display: block; margin-bottom: 4px; color: var(--primary); }
+        .checklist-text span { color: #64748b; font-size: 0.95rem; }
+        .print-btn { display: block; width: 100%; text-align: center; padding: 15px; background: var(--primary); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700; margin-top: 40px; transition: opacity 0.2s; }
+        .print-btn:hover { opacity: 0.9; }
+        .disclaimer { font-size: 0.85rem; color: #64748b; text-align: center; margin-top: 30px; padding: 20px; border-top: 1px solid var(--fm-cream); }
+        @media print { .print-btn, .site-header, .site-footer { display: none !important; } .checklist-container { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: none; } }
+    </style>
+</head>
+<body>
+    <div class="checklist-container">
+        <div class="checklist-header">
+            <img src="../assets/logo_brand.png" alt="Flor de Minas" style="width: 80px; margin-bottom: 15px;">
+            <h1>Checklist: Preparação para Consulta</h1>
+            <p>Guia técnico para alinhar sua jornada com o médico e associações dentro das RDCs 2026.</p>
+        </div>
+
+        <div class="checklist-section">
+            <h2><i class="fas fa-notes-medical"></i> 1. Histórico e Somas</h2>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Relatório de Sintomas</strong>
+                    <span>Anote horários, intensidade e gatilhos dos sintomas que motivam a busca pela terapia canábica.</span>
+                </div>
+            </div>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Histórico de Medicamentos</strong>
+                    <span>Leve uma lista de remédios alopáticos em uso (especialmente sedativos ou anticoagulantes) para evitar interações.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist-section">
+            <h2><i class="fas fa-balance-scale"></i> 2. Questões sobre Associações</h2>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Vínculo com Associações</strong>
+                    <span>Pergunte ao médico se ele já acompanha pacientes vinculados a associações brasileiras sob a RDC 1.014.</span>
+                </div>
+            </div>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Especificação da Receita</strong>
+                    <span>Confirme se a receita virá com a concentração detalhada (Ex: CBD 10% / THC 0.2%) para que a associação forneça o extrato correto.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist-section">
+            <h2><i class="fas fa-stethoscope"></i> 3. Metas Terapêuticas</h2>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Protocolo de Titulação</strong>
+                    <span>Defina com o médico a meta de 'Dose Mínima Eficaz'. Quantas gotas iniciar e qual o intervalo de ajuste?</span>
+                </div>
+            </div>
+            <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-text">
+                    <strong>Manejo de Efeitos Colaterais</strong>
+                    <span>Quais sinais observar caso a dose de THC precise ser ajustada (Ex: sonolência excessiva ou ansiedade)?</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="javascript:window.print()" class="print-btn"><i class="fas fa-print"></i> Imprimir para levar na Consulta</a>
+
+        <div class="disclaimer">
+            <strong>Aviso de Segurança Flor de Minas:</strong> Este guia é puramente educacional. 
+            <strong>Nunca altere sua medicação sem autorização médica expressa.</strong> 
+            A decisão terapêutica final e a monitoração do tratamento são responsabilidades exclusivas do seu médico assistente.
+        </div>
+    </div>
+</body>
+</html>
