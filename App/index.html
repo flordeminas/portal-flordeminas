@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d1f14">
+<title>CultivoApp — Jardim</title>
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+
+:root {
+  --bg:        #0d1f14;
+  --bg2:       #132b1c;
+  --bg3:       #1a3824;
+  --surface:   #1e3d28;
+  --surface2:  #243f2d;
+  --border:    rgba(82,183,120,0.18);
+  --border2:   rgba(82,183,120,0.32);
+  --green:     #52b778;
+  --green2:    #3d9a60;
+  --green-dim: rgba(82,183,120,0.12);
+  --amber:     #e8a43a;
+  --amber-dim: rgba(232,164,58,0.15);
+  --purple:    #9b72cf;
+  --purple-dim:rgba(155,114,207,0.15);
+  --red:       #e05c5c;
+  --red-dim:   rgba(224,92,92,0.13);
+  --text:      #e8f0e9;
+  --text2:     #a8c4ac;
+  --text3:     #6a9370;
+  --radius:    16px;
+  --radius-sm: 10px;
+  --serif:     'DM Serif Display', Georgia, serif;
+  --sans:      'DM Sans', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+}
+
+/* ── App shell ────────────────────────────────── */
+#app {
+  height: 100%;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Header ───────────────────────────────────── */
+#header {
+  padding: 16px 20px 12px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--green);
+  border-radius: 10px;
+  display: grid; place-items: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.logo-text { flex: 1; }
+.logo-text h1 { font-family: var(--serif); font-size: 18px; color: var(--text); font-weight: 400; line-height: 1; }
+.logo-text span { font-size: 11px; color: var(--text3); letter-spacing: .04em; }
+.header-badge {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 20px;
+  background: var(--green-dim); color: var(--green);
+  border: 1px solid var(--border2); letter-spacing: .04em;
+}
+
+/* ── Nav tabs ──────────────────────────────────── */
+#nav {
+  display: flex;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0; overflow-x: auto;
+  scrollbar-width: none;
+}
+#nav::-webkit-scrollbar { display: none; }
+.nav-tab {
+  flex: 1; min-width: 72px;
+  padding: 10px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 500; color: var(--text3);
+  cursor: pointer; border: none; background: none;
+  transition: color .2s; position: relative; letter-spacing: .02em;
+}
+.nav-tab .icon { font-size: 17px; }
+.nav-tab.active { color: var(--green); }
+.nav-tab.active::after {
+  content: ''; position: absolute; bottom: 0; left: 20%; right: 20%;
+  height: 2px; background: var(--green); border-radius: 2px 2px 0 0;
+}
+
+/* ── Pages ─────────────────────────────────────── */
+#pages { flex: 1; min-height: 0; overflow: hidden; position: relative; }
+.page {
+  position: absolute; inset: 0;
+  overflow-y: auto; padding: 20px 16px calc(32px + env(safe-area-inset-bottom, 0px));
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.page.active {
+  opacity: 1; pointer-events: all; transform: none;
+}
+
+/* ── Section title ─────────────────────────────── */
+.section-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--text); margin-bottom: 4px; line-height: 1.2;
+}
+.section-sub { font-size: 12px; color: var(--text3); margin-bottom: 20px; line-height: 1.5; }
+
+/* ── Cards ─────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 12px;
+}
+.card-label {
+  font-size: 11px; font-weight: 600; color: var(--text3);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.card-label .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+}
+
+/* ── Form fields ───────────────────────────────── */
+.field { margin-bottom: 16px; }
+.field:last-child { margin-bottom: 0; }
+.field label {
+  display: block; font-size: 12px; font-weight: 500;
+  color: var(--text2); margin-bottom: 6px;
+}
+.field input, .field select {
+  width: 100%; padding: 12px 14px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-family: var(--sans); font-size: 15px;
+  appearance: none; -webkit-appearance: none;
+  outline: none; transition: border-color .2s;
+}
+.field input:focus, .field select:focus { border-color: var(--green); }
+.field input[type="date"] { color-scheme: dark; }
+
+/* ── Stepper (semanas) ─────────────────────────── */
+.stepper {
+  display: flex; align-items: center;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); overflow: hidden;
+}
+.stepper-btn {
+  width: 48px; height: 48px; border: none; background: none;
+  color: var(--green); font-size: 22px; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .15s;
+}
+.stepper-btn:active { background: var(--green-dim); }
+.stepper-val {
+  flex: 1; text-align: center;
+  font-size: 22px; font-weight: 600; color: var(--text);
+  font-family: var(--serif);
+}
+.stepper-unit { font-size: 12px; color: var(--text3); font-family: var(--sans); font-weight: 400; }
+
+/* ── Protocol pills ────────────────────────────── */
+.proto-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.proto-pill {
+  padding: 12px 10px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg3); cursor: pointer;
+  transition: all .2s; text-align: center;
+}
+.proto-pill .proto-icon { font-size: 20px; margin-bottom: 4px; }
+.proto-pill .proto-name { font-size: 12px; font-weight: 600; color: var(--text2); line-height: 1.2; }
+.proto-pill .proto-sub  { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.proto-pill.selected {
+  border-color: var(--green);
+  background: var(--green-dim);
+}
+.proto-pill.selected .proto-name { color: var(--green); }
+
+/* ── CTA Button ────────────────────────────────── */
+.btn-primary {
+  width: 100%; padding: 16px;
+  background: var(--green); color: var(--bg);
+  font-family: var(--serif); font-size: 17px;
+  border: none; border-radius: var(--radius);
+  cursor: pointer; font-weight: 400;
+  transition: opacity .15s, transform .1s;
+  letter-spacing: .01em;
+}
+.btn-primary:active { opacity: .85; transform: scale(.98); }
+.btn-secondary {
+  width: 100%; padding: 13px;
+  background: transparent; color: var(--green);
+  font-family: var(--sans); font-size: 14px; font-weight: 500;
+  border: 1.5px solid var(--border2); border-radius: var(--radius);
+  cursor: pointer; transition: background .15s;
+  margin-top: 8px;
+}
+.btn-secondary:active { background: var(--green-dim); }
+
+/* ── Phase bar ─────────────────────────────────── */
+.phase-bar {
+  display: flex; border-radius: var(--radius-sm);
+  overflow: hidden; height: 8px; margin: 8px 0 16px; gap: 2px;
+}
+.phase-seg {
+  height: 100%; border-radius: 2px;
+  transition: flex .3s ease;
+}
+
+/* ── Timeline cards ────────────────────────────── */
+.timeline { display: flex; flex-direction: column; gap: 8px; }
+.tl-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.tl-item.highlight { border-color: var(--amber); background: var(--amber-dim); }
+.tl-item.highlight-green { border-color: var(--green); background: var(--green-dim); }
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 4px;
+}
+.tl-content { flex: 1; }
+.tl-date { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+.tl-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.tl-sub { font-size: 12px; color: var(--text2); margin-top: 3px; line-height: 1.4; }
+.tl-badge {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 10px; flex-shrink: 0; align-self: flex-start;
+}
+
+/* ── Week view ─────────────────────────────────── */
+.week-nav {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+.week-nav button {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border2); background: var(--surface);
+  color: var(--text2); font-size: 16px; cursor: pointer;
+  display: grid; place-items: center;
+}
+.week-nav .week-label {
+  flex: 1; text-align: center;
+  font-size: 14px; font-weight: 600; color: var(--text);
+}
+.week-nav .week-sub { font-size: 11px; color: var(--text3); }
+
+.day-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px; overflow: hidden;
+}
+.day-row-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; cursor: pointer;
+}
+.day-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--bg3); display: grid; place-items: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+}
+.day-num.today { background: var(--green); color: var(--bg); }
+.day-phase-tag {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 8px; flex-shrink: 0;
+}
+.day-tasks { font-size: 12px; color: var(--text3); flex: 1; }
+.day-expand { color: var(--text3); font-size: 14px; transition: transform .2s; }
+.day-expand.open { transform: rotate(180deg); }
+.day-detail {
+  padding: 0 14px; max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s;
+}
+.day-detail.open { max-height: 300px; padding: 0 14px 12px; }
+.day-detail-row {
+  display: flex; gap: 8px; align-items: flex-start;
+  padding: 6px 0; border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.day-detail-label { color: var(--text3); min-width: 56px; font-size: 11px; padding-top: 1px; }
+.day-detail-val { color: var(--text); flex: 1; line-height: 1.5; }
+
+/* ── Stats cards ────────────────────────────────── */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px;
+}
+.stat-val { font-family: var(--serif); font-size: 28px; color: var(--text); line-height: 1; }
+.stat-unit { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.stat-label { font-size: 11px; color: var(--text2); margin-top: 6px; font-weight: 500; }
+
+/* ── Guia ────────────────────────────────────────── */
+.guia-section { margin-bottom: 20px; }
+.guia-section h3 {
+  font-family: var(--serif); font-size: 17px; color: var(--text);
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.guia-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.guia-row:last-child { border-bottom: none; }
+.guia-key { color: var(--text2); }
+.guia-val { color: var(--green); font-weight: 600; text-align: right; max-width: 55%; }
+
+/* ── MIP Tab ─────────────────────────────────────── */
+.mip-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px;
+}
+.mip-card-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.mip-icon { font-size: 20px; }
+.mip-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.mip-phase { font-size: 10px; color: var(--text3); margin-top: 1px; }
+.mip-detail-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+.mip-detail-label { color: var(--text3); }
+.mip-detail-val { color: var(--text2); text-align: right; }
+.warning-banner {
+  background: var(--red-dim); border: 1px solid rgba(224,92,92,.3);
+  border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 12px;
+  font-size: 12px; color: var(--red); line-height: 1.5;
+}
+
+/* ── Empty state ────────────────────────────────── */
+.empty-state {
+  text-align: center; padding: 48px 24px;
+}
+.empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+.empty-state h3 { font-family: var(--serif); font-size: 20px; color: var(--text2); margin-bottom: 8px; }
+.empty-state p { font-size: 13px; color: var(--text3); line-height: 1.6; }
+
+/* ── Progress ring ──────────────────────────────── */
+.progress-ring-wrap {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.progress-ring { transform: rotate(-90deg); }
+.progress-ring circle { transition: stroke-dashoffset .5s ease; }
+.progress-info { flex: 1; }
+.progress-pct { font-family: var(--serif); font-size: 36px; color: var(--text); line-height: 1; }
+.progress-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+/* ── Strain card ─────────────────────────────────── */
+.strain-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.strain-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--purple), var(--amber));
+}
+.strain-loading { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text3); padding:4px 0; }
+.strain-dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse-dot 1.2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+.strain-name { font-family:var(--serif); font-size:20px; color:var(--text); margin-bottom:4px; line-height:1.2; }
+.strain-type-badge { display:inline-block; font-size:10px; font-weight:600; padding:3px 9px; border-radius:20px; margin-bottom:12px; letter-spacing:.06em; }
+.strain-desc { font-size:13px; color:var(--text2); line-height:1.6; margin-bottom:14px; }
+.strain-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.strain-tag { font-size:11px; font-weight:500; padding:4px 10px; border-radius:20px; background:var(--bg3); border:1px solid var(--border2); color:var(--text2); }
+.strain-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.strain-stat { background:var(--bg3); border-radius:var(--radius-sm); padding:10px; text-align:center; }
+.strain-stat-val { font-family:var(--serif); font-size:17px; color:var(--green); line-height:1; }
+.strain-stat-label { font-size:10px; color:var(--text3); margin-top:3px; font-weight:500; }
+.strain-tip { background:var(--amber-dim); border:1px solid rgba(232,164,58,.25); border-radius:var(--radius-sm); padding:10px 12px; font-size:12px; color:var(--amber); line-height:1.5; margin-top:12px; }
+.strain-error { font-size:12px; color:var(--text3); font-style:italic; padding:4px 0; }
+
+/* ── Manual ──────────────────────────────────────── */
+.manual-section { margin-bottom: 24px; }
+.manual-section-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  margin-bottom: 10px; cursor: pointer;
+}
+.manual-section-icon { font-size: 20px; flex-shrink: 0; }
+.manual-section-title { font-family: var(--serif); font-size: 17px; flex: 1; }
+.manual-section-chevron { color: var(--text3); font-size: 13px; transition: transform .2s; }
+.manual-section-chevron.open { transform: rotate(180deg); }
+.manual-body { display: none; }
+.manual-body.open { display: block; }
+.manual-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px;
+}
+.manual-item-q {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  margin-bottom: 8px; line-height: 1.4;
+}
+.manual-item-a {
+  font-size: 12px; color: var(--text2); line-height: 1.7;
+}
+.manual-example {
+  background: var(--bg3); border-left: 2px solid var(--green);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 12px; margin: 8px 0;
+  font-size: 12px; color: var(--text2); line-height: 1.6;
+}
+.manual-example strong { color: var(--green); }
+.manual-tip {
+  background: var(--amber-dim); border: 1px solid rgba(232,164,58,.25);
+  border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 8px;
+  font-size: 12px; color: var(--amber); line-height: 1.6;
+}
+.manual-warn {
+  background: var(--red-dim); border: 1px solid rgba(224,92,92,.2);
+  border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 8px;
+  font-size: 12px; color: var(--red); line-height: 1.6;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+
+/* ── Jardim / Multi-cultivo ─────────────────── */
+#jardim-screen {
+  position:absolute;inset:0;
+  height:100%;
+  display:flex;flex-direction:column;
+  background:var(--bg);
+  z-index:10;
+  transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s;
+}
+#jardim-screen.hidden {
+  transform:translateY(-100%);opacity:0;pointer-events:none;
+}
+#jardim-header {
+  padding:calc(16px + env(safe-area-inset-top, 0px)) 20px 12px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+  display:flex;align-items:center;gap:12px;
+}
+#jardim-body {
+  flex:1;min-height:0;overflow-y:auto;
+  padding:20px 16px calc(32px + env(safe-area-inset-bottom, 0px));
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.jardim-hero {
+  margin-bottom:24px;
+}
+.jardim-hero h2 {
+  font-family:var(--serif);font-size:26px;font-weight:400;
+  color:var(--text);line-height:1.15;margin-bottom:6px;
+}
+.jardim-hero p {font-size:13px;color:var(--text3);line-height:1.6;}
+.jardim-grid {display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.cultivo-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  cursor:pointer;
+  transition:border-color .2s,background .2s;
+  position:relative;
+  overflow:hidden;
+}
+.cultivo-card::before {
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--card-accent,var(--green));
+  border-radius:4px 0 0 4px;
+}
+.cultivo-card:active {background:var(--surface2);}
+.cultivo-card.active-card {border-color:var(--green);background:var(--green-dim);}
+.cc-top {display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.cc-icon {
+  width:40px;height:40px;border-radius:10px;
+  display:grid;place-items:center;font-size:18px;flex-shrink:0;
+}
+.cc-info {flex:1;min-width:0;}
+.cc-name {
+  font-family:var(--serif);font-size:17px;color:var(--text);
+  line-height:1.1;margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.cc-strain {font-size:12px;color:var(--text3);}
+.cc-actions {display:flex;gap:6px;flex-shrink:0;}
+.cc-btn {
+  width:32px;height:32px;border-radius:8px;border:none;
+  background:rgba(255,255,255,0.06);color:var(--text3);
+  font-size:15px;cursor:pointer;display:grid;place-items:center;
+  transition:background .15s,color .15s;
+}
+.cc-btn:active{background:rgba(255,255,255,.15);color:var(--text);}
+.cc-bar {height:6px;border-radius:4px;display:flex;gap:2px;margin-bottom:8px;overflow:hidden;}
+.cc-bar-seg {height:100%;border-radius:2px;}
+.cc-meta {display:flex;gap:12px;flex-wrap:wrap;}
+.cc-chip {
+  font-size:10px;font-weight:600;padding:2px 8px;
+  border-radius:10px;letter-spacing:.03em;
+}
+.cc-phase-now {
+  font-size:11px;color:var(--text2);font-weight:500;
+}
+.btn-add-jardim {
+  width:100%;padding:14px;
+  background:var(--green-dim);
+  border:1.5px dashed var(--border2);
+  border-radius:var(--radius);
+  color:var(--green);font-family:var(--sans);font-size:14px;font-weight:500;
+  cursor:pointer;transition:background .15s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-add-jardim:active{background:rgba(82,183,120,.2);}
+.jardim-overview {
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;margin-bottom:16px;
+}
+.jardim-overview h3 {
+  font-size:12px;font-weight:600;color:var(--text3);
+  text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;
+}
+.overview-row {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 0;border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+.overview-row:last-child{border-bottom:none;}
+.ov-label{color:var(--text3);}
+.ov-val{color:var(--text);font-weight:500;}
+.ov-phase{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+
+/* Modal de novo cultivo */
+.modal-backdrop {
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:50;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.modal-backdrop.hidden{display:none;}
+.modal-sheet {
+  background:var(--bg2);
+  border-radius:20px 20px 0 0;
+  padding:20px 20px 40px;
+  max-height:90vh;overflow-y:auto;
+}
+.modal-handle {
+  width:36px;height:4px;background:var(--border2);
+  border-radius:2px;margin:0 auto 20px;
+}
+.modal-title {
+  font-family:var(--serif);font-size:20px;color:var(--text);
+  margin-bottom:4px;
+}
+.modal-sub {font-size:12px;color:var(--text3);margin-bottom:20px;}
+
+/* Pill color selector */
+.color-picker {display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.color-dot {
+  width:28px;height:28px;border-radius:50%;cursor:pointer;
+  border:2px solid transparent;transition:transform .15s,border-color .15s;
+}
+.color-dot.selected{border-color:var(--text);transform:scale(1.15);}
+
+/* Back button in header */
+.btn-back {
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);
+  background:var(--surface);color:var(--text2);font-size:18px;
+  cursor:pointer;display:grid;place-items:center;flex-shrink:0;
+}
+.jardim-tag {
+  font-size:10px;font-weight:600;padding:3px 8px;
+  border-radius:12px;background:rgba(82,183,120,.15);
+  color:var(--green);border:1px solid var(--border2);
+  letter-spacing:.04em;flex-shrink:0;
+}
+
+/* ── Auth Screen ─────────────────── */
+#auth-screen {
+  position:fixed;inset:0;background:var(--bg);
+  z-index:100;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:24px;
+}
+#auth-screen.hidden { display:none; }
+.auth-card {
+  width:100%;max-width:400px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px 24px;
+  text-align:center;
+}
+.auth-logo { font-size:48px;margin-bottom:16px; }
+.auth-title { font-family:var(--serif);font-size:28px;margin-bottom:8px; }
+.auth-sub { font-size:14px;color:var(--text3);margin-bottom:32px; }
+.auth-form { text-align:left; }
+.auth-form .field input.invalid {
+  border-color:var(--red) !important;
+  box-shadow:0 0 0 2px rgba(220,60,60,.15);
+}
+.auth-error { color:var(--red);font-size:12px;margin-top:12px;text-align:center;display:none; }
+.auth-success { color:var(--green);font-size:12px;margin-top:12px;text-align:center;display:none; }
+.auth-switch { margin-top:20px;font-size:13px;color:var(--text3);cursor:pointer; }
+.auth-switch span { color:var(--green);font-weight:600; }
+.auth-forgot { margin-top:12px;font-size:12px;color:var(--text3);text-align:center;cursor:pointer; }
+.auth-forgot span { color:var(--green);text-decoration:underline; }
+.premium-lock {
+  position:absolute;inset:0;background:rgba(13,31,20,0.9);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:20px;z-index:20;
+}
+.lock-icon { font-size:40px;margin-bottom:12px; }
+
+/* ── Doctor Screen ──────────────────────────── */
+.doctor-edu-card {
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:13px;display:flex;align-items:flex-start;gap:12px;
+}
+.doctor-edu-icon { font-size:26px;flex-shrink:0;line-height:1;margin-top:1px; }
+.doctor-edu-name { font-size:13px;font-weight:700;margin-bottom:2px; }
+.doctor-edu-desc { font-size:12px;color:var(--text2);line-height:1.45; }
+.sd-art {
+  width:100%;position:relative;overflow:hidden;
+  padding-bottom:56.25%; /* 16:9 */
+  flex-shrink:0;
+}
+.sd-art > svg, .sd-art > * {
+  position:absolute;inset:0;width:100%;height:100%;
+}
+.sd-body { padding:20px; }
+.sd-name { font-family:var(--serif);font-size:26px;color:var(--text);margin-bottom:4px;line-height:1.2; }
+.sd-type-row { display:flex;align-items:center;gap:8px;margin-bottom:16px; }
+.sd-stats-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px; }
+.sd-stat { background:var(--bg3);border-radius:10px;padding:10px;text-align:center; }
+.sd-stat-val { font-family:var(--serif);font-size:18px;color:var(--text);line-height:1; }
+.sd-stat-lbl { font-size:10px;color:var(--text3);margin-top:3px;font-weight:500; }
+.sd-section { margin-bottom:14px; }
+.sd-section-title { font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px; }
+.sd-section-body { font-size:13px;color:var(--text2);line-height:1.6; }
+.sd-tag { display:inline-block;font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);margin:2px; }
+.sd-medical { background:var(--green-dim);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;margin-bottom:14px; }
+.sd-medical-title { font-size:11px;font-weight:700;color:var(--green);letter-spacing:.05em;margin-bottom:4px; }
+.sd-medical-body { font-size:13px;color:var(--text2);line-height:1.6; }
+.sd-grow-tip { background:var(--amber-dim);border:1px solid rgba(232,164,58,.25);border-radius:12px;padding:12px 14px;margin-bottom:14px; }
+.sd-grow-tip-title { font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.05em;margin-bottom:4px; }
+.sd-grow-tip-body { font-size:13px;color:var(--text2);line-height:1.6; }
+.sd-use-btn { width:100%;padding:14px;background:var(--green);color:var(--bg);font-family:var(--serif);font-size:16px;border:none;border-radius:12px;cursor:pointer;margin-top:8px;transition:opacity .15s; }
+.sd-use-btn:active { opacity:.85; }
+.quiz-option { width:100%;padding:14px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;text-align:left;color:var(--text);font-family:var(--sans);font-size:14px;cursor:pointer;margin-bottom:8px;transition:all .15s; }
+.quiz-option:active,.quiz-option.selected { border-color:var(--green);background:var(--green-dim);color:var(--green); }
+.quiz-step { font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px; }
+.quiz-question { font-family:var(--serif);font-size:20px;color:var(--text);margin-bottom:16px;line-height:1.3; }
+.quiz-result-card { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:10px; }
+
+/* ── Premium lock overlay ───────────────────── */
+#premium-lock-overlay {
+  position:absolute;inset:0;
+  background:rgba(13,31,20,0.93);
+  z-index:10;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:32px;
+}
+#premium-lock-overlay.visible { display:flex; }
+
+/* ── Custom Protocol (Adubação Personalizável) ── */
+.custom-field {
+  background:var(--bg3);border:1px solid var(--border2);border-radius:8px;
+  color:var(--text);font-family:var(--sans);font-size:12px;padding:5px 8px;
+  width:100%;outline:none;transition:border-color .15s;
+}
+.custom-field:focus { border-color:var(--green); }
+.custom-phase-row { display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px; }
+.custom-save-notice { font-size:11px;color:var(--green);text-align:right;padding:4px 0;display:none; }
+</style>
+<script src="strains.js?v=1774699561"></script>
+</head>
+<body>
+<div id="app">
+  
+  <!-- ══ AUTH SCREEN ══ -->
+  <div id="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">🌿</div>
+      <div class="auth-title" id="auth-card-title">Flor de Minas</div>
+      <div class="auth-sub" id="auth-card-sub">Acesse sua jornada de cultivo</div>
+
+      <div class="auth-form">
+        <div class="field" id="auth-name-group" style="display:none">
+          <label>Nome</label>
+          <input type="text" id="auth-name" placeholder="Seu nome" autocomplete="name">
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="auth-email" placeholder="seu@email.com" autocomplete="email" onkeydown="authKeyDown(event)">
+        </div>
+        <div class="field">
+          <label>Senha</label>
+          <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password" onkeydown="authKeyDown(event)">
+        </div>
+        <div class="field" id="auth-confirm-group" style="display:none">
+          <label>Confirmar Senha</label>
+          <input type="password" id="auth-confirm-password" placeholder="••••••••" autocomplete="new-password" onkeydown="authKeyDown(event)">
+        </div>
+        <button class="btn-primary" id="auth-submit" onclick="handleAuth()" style="margin-top:8px">Entrar →</button>
+        <div class="auth-error" id="auth-error"></div>
+        <div class="auth-success" id="auth-success"></div>
+        <div class="auth-forgot" id="auth-forgot" onclick="handleForgotPassword()">Esqueceu a senha? <span>Recuperar acesso</span></div>
+        <div class="auth-switch" id="auth-switch" onclick="toggleAuthMode()">Não tem conta? <span>Cadastre-se grátis</span></div>
+      </div>
+    </div>
+    <p style="margin-top:32px;font-size:11px;color:var(--text3);max-width:280px;text-align:center">
+      Ao entrar, você concorda com nossos Termos de Uso e Política de Privacidade.
+    </p>
+  </div>
+
+  <!-- ══ JARDIM SCREEN (home) ══ -->
+  <div id="jardim-screen">
+    <div id="jardim-header">
+      <div class="logo-mark">🌿</div>
+      <div class="logo-text">
+        <h1>CultivoApp</h1>
+        <span id="jardim-subtitle">Meu Jardim</span>
+      </div>
+      <span class="jardim-tag" id="jardim-count">0 cultivos</span>
+      <div class="header-actions" style="display: flex; gap: 8px; margin-left: auto;">
+        <button id="btn-upgrade" onclick="window.open('#upgrade', '_blank')" class="header-badge" style="cursor: pointer; display: none; background: var(--amber-dim); color: var(--amber); border-color: var(--amber-dim); font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px;">PRO 🚀</button>
+        <button onclick="onLogout()" class="header-badge" style="cursor: pointer; background: rgba(255,255,255,0.05); color: var(--text3); border-color: rgba(255,255,255,0.1); font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px;">Sair</button>
+      </div>
+    </div>
+
+    <div id="jardim-body">
+      <div class="jardim-hero">
+        <h2>Seu jardim completo<br>em um só lugar.</h2>
+        <p>Cada planta com seu próprio cronograma, adubação e protocolo. Alterne entre cultivos com um toque.</p>
+      </div>
+
+      <div class="jardim-overview" id="jardim-today-panel" style="display:none">
+        <h3>📋 Ações de hoje</h3>
+        <div id="jardim-today-rows"></div>
+      </div>
+
+      <div class="jardim-grid" id="jardim-grid"></div>
+
+      <button class="btn-add-jardim" onclick="openNewModal()">
+        <span style="font-size:20px">＋</span>
+        Adicionar cultivo ao jardim
+      </button>
+    </div>
+
+    <!-- Modal de novo/editar cultivo -->
+    <div class="modal-backdrop hidden" id="modal-backdrop" onclick="closeModal(event)">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <div class="modal-title" id="modal-title">Novo cultivo</div>
+        <div class="modal-sub" id="modal-sub">Configure as informações básicas</div>
+
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-label"><span class="dot"></span>Identificação</div>
+          <div class="field">
+            <label>🏷️ Nome do cultivo</label>
+            <input type="text" id="m-name" placeholder="Ex: Tent A, Bancada 2...">
+          </div>
+          <div class="field">
+            <label>🌿 Strain / Cultivar</label>
+            <input type="text" id="m-strain" placeholder="Ex: OG Kush, Blue Dream..." list="strain-list">
+            <datalist id="strain-list"></datalist>
+          </div>
+          <div class="field">
+            <label>🎨 Cor de identificação</label>
+            <div class="color-picker" id="color-picker">
+              <div class="color-dot selected" style="background:#52b778" data-color="#52b778" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#2196F3" data-color="#2196F3" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#9b72cf" data-color="#9b72cf" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#e8a43a" data-color="#e8a43a" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#e05c5c" data-color="#e05c5c" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#F06292" data-color="#F06292" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#4DB6AC" data-color="#4DB6AC" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#a8c4ac" data-color="#a8c4ac" onclick="selectColor(this)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-label"><span class="dot"></span>Datas e fases</div>
+          <div class="field">
+            <label>📅 Data do Dia 1 (clone)</label>
+            <input type="date" id="m-date">
+          </div>
+          <div class="field">
+            <label>🌱 Semanas de Clone</label>
+            <div class="stepper">
+              <button class="stepper-btn" onclick="mStep('clone',-1)">−</button>
+              <div class="stepper-val" id="m-val-clone">2 <span class="stepper-unit">sem</span></div>
+              <button class="stepper-btn" onclick="mStep('clone',1)">+</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>🌿 Semanas de Vegetativo</label>
+            <div class="stepper">
+              <button class="stepper-btn" onclick="mStep('vega',-1)">−</button>
+              <div class="stepper-val" id="m-val-vega">6 <span class="stepper-unit">sem</span></div>
+              <button class="stepper-btn" onclick="mStep('vega',1)">+</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>🌸 Semanas de Floração</label>
+            <div class="field" style="margin:4px 0 8px">
+              <div style="font-size:11px;color:var(--text3);line-height:1.5">💡 Inclui o flush (últimas 1–2 sem sem adubo)</div>
+            </div>
+            <div class="stepper">
+              <button class="stepper-btn" onclick="mStep('flora',-1)">−</button>
+              <div class="stepper-val" id="m-val-flora">9 <span class="stepper-unit">sem</span></div>
+              <button class="stepper-btn" onclick="mStep('flora',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-label"><span class="dot"></span>Protocolo de nutrição</div>
+          <div class="proto-grid" id="m-proto-grid">
+            <div class="proto-pill selected" onclick="mSelectProto('biobizz',this)">
+              <div class="proto-icon">🌿</div>
+              <div class="proto-name">BioBizz</div>
+              <div class="proto-sub">Orgânico · Solo</div>
+            </div>
+            <div class="proto-pill" onclick="mSelectProto('remo',this)">
+              <div class="proto-icon">⚗️</div>
+              <div class="proto-name">Remo Nutrients</div>
+              <div class="proto-sub">Mineral/Org · Multi</div>
+            </div>
+            <div class="proto-pill" onclick="mSelectProto('go',this)">
+              <div class="proto-icon">📦</div>
+              <div class="proto-name">General Organics</div>
+              <div class="proto-sub">GO Box · Solo</div>
+            </div>
+            <div class="proto-pill" onclick="mSelectProto('supersoil',this)">
+              <div class="proto-icon">🌍</div>
+              <div class="proto-name">SuperSoil</div>
+              <div class="proto-sub">Solo vivo · Cobertura</div>
+            </div>
+            <div class="proto-pill" onclick="mSelectProto('generic',this)" style="grid-column:span 2">
+              <div class="proto-icon">✏️</div>
+              <div class="proto-name">Genérico / Personalizado</div>
+              <div class="proto-sub">Preencha seu protocolo</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="saveModal()" id="modal-save-btn">Salvar cultivo →</button>
+        <button class="btn-secondary" onclick="closeModal()" style="margin-top:8px">Cancelar</button>
+        <button class="btn-secondary" id="modal-delete-btn" onclick="deleteActiveCultivo()"
+          style="margin-top:8px;display:none;color:var(--red);border-color:rgba(224,92,92,.3)">
+          🗑️ Excluir este cultivo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CULTIVO DETAIL SCREEN ══ -->
+  <div id="detail-screen" style="position:absolute;inset:0;display:flex;flex-direction:column;min-height:0;background:var(--bg);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)">
+
+    <!-- Header do detalhe -->
+    <div id="header" style="padding:calc(12px + env(safe-area-inset-top, 0px)) 16px 12px;background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:10px">
+      <button class="btn-back" onclick="backToJardim()">‹</button>
+      <div style="flex:1;min-width:0">
+        <div style="font-family:var(--serif);font-size:16px;color:var(--text);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="detail-title">—</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:1px" id="detail-strain">—</div>
+      </div>
+      <button class="cc-btn" onclick="openEditModal()" title="Editar">✏️</button>
+      <div class="header-badge" id="status-badge">—</div>
+    </div>
+
+    <!-- Nav do detalhe -->
+    <nav id="nav" style="display:flex;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto;scrollbar-width:none">
+      <button class="nav-tab active" onclick="gotoPage(0)" id="tab-0"><span class="icon">📅</span>Cronograma</button>
+      <button class="nav-tab" onclick="gotoPage(1)" id="tab-1"><span class="icon">💊</span>Adubação</button>
+      <button class="nav-tab" onclick="gotoPage(2)" id="tab-2"><span class="icon">🐛</span>MIP</button>
+      <button class="nav-tab" onclick="gotoPage(3)" id="tab-3"><span class="icon">📖</span>Guia</button>
+      <button class="nav-tab" onclick="gotoPage(4)" id="tab-4"><span class="icon">📘</span>Manual</button>
+      <button class="nav-tab" onclick="openDoctorScreen()" id="tab-5"><span class="icon">🩺</span>Doctor</button>
+    </nav>
+
+    <!-- Pages do detalhe -->
+    <div id="pages" style="flex:1;min-height:0;overflow:hidden;position:relative">
+
+      <!-- PAGE 0: CRONOGRAMA -->
+      <div class="page active" id="page-0">
+        <div id="crono-empty" class="empty-state" style="display:none">
+          <div class="empty-icon">📅</div>
+          <h3>Configure o cultivo</h3>
+          <p>Volte ao Jardim e edite este cultivo para ver o cronograma.</p>
+        </div>
+        <div id="crono-content">
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring" width="72" height="72" viewBox="0 0 72 72">
+              <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(82,183,120,0.15)" stroke-width="6"/>
+              <circle id="prog-circle" cx="36" cy="36" r="30" fill="none" stroke="#52b778" stroke-width="6"
+                stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+            </svg>
+            <div class="progress-info">
+              <div class="progress-pct" id="prog-pct">0%</div>
+              <div class="progress-label" id="prog-label">—</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:2px" id="prog-day">—</div>
+            </div>
+          </div>
+          <div class="phase-bar" id="phase-bar"></div>
+          <div class="stats-grid" id="stats-grid">
+            <div class="stat-card"><div class="stat-val" id="stat-total">—</div><div class="stat-unit">dias totais</div><div class="stat-label">Duração</div></div>
+            <div class="stat-card"><div class="stat-val" id="stat-harvest">—</div><div class="stat-unit"></div><div class="stat-label">Colheita</div></div>
+            <div class="stat-card"><div class="stat-val" id="stat-phase">—</div><div class="stat-unit"></div><div class="stat-label">Fase atual</div></div>
+            <div class="stat-card"><div class="stat-val" id="stat-daysleft">—</div><div class="stat-unit">dias</div><div class="stat-label">Até colheita</div></div>
+          </div>
+          <!-- Strain panel -->
+          <div id="strain-panel" style="display:none;margin-bottom:16px">
+            <div id="strain-card" class="strain-card">
+              <div id="strain-loading" style="padding:18px;text-align:center;color:var(--text3);font-size:13px">
+                <div style="font-size:24px;margin-bottom:6px">🔍</div>
+                Buscando <strong id="strain-loading-name" style="color:var(--text2)"></strong>...
+              </div>
+              <div id="strain-data" style="display:none">
+                <div id="strain-header" style="padding:16px 18px 12px;border-bottom:1px solid var(--border)">
+                  <div style="display:flex;align-items:flex-start;gap:12px">
+                    <div id="strain-type-badge" style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0"></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-family:var(--serif);font-size:18px;color:var(--text)" id="strain-name-display"></div>
+                      <div style="font-size:12px;color:var(--text3);margin-top:2px" id="strain-type-label"></div>
+                    </div>
+                    <div style="text-align:right;flex-shrink:0">
+                      <div style="font-family:var(--serif);font-size:20px;color:var(--amber)" id="strain-thc"></div>
+                      <div style="font-size:10px;color:var(--text3)">THC</div>
+                    </div>
+                  </div>
+                  <p id="strain-desc" style="font-size:12px;color:var(--text2);margin-top:10px;line-height:1.6"></p>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Floração</div><div style="font-size:15px;font-weight:600;color:var(--purple)" id="strain-flower"></div></div>
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">CBD</div><div style="font-size:15px;font-weight:600;color:var(--green)" id="strain-cbd"></div></div>
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Linhagem</div><div style="font-size:13px;color:var(--text2)" id="strain-lineage">---</div></div>
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Terpenos</div><div style="font-size:13px;color:var(--text2)" id="strain-terpenes">---</div></div>
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Efeito</div><div style="font-size:13px;color:var(--text2)" id="strain-effect"></div></div>
+                  <div style="background:var(--surface);padding:12px 14px"><div style="font-size:10px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Aromas</div><div style="font-size:13px;color:var(--text2)" id="strain-aroma"></div></div>
+                </div>
+                <div style="padding:12px 14px;background:var(--surface)"><div style="font-size:10px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Dica de cultivo</div><div style="font-size:12px;color:var(--text2);line-height:1.6" id="strain-tip"></div></div>
+                <div id="strain-warn" style="display:none;padding:10px 14px;background:var(--amber-dim);border-top:1px solid rgba(232,164,58,.2)"><div style="font-size:11px;color:var(--amber);line-height:1.5" id="strain-warn-text"></div></div>
+              </div>
+              <div id="strain-error" style="display:none;padding:14px 18px;font-size:12px;color:var(--text3)">⚠️ Strain não encontrada. Verifique o nome.</div>
+            </div>
+          </div>
+          <!-- Week nav -->
+          <div class="week-nav">
+            <button onclick="changeWeek(-1)">‹</button>
+            <div><div class="week-label" id="week-label">Semana 1</div><div class="week-sub" id="week-sub">—</div></div>
+            <button onclick="changeWeek(1)">›</button>
+          </div>
+          <div class="timeline" id="week-days"></div>
+        </div>
+      </div>
+
+      <!-- PAGE 1: ADUBAÇÃO -->
+      <div class="page" id="page-1">
+        <p class="section-title">Protocolo de Adubação</p>
+        <div id="adub-proto-badge" style="margin-bottom:16px"></div>
+        <div id="adub-content"></div>
+      </div>
+
+      <!-- PAGE 2: MIP -->
+      <div class="page" id="page-2">
+        <p class="section-title">Controle de Pragas</p>
+        <p class="section-sub">Protocolo preventivo. Sem foliar após Flora S3.</p>
+        <div class="warning-banner">⚠️ Nunca misturar Calda Sulfocálcica + Nim. Intervalo mínimo de 7 dias entre foliares.</div>
+        <div id="mip-content"></div>
+      </div>
+
+              <div class="page" id="page-3">
+        <p class="section-title">Guia Rápido</p>
+        <p class="section-sub">Parâmetros ideais para cannabis medicinal indoor.</p>
+        <div id="guia-content"></div>
+      </div>
+
+      <!-- PAGE 4: MANUAL -->
+      <div class="page" id="page-4">
+        <p class="section-title">Manual de Instruções</p>
+        <p class="section-sub">Como ler cada aba e o que cada informação significa.</p>
+        <div id="manual-content"></div>
+      </div>
+
+      <!-- PREMIUM LOCK overlay (aparece sobre as abas bloqueadas) -->
+      <div id="premium-lock-overlay">
+        <div style="font-size:48px;margin-bottom:16px">🔒</div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:10px" id="plo-title">Recurso Premium</div>
+        <div style="font-size:13px;color:var(--text3);line-height:1.6;max-width:280px;margin-bottom:28px" id="plo-desc">Esta aba está disponível apenas para assinantes do Plano Premium.</div>
+        <button onclick="window.open('#upgrade','_blank')" style="width:100%;max-width:280px;padding:14px;background:var(--green);color:var(--bg);font-family:var(--serif);font-size:16px;border:none;border-radius:12px;cursor:pointer;margin-bottom:12px">🚀 Assinar Premium</button>
+        <button onclick="gotoPage(0)" style="width:100%;max-width:280px;padding:12px;background:transparent;color:var(--text3);border:1px solid var(--border2);border-radius:12px;cursor:pointer;font-size:13px">← Voltar ao Cronograma</button>
+      </div>
+
+    </div><!-- /pages -->
+
+    <!-- ══ DOCTOR SCREEN ══ -->
+    <div id="doctor-screen" style="position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:20">
+      <div style="padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:10px">
+        <button class="btn-back" onclick="closeDoctorScreen()">‹</button>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--serif);font-size:17px;color:var(--text)">🩺 Doctor ZHC</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:1px">Orientação educativa · Não é prescrição médica</div>
+        </div>
+      </div>
+      <div id="doctor-content" style="flex:1;min-height:0;overflow-y:auto;padding:24px 20px;scrollbar-width:thin;scrollbar-color:var(--border) transparent"></div>
+      <!-- Strain detail modal -->
+      <div id="strain-detail-modal" class="modal-backdrop hidden" onclick="closeStrainDetail(event)">
+        <div class="modal-sheet" onclick="event.stopPropagation()" style="padding:0;overflow:hidden;border-radius:20px 20px 0 0;max-height:92vh">
+          <div id="strain-detail-content" style="overflow-y:auto;max-height:92vh;padding-bottom:env(safe-area-inset-bottom,16px)"></div>
+        </div>
+      </div>
+    </div><!-- /doctor-screen -->
+
+  </div><!-- /detail-screen -->
+
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════════
+// ESTADO GLOBAL (inicialização padrão)
+// ═══════════════════════════════════════════════
+let jardimState = { cultivos: [], activeId: null, user: null, isPremium: false };
+
+// ═══════════════════════════════════════════════
+// SUPABASE CONFIG (Preencher com as chaves do projeto)
+// ═══════════════════════════════════════════════
+const SUPABASE_URL = "https://eqyhbbiizmckjcfuqwrv.supabase.co"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeWhiYmlpem1ja2pjZnVxd3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NDc2MzUsImV4cCI6MjA5MDUyMzYzNX0.4X3r0ATjKoUQ9lvL_dmcpJzeIqZ6l103QVdpP0JjG0U";
+
+let supabaseClient = null;
+
+if (SUPABASE_URL && SUPABASE_KEY) {
+  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+}
+
+// ═══════════════════════════════════════════════
+// AUTH LOGIC
+// ═══════════════════════════════════════════════
+let authMode = 'login'; 
+
+async function initAuth() {
+  if (!supabaseClient) {
+    console.warn("Supabase não configurado.");
+    document.getElementById('auth-screen').classList.add('hidden');
+    return;
+  }
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (session) onLoginSuccess(session.user);
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session) onLoginSuccess(session.user);
+    else if (event === 'SIGNED_OUT') onLogout();
+    else if (event === 'PASSWORD_RECOVERY') {
+      const newPass = prompt('Digite sua nova senha (mínimo 6 caracteres):');
+      if (newPass && newPass.length >= 6) {
+        supabaseClient.auth.updateUser({ password: newPass }).then(({ error }) => {
+          if (error) alert('Erro ao atualizar senha: ' + translateAuthError(error.message));
+          else alert('✅ Senha atualizada com sucesso! Faça login com a nova senha.');
+        });
+      }
+    }
+  });
+}
+
+async function onLoginSuccess(user) {
+  try {
+    jardimState.user = user;
+    document.getElementById('auth-screen').classList.add('hidden');
+    const { data, error } = await supabaseClient.from('profiles').select('is_premium, jardim_data').eq('id', user.id).single();
+    
+    if (error) {
+      console.warn("Perfil não encontrado, usando local ou vazio.");
+      jardimState.isPremium = false;
+    } else if (data) {
+      jardimState.isPremium = !!data.is_premium;
+      const sub = document.getElementById('jardim-subtitle');
+      if (sub) sub.innerText = jardimState.isPremium ? "🚀 Plano Premium" : "🌱 Plano Free (Grátis)";
+
+      const btnUpgrade = document.getElementById('btn-upgrade');
+      if (btnUpgrade) btnUpgrade.style.display = jardimState.isPremium ? 'none' : 'block';
+
+      
+      if (data.jardim_data?.cultivos) {
+        jardimState.cultivos = data.jardim_data.cultivos;
+        jardimState.activeId = data.jardim_data.activeId;
+      }
+    }
+    renderJardim();
+  } catch (e) {
+    console.error("Erro no login post-auth:", e);
+    renderJardim();
+    document.getElementById('auth-screen').classList.add('hidden');
+  }
+}
+
+async function onLogout() {
+  await supabaseClient.auth.signOut();
+  jardimState.user = null;
+  jardimState.cultivos = [];
+  document.getElementById('auth-screen').classList.remove('hidden');
+  const btnUpgrade = document.getElementById('btn-upgrade');
+  if (btnUpgrade) btnUpgrade.style.display = 'none';
+  renderJardim();
+}
+
+function authKeyDown(e) {
+  if (e.key === 'Enter') handleAuth();
+}
+
+function translateAuthError(msg) {
+  if (!msg) return 'Ocorreu um erro. Tente novamente.';
+  const m = msg.toLowerCase();
+  if (m.includes('invalid login credentials') || m.includes('invalid email or password'))
+    return 'E-mail ou senha incorretos.';
+  if (m.includes('email not confirmed'))
+    return 'Confirme seu e-mail antes de entrar. Verifique sua caixa de entrada.';
+  if (m.includes('user already registered') || m.includes('already been registered'))
+    return 'Este e-mail já está cadastrado. Faça login ou recupere sua senha.';
+  if (m.includes('password should be at least'))
+    return 'A senha deve ter no mínimo 6 caracteres.';
+  if (m.includes('unable to validate email address'))
+    return 'Endereço de e-mail inválido.';
+  if (m.includes('rate limit') || m.includes('too many requests'))
+    return 'Muitas tentativas. Aguarde alguns minutos e tente novamente.';
+  if (m.includes('network') || m.includes('fetch'))
+    return 'Sem conexão. Verifique sua internet e tente novamente.';
+  return msg;
+}
+
+async function handleAuth() {
+  const email = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const confirmPassword = document.getElementById('auth-confirm-password').value;
+  const name = document.getElementById('auth-name').value.trim();
+  const errEl = document.getElementById('auth-error');
+  const successEl = document.getElementById('auth-success');
+  const btn = document.getElementById('auth-submit');
+
+  // Limpa mensagens
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+  document.getElementById('auth-email').classList.remove('invalid');
+  document.getElementById('auth-password').classList.remove('invalid');
+
+  // Validação básica
+  if (!email) {
+    document.getElementById('auth-email').classList.add('invalid');
+    errEl.innerText = 'Preencha seu e-mail.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!password) {
+    document.getElementById('auth-password').classList.add('invalid');
+    errEl.innerText = 'Preencha sua senha.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (authMode === 'signup') {
+    if (password.length < 6) {
+      document.getElementById('auth-password').classList.add('invalid');
+      errEl.innerText = 'A senha deve ter no mínimo 6 caracteres.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (password !== confirmPassword) {
+      document.getElementById('auth-confirm-password').classList.add('invalid');
+      errEl.innerText = 'As senhas não coincidem.';
+      errEl.style.display = 'block';
+      return;
+    }
+  }
+
+  btn.disabled = true;
+  btn.innerText = 'Processando...';
+
+  try {
+    let result;
+    if (authMode === 'login') {
+      result = await supabaseClient.auth.signInWithPassword({ email, password });
+    } else {
+      const opts = { email, password };
+      if (name) opts.options = { data: { full_name: name } };
+      result = await supabaseClient.auth.signUp(opts);
+    }
+    if (result.error) throw result.error;
+
+    if (authMode === 'signup') {
+      // Supabase pode exigir confirmação de e-mail (identities vazio = e-mail já existe)
+      const identities = result.data?.user?.identities;
+      if (identities && identities.length === 0) {
+        errEl.innerText = 'Este e-mail já está cadastrado. Faça login ou recupere sua senha.';
+        errEl.style.display = 'block';
+      } else {
+        successEl.innerText = '✅ Cadastro realizado! Verifique seu e-mail para confirmar a conta.';
+        successEl.style.display = 'block';
+        setTimeout(() => toggleAuthMode(), 2500);
+      }
+    }
+  } catch (e) {
+    errEl.innerText = translateAuthError(e.message);
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.innerText = authMode === 'login' ? 'Entrar →' : 'Cadastrar →';
+  }
+}
+
+async function handleForgotPassword() {
+  const email = document.getElementById('auth-email').value.trim();
+  const errEl = document.getElementById('auth-error');
+  const successEl = document.getElementById('auth-success');
+  errEl.style.display = 'none';
+  successEl.style.display = 'none';
+
+  if (!email) {
+    document.getElementById('auth-email').classList.add('invalid');
+    errEl.innerText = 'Digite seu e-mail acima para recuperar a senha.';
+    errEl.style.display = 'block';
+    document.getElementById('auth-email').focus();
+    return;
+  }
+
+  try {
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + window.location.pathname
+    });
+    if (error) throw error;
+    successEl.innerText = '📧 E-mail de recuperação enviado! Verifique sua caixa de entrada.';
+    successEl.style.display = 'block';
+  } catch (e) {
+    errEl.innerText = translateAuthError(e.message);
+    errEl.style.display = 'block';
+  }
+}
+
+function toggleAuthMode() {
+  authMode = authMode === 'login' ? 'signup' : 'login';
+  const btn = document.getElementById('auth-submit');
+  const switchTxt = document.getElementById('auth-switch');
+  const cardTitle = document.getElementById('auth-card-title');
+  const cardSub = document.getElementById('auth-card-sub');
+  const confirmGroup = document.getElementById('auth-confirm-group');
+  const nameGroup = document.getElementById('auth-name-group');
+  const forgotEl = document.getElementById('auth-forgot');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+
+  if (authMode === 'signup') {
+    btn.innerText = 'Cadastrar →';
+    switchTxt.innerHTML = 'Já tem conta? <span>Faça login</span>';
+    cardTitle.innerText = 'Criar conta';
+    cardSub.innerText = 'Comece sua jornada de cultivo';
+    confirmGroup.style.display = 'block';
+    nameGroup.style.display = 'block';
+    forgotEl.style.display = 'none';
+  } else {
+    btn.innerText = 'Entrar →';
+    switchTxt.innerHTML = 'Não tem conta? <span>Cadastre-se grátis</span>';
+    cardTitle.innerText = 'Flor de Minas';
+    cardSub.innerText = 'Acesse sua jornada de cultivo';
+    confirmGroup.style.display = 'none';
+    nameGroup.style.display = 'none';
+    forgotEl.style.display = 'block';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// COMPAT SHIM
+// ═══════════════════════════════════════════════
+function getActiveCultivo() {
+  return jardimState.cultivos.find(c => c.id === jardimState.activeId) || null;
+}
+
+const state = new Proxy({}, {
+  get(_, k) {
+    const c = getActiveCultivo();
+    if (!c) return undefined;
+    if (k === 'weeks') return c.weeks;
+    if (k === 'proto')  return c.proto;
+    if (k === 'date')   return c.date;
+    if (k === 'strain') return c.strain;
+    if (k === 'currentWeek') return c.currentWeek;
+    if (k === 'strainInfo')  return c.strainInfo;
+    return c[k];
+  },
+  set(_, k, v) {
+    const c = getActiveCultivo();
+    if (c) c[k] = v;
+    return true;
+  }
+});
+
+// ═══════════════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════════════
+async function saveJardim() {
+  localStorage.setItem('jardimState', JSON.stringify(jardimState));
+  if (jardimState.user && supabaseClient) {
+    await supabaseClient.from('profiles').update({ 
+      jardim_data: { cultivos: jardimState.cultivos, activeId: jardimState.activeId } 
+    }).eq('id', jardimState.user.id);
+  }
+}
+function loadJardim() {
+  try {
+    const s = JSON.parse(localStorage.getItem('jardimState') || 'null');
+    if (s && Array.isArray(s.cultivos)) {
+      // Migrar cultivos antigos que tinham flush separado
+      s.cultivos.forEach(c => {
+        if (c.weeks && c.weeks.flush !== undefined) {
+          c.weeks.flora = (c.weeks.flora||9) + (c.weeks.flush||0);
+          delete c.weeks.flush;
+        }
+      });
+      jardimState = s;
+    }
+    // Migrar estado antigo (single cultivo)
+    const old = JSON.parse(localStorage.getItem('cultivoState') || 'null');
+    if (old && old.date && jardimState.cultivos.length === 0) {
+      const migrated = {
+        id: genId(), name: old.strain || 'Cultivo 1',
+        strain: old.strain || '', color: '#52b778',
+        proto: old.proto || 'biobizz', date: old.date,
+        weeks: old.weeks || {clone:2,vega:6,flora:9,flush:1},
+        currentWeek: old.currentWeek || 1,
+        strainInfo: old.strainInfo || null
+      };
+      jardimState.cultivos.push(migrated);
+      saveJardim();
+      localStorage.removeItem('cultivoState');
+    }
+  } catch(e) {}
+}
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+// ═══════════════════════════════════════════════
+// PROTOCOLS + MIP DATA
+// ═══════════════════════════════════════════════
+const PROTOCOLS = {
+  biobizz: {
+    name: 'BioBizz', icon: '🌿', color: '#52b778',
+    obs: 'Orgânico certificado. pH ideal 6.2–6.5. Foliar com Fish·Mix + Alg·A·Mic até Flora S2.',
+    clone: [
+      {s:1, p1:'Root Juice', d1:'0.3 mL/L', p2:'—', d2:'—', supl:'—', ph:'6.2–6.5', ec:'baixo', obs:'Solo úmido — estimular raízes'},
+      {s:2, p1:'Root Juice', d1:'0.3 mL/L', p2:'Alg·A·Mic', d2:'0.5 mL/L', supl:'—', ph:'6.2–6.5', ec:'baixo', obs:'Alg·A·Mic recupera e fortalece'},
+      {s:3, p1:'Root Juice', d1:'0.5 mL/L', p2:'Bio·Grow', d2:'0.5 mL/L', supl:'—', ph:'6.2–6.5', ec:'baixo', obs:'Início suave de N antes da vega'},
+      {s:4, p1:'Root Juice', d1:'0.5 mL/L', p2:'Bio·Grow', d2:'1 mL/L', supl:'—', ph:'6.2–6.5', ec:'baixo', obs:'Pronto para vegetativo'},
+    ],
+    vega: [
+      {s:1, p1:'Bio·Grow', d1:'1 mL/L', p2:'Fish·Mix', d2:'1 mL/L', supl:'Alg·A·Mic 1mL', ph:'6.2–6.5', ec:'0.8', obs:'Fish·Mix = mais N orgânico'},
+      {s:2, p1:'Bio·Grow', d1:'2 mL/L', p2:'Fish·Mix', d2:'2 mL/L', supl:'—', ph:'6.2–6.5', ec:'1.0', obs:'Aumentar progressivamente'},
+      {s:3, p1:'Bio·Grow', d1:'2 mL/L', p2:'Fish·Mix', d2:'2 mL/L', supl:'Alg·A·Mic 1mL', ph:'6.2–6.5', ec:'1.2', obs:'Foliar Fish·Mix + Alg·A·Mic 1mL/L'},
+      {s:4, p1:'Bio·Grow', d1:'3 mL/L', p2:'Fish·Mix', d2:'3 mL/L', supl:'—', ph:'6.2–6.5', ec:'1.4', obs:'LST / estrutura vegetativa'},
+      {s:5, p1:'Bio·Grow', d1:'4 mL/L', p2:'Fish·Mix', d2:'3 mL/L', supl:'Alg·A·Mic 1mL', ph:'6.2–6.5', ec:'1.5', obs:'Pré-floração'},
+      {s:6, p1:'Bio·Grow', d1:'4 mL/L', p2:'—', d2:'—', supl:'—', ph:'6.2–6.5', ec:'1.4', obs:'Última semana de vega pura'},
+      {s:7, p1:'Bio·Grow', d1:'4 mL/L', p2:'Bio·Bloom', d2:'1 mL/L', supl:'—', ph:'6.2–6.5', ec:'1.4', obs:'Transição — introduzir Bloom'},
+      {s:8, p1:'Bio·Grow', d1:'4 mL/L', p2:'Bio·Bloom', d2:'2 mL/L', supl:'—', ph:'6.2–6.5', ec:'1.4', obs:'Semana extra de vega'},
+    ],
+    flora: [
+      {s:1, p1:'Bio·Grow', d1:'1 mL/L', p2:'Bio·Bloom', d2:'1 mL/L', supl:'Top·Max 1mL', ph:'6.2–6.5', ec:'1.6', obs:'Manter Grow S1–S3'},
+      {s:2, p1:'Bio·Grow', d1:'1 mL/L', p2:'Bio·Bloom', d2:'2 mL/L', supl:'Top·Max 1mL', ph:'6.2–6.5', ec:'1.7', obs:'Formação de pistils'},
+      {s:3, p1:'Bio·Grow', d1:'1 mL/L', p2:'Bio·Bloom', d2:'3 mL/L', supl:'Top·Max 2mL', ph:'6.2–6.5', ec:'1.8', obs:'Início do enchimento'},
+      {s:4, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'3 mL/L', supl:'Top·Max 2mL', ph:'6.2–6.5', ec:'1.9', obs:'Parar Grow — flora plena'},
+      {s:5, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'4 mL/L', supl:'Top·Max 3mL', ph:'6.2–6.5', ec:'2.0', obs:'Pico de floração'},
+      {s:6, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'4 mL/L', supl:'Top·Max 3mL', ph:'6.2–6.5', ec:'2.0', obs:'Enchimento máximo'},
+      {s:7, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'4 mL/L', supl:'Top·Max 4mL', ph:'6.2–6.5', ec:'1.9', obs:'Amadurecimento'},
+      {s:8, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'4 mL/L', supl:'Top·Max 4mL', ph:'6.2–6.5', ec:'1.8', obs:'Pré-flush — analisar tricomas'},
+      {s:9, p1:'—', d1:'—', p2:'Bio·Bloom', d2:'4 mL/L', supl:'Top·Max 4mL', ph:'6.2–6.5', ec:'1.6', obs:'Semana extra (sativa)'},
+      {s:10,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–6.5', ec:'< 0.3', obs:'🚿 FLUSH — parar nutrição (sativa/flora longa)'},
+      {s:11,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–6.5', ec:'< 0.3', obs:'🚿 FLUSH — parar TODA nutrição. Lavar substrato com água pura.'},
+      {s:12,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–6.5', ec:'< 0.2', obs:'🚿 FLUSH S2 — analisar tricomas diariamente. Colheita próxima!'},
+    ],
+    flush: [
+      {s:1, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'Enzimas 1mL', ph:'6.2', ec:'< 0.3', obs:'Lavar substrato'},
+      {s:2, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2', ec:'< 0.2', obs:'Analisar tricomas — colheita?'},
+    ]
+  },
+  remo: {
+    name: 'Remo Nutrients', icon: '⚗️', color: '#2196F3',
+    obs: 'Mineral/orgânico. Sempre adicionar Micro primeiro. Magnifical = CalMag Remo. pH: 5.8–6.3.',
+    clone: [
+      {s:1, p1:'Remo Roots', d1:'0.5 mL/L', p2:'Magnifical', d2:'0.5 mL/L', supl:'—', ph:'5.8–6.0', ec:'baixo', obs:'Roots = enraizador Remo'},
+      {s:2, p1:'Remo Roots', d1:'1 mL/L', p2:'Magnifical', d2:'0.5 mL/L', supl:'—', ph:'5.8–6.0', ec:'baixo', obs:'Magnifical = CalMag Remo'},
+      {s:3, p1:'Remo Roots', d1:'1 mL/L', p2:'Micro', d2:'0.5 mL/L', supl:'Grow 0.5mL', ph:'5.8–6.2', ec:'0.4', obs:'Introduzir base antes da vega'},
+      {s:4, p1:'Remo Roots', d1:'1 mL/L', p2:'Micro', d2:'1 mL/L', supl:'Grow 1mL', ph:'5.8–6.2', ec:'0.6', obs:'Pronto para vega'},
+    ],
+    vega: [
+      {s:1, p1:'Micro', d1:'1.3 mL/L', p2:'Grow', d2:'1.3 mL/L', supl:'Magnifical 0.5', ph:'6.0–6.3', ec:'0.8', obs:'Base Remo para vega'},
+      {s:2, p1:'Micro', d1:'1.5 mL/L', p2:'Grow', d2:'1.5 mL/L', supl:'Magnifical 0.5', ph:'6.0–6.3', ec:'1.0', obs:'Tabela oficial S2'},
+      {s:3, p1:'Micro', d1:'1.8 mL/L', p2:'Grow', d2:'1.8 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.2', obs:'S3 — progressão'},
+      {s:4, p1:'Micro', d1:'2.1 mL/L', p2:'Grow', d2:'2.1 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.4', obs:'Pico vega — tabela oficial'},
+      {s:5, p1:'Micro', d1:'2.1 mL/L', p2:'Grow', d2:'2.1 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.5', obs:'Manter se continuar vega'},
+      {s:6, p1:'Micro', d1:'2.1 mL/L', p2:'Grow', d2:'2.1 mL/L', supl:'Bloom 1.0mL', ph:'6.0–6.3', ec:'1.5', obs:'Introduzir Bloom — transição'},
+      {s:7, p1:'Micro', d1:'2.1 mL/L', p2:'Grow', d2:'1.0 mL/L', supl:'Bloom 2.1mL', ph:'6.0–6.3', ec:'1.4', obs:'Reduzir Grow'},
+      {s:8, p1:'Micro', d1:'2.1 mL/L', p2:'Grow', d2:'0.5 mL/L', supl:'Bloom 2.1mL', ph:'6.0–6.3', ec:'1.4', obs:'Semana extra de vega'},
+    ],
+    flora: [
+      {s:1, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.6', obs:'Apenas Micro+Bloom na flora'},
+      {s:2, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.7', obs:'Sem Grow daqui pra frente'},
+      {s:3, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'Magnifical 1.0', ph:'6.0–6.3', ec:'1.8', obs:'Tabela oficial S1–S4: 2.1mL'},
+      {s:4, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'Astroflower 1.0', ph:'6.0–6.3', ec:'1.9', obs:'Astroflower = estimulante'},
+      {s:5, p1:'Micro', d1:'2.6 mL/L', p2:'Bloom', d2:'2.6 mL/L', supl:'Astro 2.0 + Kelp', ph:'6.0–6.3', ec:'2.0', obs:'S5–S7: 2.6mL — pico Remo'},
+      {s:6, p1:'Micro', d1:'2.6 mL/L', p2:'Bloom', d2:'2.6 mL/L', supl:'Astro 2.0 + Kelp', ph:'6.0–6.3', ec:'2.0', obs:'Pico de floração'},
+      {s:7, p1:'Micro', d1:'2.6 mL/L', p2:'Bloom', d2:'2.6 mL/L', supl:'Astroflower 1.0', ph:'6.0–6.3', ec:'1.8', obs:'Tabela oficial S7'},
+      {s:8, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'—', ph:'6.0–6.3', ec:'1.6', obs:'Reduzir — semana final'},
+      {s:9, p1:'Micro', d1:'2.1 mL/L', p2:'Bloom', d2:'2.1 mL/L', supl:'—', ph:'6.0–6.3', ec:'1.4', obs:'Semana extra (sativa)'},
+      {s:10,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'5.8–6.0', ec:'< 0.3', obs:'🚿 FLUSH Remo (sativa longa)'},
+      {s:11,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'5.8–6.0', ec:'< 0.3', obs:'🚿 FLUSH Remo — parar TODA nutrição'},
+      {s:12,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'5.8–6.0', ec:'< 0.2', obs:'🚿 FLUSH S2 — analisar tricomas. Colheita próxima!'},
+    ],
+    flush: [
+      {s:1, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'5.8–6.0', ec:'< 0.3', obs:'Flush Remo — 1 semana padrão'},
+      {s:2, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'5.8–6.0', ec:'< 0.2', obs:'Analisar tricomas'},
+    ]
+  },
+  go: {
+    name: 'General Organics', icon: '📦', color: '#9b72cf',
+    obs: 'GO Box da GH. pH auto-regula em solo. Doses convertidas de mL/gal para mL/L.',
+    clone: [
+      {s:1, p1:'BioRoot', d1:'1.3 mL/L', p2:'CaMg+', d2:'1.3 mL/L', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'GO não precisa ajustar pH em solo'},
+      {s:2, p1:'BioRoot', d1:'1.3 mL/L', p2:'CaMg+', d2:'1.3 mL/L', supl:'BioWeed 0.7', ph:'6.2–7.0', ec:'N/A', obs:'BioWeed = extrato de algas'},
+      {s:3, p1:'BioRoot', d1:'2.6 mL/L', p2:'CaMg+', d2:'1.3 mL/L', supl:'BioThrive G 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Introduzir BioThrive Grow'},
+      {s:4, p1:'BioRoot', d1:'2.6 mL/L', p2:'CaMg+', d2:'1.3 mL/L', supl:'BioThrive G 2.6', ph:'6.2–7.0', ec:'N/A', obs:'Pronto para vega'},
+    ],
+    vega: [
+      {s:1, p1:'BioThrive G', d1:'1.3 mL/L', p2:'BioRoot', d2:'2.6 mL/L', supl:'BioWeed 0.7', ph:'6.2–7.0', ec:'N/A', obs:'GO não requer EC'},
+      {s:2, p1:'BioThrive G', d1:'2.6 mL/L', p2:'BioRoot', d2:'2.6 mL/L', supl:'BioWeed 0.7', ph:'6.2–7.0', ec:'N/A', obs:'Sem ajuste pH em solo'},
+      {s:3, p1:'BioThrive G', d1:'2.6 mL/L', p2:'BioRoot', d2:'2.6 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'S3 veg GO'},
+      {s:4, p1:'BioThrive G', d1:'2.6 mL/L', p2:'BioRoot', d2:'1.3 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Reduzir BioRoot'},
+      {s:5, p1:'BioThrive G', d1:'2.6 mL/L', p2:'CaMg+', d2:'1.3 mL/L', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Grow puro'},
+      {s:6, p1:'BioThrive G', d1:'2.6 mL/L', p2:'BioThrive B', d2:'1.3 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Introduzir Bloom'},
+      {s:7, p1:'BioThrive G', d1:'1.3 mL/L', p2:'BioThrive B', d2:'2.6 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Transição flora'},
+      {s:8, p1:'BioThrive G', d1:'1.3 mL/L', p2:'BioThrive B', d2:'2.6 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Semana extra GO'},
+    ],
+    flora: [
+      {s:1, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'BioWeed 0.7', ph:'6.2–7.0', ec:'N/A', obs:'BioBud = estimulante flores GO'},
+      {s:2, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Early Flower GO'},
+      {s:3, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'CaMg+ 1.3', ph:'6.2–7.0', ec:'N/A', obs:'Mid Flower GO'},
+      {s:4, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'BioMarine 0.7', ph:'6.2–7.0', ec:'N/A', obs:'BioMarine = peixe fermentado'},
+      {s:5, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'BioMarine 0.7', ph:'6.2–7.0', ec:'N/A', obs:'Pico floração GO'},
+      {s:6, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'CaMg+ 0.7', ph:'6.2–7.0', ec:'N/A', obs:'Late Flower GO'},
+      {s:7, p1:'BioThrive B', d1:'2.6 mL/L', p2:'BioBud', d2:'0.7 mL/L', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Reduzir CaMg+ final'},
+      {s:8, p1:'BioThrive B', d1:'2.6 mL/L', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Pré-flush GO'},
+      {s:9, p1:'BioThrive B', d1:'1.3 mL/L', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Semana extra'},
+      {s:10,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'🚿 FLUSH GO (sativa longa)'},
+      {s:11,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'🚿 FLUSH GO — parar toda nutrição'},
+      {s:12,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'🚿 FLUSH S2 GO — analisar tricomas'},
+    ],
+    flush: [
+      {s:1, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Ripen/Rinse — 1 semana GO'},
+      {s:2, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'6.2–7.0', ec:'N/A', obs:'Analisar tricomas'},
+    ]
+  },
+  supersoil: {
+    name: 'SuperSoil', icon: '🌍', color: '#e8a43a',
+    obs: 'Solo vivo autoregula. Coberturas secas liberam nutrientes lentamente. EC/pH auto.',
+    clone: [
+      // Fase de enraizamento: NÃO nutrir — clones ainda sem raízes são extremamente sensíveis
+      // Foco: estimular formação de raízes, manter umidade e ambiente estável
+      {s:1, p1:'Extrato de babosa', d1:'30 mL/L (gel puro)', p2:'—', d2:'—', supl:'Micorrizas pó (aplicar na base)', ph:'auto', ec:'auto', obs:'Auxina natural — mergulhar base do clone 30min antes de plantar. Solo apenas levemente úmido.'},
+      {s:2, p1:'Extrato de babosa', d1:'30 mL/L (nebulização)', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Nebulizar folhas levemente. Não encharcar — raízes jovens apodrecem fácil.'},
+      {s:3, p1:'Água pura', d1:'regas mínimas', p2:'—', d2:'—', supl:'Fulvato de K (1 mL/L)', ph:'auto', ec:'auto', obs:'Raízes visíveis? Introduzir fulvato suave. Manter domo/umidade 75–85%.'},
+      {s:4, p1:'Molasses diluído', d1:'1 mL/L', p2:'—', d2:'—', supl:'Trichoderma (solo, 1g/L)', ph:'auto', ec:'auto', obs:'Clone com raízes estabelecidas — ativar microbioma suavemente antes da vega.'},
+    ],
+    vega: [
+      {s:1, p1:'Chá de compostagem', d1:'2 L/pl.', p2:'—', d2:'—', supl:'Vermicomposto', ph:'auto', ec:'auto', obs:'SuperSoil já contém todos os nutrientes'},
+      {s:2, p1:'Torta de mamona', d1:'10g/vaso', p2:'Farinha de osso', d2:'10g/vaso', supl:'—', ph:'auto', ec:'auto', obs:'Torta = N lento | Osso = P'},
+      {s:3, p1:'Molasses', d1:'2 mL/L', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Alimenta fungos e bactérias'},
+      {s:4, p1:'Chá de compostagem', d1:'2 L/pl.', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Solo vivo trabalha'},
+      {s:5, p1:'Farinha de alga', d1:'5g/L solo', p2:'Cinzas de madeira', d2:'3g/L', supl:'—', ph:'auto', ec:'auto', obs:'Alga micro | Cinzas = K e Ca'},
+      {s:6, p1:'Molasses', d1:'2 mL/L', p2:'—', d2:'—', supl:'Microrganismos', ph:'auto', ec:'auto', obs:'Pré-flora — ativar P e K'},
+      {s:7, p1:'Farinha de osso', d1:'10g/vaso', p2:'Guano de morcego', d2:'5g/L', supl:'—', ph:'auto', ec:'auto', obs:'Guano P alto = preparo para flora'},
+      {s:8, p1:'Chá de compostagem', d1:'2 L/pl.', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Semana extra'},
+    ],
+    flora: [
+      {s:1, p1:'Guano de morcego', d1:'5g/L solo', p2:'Molasses', d2:'2 mL/L', supl:'Chá', ph:'auto', ec:'auto', obs:'Guano P alto = floração forte'},
+      {s:2, p1:'Chá de compostagem', d1:'2 L/pl.', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Solo vivo em pico'},
+      {s:3, p1:'Farinha de alga', d1:'5g/L solo', p2:'—', d2:'—', supl:'Molasses 2mL', ph:'auto', ec:'auto', obs:'K e micronutrientes florais'},
+      {s:4, p1:'Guano de morcego', d1:'5g/L solo', p2:'Fosfato natural', d2:'5g/L', supl:'—', ph:'auto', ec:'auto', obs:'Fósforo natural = buds densos'},
+      {s:5, p1:'Molasses', d1:'2 mL/L', p2:'—', d2:'—', supl:'Chá', ph:'auto', ec:'auto', obs:'Alimentar microbioma'},
+      {s:6, p1:'Farinha de alga', d1:'5g/L solo', p2:'Molasses', d2:'2 mL/L', supl:'—', ph:'auto', ec:'auto', obs:'Micro + K'},
+      {s:7, p1:'Chá de compostagem', d1:'2 L/pl.', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Amadurecimento'},
+      {s:8, p1:'Molasses', d1:'2 mL/L', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Pré-flush SuperSoil'},
+      {s:9, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Parar coberturas'},
+      {s:10,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Semana extra'},
+      {s:11,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Semana extra'},
+      {s:12,p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Última semana'},
+    ],
+    flush: [
+      {s:1, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'Enzimas 1mL', ph:'auto', ec:'auto', obs:'Flush curto — solo limpo'},
+      {s:2, p1:'Água pura', d1:'—', p2:'—', d2:'—', supl:'—', ph:'auto', ec:'auto', obs:'Analisar tricomas'},
+    ]
+  },
+  generic: {
+    name: 'Genérico', icon: '✏️', color: '#a8c4ac',
+    obs: 'Protocolo personalizado. Consulte as especificações do seu produto.',
+    clone: [{s:1,p1:'Seu produto',d1:'—',p2:'—',d2:'—',supl:'—',ph:'—',ec:'—',obs:'Preencha conforme seu protocolo'}],
+    vega:  [{s:1,p1:'Seu produto',d1:'—',p2:'—',d2:'—',supl:'—',ph:'—',ec:'—',obs:'Preencha conforme seu protocolo'}],
+    flora: [{s:1,p1:'Seu produto',d1:'—',p2:'—',d2:'—',supl:'—',ph:'—',ec:'—',obs:'Preencha conforme seu protocolo'}],
+    flush: [{s:1,p1:'Água pura',d1:'—',p2:'—',d2:'—',supl:'—',ph:'—',ec:'—',obs:'Flush padrão'}],
+  }
+};
+
+
+const MIP_SCHEDULE = [
+  {fase:'Clone', sem:1, prod:'Nim (2 mL/L)', via:'Foliar leve', obs:'Preventivo geral'},
+  {fase:'Clone', sem:2, prod:'Beauveria bassiana (5 g/L)', via:'Foliar + solo', obs:'Fungo entomopatogênico'},
+  {fase:'Vega', sem:1, prod:'Nim (2 mL/L)', via:'Foliar', obs:'Inspecionar face inferior das folhas'},
+  {fase:'Vega', sem:2, prod:'Beauveria bassiana (5 g/L)', via:'Foliar', obs:''},
+  {fase:'Vega', sem:3, prod:'Calda Sulfocálcica (1%)', via:'Foliar', obs:'⚠️ Intervalo 7 dias após Nim'},
+  {fase:'Vega', sem:4, prod:'Trichoderma (3 g/L)', via:'Solo (rega)', obs:'Solo saudável = planta forte'},
+  {fase:'Vega', sem:5, prod:'Calda Bordalesa (0.5%)', via:'Foliar', obs:'⚠️ Não combinar com Nim'},
+  {fase:'Vega', sem:6, prod:'Nim (2 mL/L)', via:'Foliar', obs:'⚠️ ÚLTIMA foliar antes da floração'},
+  {fase:'Flora', sem:1, prod:'Beauveria bassiana (5 g/L)', via:'Solo apenas', obs:'⚠️ SEM FOLIAR em floração'},
+  {fase:'Flora', sem:2, prod:'Trichoderma (3 g/L)', via:'Solo (rega)', obs:''},
+  {fase:'Flora', sem:3, prod:'Beauveria bassiana (5 g/L)', via:'Solo apenas', obs:'⚠️ Umidade < 45%'},
+  {fase:'Flora', sem:4, prod:'Trichoderma (3 g/L)', via:'Solo (rega)', obs:'Inspecionar buds'},
+  {fase:'Flora', sem:5, prod:'Inspeção + Trichoderma', via:'Solo', obs:'⚠️ Verificar Botrytis'},
+];
+
+
+
+// ═══════════════════════════════════════════════
+// HELPERS (compartilhados)
+// ═══════════════════════════════════════════════
+function addDays(date, n) { const d=new Date(date); d.setDate(d.getDate()+n); return d; }
+function fmtDate(d, short=false) {
+  if (!d) return '—';
+  return d.toLocaleDateString('pt-BR', short
+    ? {day:'2-digit',month:'2-digit'}
+    : {day:'2-digit',month:'short'});
+}
+function getDates(cultivo) {
+  const c = cultivo || getActiveCultivo();
+  if (!c || !c.date) return null;
+  const d0 = new Date(c.date + 'T12:00:00');
+  const w = c.weeks;
+  const dC=w.clone*7, dV=w.vega*7, dF=w.flora*7;
+  // Flush = últimas 2 semanas da floração (sem nutrição)
+  const dFl=Math.min(14, Math.floor(dF*0.22)); // ~2 semanas para floras ≥9sem, 1 para floras curtas
+  const dFlush = dF - dFl; // dias de flora com nutrição
+  return {
+    d0, iniVega:addDays(d0,dC), iniFlora:addDays(d0,dC+dV),
+    iniFlush:addDays(d0,dC+dV+dFlush), harvest:addDays(d0,dC+dV+dF),
+    totalDays:dC+dV+dF,
+    flushWeeks: Math.round(dFl/7)
+  };
+}
+function getPhaseForDate(date, dates) {
+  if (!dates) return null;
+  const {d0,iniVega,iniFlora,iniFlush,harvest} = dates;
+  if (date < iniVega)  return {name:'Clone',     color:'#52b778', short:'C'};
+  if (date < iniFlora) return {name:'Vegetativo', color:'#2196F3', short:'V'};
+  if (date < iniFlush) return {name:'Floração',   color:'#9b72cf', short:'F', flush:false};
+  if (date <= harvest) return {name:'Floração',   color:'#e05c5c', short:'F🚿', flush:true};
+  return null;
+}
+function getRelWeek(date, phaseStart) {
+  return Math.floor((date - phaseStart)/(7*86400000)) + 1;
+}
+function getAdubForWeek(fase, sem) {
+  const c = getActiveCultivo();
+  const key = {Clone:'clone',Vegetativo:'vega',Floração:'flora',Flush:'flush'}[fase];
+  // Protocolo customizado tem precedência
+  if (c?.proto === 'generic' && c.customProto) {
+    return c.customProto[key]?.find(r => r.s === sem) || null;
+  }
+  const p = PROTOCOLS[state.proto];
+  if (!p) return null;
+  return p[key]?.find(r => r.s === sem) || null;
+}
+function getMipForWeek(fase, sem) {
+  return MIP_SCHEDULE.find(m => m.fase===fase && m.sem===sem);
+}
+function calcCurrentWeek(cultivo) {
+  const c = cultivo || getActiveCultivo();
+  if (!c || !c.date) return 1;
+  const d0 = new Date(c.date + 'T12:00:00');
+  const now = new Date(); now.setHours(12,0,0,0);
+  const passed = Math.floor((now - d0) / 86400000);
+  const total  = (c.weeks.clone+c.weeks.vega+c.weeks.flora)*7;
+  if (passed >= 0 && passed < total) return Math.floor(passed/7)+1;
+  return 1;
+}
+function getPhaseBadge(cultivo) {
+  const d = getDates(cultivo);
+  if (!d) return {label:'Sem data', color:'#888'};
+  const today = new Date(); today.setHours(12,0,0,0);
+  if (today > d.harvest) return {label:'Colhido ✂️', color:'#888'};
+  if (today < d.d0)      return {label:'Aguardando', color:'#e8a43a'};
+  const p = getPhaseForDate(today, d);
+  return p ? {label:p.name, color:p.color} : {label:'—', color:'#888'};
+}
+
+// ═══════════════════════════════════════════════
+// JARDIM SCREEN
+// ═══════════════════════════════════════════════
+function renderJardim() {
+  const grid = document.getElementById('jardim-grid');
+  const count = document.getElementById('jardim-count');
+  count.textContent = jardimState.cultivos.length + ' cultivo' + (jardimState.cultivos.length!==1?'s':'');
+
+  // Today panel
+  const today = new Date(); today.setHours(12,0,0,0);
+  const todayRows = [];
+  for (const c of jardimState.cultivos) {
+    const d = getDates(c);
+    if (!d || today < d.d0 || today > d.harvest) continue;
+    const dayNum = Math.floor((today - d.d0)/86400000)+1;
+    const phase  = getPhaseForDate(today, d);
+    const cw     = calcCurrentWeek(c);
+    const pStart = phase?.name==='Clone'?d.d0:phase?.name==='Vegetativo'?d.iniVega:phase?.name==='Floração'?d.iniFlora:d.iniFlush;
+    const relW   = pStart ? getRelWeek(today, pStart) : 1;
+    const isFirst= pStart ? Math.floor((today-pStart)/86400000)%7===0 : false;
+    const adub   = isFirst ? (()=>{const p=PROTOCOLS[c.proto];const k={Clone:'clone',Vegetativo:'vega',Floração:'flora',Flush:'flush'}[phase?.name];return p?.[k]?.find(r=>r.s===relW)||null})() : null;
+    const mip    = isFirst ? MIP_SCHEDULE.find(m=>m.fase===(phase?.name==='Floração'?'Flora':phase?.name==='Vegetativo'?'Vega':phase?.name) && m.sem===relW) : null;
+
+    let actions = [];
+    if (adub && adub.p1!=='—') actions.push(`💊 ${adub.p1}`);
+    if (mip) actions.push(`🐛 ${mip.prod.split('(')[0].trim()}`);
+    if (!actions.length) actions.push('Dia normal');
+
+    todayRows.push(`<div class="overview-row">
+      <div>
+        <div style="font-weight:600;color:var(--text);font-size:13px">${c.name}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:1px">Dia ${dayNum} · ${actions.join(' · ')}</div>
+      </div>
+      <span class="ov-phase" style="background:${phase?.color||'#888'}22;color:${phase?.color||'#888'}">${phase?.name||'—'}</span>
+    </div>`);
+  }
+  const todayPanel = document.getElementById('jardim-today-panel');
+  if (todayRows.length) {
+    todayPanel.style.display='';
+    document.getElementById('jardim-today-rows').innerHTML = todayRows.join('');
+  } else {
+    todayPanel.style.display='none';
+  }
+
+  // Cards
+  if (!jardimState.cultivos.length) {
+    grid.innerHTML = `<div class="empty-state" style="padding:32px 24px">
+      <div class="empty-icon">🌱</div>
+      <h3>Jardim vazio</h3>
+      <p>Adicione seu primeiro cultivo para começar a planejar.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = jardimState.cultivos.map(c => {
+    const d = getDates(c);
+    const w = c.weeks;
+    const badge = getPhaseBadge(c);
+    const harvest = d ? fmtDate(d.harvest) : '—';
+    const totalDays = d ? d.totalDays : 0;
+    const proto = PROTOCOLS[c.proto];
+    const protoIcon = proto?.icon || '🌿';
+
+    return `<div class="cultivo-card" style="--card-accent:${c.color}" onclick="openCultivo('${c.id}')">
+      <div class="cc-top">
+        <div class="cc-icon" style="background:${c.color}22">${protoIcon}</div>
+        <div class="cc-info">
+          <div class="cc-name">${c.name}</div>
+          <div class="cc-strain">${c.strain || 'Sem strain definida'}</div>
+        </div>
+        <div class="cc-actions" onclick="event.stopPropagation()">
+          <button class="cc-btn" onclick="openEditModal('${c.id}')" title="Editar">✏️</button>
+        </div>
+      </div>
+      <div class="cc-bar">
+        <div class="cc-bar-seg" style="background:#52b778;flex:${w.clone}"></div>
+        <div class="cc-bar-seg" style="background:#2196F3;flex:${w.vega}"></div>
+        <div class="cc-bar-seg" style="background:#9b72cf;flex:${w.flora}"></div>
+        <div class="cc-bar-seg" style="background:#e05c5c;flex:${Math.max(1,Math.round(w.flora*0.22))}"></div>
+      </div>
+      <div class="cc-meta">
+        <span class="cc-chip" style="background:${badge.color}22;color:${badge.color}">${badge.label}</span>
+        <span class="cc-chip" style="background:rgba(255,255,255,.06);color:var(--text3)">${totalDays} dias</span>
+        ${harvest !== '—' ? `<span class="cc-chip" style="background:rgba(255,255,255,.06);color:var(--text3)">✂️ ${harvest}</span>` : ''}
+        <span class="cc-chip" style="background:rgba(255,255,255,.06);color:var(--text3)">${proto?.name||'—'}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════
+// MODAL (novo / editar)
+// ═══════════════════════════════════════════════
+let _modalEditId = null;
+let _modalWeeks  = {clone:2,vega:6,flora:9};
+let _modalColor  = '#52b778';
+let _modalProto  = 'biobizz';
+const LIMITS = { clone:[1,8], vega:[1,16], flora:[5,20] };
+
+function openNewModal() {
+  if (!jardimState.isPremium && jardimState.cultivos.length >= 1) {
+    alert("🔒 Versão Gratuita: Limite de 1 cultivo ativo.\n\nTorne-se PREMIUM para gerenciar cultivos ilimitados e sincronizar com a nuvem!");
+    return;
+  }
+
+  _modalEditId = null;
+  _modalWeeks  = {clone:2, vega:6, flora:9};
+  _modalColor  = '#52b778';
+  _modalProto  = 'biobizz';
+  const today  = new Date();
+  document.getElementById('m-date').value =
+    `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  document.getElementById('m-name').value   = '';
+  document.getElementById('m-strain').value = '';
+  document.getElementById('modal-title').textContent = 'Novo cultivo';
+  document.getElementById('modal-sub').textContent   = 'Configure as informações básicas';
+  document.getElementById('modal-delete-btn').style.display = 'none';
+  document.getElementById('modal-save-btn').textContent = 'Salvar cultivo →';
+  refreshModalSteppers();
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.toggle('selected', d.dataset.color===_modalColor));
+  document.querySelectorAll('#m-proto-grid .proto-pill').forEach(p => p.classList.remove('selected'));
+  document.querySelectorAll('#m-proto-grid .proto-pill')[0].classList.add('selected');
+  document.getElementById('modal-backdrop').classList.remove('hidden');
+}
+
+function openEditModal(id) {
+  const cid = id || jardimState.activeId;
+  const c   = jardimState.cultivos.find(x => x.id===cid);
+  if (!c) return;
+  _modalEditId = cid;
+  _modalWeeks  = {...c.weeks};
+  _modalColor  = c.color;
+  _modalProto  = c.proto;
+  document.getElementById('m-name').value   = c.name;
+  document.getElementById('m-strain').value = c.strain || '';
+  document.getElementById('m-date').value   = c.date;
+  document.getElementById('modal-title').textContent = 'Editar cultivo';
+  document.getElementById('modal-sub').textContent   = c.name;
+  document.getElementById('modal-delete-btn').style.display = '';
+  document.getElementById('modal-save-btn').textContent = 'Salvar alterações →';
+  refreshModalSteppers();
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.toggle('selected', d.dataset.color===_modalColor));
+  const protoMap = {biobizz:0,remo:1,go:2,supersoil:3,generic:4};
+  document.querySelectorAll('#m-proto-grid .proto-pill').forEach((p,i) => p.classList.toggle('selected', i===protoMap[_modalProto]));
+  document.getElementById('modal-backdrop').classList.remove('hidden');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modal-backdrop')) return;
+  document.getElementById('modal-backdrop').classList.add('hidden');
+}
+
+function selectColor(el) {
+  _modalColor = el.dataset.color;
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.toggle('selected', d===el));
+}
+
+function mSelectProto(key, el) {
+  _modalProto = key;
+  document.querySelectorAll('#m-proto-grid .proto-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function mStep(key, delta) {
+  const [min,max] = LIMITS[key];
+  _modalWeeks[key] = Math.max(min, Math.min(max, _modalWeeks[key]+delta));
+  refreshModalSteppers();
+}
+
+function refreshModalSteppers() {
+  ['clone','vega','flora'].forEach(k => {
+    document.getElementById('m-val-'+k).innerHTML =
+      `${_modalWeeks[k]} <span class="stepper-unit">sem</span>`;
+  });
+}
+
+function saveModal() {
+  const name   = document.getElementById('m-name').value.trim() || 'Cultivo';
+  const strain = document.getElementById('m-strain').value.trim();
+  const date   = document.getElementById('m-date').value;
+  if (!date) { alert('Preencha a data do Dia 1.'); return; }
+
+  if (_modalEditId) {
+    const c = jardimState.cultivos.find(x => x.id===_modalEditId);
+    if (c) {
+      if (c.strain !== strain) c.strainInfo = null;
+      // Se mudou de generic para outro protocolo, reseta customProto
+      if (c.proto !== _modalProto && _modalProto !== 'generic') c.customProto = null;
+      // Se mudou as semanas no modo generic, reseta customProto para reinicializar
+      if (_modalProto === 'generic' && c.customProto &&
+          (c.weeks.clone !== _modalWeeks.clone || c.weeks.vega !== _modalWeeks.vega || c.weeks.flora !== _modalWeeks.flora)) {
+        c.customProto = null;
+      }
+      c.name=name; c.strain=strain; c.color=_modalColor;
+      c.proto=_modalProto; c.date=date;
+      c.weeks={clone:_modalWeeks.clone, vega:_modalWeeks.vega, flora:_modalWeeks.flora};
+      c.currentWeek = calcCurrentWeek(c);
+    }
+  } else {
+    const c = {
+      id:genId(), name, strain, color:_modalColor,
+      proto:_modalProto, date, weeks:{..._modalWeeks},
+      currentWeek:1, strainInfo:null, customProto:null
+    };
+    c.currentWeek = calcCurrentWeek(c);
+    jardimState.cultivos.push(c);
+  }
+
+  saveJardim();
+  document.getElementById('modal-backdrop').classList.add('hidden');
+  renderJardim();
+
+  // Se estamos editando o cultivo ativo, recarregar detail
+  if (_modalEditId && _modalEditId === jardimState.activeId) {
+    loadDetailScreen();
+  }
+}
+
+function deleteActiveCultivo() {
+  if (!confirm('Excluir este cultivo permanentemente?')) return;
+  jardimState.cultivos = jardimState.cultivos.filter(c => c.id !== _modalEditId);
+  if (jardimState.activeId === _modalEditId) jardimState.activeId = null;
+  saveJardim();
+  document.getElementById('modal-backdrop').classList.add('hidden');
+  // Se estamos na tela de detalhe, voltar
+  backToJardim();
+  renderJardim();
+}
+
+// ═══════════════════════════════════════════════
+// NAVEGAÇÃO JARDIM ↔ DETALHE
+// ═══════════════════════════════════════════════
+function openCultivo(id) {
+  const c = jardimState.cultivos.find(x => x.id===id);
+  if (!c) return;
+  jardimState.activeId = id;
+  c.currentWeek = calcCurrentWeek(c);
+  saveJardim();
+  loadDetailScreen();
+  // Slide in
+  document.getElementById('jardim-screen').classList.add('hidden');
+  document.getElementById('detail-screen').style.transform = 'translateX(0)';
+}
+
+function backToJardim() {
+  document.getElementById('detail-screen').style.transform = 'translateX(100%)';
+  document.getElementById('jardim-screen').classList.remove('hidden');
+  jardimState.activeId = null;
+  // Resetar strain panel para não vazar dados entre cultivos
+  const sp = document.getElementById('strain-panel');
+  if (sp) sp.style.display = 'none';
+  renderJardim();
+}
+
+function loadDetailScreen() {
+  const c = getActiveCultivo();
+  if (!c) return;
+  document.getElementById('detail-title').textContent  = c.name;
+  document.getElementById('detail-strain').textContent = c.strain || 'Sem strain';
+  document.getElementById('status-badge').textContent  = getPhaseBadge(c).label;
+  // Reset to crono tab (sempre liberado)
+  document.getElementById('premium-lock-overlay').classList.remove('visible');
+  gotoPage(0);
+  applyPremiumTabState();
+  buildCronograma();
+  buildAdubacao();
+  buildMIP();
+  buildGuia();
+  buildManual();
+  populateStrainList();
+  if (c.strain) fetchStrainInfo(c.strain);
+  else document.getElementById('strain-panel').style.display='none';
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION (detail tabs)
+// ═══════════════════════════════════════════════
+function gotoPage(idx) {
+  const overlay = document.getElementById('premium-lock-overlay');
+
+  // Aba 0 (Cronograma) é livre para todos
+  if (idx > 0 && !jardimState.isPremium) {
+    const tabNames = ['','Adubação','MIP','Guia','Manual'];
+    const tabName  = tabNames[idx] || 'Strains';
+    document.getElementById('plo-title').textContent = `🔒 ${tabName}`;
+    document.getElementById('plo-desc').textContent  =
+      `A aba "${tabName}" é exclusiva do Plano Premium. Faça upgrade para acessar protocolos de adubação, controle de pragas, guias e o banco completo de strains.`;
+    overlay.classList.add('visible');
+    // Atualiza visual das tabs sem mudar a página ativa
+    document.querySelectorAll('.nav-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+    return;
+  }
+
+  overlay.classList.remove('visible');
+  document.querySelectorAll('.page').forEach((p,i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.nav-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+}
+
+function applyPremiumTabState() {
+  // Adiciona/remove indicador visual de lock nas abas premium
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach((t, i) => {
+    if (i === 0) return; // Cronograma: livre
+    const icon = t.querySelector('.icon');
+    if (!jardimState.isPremium) {
+      if (!t.querySelector('.tab-lock')) {
+        const lock = document.createElement('span');
+        lock.className = 'tab-lock';
+        lock.textContent = '🔒';
+        lock.style.cssText = 'font-size:8px;position:absolute;top:4px;right:4px;opacity:0.6';
+        t.style.position = 'relative';
+        t.appendChild(lock);
+      }
+    } else {
+      t.querySelectorAll('.tab-lock').forEach(l => l.remove());
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// CRONOGRAMA (ativo)
+// ═══════════════════════════════════════════════
+function buildCronograma() {
+  const dates = getDates();
+  if (!dates) { document.getElementById('crono-content').style.display='none'; return; }
+  document.getElementById('crono-content').style.display='';
+  const c = getActiveCultivo();
+  const today = new Date(); today.setHours(12,0,0,0);
+  const {d0,iniVega,iniFlora,iniFlush,harvest,totalDays} = dates;
+  const daysPassed = Math.max(0,Math.floor((today-d0)/86400000));
+  const pct = Math.min(100,Math.round((daysPassed/totalDays)*100));
+  const circumference = 2*Math.PI*30;
+  document.getElementById('prog-circle').style.strokeDashoffset = circumference-(pct/100)*circumference;
+  document.getElementById('prog-pct').textContent    = pct+'%';
+  document.getElementById('prog-label').textContent  = pct===0?'Cultivo configurado':pct>=100?'🎉 Colheita!':'Progresso';
+  document.getElementById('prog-day').textContent    = `Dia ${Math.max(0,daysPassed+1)} de ${totalDays}`;
+  const w = c.weeks;
+  document.getElementById('phase-bar').innerHTML =
+    `<div class="phase-seg" style="background:#52b778;flex:${w.clone}"></div>
+     <div class="phase-seg" style="background:#2196F3;flex:${w.vega}"></div>
+     <div class="phase-seg" style="background:#9b72cf;flex:${w.flora-(dates.flushWeeks||1)}"></div>
+     <div class="phase-seg" style="background:#e05c5c;flex:${dates.flushWeeks||1}"></div>`;
+  const daysLeft = Math.max(0,Math.ceil((harvest-today)/86400000));
+  const phase = getPhaseForDate(today,dates);
+  document.getElementById('stat-total').textContent    = totalDays;
+  document.getElementById('stat-harvest').textContent  = fmtDate(harvest);
+  document.getElementById('stat-phase').textContent    = phase?phase.name:(today>harvest?'Colhido':'Antes início');
+  document.getElementById('stat-daysleft').textContent = today>harvest?'—':daysLeft;
+  renderWeek();
+}
+
+function changeWeek(delta) {
+  const dates = getDates();
+  if (!dates) return;
+  const c = getActiveCultivo();
+  const totalWeeks = Math.ceil(dates.totalDays/7);
+  c.currentWeek = Math.max(1,Math.min(totalWeeks,(c.currentWeek||1)+delta));
+  saveJardim();
+  renderWeek();
+}
+
+function renderWeek() {
+  const dates = getDates();
+  if (!dates) return;
+  const c = getActiveCultivo();
+  const {d0,iniVega,iniFlora,iniFlush,harvest,totalDays} = dates;
+  const totalWeeks = Math.ceil(totalDays/7);
+  const wk = c.currentWeek || 1;
+  const weekStart = addDays(d0,(wk-1)*7);
+  const weekEnd   = addDays(d0,wk*7-1);
+  document.getElementById('week-label').textContent = `Semana ${wk} de ${totalWeeks}`;
+  document.getElementById('week-sub').textContent   = `${fmtDate(weekStart)} – ${fmtDate(weekEnd)}`;
+  const today = new Date(); today.setHours(12,0,0,0);
+  const container = document.getElementById('week-days');
+  container.innerHTML = '';
+  for (let d=0;d<7;d++) {
+    const date = addDays(d0,(wk-1)*7+d);
+    if (date>harvest) break;
+    const phase = getPhaseForDate(date,dates);
+    if (!phase) break;
+    const isToday = date.toDateString()===today.toDateString();
+    const dayNum  = Math.floor((date-d0)/86400000)+1;
+    let phaseStart, phaseLabel;
+    if (phase.name==='Clone')      {phaseStart=d0;      phaseLabel='Clone';}
+    else if (phase.name==='Vegetativo'){phaseStart=iniVega; phaseLabel='Vega';}
+    else if (phase.name==='Floração')  {phaseStart=iniFlora;phaseLabel='Flora';}
+    else                               {phaseStart=iniFlush;phaseLabel='Flush';}
+    const relWeek = getRelWeek(date,phaseStart);
+    const isFirstDayOfWeek = Math.floor((date-phaseStart)/86400000)%7===0;
+    const adub = isFirstDayOfWeek?getAdubForWeek(phase.name,relWeek):null;
+    const mip  = isFirstDayOfWeek?getMipForWeek(phase.name==='Floração'?'Flora':phaseLabel,relWeek):null;
+    const dayName = date.toLocaleDateString('pt-BR',{weekday:'short'});
+    const dayFmt  = fmtDate(date,true);
+    const tasks=[];
+    if (isFirstDayOfWeek) tasks.push(`${phaseLabel} S${relWeek}`);
+    if (adub&&adub.p1&&adub.p1!=='—') tasks.push(adub.p1);
+    if (mip) tasks.push('MIP');
+    if (date.toDateString()===iniVega.toDateString())  tasks.push('🌿 INÍCIO VEGA');
+    if (date.toDateString()===iniFlora.toDateString()) tasks.push('🌸 INÍCIO FLORA');
+    if (date.toDateString()===iniFlush.toDateString()) tasks.push('🚿 INÍCIO FLUSH');
+    if (date.toDateString()===harvest.toDateString())  tasks.push('✂️ COLHEITA');
+    const isSpecial = [iniVega,iniFlora,iniFlush,harvest].some(x=>x.toDateString()===date.toDateString());
+    const el=document.createElement('div');
+    el.className='day-row';
+    el.innerHTML=`<div class="day-row-header" onclick="toggleDay(this)">
+      <div class="day-num ${isToday?'today':''}">${date.getDate()}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:11px;color:var(--text3)">${dayName} ${dayFmt} · Dia ${dayNum}</div>
+        <div style="font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${tasks.join(' · ')||'Dia normal'}</div>
+      </div>
+      <span class="day-phase-tag" style="background:${phase.color}22;color:${phase.color}">${phase.flush?'🚿':phase.short}</span>
+      <span class="day-expand">${(mip||isSpecial||(adub&&(adub.p1||adub.p2||adub.supl||adub.obs)))?'⌄':''}</span>
+    </div>
+    <div class="day-detail">
+      ${isSpecial?`<div class="day-detail-row"><span class="day-detail-label">Marco</span><span class="day-detail-val" style="color:var(--amber);font-weight:600">${tasks.filter(t=>t.includes('INÍCIO')||t.includes('COLHEITA')).join(', ')}</span></div>`:''}
+      ${adub&&(adub.p1||adub.p2||adub.supl||adub.obs||adub.ph||adub.ec)?`
+      <div class="day-detail-row"><span class="day-detail-label">💊 Adubo</span><span class="day-detail-val">${[adub.p1&&adub.p1!=='—'?adub.p1+(adub.d1?' '+adub.d1:''):'',adub.p2&&adub.p2!=='—'?adub.p2+(adub.d2?' '+adub.d2:''):''].filter(Boolean).join(' + ')||'—'}</span></div>
+      ${adub.supl&&adub.supl!=='—'?`<div class="day-detail-row"><span class="day-detail-label">Supl.</span><span class="day-detail-val">${adub.supl}</span></div>`:''}
+      ${adub.ph||adub.ec?`<div class="day-detail-row"><span class="day-detail-label">pH/EC</span><span class="day-detail-val">${adub.ph||'—'} / EC ${adub.ec||'—'}</span></div>`:''}
+      ${adub.obs&&adub.obs!=='—'?`<div class="day-detail-row"><span class="day-detail-label">Obs.</span><span class="day-detail-val">${adub.obs}</span></div>`:''}`:''}
+      ${mip?`<div class="day-detail-row"><span class="day-detail-label">🐛 MIP</span><span class="day-detail-val" style="color:var(--red)">${mip.prod} — ${mip.via}</span></div>${mip.obs?`<div class="day-detail-row"><span class="day-detail-label"></span><span class="day-detail-val">${mip.obs}</span></div>`:''}`:''}
+      ${!(adub&&(adub.p1||adub.p2||adub.supl||adub.obs||adub.ph||adub.ec))&&!mip&&!isSpecial?`<div class="day-detail-row"><span class="day-detail-val" style="color:var(--text3)">Nenhuma ação programada.</span></div>`:''}
+    </div>`;
+    container.appendChild(el);
+  }
+}
+function toggleDay(header) {
+  const detail=header.nextElementSibling;
+  const arrow=header.querySelector('.day-expand');
+  if (!arrow.textContent) return;
+  const open=detail.classList.toggle('open');
+  arrow.classList.toggle('open',open);
+}
+
+// ═══════════════════════════════════════════════
+// ADUBAÇÃO
+// ═══════════════════════════════════════════════
+
+// Inicializa o customProto com linhas vazias baseado nas semanas configuradas
+function initCustomProto(c) {
+  const fases = { clone: c.weeks.clone||2, vega: c.weeks.vega||4, flora: c.weeks.flora||8, flush: 1 };
+  c.customProto = {};
+  for (const [fase, maxSem] of Object.entries(fases)) {
+    c.customProto[fase] = [];
+    for (let s = 1; s <= maxSem; s++) {
+      c.customProto[fase].push({ s, p1:'', d1:'', p2:'', d2:'', supl:'', ph:'', ec:'', obs:'' });
+    }
+  }
+  saveJardim();
+}
+
+// Salva um campo do customProto
+function saveCustomField(fase, sem, field, value) {
+  const c = getActiveCultivo();
+  if (!c || c.proto !== 'generic') return;
+  if (!c.customProto) initCustomProto(c);
+  const row = c.customProto[fase]?.find(r => r.s === sem);
+  if (row) {
+    row[field] = value;
+    saveJardim();
+    buildCronograma();
+    // Feedback visual discreto
+    const notice = document.getElementById('custom-save-notice');
+    if (notice) { notice.style.display = 'block'; clearTimeout(notice._t); notice._t = setTimeout(() => notice.style.display = 'none', 1500); }
+  }
+}
+
+function buildAdubacao() {
+  const c = getActiveCultivo();
+  if (!c) return;
+  const p = PROTOCOLS[c.proto];
+  if (!p) return;
+
+  document.getElementById('adub-proto-badge').innerHTML =
+    `<div style="display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px">
+      <span style="font-size:22px">${p.icon}</span>
+      <div><div style="font-size:14px;font-weight:600;color:var(--text)">${p.name}</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px">${p.obs}</div></div>
+    </div>`;
+
+  // ── MODO PERSONALIZADO (Genérico) ─────────────────────
+  if (c.proto === 'generic') {
+    if (!c.customProto) initCustomProto(c);
+    // Garantir que semanas configuradas tenham linhas (se o usuário aumentou semanas depois)
+    const faseMap = { clone: c.weeks.clone||2, vega: c.weeks.vega||4, flora: c.weeks.flora||8, flush: 1 };
+    for (const [fase, maxSem] of Object.entries(faseMap)) {
+      if (!c.customProto[fase]) c.customProto[fase] = [];
+      while (c.customProto[fase].length < maxSem) {
+        c.customProto[fase].push({ s: c.customProto[fase].length + 1, p1:'', d1:'', p2:'', d2:'', supl:'', ph:'', ec:'', obs:'' });
+      }
+    }
+    const dates = getDates(c);
+    const fases = [
+      { key:'clone', label:'🌱 Clone',      color:'#52b778', iniRef:dates?.d0 },
+      { key:'vega',  label:'🌿 Vegetativo', color:'#2196F3', iniRef:dates?.iniVega },
+      { key:'flora', label:'🌸 Floração',   color:'#9b72cf', iniRef:dates?.iniFlora },
+    ];
+    const f = (fase, sem, field) =>
+      `onchange="saveCustomField('${fase}',${sem},'${field}',this.value)"`;
+    let html = `<div id="custom-save-notice" class="custom-save-notice">✓ Salvo</div>`;
+    for (const { key, label, color, iniRef } of fases) {
+      const rows = c.customProto[key] || [];
+      if (!rows.length) continue;
+      html += `<div style="margin-bottom:24px">
+        <div style="font-family:var(--serif);font-size:17px;color:${color};margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)">${label}</div>`;
+      for (const r of rows) {
+        const dateStr = iniRef ? fmtDate(addDays(iniRef, (r.s-1)*7)) : '—';
+        html += `<div class="mip-card" style="margin-bottom:10px">
+          <div class="mip-card-header">
+            <div style="width:32px;height:32px;border-radius:8px;background:${color}22;display:grid;place-items:center;font-size:13px;font-weight:700;color:${color};flex-shrink:0">S${r.s}</div>
+            <div style="flex:1"><div class="mip-name" style="margin-bottom:2px">Semana ${r.s}</div><div class="mip-phase">${dateStr}</div></div>
+          </div>
+          <div class="custom-phase-row">
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Produto 1</div>
+              <input class="custom-field" value="${r.p1||''}" placeholder="Nome do produto" ${f(key,r.s,'p1')}></div>
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Dose</div>
+              <input class="custom-field" value="${r.d1||''}" placeholder="ex: 2mL/L" ${f(key,r.s,'d1')}></div>
+          </div>
+          <div class="custom-phase-row">
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Produto 2</div>
+              <input class="custom-field" value="${r.p2||''}" placeholder="Opcional" ${f(key,r.s,'p2')}></div>
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Dose</div>
+              <input class="custom-field" value="${r.d2||''}" placeholder="ex: 1mL/L" ${f(key,r.s,'d2')}></div>
+          </div>
+          <div class="custom-phase-row">
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Suplemento</div>
+              <input class="custom-field" value="${r.supl||''}" placeholder="Opcional" ${f(key,r.s,'supl')}></div>
+            <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">pH alvo</div>
+              <input class="custom-field" value="${r.ph||''}" placeholder="ex: 6.2" ${f(key,r.s,'ph')}></div>
+          </div>
+          <div><div style="font-size:10px;color:var(--text3);margin-bottom:3px">EC alvo / Observações</div>
+            <input class="custom-field" value="${r.ec||''}" placeholder="EC: ex: 1.2 — Obs: molhar quando seco" ${f(key,r.s,'ec')}></div>
+        </div>`;
+      }
+      html += '</div>';
+    }
+    document.getElementById('adub-content').innerHTML = html;
+    return;
+  }
+
+  // ── PROTOCOLOS PADRÃO ─────────────────────────────────
+  const dates = getDates(c);
+  const fases=[
+    {key:'clone',label:'🌱 Clone',     color:'#52b778',iniRef:dates?.d0},
+    {key:'vega', label:'🌿 Vegetativo',color:'#2196F3',iniRef:dates?.iniVega},
+    {key:'flora',label:'🌸 Floração',  color:'#9b72cf',iniRef:dates?.iniFlora},
+  ];
+  let html='';
+  for (const {key,label,color,iniRef} of fases) {
+    const maxSem = c.weeks[key==='vega'?'vega':key]||99;
+    const rows=(p[key]||[]).filter(r=>r.s<=maxSem);
+    if (!rows.length) continue;
+    html+=`<div style="margin-bottom:20px"><div style="font-family:var(--serif);font-size:17px;color:${color};margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)">${label}</div>`;
+    for (const r of rows) {
+      const dateStr=iniRef?fmtDate(addDays(iniRef,(r.s-1)*7)):'—';
+      html+=`<div class="mip-card"><div class="mip-card-header">
+        <div style="width:32px;height:32px;border-radius:8px;background:${color}22;display:grid;place-items:center;font-size:13px;font-weight:700;color:${color}">S${r.s}</div>
+        <div><div class="mip-name">${r.p1!=='—'?r.p1:r.p2}</div><div class="mip-phase">${dateStr}</div></div>
+      </div>
+      ${r.p1!=='—'?`<div class="mip-detail-row"><span class="mip-detail-label">Produto 1</span><span class="mip-detail-val">${r.p1} — <strong>${r.d1}</strong></span></div>`:''}
+      ${r.p2!=='—'?`<div class="mip-detail-row"><span class="mip-detail-label">Produto 2</span><span class="mip-detail-val">${r.p2} — <strong>${r.d2}</strong></span></div>`:''}
+      ${r.supl!=='—'?`<div class="mip-detail-row"><span class="mip-detail-label">Suplemento</span><span class="mip-detail-val">${r.supl}</span></div>`:''}
+      <div class="mip-detail-row"><span class="mip-detail-label">pH/EC</span><span class="mip-detail-val" style="color:var(--green)">${r.ph} / ${r.ec}</span></div>
+      <div class="mip-detail-row"><span class="mip-detail-label">Obs.</span><span class="mip-detail-val">${r.obs}</span></div></div>`;
+    }
+    html+='</div>';
+  }
+  document.getElementById('adub-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════
+// MIP
+// ═══════════════════════════════════════════════
+function buildMIP() {
+  const c = getActiveCultivo();
+  const dates = getDates(c);
+  const cols={Clone:'#52b778',Vega:'#2196F3',Flora:'#9b72cf'};
+  const inis={Clone:dates?.d0,Vega:dates?.iniVega,Flora:dates?.iniFlora};
+  let html='';let cur='';
+  for (const m of MIP_SCHEDULE) {
+    const col=cols[m.fase]||'#52b778';
+    if (m.fase!==cur) {
+      const lbl={Clone:'🌱 Clone',Vega:'🌿 Vegetativo',Flora:'🌸 Floração'}[m.fase];
+      html+=`<div style="font-family:var(--serif);font-size:17px;color:${col};margin:${cur?'20px':'0'} 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border)">${lbl}</div>`;
+      cur=m.fase;
+    }
+    const ini=inis[m.fase];
+    const dateStr=ini?fmtDate(addDays(ini,(m.sem-1)*7)):'—';
+    html+=`<div class="mip-card"><div class="mip-card-header">
+      <span class="mip-icon">🐛</span>
+      <div><div class="mip-name">${m.prod}</div><div class="mip-phase">${m.fase} S${m.sem} · ${dateStr}</div></div>
+      <span class="tl-badge" style="background:${col}22;color:${col}">S${m.sem}</span>
+    </div>
+    <div class="mip-detail-row"><span class="mip-detail-label">Via</span><span class="mip-detail-val">${m.via}</span></div>
+    ${m.obs?`<div class="mip-detail-row"><span class="mip-detail-label">Atenção</span><span class="mip-detail-val" style="${m.obs.includes('⚠️')?'color:var(--amber)':''}">${m.obs}</span></div>`:''}
+    </div>`;
+  }
+  document.getElementById('mip-content').innerHTML=html;
+}
+
+
+// ═══════════════════════════════════════════════
+// STRAIN INFO (DATABASE INTEGRATION)
+// ═══════════════════════════════════════════════
+// STRAIN INFO (DATABASE INTEGRATION)
+// ═══════════════════════════════════════════════
+function fetchStrainInfo(strainName) {
+  if (!strainName || strainName === 'Meu cultivo') return;
+
+  const panel   = document.getElementById('strain-panel');
+  const loading = document.getElementById('strain-loading');
+  const dataEl  = document.getElementById('strain-data');
+  const errorEl = document.getElementById('strain-error');
+  const warnEl  = document.getElementById('strain-warn');
+  const warnTxt = document.getElementById('strain-warn-text');
+
+  if (!panel || !loading || !dataEl || !errorEl) return;
+
+  // Reset completo do painel antes de cada busca
+  panel.style.display  = '';
+  loading.style.display = '';
+  dataEl.style.display  = 'none';
+  errorEl.style.display = 'none';
+  if (warnEl)  warnEl.style.display  = 'none';
+  if (warnTxt) warnTxt.textContent   = '';
+
+  // Fallback robusto: se strains.js não carregou, mostrar erro limpo
+  if (typeof STRAIN_DB === 'undefined') {
+    loading.style.display = 'none';
+    errorEl.style.display = '';
+    errorEl.textContent = '⚠️ Banco de strains não carregado. Verifique se strains.js está no mesmo diretório.';
+    return;
+  }
+
+  const searchKey = strainName.toLowerCase().trim();
+  const info = STRAIN_DB[searchKey]
+    || Object.values(STRAIN_DB).find(s => s.name.toLowerCase() === searchKey)
+    || Object.values(STRAIN_DB).find(s => s.name.toLowerCase().includes(searchKey));
+
+  loading.style.display = 'none';
+
+  if (info) {
+    renderStrainData(info);
+    dataEl.style.display = '';
+  } else {
+    errorEl.style.display = '';
+    errorEl.textContent = `⚠️ "${strainName}" não encontrada no banco. Verifique o nome ou tente variações.`;
+  }
+}
+
+function renderStrainData(info) {
+  const dataEl = document.getElementById('strain-data');
+  if (!dataEl) return;
+  
+  const typeEmoji = {indica:'🍁', sativa:'☀️', hybrid:'🌿', 'indica-dominant':'🍁', 'sativa-dominant':'☀️'}[info.type] || '🌿';
+  const typeColors = {indica:'#9b72cf', sativa:'#e8a43a', hybrid:'#52b778', 'indica-dominant':'#9b72cf', 'sativa-dominant':'#e8a43a'};
+  const typeColor  = typeColors[info.type] || '#52b778';
+  const typeLabel  = {indica:'Índica', sativa:'Sativa', hybrid:'Híbrida', 'indica-dominant':'Índica-dominante', 'sativa-dominant':'Sativa-dominante'}[info.type] || info.type;
+
+  document.getElementById('strain-type-badge').textContent = typeEmoji;
+  document.getElementById('strain-type-badge').style.background = typeColor + '22';
+  document.getElementById('strain-name-display').textContent = info.name;
+  document.getElementById('strain-type-label').textContent = typeLabel;
+  document.getElementById('strain-thc').textContent = info.thc;
+  document.getElementById('strain-desc').textContent = info.description;
+  document.getElementById('strain-flower').textContent = info.flowerWeeks;
+  document.getElementById('strain-cbd').textContent = info.cbd;
+  
+  const lin = document.getElementById('strain-lineage');
+  const terp = document.getElementById('strain-terpenes');
+  if (lin) lin.textContent = info.lineage || '---';
+  if (terp) terp.textContent = info.terpenes || '---';
+  
+  document.getElementById('strain-effect').textContent = info.effects;
+  document.getElementById('strain-aroma').textContent = info.aromas;
+  document.getElementById('strain-tip').textContent = info.growTip;
+
+  const warnEl = document.getElementById('strain-warn');
+  const warnText = document.getElementById('strain-warn-text');
+  if (warnEl && warnText) {
+    warnEl.style.display = 'none';
+    warnText.textContent = '';
+
+    if (info.medicalNote) {
+      warnEl.style.display = '';
+      warnText.textContent = '🏥 Uso medicinal: ' + info.medicalNote;
+    }
+
+    const c = getActiveCultivo();
+    if (c && info.flowerWeeks) {
+      const flowerMatch = info.flowerWeeks.match(/(\d+)/);
+      if (flowerMatch) {
+        const strainFlowerWeeks = parseInt(flowerMatch[1]);
+        const configuredWeeks = c.weeks.flora;
+        if (Math.abs(strainFlowerWeeks - configuredWeeks) >= 2) {
+          warnEl.style.display = '';
+          const existing = warnText.textContent;
+          warnText.textContent = (existing ? existing + ' · ' : '') + `⏱️ Esta strain floresce em ~${info.flowerWeeks}, mas você configurou ${configuredWeeks} semanas.`;
+        }
+      }
+    }
+  }
+}
+
+
+
+function buildGuia() {
+  const guia = [
+    {title:'🌡️ Temperatura', rows:[
+      ['Dia (luz acesa)','22–26°C (ideal 24°C)'],
+      ['Noite','18–22°C'],['Máximo','30°C'],['Clone','23–26°C'],
+    ]},
+    {title:'💧 Umidade', rows:[
+      ['Clone','70–80%'],['Vegetativo','55–70%'],['Flora S1–S4','45–55%'],
+      ['Flora S5+','35–45%'],['Flush','< 40%'],
+    ]},
+    {title:'⚗️ pH da água', rows:[
+      ['Terra orgânica','6.0–6.8'],['Coco coir','5.8–6.2'],
+      ['Hidroponia','5.5–6.1'],['Run-off','± 0.3 da entrada'],
+    ]},
+    {title:'📊 EC (mS/cm)', rows:[
+      ['Clone','0.0–0.4'],['Vega inicial','0.8–1.2'],['Vega pleno','1.2–1.6'],
+      ['Flora início','1.4–1.8'],['Flora pico','1.8–2.2'],['Flush','< 0.3'],
+    ]},
+    {title:'🔬 Tricomas — quando colher', rows:[
+      ['Transparentes','Imaturos — aguardar'],
+      ['Leitosos','Efeito cerebral / energético'],
+      ['Âmbar 10–20%','Equilibrado (ideal médico)'],
+      ['Âmbar 30–50%','Sedativo / corporal'],
+      ['Âmbar > 50%','THC degradando → CBN'],
+    ]},
+    {title:'💡 Fotoperíodo', rows:[
+      ['Clone / propagação','18–24h de luz'],['Vegetativo','18h / 6h'],
+      ['Floração','12h / 12h'],['Variação máxima','± 15 min/dia'],
+    ]},
+    {title:'🌱 Duração da flora por cepa', rows:[
+      ['Índica pura','8–9 semanas'],['Índica-dominante','9–10 semanas'],
+      ['Híbrido','9–11 semanas'],['Sativa-dominante','11–13 semanas'],
+      ['Sativa pura / Haze','13–16 semanas'],
+    ]},
+  ];
+
+  document.getElementById('guia-content').innerHTML = guia.map(g => `
+    <div class="guia-section">
+      <h3>${g.title}</h3>
+      ${g.rows.map(([k,v]) => `<div class="guia-row"><span class="guia-key">${k}</span><span class="guia-val">${v}</span></div>`).join('')}
+    </div>`).join('');
+}
+
+function buildManual() {
+  const sections = [
+    {
+      icon: '⚙️', title: 'Aba Configurar', color: '#52b778',
+      items: [
+        {
+          q: 'O que é o "Dia 1"?',
+          a: 'É a data em que você recebe ou faz o clone — o primeiro dia de vida da planta no seu cultivo. Tudo na planilha é calculado a partir dessa data.',
+        },
+        {
+          q: 'O que são as "semanas de cada fase"?',
+          a: 'O ciclo da planta é dividido em 4 fases. Você configura quantas semanas cada fase vai durar no seu cultivo:',
+          example: `🌱 <strong>Clone:</strong> quando o clone está enraizando (2–4 sem)\n🌿 <strong>Vegetativo:</strong> crescimento com luz 18h/dia (4–12 sem)\n🌸 <strong>Floração:</strong> formação de buds com luz 12h/dia (8–16 sem)\n🚿 <strong>Flush:</strong> lavagem do substrato antes da colheita (1–2 sem)`,
+          tip: '💡 Não sabe quantas semanas de floração? Veja a aba Guia → "Duração da flora por cepa" para estimar pelo tipo da sua planta.',
+        },
+        {
+          q: 'Como escolher o protocolo de nutrição?',
+          a: 'Escolha a linha de produto que você usa ou pretende usar. O app vai mostrar os produtos corretos e as doses certas para cada semana. Se você usa outro produto não listado, escolha "Genérico".',
+          example: `<strong>BioBizz:</strong> Bio·Grow, Bio·Bloom, Top·Max...\n<strong>Remo Nutrients:</strong> Micro, Grow, Bloom, Magnifical...\n<strong>General Organics:</strong> BioThrive, BioRoot, BioBud...\n<strong>SuperSoil:</strong> coberturas secas, chás, guano...\n<strong>Genérico:</strong> qualquer outro protocolo`,
+        },
+      ]
+    },
+    {
+      icon: '📅', title: 'Aba Cronograma', color: '#2196F3',
+      items: [
+        {
+          q: 'O que é o anel de progresso?',
+          a: 'Mostra quanto do cultivo já passou, em percentual. Se estiver em 45%, significa que 45% dos dias totais do seu cultivo já se passaram desde o Dia 1.',
+        },
+        {
+          q: 'O que é a barra colorida de fases?',
+          a: 'É uma representação visual do seu cultivo inteiro. Cada cor é uma fase:',
+          example: `🟢 <strong>Verde:</strong> Clone\n🔵 <strong>Azul:</strong> Vegetativo\n🟣 <strong>Roxo:</strong> Floração\n🔴 <strong>Vermelho:</strong> Flush`,
+        },
+        {
+          q: 'Como navegar pelas semanas?',
+          a: 'Use as setas ‹ e › para ir para a semana anterior ou seguinte. O app abre automaticamente na semana atual do seu cultivo. Cada semana mostra os 7 dias com as ações de cada dia.',
+        },
+        {
+          q: 'O que significa cada linha do dia?',
+          a: 'Cada linha é um dia do cultivo. Toque no dia para expandir e ver os detalhes:',
+          example: `<strong>💊 Adubação:</strong> o que regar nesse dia\n<strong>🐛 MIP:</strong> se tem aplicação preventiva de pragas\n<strong>Marco:</strong> eventos importantes (início de fase, colheita)`,
+          tip: '💡 Adubação e MIP aparecem apenas no 1º dia de cada semana — é o dia que você deve fazer a rega com os produtos indicados.',
+        },
+      ]
+    },
+    {
+      icon: '💊', title: 'Aba Adubação', color: '#52b778',
+      items: [
+        {
+          q: 'O que significa "Produto 1" e "Produto 2"?',
+          a: 'São os nutrientes principais que você mistura na mesma água de rega naquela semana. Você pode misturá-los todos em uma única rega, exceto quando indicado o contrário.',
+          example: `<strong>Produto 1:</strong> Bio·Grow 2 mL/L\n<strong>Produto 2:</strong> Fish·Mix 2 mL/L\n\nIsso significa: para cada litro de água que você vai usar para regar, adicione 2 mL de Bio·Grow e 2 mL de Fish·Mix, misture bem e então regue a planta.`,
+        },
+        {
+          q: 'O que é o "Suplemento"?',
+          a: 'Produtos adicionais que potencializam a nutrição: estimulantes de raízes, aminoácidos, enzimas, etc. Adicione na mesma água de rega junto com os outros produtos, na dose indicada.',
+          example: `<strong>Suplemento:</strong> Molasses 2 mL/L\n\nSignifica: adicione também 2 mL de melado (Molasses) por litro de água, junto com os outros produtos.`,
+          tip: '💡 Para SuperSoil, a "dose" é aplicada diretamente no solo (g/vaso ou g/L de substrato), não dissolvida em água.',
+        },
+        {
+          q: 'O que é pH alvo?',
+          a: 'O pH ideal da sua água de rega após misturar todos os nutrientes. Meça com um pHmetro e ajuste com pH Up ou pH Down se necessário. O pH influencia diretamente a absorção dos nutrientes pela planta.',
+          example: `<strong>pH alvo:</strong> 6.2–6.5\n\nSignifica: após misturar os produtos, meça o pH da solução. Se estiver entre 6.2 e 6.5, está perfeito. Se estiver fora, ajuste antes de regar.`,
+          warn: '⚠️ Para SuperSoil e General Organics em solo, o pH se auto-regula — você não precisa ajustar.',
+        },
+        {
+          q: 'O que é EC alvo?',
+          a: 'EC (Condutividade Elétrica) mede a concentração de nutrientes na água. Quanto maior o EC, mais nutrientes tem na solução. Para medir você precisa de um medidor de EC (condutivímetro).',
+          example: `<strong>EC alvo:</strong> 1.4 mS/cm\n\nSignifica: sua solução de nutrientes deve ter uma concentração de 1.4 milisiemens por centímetro. Se estiver maior, adicione mais água. Se menor, adicione mais nutriente.`,
+          tip: '💡 No início do cultivo, use EC mais baixo. Aumente gradualmente conforme a planta cresce. Se notar folhas queimando nas pontas, o EC está alto demais.',
+        },
+        {
+          q: 'Com que frequência devo regar?',
+          a: 'A planilha indica o que aplicar por semana, mas a frequência de rega depende do seu substrato e tamanho do vaso. A regra geral é: regue quando o substrato estiver levemente seco na superfície (mas ainda úmido embaixo). Não deixe encharcar.',
+          tip: '💡 Levante o vaso para sentir o peso. Vaso leve = hora de regar. Vaso pesado = aguarde mais.',
+        },
+        {
+          q: 'Como preparar a solução de rega corretamente?',
+          a: 'Siga sempre esta ordem para evitar reações entre os produtos:',
+          example: `1. Comece com a quantidade de água que vai usar\n2. Adicione os produtos <strong>um de cada vez</strong>, misturando entre cada adição\n3. Meça e ajuste o pH\n4. Verifique o EC\n5. Regue imediatamente — não armazene a solução pronta`,
+          warn: '⚠️ Nunca misture os produtos concentrados diretamente entre si antes de diluir em água — pode causar reação química e precipitação.',
+        },
+      ]
+    },
+    {
+      icon: '🐛', title: 'Aba MIP — Pragas', color: '#e05c5c',
+      items: [
+        {
+          q: 'O que é MIP?',
+          a: 'MIP significa Manejo Integrado de Pragas. É um protocolo preventivo — você aplica os produtos mesmo sem ver pragas, para evitar que elas apareçam. É muito mais fácil prevenir do que tratar uma infestação.',
+        },
+        {
+          q: 'O que é aplicação "Foliar"?',
+          a: 'É uma aplicação direta nas folhas, borrifando a solução com um pulverizador. Molhe bem a face de baixo das folhas, onde as pragas geralmente se instalam.',
+          example: `<strong>Nim 2 mL/L — Foliar</strong>\n\nDissolva 2 mL de óleo de Nim em 1 litro de água (com um pouquinho de sabão neutro para ajudar a mistura). Borrife nas folhas, cobrindo bem a face inferior.`,
+          warn: '⚠️ NUNCA faça aplicação foliar em floração avançada (após a Semana 3 de flora). Os produtos podem contaminar os buds e alterar o sabor/aroma.',
+        },
+        {
+          q: 'O que é aplicação "Solo" ou "Rega"?',
+          a: 'O produto é diluído na água de rega e aplicado diretamente no substrato, na raiz. Não tem contato com as folhas ou buds.',
+          example: `<strong>Trichoderma 3 g/L — Solo (rega)</strong>\n\nDissolva 3 gramas de Trichoderma em 1 litro de água e regue normalmente. O fungo vai colonizar o solo ao redor das raízes.`,
+          tip: '💡 Em floração, todos os produtos MIP devem ser aplicados apenas no solo — nunca foliar.',
+        },
+        {
+          q: 'O que é Calda Sulfocálcica e Calda Bordalesa?',
+          a: 'São caldas (soluções) usadas como fungicidas e acaricidas. São produtos mais "pesados" e exigem cuidados especiais.',
+          example: `<strong>Calda Sulfocálcica:</strong> controla ácaros, oídio e escamas. Aplique ao entardecer para evitar queima foliar.\n\n<strong>Calda Bordalesa:</strong> base de cobre, controla fungos como míldio e Botrytis.`,
+          warn: '⚠️ Nunca misture Sulfocálcica com Nim — causa fitotoxidade grave (queima a planta). Deixe pelo menos 7 dias de intervalo entre eles.',
+        },
+        {
+          q: 'O que é Trichoderma e Micorrizas?',
+          a: '',
+          example: `<strong>Trichoderma harzianum:</strong> fungo benéfico que coloniza o substrato, protege as raízes contra fungos patogênicos (Pythium, Fusarium) e melhora a absorção de nutrientes.\n\n<strong>Micorrizas:</strong> outro fungo benéfico que forma uma simbiose direta com as raízes — aumenta muito a superfície de absorção e melhora a resistência a estresses.`,
+          tip: '💡 Aplique Micorrizas uma vez no transplante ou no início do cultivo. Trichoderma pode ser reaplicado a cada 3 semanas.',
+        },
+      ]
+    },
+    {
+      icon: '🌍', title: 'Protocolo SuperSoil — como funciona', color: '#e8a43a',
+      items: [
+        {
+          q: 'O que é SuperSoil?',
+          a: 'SuperSoil é um substrato vivo e pré-enriquecido com matéria orgânica suficiente para nutrir a planta por todo o ciclo. O solo tem um ecossistema de microorganismos que digerem a matéria orgânica e liberam os nutrientes lentamente para a planta.',
+        },
+        {
+          q: 'O que são as "coberturas"?',
+          a: 'São adubos orgânicos secos aplicados em cima do substrato (sem enterrar), que se decompõem gradualmente e liberam nutrientes. Você não mistura em água — coloca direto na superfície.',
+          example: `<strong>Cobertura: Farinha de osso 10g/vaso</strong>\n\nEspalhe 10 gramas de farinha de osso em cima do substrato, ao redor da base da planta (não na haste). Regue normalmente depois — a água vai ativar a decomposição e levar os nutrientes para as raízes.`,
+        },
+        {
+          q: 'O que é Chá de Compostagem?',
+          a: 'É um "chá" feito com minhocário ou composto, aerado por 24–48 horas. Rico em microorganismos vivos, alimenta o ecossistema do solo e melhora a absorção dos nutrientes.',
+          example: `Para fazer: coloque 500g de minhocário em uma meia velha, mergulhe em 5 litros de água, adicione 5 mL de melado e ligue um aquário aerador por 24–48 horas. Use imediatamente após o preparo.`,
+          tip: '💡 No SuperSoil você rega muito menos vezes com nutrientes. O solo trabalha por você!',
+        },
+        {
+          q: 'Preciso medir pH e EC no SuperSoil?',
+          a: 'Não é obrigatório da mesma forma que em cultivos minerais. O solo vivo auto-regula o pH naturalmente. Mas se quiser monitorar, o pH ideal do run-off (água que sai pelo fundo do vaso) deve estar entre 6.0–7.0.',
+        },
+      ]
+    },
+    {
+      icon: '🔬', title: 'Análise de Tricomas — quando colher', color: '#9b72cf',
+      items: [
+        {
+          q: 'O que são tricomas?',
+          a: 'Tricomas são as "pelinhas" brilhantes que cobrem os buds e folhas. São glândulas de resina onde se concentram THC, CBD e terpenos. A cor deles indica o estágio de maturação da planta.',
+        },
+        {
+          q: 'Como analisar os tricomas?',
+          a: 'Você precisa de uma lupa com pelo menos 30x de aumento (ou um microscópio digital pequeno). Corte uma pequena amostra de bud e observe a cor dos tricomas:',
+          example: `🔍 <strong>Transparentes/cristalinos:</strong> ainda estão amadurecendo. Aguarde.\n\n🥛 <strong>Leitosos/opacos (brancos):</strong> THC no pico. Efeito mais cerebral, eufórico, energético.\n\n🟡 <strong>Âmbar (10–20%):</strong> início da degradação. Efeito mais equilibrado — ótimo para uso medicinal.\n\n🟠 <strong>Âmbar (30–50%):</strong> THC degradando em CBN. Efeito mais sedativo e corporal.\n\n⚠️ <strong>Mais de 50% âmbar:</strong> esperou demais — THC degradado.`,
+          tip: '💡 Para uso medicinal ansiolítico/relaxante: 20–30% âmbar é ideal. Para efeito mais energizante: colha quando ainda maioria leitoso.',
+        },
+        {
+          q: 'Qual é a diferença entre colher cedo e colher tarde?',
+          a: '',
+          example: `<strong>Colheita precoce</strong> (maioria leitoso):\n→ Efeito mais "alto", eufórico, cerebral, pode causar ansiedade\n\n<strong>Colheita no ponto</strong> (20% âmbar):\n→ Efeito equilibrado, relaxante sem sedação excessiva — ideal medicinal\n\n<strong>Colheita tardia</strong> (50%+ âmbar):\n→ Efeito sedativo forte, "couch-lock", ótimo para dor e insônia`,
+        },
+      ]
+    },
+    {
+      icon: '❓', title: 'Dúvidas frequentes de iniciantes', color: '#a8c4ac',
+      items: [
+        {
+          q: 'Preciso usar TODOS os produtos da semana?',
+          a: 'Não necessariamente. O protocolo é uma recomendação completa. Se você não tem algum produto, pode pular — especialmente suplementos e estimulantes. Os produtos base (Grow/Bloom ou BioThrive) são os mais importantes. Nunca improvise substituições sem pesquisar antes.',
+        },
+        {
+          q: 'O que acontece se eu errar o pH?',
+          a: 'pH fora da faixa ideal "trava" a absorção de nutrientes mesmo que eles estejam presentes no solo. A planta vai mostrar sinais de deficiência (folhas amareladas, manchas) mesmo com boa adubação. Corrigir o pH resolve na maioria dos casos.',
+          warn: '⚠️ pH muito baixo (< 5.5) ou muito alto (> 7.0) causa lockout severo de nutrientes.',
+        },
+        {
+          q: 'A planta está com as folhas amarelando — o que fazer?',
+          a: 'Amarelamento pode ter várias causas. Verifique nesta ordem:',
+          example: `1. <strong>pH da água:</strong> está na faixa correta?\n2. <strong>EC:</strong> está muito alto (excesso) ou muito baixo (falta)?\n3. <strong>Overwatering:</strong> o solo está sempre encharcado?\n4. <strong>Fase natural:</strong> na floração avançada, folhas velhas amarelam normalmente`,
+        },
+        {
+          q: 'Posso mudar a duração das fases no meio do cultivo?',
+          a: 'Sim! É só voltar na aba Configurar, ajustar as semanas e gerar novamente. O cronograma inteiro se recalcula. Por exemplo, se sua planta demorou mais para florir, aumente as semanas de floração.',
+        },
+        {
+          q: 'O que é flush e como ele funciona neste app?',
+          a: 'O flush (lavagem) são as últimas 1–2 semanas antes da colheita onde você rega SOMENTE com água pura, sem nenhum nutriente. Isso lava os sais e resíduos acumulados no substrato, resultando em produto final com sabor mais limpo e melhor combustão.',
+          example: `<strong>Como está configurado no app:</strong>\n\nO flush JÁ ESTÁ incluído nas semanas de Floração configuradas por você. As últimas 1–2 semanas da floração são automaticamente marcadas como flush na aba Adubação (aparece "Água pura").\n\n<strong>Exemplo:</strong> você configurou 9 semanas de flora → as semanas S8–S9 indicam somente água pura.`,
+          tip: '💡 Sinal de flush completo: folhas começando a amarelar = planta consumindo reservas internas. Ótimo sinal de que está pronta para colheita.',
+          warn: '⚠️ Não faça flush por mais de 2 semanas — causa mais prejuízo do que benefício ao esgotar demais a planta.',
+        },
+        {
+          q: 'Quantas semanas de floração devo configurar?',
+          a: 'Configure as semanas TOTAIS de floração, incluindo o período de flush. As semanas de flush estão embutidas.',
+          example: `<strong>Índica rápida (8 sem total):</strong> configure 8 semanas → app indica flush nas últimas 1–2 sem\n<strong>Híbrido padrão (10 sem total):</strong> configure 10 semanas\n<strong>Sativa longa (14 sem total):</strong> configure 14 semanas\n\nAs últimas semanas sempre mostrarão "Água pura" na adubação.`,
+        },
+      ]
+    },
+  ];
+
+  function renderManual(sections) {
+    return sections.map((sec, si) => {
+      const itemsHtml = sec.items.map((item, ii) => `
+        <div class="manual-item">
+          <div class="manual-item-q">❔ ${item.q}</div>
+          ${item.a ? `<div class="manual-item-a">${item.a}</div>` : ''}
+          ${item.example ? `<div class="manual-example">${item.example.replace(/\n/g,'<br>')}</div>` : ''}
+          ${item.tip  ? `<div class="manual-tip">${item.tip}</div>` : ''}
+          ${item.warn ? `<div class="manual-warn">${item.warn}</div>` : ''}
+        </div>`).join('');
+
+      return `<div class="manual-section">
+        <div class="manual-section-header" style="background:${sec.color}18;border:1px solid ${sec.color}33" onclick="toggleManual(this)">
+          <span class="manual-section-icon">${sec.icon}</span>
+          <span class="manual-section-title" style="color:${sec.color}">${sec.title}</span>
+          <span class="manual-section-chevron">⌄</span>
+        </div>
+        <div class="manual-body">${itemsHtml}</div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('manual-content').innerHTML = renderManual(sections);
+
+  // Auto-open first section
+  const firstHeader = document.querySelector('.manual-section-header');
+  if (firstHeader) toggleManual(firstHeader);
+}
+
+function toggleManual(header) {
+  const body    = header.nextElementSibling;
+  const chevron = header.querySelector('.manual-section-chevron');
+  const isOpen  = body.classList.toggle('open');
+  chevron.classList.toggle('open', isOpen);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════
+// STRAINS SCREEN
+// ═══════════════════════════════════════════════
+
+function getStrainsArray() {
+  if (typeof STRAIN_DB === 'undefined') return [];
+  return Object.values(STRAIN_DB);
+}
+function openDoctorScreen() {
+  if (!jardimState.isPremium) {
+    document.getElementById('plo-title').textContent = '🔒 Doctor ZHC';
+    document.getElementById('plo-desc').textContent  =
+      'O Doctor ZHC com quiz de recomendação terapêutica personalizada é exclusivo do Plano Premium.';
+    document.getElementById('premium-lock-overlay').classList.add('visible');
+    document.querySelectorAll('.nav-tab').forEach((t,i) => t.classList.toggle('active', i === 5));
+    return;
+  }
+  document.getElementById('doctor-screen').style.transform = 'translateX(0)';
+  renderDoctorLanding();
+}
+function closeDoctorScreen() {
+  document.getElementById('doctor-screen').style.transform = 'translateX(100%)';
+}
+function renderDoctorLanding() {
+  const EDU = [
+    ['🍁','Índica','#9b72cf','Efeito corporal e relaxante. Ideal para noite, insônia e dor crônica.'],
+    ['☀️','Sativa','#e8a43a','Efeito cerebral e energizante. Ideal para foco e uso diurno.'],
+    ['🌿','Híbrida','#52b778','Combina características das duas. Versátil para vários perfis.'],
+    ['💚','CBD Alto','#3abf94','Pouco ou sem psicoatividade. Perfil terapêutico amplo e seguro.'],
+  ];
+  document.getElementById('doctor-content').innerHTML = `
+    <div style="text-align:center;padding:4px 0 28px">
+      <div style="font-size:60px;margin-bottom:14px">🩺</div>
+      <div style="font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:8px">Doctor ZHC</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:22px">Responda algumas perguntas e receba indicações de cultivares alinhadas ao seu perfil terapêutico.</div>
+      <div style="background:rgba(232,164,58,.1);border:1px solid rgba(232,164,58,.3);border-radius:12px;padding:13px 15px;text-align:left;margin-bottom:28px">
+        <div style="font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.07em;margin-bottom:5px">⚠️ AVISO IMPORTANTE</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.55">As sugestões aqui são <strong style="color:var(--text)">apenas educativas</strong> e não substituem orientação médica. Sempre consulte um profissional de saúde habilitado antes de usar cannabis para fins terapêuticos.</div>
+      </div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Conheça os tipos</div>
+    <div style="display:grid;gap:9px;margin-bottom:30px">
+      ${EDU.map(([ico,name,col,desc])=>`
+        <div class="doctor-edu-card">
+          <div class="doctor-edu-icon">${ico}</div>
+          <div>
+            <div class="doctor-edu-name" style="color:${col}">${name}</div>
+            <div class="doctor-edu-desc">${desc}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <button onclick="startDoctorQuiz()" style="width:100%;padding:17px;background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.02em;box-shadow:0 4px 20px rgba(82,183,120,.3)">🎯 Iniciar Consulta</button>`;
+}
+function startDoctorQuiz() {
+  _quizAnswers = {}; _quizStep = 0;
+  renderDoctorQuiz();
+}
+function renderDoctorQuiz() {
+  if (_quizStep >= QUIZ_STEPS.length) { renderDoctorResults(); return; }
+  const step = QUIZ_STEPS[_quizStep];
+  const prog = Math.round((_quizStep / QUIZ_STEPS.length) * 100);
+  document.getElementById('doctor-content').innerHTML = `
+    <div style="margin-bottom:28px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:11px;color:var(--text3);font-weight:600">Pergunta ${_quizStep+1} de ${QUIZ_STEPS.length}</div>
+        <div style="font-size:11px;color:var(--green);font-weight:600">${prog}%</div>
+      </div>
+      <div style="height:5px;background:var(--bg3);border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${prog}%;background:linear-gradient(90deg,var(--green2),var(--green));border-radius:4px;transition:width .4s"></div>
+      </div>
+    </div>
+    <div style="font-family:var(--serif);font-size:20px;color:var(--text);line-height:1.35;margin-bottom:26px">${step.q}</div>
+    <div style="display:grid;gap:10px">
+      ${step.opts.map((o,i)=>`
+        <button onclick="doctorQuizAnswer(${i})" style="text-align:left;padding:15px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:13px;color:var(--text);font-size:14px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:12px;width:100%">
+          <span style="font-size:22px;flex-shrink:0">${o.label.split(' ')[0]}</span>
+          <span>${o.label.split(' ').slice(1).join(' ')}</span>
+        </button>`).join('')}
+    </div>
+    ${_quizStep > 0 ? `<button onclick="_quizStep--;renderDoctorQuiz()" style="width:100%;padding:12px;margin-top:16px;background:transparent;color:var(--text3);border:1px solid var(--border2);border-radius:12px;cursor:pointer;font-size:13px">← Voltar</button>` : ''}`;
+}
+function doctorQuizAnswer(optIdx) {
+  _quizAnswers[QUIZ_STEPS[_quizStep].id] = { optIdx, ...QUIZ_STEPS[_quizStep].opts[optIdx] };
+  _quizStep++;
+  renderDoctorQuiz();
+}
+function renderDoctorResults() {
+  const all = getStrainsArray();
+  if (!all.length) {
+    document.getElementById('doctor-content').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3)">Banco de cultivares não disponível.</div>';
+    return;
+  }
+  const goalAns = _quizAnswers['goal'], thcAns = _quizAnswers['thc'];
+  let scored = all.map(s => {
+    let score = 0;
+    const medTxt = ((s.medicalNote||'')+(s.effects||'')+(s.description||'')).toLowerCase();
+    if (goalAns?.tags?.length) { for (const tag of goalAns.tags) if (medTxt.includes(tag)) score += 3; }
+    else score += 2;
+    const thcNum = parseInt((s.thc||'').match(/\d+/)?.[0]||'0');
+    const cbdNum = parseFloat((s.cbd||'').replace(/[<>%]/g,'').trim()||'0');
+    if (thcAns) {
+      if (thcAns.thcMax && thcNum <= thcAns.thcMax) score += 2;
+      if (thcAns.thcMin && thcNum >= thcAns.thcMin) score += 2;
+      if (thcAns.cbdMin && cbdNum >= thcAns.cbdMin) score += 2;
+    }
+    score += (stringHash(s.name) % 3);
+    return { s, score };
+  });
+  scored.sort((a,b) => b.score - a.score);
+  const top = scored.slice(0,5);
+  const typeColors = {'indica':'#9b72cf','indica-dominant':'#b472cf','sativa':'#e8a43a','sativa-dominant':'#d4943a','hybrid':'#52b778'};
+  const typeLabels = {'indica':'Índica','indica-dominant':'Índ-Dom','sativa':'Sativa','sativa-dominant':'Sat-Dom','hybrid':'Híbrida'};
+  const typeBg     = {'indica':['#3d1f6e','#7b52b8'],'indica-dominant':['#4a1f7a','#9262cc'],'sativa':['#6b4500','#d4a030'],'sativa-dominant':['#5c3a00','#c49028'],'hybrid':['#0d3320','#3a8f60']};
+  const typeEmoji  = {'indica':'🍁','indica-dominant':'🍂','sativa':'☀️','sativa-dominant':'🌞','hybrid':'🌿'};
+  document.getElementById('doctor-content').innerHTML = `
+    <div style="text-align:center;padding:4px 0 22px">
+      <div style="font-size:44px;margin-bottom:10px">✅</div>
+      <div style="font-family:var(--serif);font-size:21px;color:var(--text);margin-bottom:5px">Suas indicações</div>
+      <div style="font-size:12px;color:var(--text3)">Baseado no seu perfil terapêutico</div>
+    </div>
+    <div style="background:rgba(232,164,58,.1);border:1px solid rgba(232,164,58,.25);border-radius:10px;padding:11px 13px;margin-bottom:20px;font-size:12px;color:var(--amber);line-height:1.5">
+      ⚠️ Sugestões educativas. Consulte sempre um profissional de saúde antes de qualquer uso terapêutico.
+    </div>
+    ${top.map(({s},i) => {
+      const col = typeColors[s.type]||'#52b778';
+      const lbl = typeLabels[s.type]||s.type;
+      const bg  = typeBg[s.type]||typeBg['hybrid'];
+      const ico = typeEmoji[s.type]||'🌿';
+      const key = s.name.toLowerCase().replace(/\s+/g,'-');
+      const note = (s.medicalNote||s.effects||'').slice(0,90);
+      return `<div onclick="openStrainDetail('${key}')" style="background:var(--surface);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:10px;cursor:pointer;transition:border-color .2s,transform .15s" onmouseenter="this.style.borderColor='${col}'" onmouseleave="this.style.borderColor='var(--border)'">
+        <div style="display:flex;align-items:stretch">
+          <div style="width:68px;flex-shrink:0;background:linear-gradient(160deg,${bg[0]},${bg[1]});display:flex;align-items:center;justify-content:center;font-size:30px">${ico}</div>
+          <div style="padding:12px 12px;flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="font-size:12px;font-weight:800;color:${col}">#${i+1}</span>
+              <span style="font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</span>
+            </div>
+            <div style="font-size:11px;color:${col};font-weight:600;margin-bottom:4px">${lbl} · THC ${s.thc||'—'}</div>
+            <div style="font-size:11px;color:var(--text3);line-height:1.4">${note}${note.length>=90?'…':''}</div>
+          </div>
+          <div style="padding:0 10px;display:flex;align-items:center;color:var(--text3);font-size:18px">›</div>
+        </div>
+      </div>`;
+    }).join('')}
+    <button onclick="startDoctorQuiz()" style="width:100%;padding:13px;margin-top:4px;background:var(--green-dim);color:var(--green);border:1px solid var(--border2);border-radius:12px;cursor:pointer;font-size:13px;font-weight:600">🔄 Refazer consulta</button>
+    <button onclick="renderDoctorLanding()" style="width:100%;padding:12px;margin-top:8px;background:transparent;color:var(--text3);border:1px solid var(--border2);border-radius:12px;cursor:pointer;font-size:13px">← Início</button>`;
+}
+
+function openStrainDetail(key) {
+  if (typeof STRAIN_DB === 'undefined') return;
+  const info = STRAIN_DB[key] || Object.values(STRAIN_DB).find(s => s.name.toLowerCase().replace(/\s+/g,'-') === key);
+  if (!info) return;
+  const typeColors = {'indica':'#9b72cf','indica-dominant':'#b472cf','sativa':'#e8a43a','sativa-dominant':'#d4943a','hybrid':'#52b778'};
+  const typeLabels = {'indica':'Índica','indica-dominant':'Índica-Dominante','sativa':'Sativa','sativa-dominant':'Sativa-Dominante','hybrid':'Híbrida'};
+  const typeEmojis = {'indica':'🍁','indica-dominant':'🍂','sativa':'☀️','sativa-dominant':'🌞','hybrid':'🌿'};
+  const col = typeColors[info.type] || '#52b778';
+  const lbl = typeLabels[info.type] || info.type;
+  const emo = typeEmojis[info.type] || '🌿';
+  const effectTags = (info.effects||'').split(/,|;/).map(e=>e.trim()).filter(Boolean).map(e=>`<span class="sd-tag">${e}</span>`).join('');
+  const aromaTags  = (info.aromas||'').split(/,|;/).map(a=>a.trim()).filter(Boolean).map(a=>`<span class="sd-tag">${a}</span>`).join('');
+  const terpTags   = (info.terpenes||'').split(/,|;/).map(t=>t.trim()).filter(Boolean).map(t=>`<span class="sd-tag" style="background:var(--purple-dim);color:var(--purple)">${t}</span>`).join('');
+  const thcNum = parseInt((info.thc||'').match(/\d+/)?.[0]||'0');
+  const thcBar = Math.min(100, thcNum*4);
+  const activeCultivo = getActiveCultivo?.();
+  const useBtn = activeCultivo
+    ? `<button class="sd-use-btn" onclick="useStrainInCultivo('${key}');closeStrainDetail()">✅ Usar esta strain no meu cultivo</button>`
+    : `<button class="sd-use-btn" style="background:var(--bg3);color:var(--text2);border:1px solid var(--border2)" onclick="closeStrainDetail()">← Voltar</button>`;
+  const sdBg = {'indica':['#3d1f6e','#7b52b8'],'indica-dominant':['#4a1f7a','#9262cc'],'sativa':['#6b4500','#d4a030'],'sativa-dominant':['#5c3a00','#c49028'],'hybrid':['#0d3320','#3a8f60']}[info.type]||['#0d3320','#3a8f60'];
+  document.getElementById('strain-detail-content').innerHTML = `
+    <div style="height:120px;background:linear-gradient(135deg,${sdBg[0]},${sdBg[1]});display:flex;align-items:center;justify-content:center;font-size:64px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4))">${emo}</div>
+    <div class="sd-body">
+      <div class="sd-name">${info.name}</div>
+      <div class="sd-type-row">
+        <span style="font-size:20px">${emo}</span>
+        <span style="font-size:13px;font-weight:600;color:${col}">${lbl}</span>
+        ${info.lineage ? `<span style="font-size:11px;color:var(--text3)">· ${info.lineage}</span>` : ''}
+      </div>
+      <div class="sd-stats-grid">
+        <div class="sd-stat"><div class="sd-stat-val" style="color:var(--amber)">${info.thc||'—'}</div><div class="sd-stat-lbl">THC</div></div>
+        <div class="sd-stat"><div class="sd-stat-val" style="color:var(--green)">${info.cbd||'—'}</div><div class="sd-stat-lbl">CBD</div></div>
+        <div class="sd-stat"><div class="sd-stat-val" style="color:var(--purple)">${info.flowerWeeks||'—'}</div><div class="sd-stat-lbl">Floração</div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Potência THC</div>
+        <div style="height:6px;background:var(--bg3);border-radius:4px;overflow:hidden">
+          <div style="height:100%;width:${thcBar}%;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:4px"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:3px"><span>Baixo</span><span>Alto</span></div>
+      </div>
+      ${info.description ? `<div class="sd-section"><div class="sd-section-title">Sobre a strain</div><div class="sd-section-body">${info.description}</div></div>` : ''}
+      ${info.medicalNote ? `<div class="sd-medical"><div class="sd-medical-title">🏥 Uso Medicinal</div><div class="sd-medical-body">${info.medicalNote}</div></div>` : ''}
+      ${effectTags ? `<div class="sd-section"><div class="sd-section-title">Efeitos</div><div>${effectTags}</div></div>` : ''}
+      ${aromaTags  ? `<div class="sd-section"><div class="sd-section-title">Aromas & Sabores</div><div>${aromaTags}</div></div>` : ''}
+      ${terpTags   ? `<div class="sd-section"><div class="sd-section-title">Terpenos Dominantes</div><div>${terpTags}</div></div>` : ''}
+      ${info.growTip ? `<div class="sd-grow-tip"><div class="sd-grow-tip-title">🌱 Dica de Cultivo</div><div class="sd-grow-tip-body">${info.growTip}</div></div>` : ''}
+      ${useBtn}
+    </div>`;
+  document.getElementById('strain-detail-modal').classList.remove('hidden');
+}
+function closeStrainDetail(e) {
+  if (e && e.target !== document.getElementById('strain-detail-modal')) return;
+  document.getElementById('strain-detail-modal').classList.add('hidden');
+}
+function useStrainInCultivo(key) {
+  const info = STRAIN_DB[key] || Object.values(STRAIN_DB).find(s => s.name.toLowerCase().replace(/\s+/g,'-') === key);
+  if (!info) return;
+  const c = getActiveCultivo?.();
+  if (c) {
+    c.strain = info.name;
+    saveJardim();
+    if (typeof fetchStrainInfo === 'function') fetchStrainInfo(info.name);
+    if (typeof buildCronograma === 'function') buildCronograma();
+    document.getElementById('detail-strain').textContent = info.name;
+  }
+  closeDoctorScreen();
+}
+
+// ── Quiz ─────────────────────────────────────────────
+const QUIZ_STEPS = [
+  { id:'goal', q:'Qual é seu principal objetivo terapêutico?', opts:[
+    {label:'😴 Dormir melhor / insônia',  tags:['sedativ','sleep','insônia','sonolên']},
+    {label:'😤 Dor crônica / inflamação', tags:['dor','inflamaç','analgés','artrite','crohn']},
+    {label:'🧠 Ansiedade / estresse',     tags:['ansiedade','estresse','pânico','taq']},
+    {label:'🎯 Foco / clareza mental',    tags:['foco','clareza','cognit','produtiv']},
+    {label:'😊 Humor / depressão',        tags:['humor','depressão','ânimo','alívio']},
+    {label:'🧬 Uso geral / bem-estar',    tags:[]},
+  ]},
+  { id:'thc', q:'Qual sua relação com THC?', opts:[
+    {label:'🌿 Prefiro baixo THC / CBD alto', thcMax:10, cbdMin:5},
+    {label:'⚖️ Equilibrado (10–18%)',         thcMin:10, thcMax:18},
+    {label:'💪 Alto THC (18%+)',              thcMin:18},
+  ]},
+  { id:'exp', q:'Qual sua experiência como cultivador?', opts:[
+    {label:'🌱 Iniciante — quero algo fácil'},
+    {label:'🌿 Intermediário'},
+    {label:'🔬 Avançado — aceito desafios'},
+  ]},
+];
+let _quizAnswers = {}, _quizStep = 0;
+
+function stringHash(str) {
+  let h = 0;
+  for (let i=0;i<str.length;i++) h = ((h<<5)-h)+str.charCodeAt(i), h|=0;
+  return Math.abs(h);
+}
+
+// ═══════════════════════════════════════════════
+
+function populateStrainList() {
+  const list = document.getElementById('strain-list');
+  if (!list || typeof STRAIN_DB === 'undefined') return;
+  const names = Object.values(STRAIN_DB).map(s => s.name).sort();
+  list.innerHTML = names.map(n => `<option value="${n}">`).join('');
+}
+
+(function init() {
+  loadJardim();
+  initAuth();
+  renderJardim();
+  buildGuia();
+  buildManual();
+  populateStrainList();
+})();
+</script>
+</body>
+</html>
