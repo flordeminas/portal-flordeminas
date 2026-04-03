@@ -48,19 +48,29 @@ def sync_layout():
                     adj_footer = adj_footer.replace('href="eventos.html', f'href="{prefix}eventos.html')
                     adj_footer = adj_footer.replace('href="sobre-nos.html', f'href="{prefix}sobre-nos.html')
                     adj_footer = adj_footer.replace('href="parceiros.html', f'href="{prefix}parceiros.html')
-                    adj_footer = adj_footer.replace('href="recursos.html', f'href="{prefix}recursos.html')
+                    adj_footer = adj_footer.replace('href="loja.html', f'href="{prefix}loja.html')
+                    adj_footer = adj_footer.replace('href="privacidade.html', f'href="{prefix}privacidade.html')
+                    adj_footer = adj_footer.replace('href="termos.html', f'href="{prefix}termos.html')
+                    adj_footer = adj_footer.replace('href="checklist-hc-2026.html', f'href="{prefix}checklist-hc-2026.html')
+                    adj_footer = adj_footer.replace('href="clube.html', f'href="{prefix}clube.html')
+                    adj_footer = adj_footer.replace('href="mapa-terpenos.html', f'href="{prefix}mapa-terpenos.html')
 
                     adj_header = adj_header.replace('src="assets/', f'src="{prefix}assets/')
                     adj_header = adj_header.replace('href="index.html', f'href="{prefix}index.html')
                     adj_header = adj_header.replace('href="noticias.html', f'href="{prefix}noticias.html')
-                    adj_header = adj_header.replace('href="apoio-associacoes.html', f'href="{prefix}apoio-associacoes.html')
                     adj_header = adj_header.replace('href="eventos.html', f'href="{prefix}eventos.html')
                     adj_header = adj_header.replace('href="sobre-nos.html', f'href="{prefix}sobre-nos.html')
                     adj_header = adj_header.replace('href="parceiros.html', f'href="{prefix}parceiros.html')
-                    adj_header = adj_header.replace('href="recursos.html', f'href="{prefix}recursos.html')
+                    adj_header = adj_header.replace('href="loja.html', f'href="{prefix}loja.html')
+                    adj_header = adj_header.replace('href="checklist-hc-2026.html', f'href="{prefix}checklist-hc-2026.html')
+                    adj_header = adj_header.replace('href="entrar.html', f'href="{prefix}entrar.html')
+                    adj_header = adj_header.replace('href="clube.html', f'href="{prefix}clube.html')
                     adj_header = adj_header.replace('href="#"', f'href="{prefix}index.html"')
 
                     adj_og = adj_og.replace('href="assets/favicon.png"', f'href="{prefix}assets/favicon.png"')
+                    
+                    # Update JS path
+                    content = content.replace('src="js/main.js"', f'src="{prefix}js/main.js"')
                 
                 # Replace Footer and Header
                 content = re.sub(r'<footer.*?>.*?</footer>', f'<footer class="site-footer" role="contentinfo">{adj_footer}</footer>', content, flags=re.DOTALL)
