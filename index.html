@@ -7,6 +7,15 @@
 <meta content="Flor de Minas: Especialistas em conteúdo técnico, SEO e regulação de Cannabis medicinal no Brasil (RDCs 2026). Ciência, autoridade e compliance." name="description"/>
 <meta content="Cannabis medicinal, CBD, ANVISA, RDC 2026, Flor de Minas, SEO Cannabis medicinal, Ciência Cannabis medicinal" name="keywords"/>
 <meta content="Squad Flor de Minas" name="author"/>
+<!-- Redirecionar tokens de auth do Supabase (ex: recuperação de senha) para entrar.html -->
+<script>
+  (function() {
+    var hash = window.location.hash;
+    if (hash && hash.indexOf('type=recovery') !== -1) {
+      window.location.replace('entrar.html' + hash);
+    }
+  })();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
 <script>

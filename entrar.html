@@ -175,6 +175,18 @@
             border: 1px solid rgba(239, 68, 68, 0.2);
         }
 
+        .success-msg {
+            background: rgba(21, 128, 61, 0.15);
+            color: #86efac;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            display: none;
+            text-align: left;
+            border: 1px solid rgba(21, 128, 61, 0.3);
+        }
+
         /* Loading spinner */
         .spinner {
             display: none;
@@ -189,6 +201,8 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        #reset-form { display: none; }
 
         @media (max-width: 480px) {
             .login-card { padding: 30px 20px; }
@@ -205,6 +219,23 @@
         <p>Acesse seu ecossistema de inteligência.</p>
 
         <div id="error-box" class="error-msg"></div>
+        <div id="success-box" class="success-msg"></div>
+
+        <!-- Formulário de redefinição de senha (visível apenas via link do e-mail) -->
+        <form id="reset-form">
+            <div class="form-group">
+                <label for="new-password">Nova Senha</label>
+                <input type="password" id="new-password" placeholder="Mínimo 6 caracteres" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Nova Senha</label>
+                <input type="password" id="confirm-password" placeholder="Repita a nova senha" required minlength="6">
+            </div>
+            <button type="submit" class="btn-login" id="btn-reset">
+                <span>Salvar Nova Senha</span>
+                <div class="spinner" id="reset-spinner"></div>
+            </button>
+        </form>
 
         <form id="login-form">
             <div class="form-group">
@@ -358,6 +389,71 @@
                 box.style.display = 'block';
             }
         })();
+
+        // Detectar link de redefinição de senha vindo do e-mail
+        (function() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const type = params.get('type');
+            const errorCode = params.get('error_code');
+
+            if (errorCode) {
+                const box = document.getElementById('error-box');
+                box.innerText = 'O link de redefinição de senha expirou ou já foi usado. Solicite um novo clicando em "Esqueci minha senha".';
+                box.style.display = 'block';
+                return;
+            }
+
+            if (type === 'recovery') {
+                // Trocar título e esconder formulário de login
+                document.querySelector('.login-card h1').innerText = 'Redefinir Senha';
+                document.querySelector('.login-card > p').innerText = 'Digite sua nova senha abaixo.';
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('reset-form').style.display = 'block';
+                document.querySelector('.login-footer').style.display = 'none';
+
+                // Supabase já processa o token do hash automaticamente via onAuthStateChange
+            }
+        })();
+
+        // Handler do formulário de redefinição
+        document.getElementById('reset-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorBox = document.getElementById('error-box');
+            const successBox = document.getElementById('success-box');
+            const btnReset = document.getElementById('btn-reset');
+            const resetSpinner = document.getElementById('reset-spinner');
+
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
+
+            if (newPassword !== confirmPassword) {
+                errorBox.innerText = 'As senhas não coincidem.';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            btnReset.disabled = true;
+            resetSpinner.style.display = 'block';
+            btnReset.querySelector('span').innerText = 'Salvando...';
+
+            const { error } = await supabaseClient.auth.updateUser({ password: newPassword });
+
+            if (error) {
+                errorBox.innerText = 'Erro ao salvar nova senha: ' + error.message;
+                errorBox.style.display = 'block';
+                btnReset.disabled = false;
+                resetSpinner.style.display = 'none';
+                btnReset.querySelector('span').innerText = 'Salvar Nova Senha';
+            } else {
+                successBox.innerText = 'Senha redefinida com sucesso! Redirecionando para o login...';
+                successBox.style.display = 'block';
+                await supabaseClient.auth.signOut();
+                setTimeout(() => { window.location.href = 'entrar.html'; }, 2500);
+            }
+        });
 
         // Forgot password
         document.getElementById('forgot-password').addEventListener('click', async (e) => {
