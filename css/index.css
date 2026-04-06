@@ -63,7 +63,8 @@ a {
     background-color: var(--bg-main);
 }
 
-.article-page main.container {
+.article-page main.container,
+.article-page main.main-content {
     padding-top: 90px; /* Account for fixed 70px header + small margin */
 }
 
