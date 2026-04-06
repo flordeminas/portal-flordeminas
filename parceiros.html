@@ -24,6 +24,180 @@
 <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+<style>
+  /* ===== ASSOCIAÇÕES: FILTRO ===== */
+  .assoc-filter-section {
+    padding: 3rem 0 0;
+    background: #F8FAFC;
+  }
+  .assoc-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+    margin: 1.5rem 0 2rem;
+  }
+  .assoc-filter-btn {
+    padding: .45rem 1.1rem;
+    border-radius: 999px;
+    border: 2px solid #CBD5E1;
+    background: #fff;
+    color: #475569;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .assoc-filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .assoc-filter-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+  .assoc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    padding-bottom: 3rem;
+  }
+  .assoc-card {
+    background: #fff;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .assoc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.09); border-color: #B0C4B8; }
+  .assoc-card.hidden { display: none; }
+
+  .assoc-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .assoc-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #D1FAE5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .assoc-card-name { font-weight: 700; color: #0F172A; font-size: 1rem; line-height: 1.3; margin-bottom: .2rem; }
+  .assoc-card-city { font-size: .8rem; color: #64748B; }
+  .assoc-state-badge {
+    margin-left: auto;
+    background: #EFF6FF;
+    color: #1D4ED8;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .assoc-state-badge.mg { background: #D1FAE5; color: #065F46; }
+  .assoc-card-desc { font-size: .875rem; color: #475569; line-height: 1.6; margin-bottom: 1rem; }
+  .assoc-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .assoc-tag {
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    background: #F1F5F9;
+    color: #475569;
+  }
+  .assoc-card-links { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .assoc-link {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+  }
+  .assoc-link:hover { text-decoration: underline; }
+  .assoc-no-results { display: none; text-align: center; padding: 3rem; color: #64748B; }
+
+  /* ===== DESTAQUE MG ===== */
+  .mg-spotlight {
+    background: linear-gradient(135deg, #064E3B 0%, #065F46 100%);
+    padding: 5rem 0;
+    color: #fff;
+  }
+  .mg-spotlight h2 { color: #fff; margin-bottom: .5rem; }
+  .mg-spotlight .section-sub { color: rgba(255,255,255,.75); margin-bottom: 2.5rem; }
+  .mg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .mg-card {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: background .2s, border-color .2s;
+  }
+  .mg-card:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.4); }
+  .mg-card-icon { font-size: 2rem; margin-bottom: .75rem; }
+  .mg-card h3 { color: #fff; font-size: 1rem; margin-bottom: .3rem; }
+  .mg-card-city { font-size: .78rem; color: rgba(255,255,255,.6); margin-bottom: .75rem; }
+  .mg-card p { font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.6; margin-bottom: 1rem; }
+  .mg-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .mg-tag {
+    font-size: .7rem;
+    font-weight: 600;
+    padding: .2rem .55rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.15);
+    color: rgba(255,255,255,.9);
+  }
+  .mg-card a {
+    font-size: .8rem;
+    font-weight: 700;
+    color: #6EE7B7;
+    text-decoration: none;
+  }
+  .mg-card a:hover { text-decoration: underline; }
+
+  .mg-cta-box {
+    margin-top: 2.5rem;
+    background: rgba(255,255,255,.08);
+    border: 1px dashed rgba(255,255,255,.3);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .mg-cta-box p { color: rgba(255,255,255,.8); font-size: .9rem; margin: 0; }
+  .mg-cta-box strong { color: #fff; }
+  .btn-mg-cta {
+    background: #fff;
+    color: #064E3B;
+    padding: .65rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s;
+  }
+  .btn-mg-cta:hover { background: #D1FAE5; text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .assoc-grid { grid-template-columns: 1fr; }
+    .mg-grid { grid-template-columns: 1fr; }
+    .mg-cta-box { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body class="partners-page">
 <!-- Header -->
@@ -36,10 +210,11 @@
                     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
                     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
                     <li><a class="nav-link" href="loja.html">Loja</a></li>
-                    <li><a class="nav-link login-link" href="entrar.html">🔒 Entrar</a></li>
+                    <li><a class="nav-link" href="clube.html">Clube</a></li>
+                    <li><a class="header-cta nav-entrar-mobile" href="entrar.html">🔒 Entrar</a></li>
                 </ul>
 <div class="header-right">
-<a class="header-cta" href="clube.html">Clube</a>
+<a class="header-cta" href="entrar.html">🔒 Entrar</a>
 <button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
 <span></span>
 <span></span>
@@ -60,6 +235,210 @@
 </div>
 </div>
 </section>
+<!-- DESTAQUE MG -->
+<section class="mg-spotlight" aria-labelledby="mg-title">
+  <div class="container">
+    <h2 id="mg-title">Associações em Minas Gerais</h2>
+    <p class="section-sub">A Flor de Minas nasceu em MG. Conheça as associações que atuam no estado com seriedade e cuidado.</p>
+
+    <div class="mg-grid">
+
+      <div class="mg-card">
+        <div class="mg-card-icon">🌿</div>
+        <h3>AMA+ME</h3>
+        <div class="mg-card-city">Belo Horizonte — MG · Barro Preto</div>
+        <p>A <strong style="color:#6EE7B7;">primeira associação de Cannabis medicinal do Brasil</strong>, fundada em 2014. Mais de 3.300 associados, laboratório próprio de extração, rede de 3.400+ médicos prescritores e atuação política no Congresso e ALMG.</p>
+        <div class="mg-card-tags">
+          <span class="mg-tag">Pioneira nacional</span>
+          <span class="mg-tag">Cultivo</span>
+          <span class="mg-tag">Jurídico</span>
+          <span class="mg-tag">Pesquisa</span>
+          <span class="mg-tag">Óleos</span>
+        </div>
+        <a href="https://amame.org.br" target="_blank" rel="noopener">amame.org.br →</a>
+        &nbsp;&nbsp;
+        <a href="https://www.instagram.com/amamebrasil/" target="_blank" rel="noopener">@amamebrasil →</a>
+      </div>
+
+    </div>
+
+    <div class="mg-cta-box">
+      <p><strong>Representa uma associação em MG?</strong> Entre em contato para aparecer nesta seção e conectar-se à rede Flor de Minas.</p>
+      <a class="btn-mg-cta" href="mailto:parceiros@flordeminas.com.br">Cadastrar minha associação</a>
+    </div>
+  </div>
+</section>
+
+<!-- FILTRO POR ESTADO -->
+<section class="assoc-filter-section" aria-labelledby="assoc-title">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="assoc-title">Encontre a Associação Mais Próxima</h2>
+      <p>Filtre pelo seu estado e encontre uma associação de pacientes séria e acolhedora na sua região.</p>
+    </div>
+
+    <div class="assoc-filter-bar" role="group" aria-label="Filtrar por estado">
+      <button class="assoc-filter-btn active" data-state="todos">Todos os estados</button>
+      <button class="assoc-filter-btn" data-state="MG">MG</button>
+      <button class="assoc-filter-btn" data-state="RJ">RJ</button>
+      <button class="assoc-filter-btn" data-state="PR">PR</button>
+      <button class="assoc-filter-btn" data-state="BA">BA</button>
+      <button class="assoc-filter-btn" data-state="PE">PE</button>
+      <button class="assoc-filter-btn" data-state="PB">PB</button>
+      <button class="assoc-filter-btn" data-state="DF">DF</button>
+    </div>
+
+    <div class="assoc-grid" id="assoc-grid">
+
+      <!-- MG -->
+      <div class="assoc-card" data-state="MG">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🌿</div>
+          <div>
+            <div class="assoc-card-name">AMA+ME</div>
+            <div class="assoc-card-city">Belo Horizonte — MG · Barro Preto</div>
+          </div>
+          <span class="assoc-state-badge mg">MG</span>
+        </div>
+        <p class="assoc-card-desc">A primeira associação de Cannabis medicinal do Brasil (2014). +3.300 associados, laboratório de extração próprio, diretório de 3.400+ prescritores e atuação legislativa no Congresso e ALMG. Fundada por Juliana Ceolin Soares.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pioneira nacional</span><span class="assoc-tag">Cultivo</span><span class="assoc-tag">Jurídico</span><span class="assoc-tag">Pesquisa</span><span class="assoc-tag">Óleos</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://amame.org.br" target="_blank" rel="noopener">🌐 amame.org.br</a>
+          <a class="assoc-link" href="https://www.instagram.com/amamebrasil/" target="_blank" rel="noopener">📷 @amamebrasil</a>
+          <a class="assoc-link" href="tel:+5531998607603">📞 (31) 99860-7603</a>
+        </div>
+      </div>
+
+      <!-- RJ -->
+      <div class="assoc-card" data-state="RJ">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">💚</div>
+          <div>
+            <div class="assoc-card-name">APEPI</div>
+            <div class="assoc-card-city">Rio de Janeiro — RJ · Botafogo</div>
+          </div>
+          <span class="assoc-state-badge">RJ</span>
+        </div>
+        <p class="assoc-card-desc">Associação de Apoio à Pesquisa e Pacientes de Cannabis Medicinal. Fundada em 2014, tem +16.000 associados no Brasil, Fazenda Sofia Langenbach para cultivo orgânico e produção de óleos próprios.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pediátrico</span><span class="assoc-tag">Epilepsia</span><span class="assoc-tag">Óleos</span><span class="assoc-tag">Advocacy</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://apepi.org" target="_blank" rel="noopener">🌐 apepi.org</a>
+          <a class="assoc-link" href="https://www.instagram.com/familiaapepi/" target="_blank" rel="noopener">📷 @familiaapepi</a>
+        </div>
+      </div>
+
+      <!-- PR -->
+      <div class="assoc-card" data-state="PR">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🌿</div>
+          <div>
+            <div class="assoc-card-name">APRACAM</div>
+            <div class="assoc-card-city">Umuarama — PR</div>
+          </div>
+          <span class="assoc-state-badge">PR</span>
+        </div>
+        <p class="assoc-card-desc">Associação Paranaense de Apoio à Cannabis Medicinal. Suporte a pacientes e famílias em todo o Paraná, com orientação jurídica e acesso a medicamentos canábicos.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Jurídico</span><span class="assoc-tag">Famílias</span><span class="assoc-tag">Pacientes</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://www.apracam.com.br" target="_blank" rel="noopener">🌐 apracam.com.br</a>
+        </div>
+      </div>
+
+      <!-- BA -->
+      <div class="assoc-card" data-state="BA">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🌻</div>
+          <div>
+            <div class="assoc-card-name">CANNAB</div>
+            <div class="assoc-card-city">Salvador — BA</div>
+          </div>
+          <span class="assoc-state-badge">BA</span>
+        </div>
+        <p class="assoc-card-desc">Associação para Pesquisa e Desenvolvimento da Cannabis Medicinal no Brasil, fundada em Salvador em 2017. Atendimento humanizado a pacientes, suporte a pesquisa e acesso a produtos canábicos.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pesquisa</span><span class="assoc-tag">Pacientes</span><span class="assoc-tag">Nordeste</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://cannab.com.br" target="_blank" rel="noopener">🌐 cannab.com.br</a>
+          <a class="assoc-link" href="https://www.instagram.com/associacaocannab/" target="_blank" rel="noopener">📷 @associacaocannab</a>
+        </div>
+      </div>
+
+      <!-- PE -->
+      <div class="assoc-card" data-state="PE">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🌸</div>
+          <div>
+            <div class="assoc-card-name">CANNAPE</div>
+            <div class="assoc-card-city">Recife — PE</div>
+          </div>
+          <span class="assoc-state-badge">PE</span>
+        </div>
+        <p class="assoc-card-desc">Associação canábica pernambucana com foco em suporte a pacientes, acesso a óleos medicinais e advocacy pela regulamentação no estado.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pacientes</span><span class="assoc-tag">Óleos</span><span class="assoc-tag">Advocacy</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://www.instagram.com/associacaocannape/" target="_blank" rel="noopener">📷 @associacaocannape</a>
+        </div>
+      </div>
+
+      <!-- PB -->
+      <div class="assoc-card" data-state="PB">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">💛</div>
+          <div>
+            <div class="assoc-card-name">ABRACE Esperança</div>
+            <div class="assoc-card-city">João Pessoa — PB</div>
+          </div>
+          <span class="assoc-state-badge">PB</span>
+        </div>
+        <p class="assoc-card-desc">Primeira associação autorizada pela Justiça brasileira a cultivar Cannabis para fins medicinais. +46.000 pacientes atendidos, 6 tipos de óleo, laboratório industrial próprio e o primeiro Museu da Cannabis do Brasil.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pioneira</span><span class="assoc-tag">Epilepsia</span><span class="assoc-tag">Pediátrico</span><span class="assoc-tag">Laboratório</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://abraceesperanca.org.br" target="_blank" rel="noopener">🌐 abraceesperanca.org.br</a>
+          <a class="assoc-link" href="https://www.instagram.com/abraceesperanca/" target="_blank" rel="noopener">📷 @abraceesperanca</a>
+        </div>
+      </div>
+
+      <!-- DF -->
+      <div class="assoc-card" data-state="DF">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🏛️</div>
+          <div>
+            <div class="assoc-card-name">CRESCE-DF</div>
+            <div class="assoc-card-city">Brasília — DF</div>
+          </div>
+          <span class="assoc-state-badge">DF</span>
+        </div>
+        <p class="assoc-card-desc">Associação canábica do Distrito Federal com atuação em suporte a pacientes, advocacy e proximidade com o Congresso e agências reguladoras como a ANVISA.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pacientes</span><span class="assoc-tag">Advocacy</span><span class="assoc-tag">Regulação</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://www.instagram.com/associacrescedf/" target="_blank" rel="noopener">📷 @associacrescedf</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="assoc-no-results" id="assoc-no-results">Ainda não temos associações cadastradas neste estado. <a href="mailto:parceiros@flordeminas.com.br" style="color:var(--primary)">Indique uma →</a></p>
+
+    <div style="text-align:center; padding: 2rem 0 3rem; border-top: 1px solid #E2E8F0; margin-top: 1rem;">
+      <p style="color:#64748B; font-size:.9rem; margin-bottom:1rem;">Conhece uma associação séria que deveria estar aqui?</p>
+      <a class="btn btn-outline" href="mailto:parceiros@flordeminas.com.br">Indicar associação</a>
+    </div>
+  </div>
+</section>
+
 <!-- 1. Médicos e Plataformas -->
 <section class="section-neutral">
 <div class="container">
@@ -211,5 +590,33 @@
   </div>
 </footer>
 <script src="js/main.js"></script>
+<script>
+  (function () {
+    const btns = document.querySelectorAll('.assoc-filter-btn');
+    const cards = document.querySelectorAll('.assoc-card');
+    const noResults = document.getElementById('assoc-no-results');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const state = this.dataset.state;
+
+        btns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        let visible = 0;
+        cards.forEach(card => {
+          if (state === 'todos' || card.dataset.state === state) {
+            card.classList.remove('hidden');
+            visible++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+  })();
+</script>
 </body>
 </html>

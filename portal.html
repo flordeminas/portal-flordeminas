@@ -16,31 +16,19 @@
 <!-- Favicon -->
 <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+    <!-- Styles -->
+    <link href="css/index.css?v=1.03" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         :root {
-            --fm-forest: #15803d;
-            --fm-dark: #064e3b;
-            --fm-sage: #86efac;
-            --fm-gold: #fbbf24;
             --fm-dark-accent: #022c22;
         }
 
         body {
-            background-color: var(--fm-dark-accent);
+            background-color: var(--fm-dark-accent) !important;
             color: #fff;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
             min-height: 100vh;
         }
 
@@ -52,7 +40,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 2000;
         }
 
         .spinner-large {
@@ -66,50 +54,42 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Sidebar / Header */
-        header {
-            background: #064E3B;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .header-left img { height: 32px; }
-        .header-left .v-line { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
-        .header-left h2 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--fm-sage); margin: 0; }
-
-        .header-right { display: flex; align-items: center; gap: 15px; }
+        /* Portal Navigation Extensions */
         .user-pill {
-            background: rgba(255,255,255,0.05);
-            padding: 8px 16px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            padding: 6px 12px;
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 50px;
-            font-size: 0.85rem;
-            color: #ccc;
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            font-weight: 500;
         }
 
         .logout-btn {
-            background: transparent;
-            color: #ef4444;
-            border: none;
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
             transition: all 0.2s;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .logout-btn:hover { filter: brightness(1.2); }
+        
+        .logout-btn:hover { 
+            background: rgba(239, 68, 68, 0.2);
+            color: #fff;
+        }
 
         /* Content Area */
         main {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
         }
 
         .welcome-section {
@@ -269,92 +249,15 @@
         }
 
         @media (max-width: 768px) {
-            header { padding: 15px 20px; }
+            main { padding-top: 80px; }
             .grid-container { grid-template-columns: 1fr; }
             .feed-item { flex-direction: column; gap: 5px; }
             .feed-date { min-width: auto; margin-bottom: 5px; }
-        }
 
-        /* ── Layout ── */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ── Logo ── */
-        .logo, a.logo {
-            font-family: 'Merriweather', Georgia, serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -.01em;
-            text-decoration: none;
-        }
-        .logo span { color: #F59E0B; }
-
-        /* ── Footer ── */
-        footer.site-footer {
-            background: #0F172A;
-            color: #FAFAFA;
-            padding: 60px 0 40px;
-            margin-top: 60px;
-        }
-
-        .footer-disclaimer-box {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 1.25rem 1.5rem;
-            font-size: .78rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,.55);
-            margin-bottom: 2.5rem;
-        }
-        .footer-disclaimer-box strong { color: rgba(255,255,255,.8); }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-logo {
-            font-family: 'Merriweather', Georgia, serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: .75rem;
-        }
-        .footer-logo span { color: #F59E0B; }
-
-        .footer-col p { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.65; margin-bottom: 1rem; }
-        .footer-col h4 { color: #fff; font-size: .8rem; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; }
-        .footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
-        .footer-col a { font-size: .82rem; color: rgba(255,255,255,.55); transition: color .2s; text-decoration: none; }
-        .footer-col a:hover { color: #F59E0B; }
-
-        .footer-social { display: flex; gap: .75rem; margin-top: .5rem; }
-        .footer-social a { color: rgba(255,255,255,.5); transition: color .2s; display: flex; }
-        .footer-social a:hover { color: #F59E0B; }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,.1);
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: .75rem;
-            font-size: .75rem;
-            color: rgba(255,255,255,.35);
-        }
-
-        @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 480px) {
-            .footer-grid { grid-template-columns: 1fr; }
+            /* Ocultar email no mobile para dar espaço ao menu hamburguer */
+            .user-pill { display: none; }
+            .logout-btn { padding: 6px 8px; font-size: 0; gap: 0; }
+            .logout-btn i { font-size: 1rem; }
         }
     </style>
 </head>
@@ -373,10 +276,11 @@
                     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
                     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
                     <li><a class="nav-link" href="loja.html">Loja</a></li>
-                    <li><a class="nav-link login-link" href="entrar.html">🔒 Entrar</a></li>
+                    <li><a class="nav-link" href="clube.html">Clube</a></li>
+                    <li><a class="header-cta nav-entrar-mobile" href="entrar.html">🔒 Entrar</a></li>
                 </ul>
 <div class="header-right">
-<a class="header-cta" href="clube.html">Clube</a>
+<a class="header-cta" href="entrar.html">🔒 Entrar</a>
 <button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
 <span></span>
 <span></span>
@@ -428,12 +332,13 @@
                 <a href="guia/mapa-terpenos-print.html" target="_blank" class="btn-action">Abrir Mapa de Terpenos</a>
             </div>
 
-            <!-- Terpenes Maps -->
+            <!-- Dossiê HC 2026 -->
             <div class="resource-card">
-                <div class="card-icon"><i class="fas fa-microscope"></i></div>
-                <h3>Protocolos de Laboratório</h3>
-                <p>Guia de extrações e dosagens farmacêuticas artesanais seguras. Exclusivo para membros.</p>
-                <a href="#" class="btn-action" style="opacity:0.5; cursor:not-allowed;" onclick="return false;">Em breve</a>
+                <span class="tag-new">Novo</span>
+                <div class="card-icon"><i class="fas fa-scroll"></i></div>
+                <h3>Dossiê HC 2026</h3>
+                <p>Templates de petição, memorial agronômico e guia de compliance completo para montar seu pacote jurídico de Habeas Corpus medicinal.</p>
+                <a href="guia/dossie-hc-2026.html" target="_blank" class="btn-action">Abrir Dossiê</a>
             </div>
         </div>
 
@@ -524,6 +429,7 @@
   </div>
 </footer>
 
+    <script src="js/main.js"></script>
     <script>
         const SUPABASE_URL = "https://eqyhbbiizmckjcfuqwrv.supabase.co"; 
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxeWhiYmlpem1ja2pjZnVxd3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NDc2MzUsImV4cCI6MjA5MDUyMzYzNX0.4X3r0ATjKoUQ9lvL_dmcpJzeIqZ6l103QVdpP0JjG0U";
@@ -558,8 +464,8 @@
                 }
 
                 // All good! Update UI
-                userEmailEl.innerText = user.email;
-                if (profile.full_name) {
+                if (userEmailEl) userEmailEl.innerText = user.email;
+                if (profile.full_name && welcomeNameEl) {
                     welcomeNameEl.innerText = `Olá, ${profile.full_name.split(' ')[0]}!`;
                 }
 
@@ -572,10 +478,13 @@
         }
 
         // Logout
-        document.getElementById('logout-btn').addEventListener('click', async () => {
-            await supabaseClient.auth.signOut();
-            window.location.href = 'index.html';
-        });
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await supabaseClient.auth.signOut();
+                window.location.href = 'index.html';
+            });
+        }
 
         // Initialize
         checkSubscription();

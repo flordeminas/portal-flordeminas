@@ -1,5 +1,10 @@
-# Flor de Minas Automatic Deploy Script
-# Performs git add, commit, and push only if changes exist.
+# Flor de Minas Deploy Script
+# Usage: .\deploy.ps1 "mensagem do commit"
+# If no message is provided, lists changed files and prompts.
+
+param(
+    [string]$Message
+)
 
 $cwd = "c:\Projetos\ZHC\website"
 Set-Location -Path $cwd
@@ -10,14 +15,25 @@ python _maintenance_scripts/sync_layout.py
 # Check for changes
 $status = git status --porcelain
 
-if ($status) {
-    Write-Host "Changes detected. Starting deployment..." -ForegroundColor Cyan
-    
-    git add .
-    git commit -m "Scheduled deploy: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
-    git push origin main
-    
-    Write-Host "Deploy successful! ✅" -ForegroundColor Green
-} else {
-    Write-Host "No changes detected. Skipping deploy. 💤" -ForegroundColor Gray
+if (-not $status) {
+    Write-Host "No changes detected. Skipping deploy." -ForegroundColor Gray
+    exit 0
 }
+
+Write-Host "Changes detected:" -ForegroundColor Cyan
+git status --short
+
+if (-not $Message) {
+    $Message = Read-Host "Commit message"
+}
+
+if (-not $Message) {
+    Write-Host "Commit message is required. Aborting." -ForegroundColor Red
+    exit 1
+}
+
+git add .
+git commit -m $Message
+git push origin main
+
+Write-Host "Deploy successful!" -ForegroundColor Green

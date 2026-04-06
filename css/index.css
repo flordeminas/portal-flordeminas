@@ -1423,6 +1423,12 @@ header.scrolled .logo img {
     }
 }
 
+/* Ocultar o link Entrar do menu mobile no desktop */
+.nav-entrar-mobile {
+    display: none;
+}
+
+
 /* Tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
     .hero h1 {
