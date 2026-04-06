@@ -192,6 +192,103 @@
   }
   .btn-mg-cta:hover { background: #D1FAE5; text-decoration: none; }
 
+  .assoc-no-results-link { color: var(--primary); }
+  .assoc-cta-bottom { text-align: center; padding: 2rem 0 3rem; border-top: 1px solid #E2E8F0; margin-top: 1rem; }
+  .assoc-cta-bottom-text { color: #64748B; font-size: .9rem; margin-bottom: 1rem; }
+
+  /* ===== MODAL CADASTRO ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #64748B;
+    line-height: 1;
+    padding: .25rem;
+  }
+  .modal-close:hover { color: #0F172A; }
+  .modal-title { font-size: 1.2rem; font-weight: 800; color: #064E3B; margin-bottom: .25rem; font-family: 'Merriweather', serif; }
+  .modal-subtitle { font-size: .85rem; color: #64748B; margin-bottom: 1.5rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: .82rem; font-weight: 600; color: #374151; margin-bottom: .35rem; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: .6rem .85rem;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: .875rem;
+    font-family: 'Inter', sans-serif;
+    color: #0F172A;
+    background: #fff;
+    transition: border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { outline: none; border-color: #064E3B; }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .form-checkboxes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .35rem; }
+  .form-check-label {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .8rem;
+    font-weight: 500;
+    color: #475569;
+    background: #F1F5F9;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 999px;
+    padding: .25rem .75rem;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .form-check-label input { display: none; }
+  .form-check-label:has(input:checked) { background: #D1FAE5; border-color: #064E3B; color: #064E3B; font-weight: 700; }
+  .btn-form-submit {
+    width: 100%;
+    padding: .8rem;
+    background: #064E3B;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: .95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: .5rem;
+    font-family: 'Inter', sans-serif;
+    transition: background .2s;
+  }
+  .btn-form-submit:hover { background: #065F46; }
+  .form-note { font-size: .75rem; color: #94A3B8; text-align: center; margin-top: .75rem; }
+  @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
   @media (max-width: 640px) {
     .assoc-grid { grid-template-columns: 1fr; }
     .mg-grid { grid-template-columns: 1fr; }
@@ -260,11 +357,43 @@
         <a href="https://www.instagram.com/amamebrasil/" target="_blank" rel="noopener">@amamebrasil →</a>
       </div>
 
+      <div class="mg-card">
+        <div class="mg-card-icon">🌱</div>
+        <h3>Tijucanna</h3>
+        <div class="mg-card-city">Ituiutaba — MG · Triângulo Mineiro</div>
+        <p>Fundada em 2022 por agrônoma, é a <strong style="color:#6EE7B7;">primeira associação com autorização judicial para cultivo de Cannabis medicinal em MG</strong>. +750 associados, 140 envios de óleo/mês, psicoterapia e musicoterapia para pacientes e famílias.</p>
+        <div class="mg-card-tags">
+          <span class="mg-tag">Autorização judicial</span>
+          <span class="mg-tag">Cultivo</span>
+          <span class="mg-tag">Óleos</span>
+          <span class="mg-tag">Psicoterapia</span>
+        </div>
+        <a href="https://tijucanna.org" target="_blank" rel="noopener">tijucanna.org →</a>
+        &nbsp;&nbsp;
+        <a href="https://www.instagram.com/tijucanna/" target="_blank" rel="noopener">@tijucanna →</a>
+      </div>
+
+      <div class="mg-card">
+        <div class="mg-card-icon">🔬</div>
+        <h3>Angatu Medicinal</h3>
+        <div class="mg-card-city">Belo Horizonte — MG</div>
+        <p>Associação de Cannabis Medicinal focada em pesquisa, educação científica e suporte clínico. Óleos testados em laboratório certificado pela ANVISA, apoio para Habeas Corpus de cultivo e participação em estudos clínicos com pesquisadores universitários.</p>
+        <div class="mg-card-tags">
+          <span class="mg-tag">Pesquisa</span>
+          <span class="mg-tag">Óleos testados</span>
+          <span class="mg-tag">Jurídico</span>
+          <span class="mg-tag">Habeas Corpus</span>
+        </div>
+        <a href="https://www.angatumedicinal.org" target="_blank" rel="noopener">angatumedicinal.org →</a>
+        &nbsp;&nbsp;
+        <a href="https://www.instagram.com/angatumedicinal/" target="_blank" rel="noopener">@angatumedicinal →</a>
+      </div>
+
     </div>
 
     <div class="mg-cta-box">
       <p><strong>Representa uma associação em MG?</strong> Entre em contato para aparecer nesta seção e conectar-se à rede Flor de Minas.</p>
-      <a class="btn-mg-cta" href="mailto:parceiros@flordeminas.com.br">Cadastrar minha associação</a>
+      <button type="button" class="btn-mg-cta" id="btn-abrir-cadastro">Cadastrar minha associação</button>
     </div>
   </div>
 </section>
@@ -278,14 +407,14 @@
     </div>
 
     <div class="assoc-filter-bar" role="group" aria-label="Filtrar por estado">
-      <button class="assoc-filter-btn active" data-state="todos">Todos os estados</button>
-      <button class="assoc-filter-btn" data-state="MG">MG</button>
-      <button class="assoc-filter-btn" data-state="RJ">RJ</button>
-      <button class="assoc-filter-btn" data-state="PR">PR</button>
-      <button class="assoc-filter-btn" data-state="BA">BA</button>
-      <button class="assoc-filter-btn" data-state="PE">PE</button>
-      <button class="assoc-filter-btn" data-state="PB">PB</button>
-      <button class="assoc-filter-btn" data-state="DF">DF</button>
+      <button type="button" class="assoc-filter-btn active" data-state="todos">Todos os estados</button>
+      <button type="button" class="assoc-filter-btn" data-state="MG">MG</button>
+      <button type="button" class="assoc-filter-btn" data-state="RJ">RJ</button>
+      <button type="button" class="assoc-filter-btn" data-state="PR">PR</button>
+      <button type="button" class="assoc-filter-btn" data-state="BA">BA</button>
+      <button type="button" class="assoc-filter-btn" data-state="PE">PE</button>
+      <button type="button" class="assoc-filter-btn" data-state="PB">PB</button>
+      <button type="button" class="assoc-filter-btn" data-state="DF">DF</button>
     </div>
 
     <div class="assoc-grid" id="assoc-grid">
@@ -308,6 +437,44 @@
           <a class="assoc-link" href="https://amame.org.br" target="_blank" rel="noopener">🌐 amame.org.br</a>
           <a class="assoc-link" href="https://www.instagram.com/amamebrasil/" target="_blank" rel="noopener">📷 @amamebrasil</a>
           <a class="assoc-link" href="tel:+5531998607603">📞 (31) 99860-7603</a>
+        </div>
+      </div>
+
+      <div class="assoc-card" data-state="MG">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🌱</div>
+          <div>
+            <div class="assoc-card-name">Tijucanna</div>
+            <div class="assoc-card-city">Ituiutaba — MG · Triângulo Mineiro</div>
+          </div>
+          <span class="assoc-state-badge mg">MG</span>
+        </div>
+        <p class="assoc-card-desc">Primeira associação com autorização judicial para cultivo de Cannabis medicinal em MG, fundada em 2022 por agrônoma. +750 associados, 140 envios de óleo/mês, psicoterapia e musicoterapia para pacientes e famílias.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Autorização judicial</span><span class="assoc-tag">Cultivo</span><span class="assoc-tag">Óleos</span><span class="assoc-tag">Psicoterapia</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://tijucanna.org" target="_blank" rel="noopener">🌐 tijucanna.org</a>
+          <a class="assoc-link" href="https://www.instagram.com/tijucanna/" target="_blank" rel="noopener">📷 @tijucanna</a>
+        </div>
+      </div>
+
+      <div class="assoc-card" data-state="MG">
+        <div class="assoc-card-header">
+          <div class="assoc-card-icon">🔬</div>
+          <div>
+            <div class="assoc-card-name">Angatu Medicinal</div>
+            <div class="assoc-card-city">Belo Horizonte — MG</div>
+          </div>
+          <span class="assoc-state-badge mg">MG</span>
+        </div>
+        <p class="assoc-card-desc">Associação focada em pesquisa e educação científica. Óleos testados em laboratório certificado pela ANVISA, suporte para Habeas Corpus de cultivo e participação em estudos clínicos com pesquisadores universitários.</p>
+        <div class="assoc-card-tags">
+          <span class="assoc-tag">Pesquisa</span><span class="assoc-tag">Óleos testados</span><span class="assoc-tag">Jurídico</span><span class="assoc-tag">Habeas Corpus</span>
+        </div>
+        <div class="assoc-card-links">
+          <a class="assoc-link" href="https://www.angatumedicinal.org" target="_blank" rel="noopener">🌐 angatumedicinal.org</a>
+          <a class="assoc-link" href="https://www.instagram.com/angatumedicinal/" target="_blank" rel="noopener">📷 @angatumedicinal</a>
         </div>
       </div>
 
@@ -430,10 +597,10 @@
 
     </div>
 
-    <p class="assoc-no-results" id="assoc-no-results">Ainda não temos associações cadastradas neste estado. <a href="mailto:parceiros@flordeminas.com.br" style="color:var(--primary)">Indique uma →</a></p>
+    <p class="assoc-no-results" id="assoc-no-results">Ainda não temos associações cadastradas neste estado. <a class="assoc-no-results-link" href="mailto:parceiros@flordeminas.com.br">Indique uma →</a></p>
 
-    <div style="text-align:center; padding: 2rem 0 3rem; border-top: 1px solid #E2E8F0; margin-top: 1rem;">
-      <p style="color:#64748B; font-size:.9rem; margin-bottom:1rem;">Conhece uma associação séria que deveria estar aqui?</p>
+    <div class="assoc-cta-bottom">
+      <p class="assoc-cta-bottom-text">Conhece uma associação séria que deveria estar aqui?</p>
       <a class="btn btn-outline" href="mailto:parceiros@flordeminas.com.br">Indicar associação</a>
     </div>
   </div>
@@ -531,6 +698,92 @@
 </div>
 </section>
 </main>
+
+<!-- MODAL CADASTRO DE ASSOCIAÇÃO -->
+<div class="modal-overlay" id="modal-cadastro" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button type="button" class="modal-close" id="btn-fechar-modal" aria-label="Fechar">✕</button>
+    <div class="modal-title" id="modal-title">Cadastrar Associação</div>
+    <p class="modal-subtitle">Preencha as informações abaixo. Ao enviar, seu e-mail será aberto com os dados preenchidos para envio à equipe Flor de Minas.</p>
+
+    <form id="form-associacao" novalidate>
+
+      <div class="form-group">
+        <label for="f-nome">Nome da associação *</label>
+        <input type="text" id="f-nome" placeholder="Ex: Associação Cannábica Mineira" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-cidade">Cidade *</label>
+          <input type="text" id="f-cidade" placeholder="Ex: Belo Horizonte" required>
+        </div>
+        <div class="form-group">
+          <label for="f-estado">Estado *</label>
+          <select id="f-estado" required>
+            <option value="">Selecione</option>
+            <option>AC</option><option>AL</option><option>AM</option><option>AP</option>
+            <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+            <option>GO</option><option>MA</option><option>MG</option><option>MS</option>
+            <option>MT</option><option>PA</option><option>PB</option><option>PE</option>
+            <option>PI</option><option>PR</option><option>RJ</option><option>RN</option>
+            <option>RO</option><option>RR</option><option>RS</option><option>SC</option>
+            <option>SE</option><option>SP</option><option>TO</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="f-site">Site oficial</label>
+        <input type="url" id="f-site" placeholder="https://suaassociacao.org.br">
+      </div>
+
+      <div class="form-group">
+        <label for="f-instagram">Instagram</label>
+        <input type="text" id="f-instagram" placeholder="@suaassociacao">
+      </div>
+
+      <div class="form-group">
+        <label for="f-telefone">WhatsApp / Telefone de contato</label>
+        <input type="text" id="f-telefone" placeholder="(XX) XXXXX-XXXX">
+      </div>
+
+      <div class="form-group">
+        <label for="f-email">E-mail de contato</label>
+        <input type="email" id="f-email" placeholder="contato@suaassociacao.org.br">
+      </div>
+
+      <div class="form-group">
+        <label>Áreas de atuação</label>
+        <div class="form-checkboxes">
+          <label class="form-check-label"><input type="checkbox" value="Cultivo"> Cultivo</label>
+          <label class="form-check-label"><input type="checkbox" value="Óleos"> Óleos</label>
+          <label class="form-check-label"><input type="checkbox" value="Jurídico"> Jurídico</label>
+          <label class="form-check-label"><input type="checkbox" value="Habeas Corpus"> Habeas Corpus</label>
+          <label class="form-check-label"><input type="checkbox" value="Pacientes"> Pacientes</label>
+          <label class="form-check-label"><input type="checkbox" value="Pediátrico"> Pediátrico</label>
+          <label class="form-check-label"><input type="checkbox" value="Pesquisa"> Pesquisa</label>
+          <label class="form-check-label"><input type="checkbox" value="Advocacy"> Advocacy</label>
+          <label class="form-check-label"><input type="checkbox" value="Psicoterapia"> Psicoterapia</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="f-descricao">Descrição breve da associação *</label>
+        <textarea id="f-descricao" placeholder="Conte um pouco sobre a história, missão e quem atende..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="f-contato">Seu nome e cargo na associação *</label>
+        <input type="text" id="f-contato" placeholder="Ex: Maria Silva — Diretora" required>
+      </div>
+
+      <button type="submit" class="btn-form-submit">Enviar para a equipe Flor de Minas →</button>
+      <p class="form-note">Ao clicar, seu cliente de e-mail será aberto com as informações preenchidas. Nenhum dado é enviado automaticamente sem sua confirmação.</p>
+    </form>
+  </div>
+</div>
+
 <footer class="site-footer" role="contentinfo">
   <div class="container">
 
@@ -615,6 +868,85 @@
 
         noResults.style.display = visible === 0 ? 'block' : 'none';
       });
+    });
+  })();
+</script>
+<script>
+  // ===== MODAL CADASTRO =====
+  (function () {
+    const overlay = document.getElementById('modal-cadastro');
+    const btnAbrir = document.getElementById('btn-abrir-cadastro');
+    const btnFechar = document.getElementById('btn-fechar-modal');
+    const form = document.getElementById('form-associacao');
+
+    function abrirModal() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnAbrir.addEventListener('click', abrirModal);
+    btnFechar.addEventListener('click', fecharModal);
+
+    // Fechar clicando fora do modal
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) fecharModal();
+    });
+
+    // Fechar com ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') fecharModal();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('f-nome').value.trim();
+      const cidade = document.getElementById('f-cidade').value.trim();
+      const estado = document.getElementById('f-estado').value.trim();
+      const site = document.getElementById('f-site').value.trim();
+      const instagram = document.getElementById('f-instagram').value.trim();
+      const telefone = document.getElementById('f-telefone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const descricao = document.getElementById('f-descricao').value.trim();
+      const contato = document.getElementById('f-contato').value.trim();
+
+      // Campos obrigatórios
+      if (!nome || !cidade || !estado || !descricao || !contato) {
+        alert('Por favor, preencha os campos obrigatórios: Nome, Cidade, Estado, Descrição e seu nome/cargo.');
+        return;
+      }
+
+      const areas = Array.from(form.querySelectorAll('.form-checkboxes input:checked'))
+        .map(cb => cb.value).join(', ') || 'Não informado';
+
+      const corpo =
+        'Olá, equipe Flor de Minas!\n\n' +
+        'Gostaria de cadastrar minha associação na página de parceiros:\n\n' +
+        '— INFORMAÇÕES DA ASSOCIAÇÃO —\n\n' +
+        'Nome: ' + nome + '\n' +
+        'Cidade: ' + cidade + '\n' +
+        'Estado: ' + estado + '\n' +
+        'Site: ' + (site || 'Não informado') + '\n' +
+        'Instagram: ' + (instagram || 'Não informado') + '\n' +
+        'Telefone/WhatsApp: ' + (telefone || 'Não informado') + '\n' +
+        'E-mail de contato: ' + (email || 'Não informado') + '\n' +
+        'Áreas de atuação: ' + areas + '\n\n' +
+        'Descrição:\n' + descricao + '\n\n' +
+        '— RESPONSÁVEL PELO CADASTRO —\n' +
+        contato + '\n\n' +
+        'Aguardo o contato da equipe. Obrigado(a)!';
+
+      const assunto = 'Cadastro de Associação — ' + nome + ' (' + estado + ')';
+
+      window.location.href =
+        'mailto:flor-de-minas@protonmail.com' +
+        '?subject=' + encodeURIComponent(assunto) +
+        '&body=' + encodeURIComponent(corpo);
     });
   })();
 </script>
