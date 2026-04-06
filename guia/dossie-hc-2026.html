@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dossiê HC 2026 — Templates e Manuais | Clube Flor de Minas</title>
+<meta name="description" content="Biblioteca exclusiva de membros: templates de petição para Habeas Corpus, memorial descritivo agronômico e guia de compliance para cultivo medicinal de Cannabis em 2026."/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+<meta content="Flor de Minas — Inteligência Científica em Cannabis medicinal" property="og:title"/>
+<meta content="Dossiê HC 2026: biblioteca exclusiva com templates de petição, manual agronômico e guia de compliance para membros do Clube Flor de Minas." property="og:description"/>
+<meta content="https://portal-flordeminas.com.br/assets/patient_journey_hero.png" property="og:image"/>
+<meta content="https://portal-flordeminas.com.br/guia/dossie-hc-2026.html" property="og:url"/>
+<meta content="Flor de Minas" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<!-- Favicon -->
+<link href="../assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<!-- CSS -->
+<link href="../css/index.css?v=1.04" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+<style>
+    :root {
+        --hc-forest: #1a3a2a;
+        --hc-forest-mid: #2d5a41;
+        --hc-gold: #e8a43a;
+        --hc-gold-light: #fff3d9;
+        --hc-bg: #fdfcf8;
+        --hc-border: #dcd6c8;
+    }
+
+    body { background-color: var(--hc-bg); }
+
+    /* ── Hero ── */
+    .dossie-hero {
+        background: linear-gradient(135deg, var(--hc-forest) 0%, var(--hc-forest-mid) 100%);
+        color: white;
+        padding: 5rem 1.5rem 7rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .dossie-hero::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: var(--hc-bg);
+        clip-path: ellipse(60% 100% at 50% 100%);
+    }
+    .dossie-hero .badge {
+        display: inline-block;
+        background: var(--hc-gold);
+        color: #000;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 6px 18px;
+        border-radius: 99px;
+        margin-bottom: 1.5rem;
+    }
+    .dossie-hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: #fff;
+        margin-bottom: 1rem;
+        font-weight: 800;
+    }
+    .dossie-hero p {
+        font-size: 1.15rem;
+        color: rgba(255,255,255,0.88);
+        max-width: 720px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    /* ── Layout ── */
+    .dossie-container {
+        max-width: 960px;
+        margin: -2rem auto 5rem;
+        padding: 0 1.5rem;
+    }
+
+    /* ── Aviso de compliance ── */
+    .legal-notice {
+        background: var(--hc-gold-light);
+        border: 1.5px solid rgba(232, 164, 58, 0.35);
+        border-radius: 16px;
+        padding: 1.5rem 2rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        font-size: 0.9rem;
+        color: #5a4000;
+        line-height: 1.65;
+    }
+    .legal-notice i { color: var(--hc-gold); font-size: 1.25rem; margin-top: 2px; flex-shrink: 0; }
+    .legal-notice strong { display: block; margin-bottom: 0.25rem; font-size: 0.95rem; color: #3a2b00; }
+
+    /* ── Seções de documento ── */
+    .doc-section {
+        background: #fff;
+        border-radius: 20px;
+        border: 1.5px solid var(--hc-border);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        margin-bottom: 2.5rem;
+        overflow: hidden;
+    }
+    .doc-header {
+        background: linear-gradient(90deg, var(--hc-forest) 0%, var(--hc-forest-mid) 100%);
+        padding: 2rem 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        color: #fff;
+    }
+    .doc-header-icon {
+        width: 52px; height: 52px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+    .doc-header h2 { margin: 0; font-size: 1.5rem; color: #fff; }
+    .doc-header p { margin: 0.25rem 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.75); font-family: 'Inter', sans-serif; font-weight: 400; }
+
+    .doc-body { padding: 2.5rem; }
+
+    /* ── Template box ── */
+    .template-box {
+        background: #f8f7f3;
+        border: 1px solid var(--hc-border);
+        border-radius: 12px;
+        padding: 2rem 2.5rem;
+        margin-bottom: 2rem;
+        font-family: 'Georgia', serif;
+        font-size: 0.92rem;
+        line-height: 1.85;
+        color: #1a1a1a;
+        position: relative;
+    }
+    .template-box .var {
+        background: rgba(232, 164, 58, 0.2);
+        border-bottom: 1.5px dashed var(--hc-gold);
+        padding: 0 4px;
+        border-radius: 3px;
+        font-style: italic;
+        color: #7a4e00;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+    }
+    .template-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        background: var(--hc-forest);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 6px;
+        margin-bottom: 1.25rem;
+        font-family: 'Inter', sans-serif;
+    }
+    .template-box p { margin: 0 0 1rem; }
+    .template-box p:last-child { margin: 0; }
+    .template-box .indent { margin-left: 2rem; }
+    .template-box .center { text-align: center; }
+    .template-box .underline { text-decoration: underline; }
+    .template-box .bold { font-weight: 700; }
+
+    /* ── Lista de instrução ── */
+    .instruction-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .instruction-list li {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eeede9;
+        align-items: flex-start;
+    }
+    .instruction-list li:last-child { border-bottom: none; }
+    .instr-num {
+        min-width: 32px; height: 32px;
+        background: var(--hc-gold);
+        color: #000;
+        font-weight: 800;
+        font-size: 0.8rem;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    .instr-text strong { display: block; margin-bottom: 0.2rem; font-size: 1rem; color: var(--hc-forest); }
+    .instr-text span { font-size: 0.88rem; color: #4a5d4e; line-height: 1.6; }
+
+    /* ── Tabela ── */
+    .dossie-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        margin: 1.5rem 0;
+    }
+    .dossie-table th {
+        background: var(--hc-forest);
+        color: #fff;
+        padding: 0.85rem 1.25rem;
+        text-align: left;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .dossie-table td {
+        padding: 0.85rem 1.25rem;
+        border-bottom: 1px solid var(--hc-border);
+        vertical-align: top;
+        color: #2d3b32;
+    }
+    .dossie-table tr:last-child td { border-bottom: none; }
+    .dossie-table tr:hover td { background: #f5f4f0; }
+    .status-ok { color: #1a7a3c; font-weight: 700; }
+    .status-attn { color: #b47d00; font-weight: 700; }
+
+    /* ── Checklist interna ── */
+    .inner-checklist { list-style: none; padding: 0; margin: 1.25rem 0 0; }
+    .inner-checklist li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px dashed #e5e2da;
+        font-size: 0.92rem;
+        color: #2d3b32;
+    }
+    .inner-checklist li:last-child { border-bottom: none; }
+    .inner-checklist i { color: var(--hc-forest-mid); margin-top: 3px; min-width: 16px; }
+
+    /* ── CTA final ── */
+    .dossie-cta-box {
+        text-align: center;
+        background: var(--hc-forest);
+        border-radius: 20px;
+        padding: 3.5rem 2rem;
+        color: #fff;
+        margin-top: 3rem;
+    }
+    .dossie-cta-box h3 { font-size: 1.8rem; color: #fff; margin-bottom: 0.75rem; }
+    .dossie-cta-box p { color: rgba(255,255,255,0.8); font-size: 1rem; max-width: 600px; margin: 0 auto 2rem; }
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--hc-gold);
+        color: #000;
+        font-weight: 800;
+        padding: 1rem 2.5rem;
+        border-radius: 99px;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,164,58,0.35); }
+
+    /* ── Profile Selector ── */
+    .profile-selector {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+        background: white;
+        padding: 0.6rem;
+        border-radius: 60px;
+        box-shadow: 0 10px 30px rgba(26, 58, 42, 0.1);
+        border: 1px solid var(--hc-border);
+    }
+    .profile-btn {
+        flex: 1;
+        padding: 1.1rem;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: var(--hc-forest);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        font-size: 0.97rem;
+        font-family: 'Inter', sans-serif;
+    }
+    .profile-btn.active {
+        background: var(--hc-forest);
+        color: white;
+        box-shadow: 0 4px 14px rgba(26, 58, 42, 0.3);
+    }
+    .profile-section { display: none; }
+    .profile-section.active { display: block; }
+    /* Profile section label badges */
+    .profile-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 4px 12px;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        font-family: 'Inter', sans-serif;
+    }
+    .badge-individual { background: rgba(26,58,42,0.1); color: var(--hc-forest); }
+    .badge-assoc { background: rgba(232,164,58,0.18); color: #7a4e00; }
+
+    @media (max-width: 600px) {
+        .dossie-hero { padding: 4rem 1rem 6rem; }
+        .doc-header { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+        .doc-body { padding: 1.5rem; }
+        .template-box { padding: 1.5rem; }
+        .dossie-table th, .dossie-table td { padding: 0.65rem 0.75rem; }
+        .profile-selector { flex-direction: column; border-radius: 24px; padding: 0.75rem; }
+    }
+</style>
+</head>
+<body class="article-page">
+
+<!-- Header -->
+<header class="site-header">
+<div class="container">
+<nav>
+<a class="logo" href="../index.html">Flor de <span>Minas</span></a>
+<ul class="nav-links">
+    <li><a class="nav-link" href="../noticias.html">Notícias</a></li>
+    <li><a class="nav-link" href="../parceiros.html">Parceiros</a></li>
+    <li><a class="nav-link" href="../eventos.html">Eventos</a></li>
+    <li><a class="nav-link" href="../loja.html">Loja</a></li>
+    <li><a class="nav-link" href="../clube.html">Clube</a></li>
+    <li><a class="header-cta nav-entrar-mobile" href="../entrar.html">🔒 Entrar</a></li>
+</ul>
+<div class="header-right">
+<a class="header-cta" href="../entrar.html">🔒 Entrar</a>
+<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</nav>
+</div>
+</header>
+
+<!-- Hero -->
+<div class="dossie-hero">
+    <div class="container">
+        <span class="badge"><i class="fas fa-crown"></i> Exclusivo Membros do Clube</span>
+        <h1>Dossiê Habeas Corpus 2026</h1>
+        <p id="hero-subtitle">Biblioteca completa de templates jurídicos, memorial agronômico e guia de compliance. Selecione seu perfil abaixo para ver os documentos específicos para o seu caso.</p>
+    </div>
+</div>
+
+<!-- Container -->
+<div class="dossie-container">
+
+    <!-- Aviso legal -->
+    <div class="legal-notice">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <strong>Aviso Jurídico e Médico Obrigatório</strong>
+            Estes templates são modelos <strong>educacionais e informativos</strong>. Não constituem aconselhamento jurídico profissional. Cada caso é único e exige a análise de um <strong>advogado habilitado</strong> e de um <strong>médico especializado</strong>. O cultivo de Cannabis requer autorização judicial (Habeas Corpus) ou regulatória vigente. Consulte sempre profissionais qualificados antes de qualquer ação.
+        </div>
+    </div>
+
+    <!-- Profile Selector -->
+    <div class="profile-selector" role="tablist" aria-label="Selecione o perfil">
+        <button class="profile-btn active" onclick="switchProfile('individual')" aria-selected="true" role="tab" id="tab-individual">
+            <i class="fas fa-user"></i> Paciente Individual
+        </button>
+        <button class="profile-btn" onclick="switchProfile('assoc')" aria-selected="false" role="tab" id="tab-assoc">
+            <i class="fas fa-building-columns"></i> Associações
+        </button>
+    </div>
+
+    <!-- PERFIL: PACIENTE INDIVIDUAL -->
+    <div class="profile-section active" id="profile-individual">
+
+    <!-- ═══════════════════════════════════════════
+         DOCUMENTO 1: TEMPLATE DE PETIÇÃO INICIAL
+    ═══════════════════════════════════════════ -->
+    <div class="doc-section">
+        <div class="doc-header">
+            <div class="doc-header-icon"><i class="fas fa-scroll"></i></div>
+            <div>
+                <h2>Template 01 — Petição Inicial de HC</h2>
+                <p>Modelo de petição para Habeas Corpus preventivo para cultivo medicinal de Cannabis. Adapte os campos destacados em âmbar ao seu caso.</p>
+            </div>
+        </div>
+        <div class="doc-body">
+
+            <div class="legal-notice" style="margin-bottom: 1.75rem;">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Como usar este template</strong>
+                    Os campos em <span class="var">destaque âmbar como este</span> são variáveis que você deve preencher com seus dados. Não altere a estrutura jurídica dos argumentos sem consultar um advogado.
+                </div>
+            </div>
+
+            <div class="template-box">
+                <span class="template-label"><i class="fas fa-file-alt"></i> Petição Inicial</span>
+
+                <p class="center bold">EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO DA <span class="var">[VARA / TURMA CRIMINAL]</span> DA COMARCA DE <span class="var">[CIDADE/UF]</span></p>
+
+                <br/>
+
+                <p><span class="var">[NOME COMPLETO DO PACIENTE]</span>, <span class="var">[nacionalidade]</span>, <span class="var">[estado civil]</span>, portador do RG nº <span class="var">[NÚMERO]</span> e CPF nº <span class="var">[NÚMERO]</span>, residente e domiciliado na <span class="var">[ENDEREÇO COMPLETO]</span>, por seu procurador, vem, respeitosamente, à presença de Vossa Excelência, impetrar o presente</p>
+
+                <p class="center bold">HABEAS CORPUS PREVENTIVO<br/>com pedido de liminar</p>
+
+                <p>em face de eventual constrangimento ilegal que pode ser praticado pela autoridade coatora <span class="var">[DELEGADO DE POLÍCIA / NOME DA AUTORIDADE]</span>, da <span class="var">[DELEGACIA / ÓRGÃO]</span>, pelos fatos e fundamentos a seguir expostos:</p>
+
+                <br/>
+
+                <p class="bold underline">I — DOS FATOS</p>
+
+                <p>O Paciente é portador de <span class="var">[DIAGNÓSTICO COMPLETO]</span> (CID: <span class="var">[CÓDIGO CID-10]</span>), condição que o acomete há <span class="var">[TEMPO]</span> e para a qual os tratamentos convencionais se mostraram insuficientes, conforme laudo médico anexo (Doc. 01) subscrito pelo Dr./Dra. <span class="var">[NOME DO MÉDICO, CRM]</span>.</p>
+
+                <p>Após exaustiva busca por alternativas terapêuticas convencionais, o paciente passou a utilizar extratos de <em>Cannabis sativa</em> de espectro completo, por prescrição médica (Doc. 02), obtendo significativa melhora no <span class="var">[SINTOMA/CONDIÇÃO]</span>, conforme relatório de evolução clínica (Doc. 03).</p>
+
+                <p>O custo dos produtos farmacêuticos industrializados disponíveis no mercado importado é de aproximadamente R$ <span class="var">[VALOR]</span> por mês, representando <span class="var">[PERCENTUAL]</span>% da renda familiar, inviabilizando economicamente o tratamento regular (Doc. 04 — orçamentos comparativos).</p>
+
+                <p>Diante da inviabilidade financeira do acesso ao produto importado e da impossibilidade de obtê-lo pelo SUS ou convênio médico (Doc. 05), o Paciente pretende cultivar, em escala mínima e exclusivamente para fins medicinais, plantas de <em>Cannabis sativa</em> em sua residência, visando à extração do óleo necessário ao seu tratamento.</p>
+
+                <br/>
+
+                <p class="bold underline">II — DO DIREITO</p>
+
+                <p><span class="bold">II.1 — Direito à Saúde e à Vida (Art. 196, CF/88)</span></p>
+                <p>A Constituição Federal garante, em seu art. 196, que a saúde é direito de todos e dever do Estado. O acesso ao tratamento que proporciona qualidade de vida ao Paciente é direito fundamental inalienável, que deve prevalecer sobre normas administrativas de controle.</p>
+
+                <p><span class="bold">II.2 — Princípio da Proporcionalidade e Mínima Intervenção Penal</span></p>
+                <p>O cultivo doméstico para fins exclusivamente medicinais, devidamente documentado e em quantidade mínima, não representa lesão ao bem jurídico tutelado pela Lei nº 11.343/2006. A persecução penal neste contexto se mostra desproporcional e contrária ao espírito da norma.</p>
+
+                <p><span class="bold">II.3 — Precedente STJ e STF</span></p>
+                <p>O Superior Tribunal de Justiça e o Supremo Tribunal Federal têm reconhecido, em sede de Habeas Corpus, o direito ao cultivo medicinal quando devidamente comprovada a necessidade terapêutica, a ausência de alternativa acessível e a inexistência de risco à coletividade. (Referências: HC <span class="var">[NÚMERO HC PARADIGMA RECENTE]</span>)</p>
+
+                <p><span class="bold">II.4 — RDC nº 1.012/2026 da ANVISA</span></p>
+                <p>O novo marco regulatório da ANVISA, por meio da RDC 1.012/2026, reconhece expressamente o cultivo de <em>Cannabis</em> para fins medicinais e científicos, sinalizando a adequação da conduta aos valores do ordenamento jurídico vigente.</p>
+
+                <br/>
+
+                <p class="bold underline">III — DO PEDIDO LIMINAR</p>
+
+                <p>Diante da urgência do tratamento e do <em>periculum in mora</em> representado pela ameaça de iminente constrangimento ilegal, requer-se a concessão de liminar para que o Paciente possa cultivar em sua residência, na <span class="var">[ENDEREÇO]</span>, até <span class="var">[NÚMERO]</span> plantas fêmeas de <em>Cannabis sativa</em>, em espaço físico delimitado de <span class="var">[METRAGEM]</span> m², para fins exclusivamente medicinais, sem que sofra qualquer abordagem policial ou procedimento infracional.</p>
+
+                <br/>
+
+                <p class="bold underline">IV — DOS DOCUMENTOS ANEXOS</p>
+
+                <div class="indent">
+                    <p>Doc. 01 — Laudo médico atualizado (Dr./Dra. <span class="var">[NOME, CRM]</span>)</p>
+                    <p>Doc. 02 — Prescrição médica de uso contínuo</p>
+                    <p>Doc. 03 — Relatório de evolução clínica</p>
+                    <p>Doc. 04 — Orçamentos de produtos farmacêuticos (<span class="var">[MÍNIMO 3]</span> orçamentos) vs. comprovante de renda</p>
+                    <p>Doc. 05 — Negativas do SUS / convênio e histórico de tentativas administrativas</p>
+                    <p>Doc. 06 — Memorial descritivo do projeto agronômico (espaço físico e procedimentos)</p>
+                    <p>Doc. 07 — Certidão de antecedentes criminais</p>
+                    <p>Doc. 08 — <span class="var">[OUTROS DOCUMENTOS PERTINENTES AO CASO]</span></p>
+                </div>
+
+                <br/>
+
+                <p class="bold underline">V — DOS PEDIDOS FINAIS</p>
+
+                <p>Ante o exposto, requer:</p>
+                <p class="indent">a) A concessão de liminar para autorizar o cultivo medicinal conforme especificado no item III;</p>
+                <p class="indent">b) No mérito, a concessão definitiva do <em>writ</em>, confirmando-se a liminar;</p>
+                <p class="indent">c) A notificação da autoridade coatora para prestar informações no prazo legal.</p>
+
+                <br/>
+                <p>Termos em que,</p>
+                <p>Pede deferimento.</p>
+                <br/>
+                <p><span class="var">[Cidade/UF]</span>, <span class="var">[data]</span>.</p>
+                <br/>
+                <p class="center">_______________________________________</p>
+                <p class="center"><span class="var">[NOME DO ADVOGADO(A)]</span></p>
+                <p class="center">OAB/<span class="var">[UF]</span> nº <span class="var">[NÚMERO]</span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         DOCUMENTO 2: MEMORIAL DESCRITIVO AGRONÔMICO
+    ═══════════════════════════════════════════ -->
+    <div class="doc-section">
+        <div class="doc-header">
+            <div class="doc-header-icon">🌱</div>
+            <div>
+                <h2>Template 02 — Memorial Descritivo Agronômico</h2>
+                <p>Documento técnico que descreve o projeto de cultivo. Cumpre o requisito do "Pilar Técnico" do seu dossiê.</p>
+            </div>
+        </div>
+        <div class="doc-body">
+
+            <div class="template-box">
+                <span class="template-label"><i class="fas fa-seedling"></i> Memorial Descritivo</span>
+
+                <p class="center bold">MEMORIAL DESCRITIVO DE PROJETO DE CULTIVO MEDICINAL<br/><em>Cannabis sativa</em> L. — Uso Terapêutico Individual</p>
+
+                <br/>
+
+                <p class="bold underline">1. IDENTIFICAÇÃO DO CULTIVADOR</p>
+                <p><span class="bold">Nome:</span> <span class="var">[NOME COMPLETO]</span></p>
+                <p><span class="bold">CPF:</span> <span class="var">[NÚMERO]</span></p>
+                <p><span class="bold">Endereço do cultivo:</span> <span class="var">[ENDEREÇO COMPLETO]</span></p>
+                <p><span class="bold">Responsável técnico (se houver):</span> <span class="var">[AGRÔNOMO/BIÓLOGO — NOME, CREA/CRBio]</span></p>
+
+                <br/>
+
+                <p class="bold underline">2. FINALIDADE E JUSTIFICATIVA MÉDICA</p>
+                <p>O presente projeto tem como única e exclusiva finalidade a produção do óleo de <em>Cannabis</em> de espectro completo para tratamento de <span class="var">[DIAGNÓSTICO]</span>, conforme prescrição do Dr./Dra. <span class="var">[NOME, CRM]</span>. A dose prescrita é de <span class="var">[DOSE]</span>/dia de extrato, o que requer produção estimada de <span class="var">[QUANTIDADE]</span>g de flor seca por mês.</p>
+
+                <br/>
+
+                <p class="bold underline">3. ESPECIFICAÇÕES DO ESPAÇO FÍSICO (GROWROOM)</p>
+                <p><span class="bold">Dimensões:</span> <span class="var">[LARGURA]</span>m × <span class="var">[COMPRIMENTO]</span>m × <span class="var">[ALTURA]</span>m = <span class="var">[VOLUME]</span> m³</p>
+                <p><span class="bold">Localização:</span> <span class="var">[CÔMODO, ANDAR]</span>, de acesso restrito e privado</p>
+                <p><span class="bold">Número máximo de plantas:</span> <span class="var">[NÚMERO]</span> plantas fêmeas em fase de floração simultânea</p>
+                <p><span class="bold">Isolamento:</span> Ambiente isolado com tela opaca. Sem exposição visual externa ao espaço público.</p>
+
+                <br/>
+
+                <p class="bold underline">4. SISTEMA DE ILUMINAÇÃO</p>
+                <p><span class="bold">Tipo:</span> <span class="var">[LED Full Spectrum / HPS / CMH]</span>, potência <span class="var">[WATTS]</span>W</p>
+                <p><span class="bold">Fotoperíodo vegetativo:</span> 18h luz / 6h escuro</p>
+                <p><span class="bold">Fotoperíodo de floração:</span> 12h luz / 12h escuro</p>
+
+                <br/>
+
+                <p class="bold underline">5. SISTEMA DE VENTILAÇÃO E CONTROLE DE ODOR</p>
+                <p><span class="bold">Exaustor:</span> <span class="var">[MARCA/MODELO, CFM]</span>, instalado na saída superior</p>
+                <p><span class="bold">Filtro de carvão ativado:</span> <span class="var">[MARCA/DIÂMETRO]</span>, com capacidade de filtração de 100% do ar circulante</p>
+                <p><span class="bold">Frequência de troca do carvão:</span> A cada <span class="var">[PERÍODO]</span> meses</p>
+                <p><strong>Resultado:</strong> Nenhum odor expelido para área comum ou espaço público.</p>
+
+                <br/>
+
+                <p class="bold underline">6. SISTEMA DE CULTIVO E SUBSTRATO</p>
+                <p><span class="bold">Método:</span> <span class="var">[Solo orgânico / Coco / Hidropônico]</span></p>
+                <p><span class="bold">Subst. utilizado:</span> <span class="var">[MARCA, composição]</span></p>
+                <p><span class="bold">Fertilização:</span> <span class="var">[Linha orgânica / BioBizz / Remo / SuperSoil]</span>. Sem uso de agrotóxicos.</p>
+                <p><span class="bold">Volume de irrigação:</span> Aproximadamente <span class="var">[LITROS]</span>L/planta por semana</p>
+
+                <br/>
+
+                <p class="bold underline">7. PROTOCOLO DE SEGURANÇA E CONTROLE DE ACESSO</p>
+                <p>O espaço de cultivo é de acesso exclusivo do cultivador. Não há circulação de menores de idade ou terceiros no local. O acesso é trancado com <span class="var">[CADEADO / CHAVE ESPECÍFICA]</span>.</p>
+
+                <br/>
+
+                <p class="bold underline">8. DESTINO DA PRODUÇÃO</p>
+                <p>100% da produção destina-se ao uso medicinal exclusivo do paciente. Não há produção para terceiros, venda, doação ou qualquer forma de distribuição. A quantidade cultivada corresponde à dose mínima necessária para suprir a prescrição médica vigente.</p>
+
+                <br/>
+
+                <p><span class="var">[Cidade/UF]</span>, <span class="var">[data]</span>.</p>
+                <br/>
+                <p class="center">_______________________________________</p>
+                <p class="center"><span class="var">[NOME DO CULTIVADOR]</span></p>
+                <p class="center">CPF: <span class="var">[NÚMERO]</span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         DOCUMENTO 3: GUIA DE COMPLIANCE DO DOSSIÊ
+    ═══════════════════════════════════════════ -->
+    <div class="doc-section">
+        <div class="doc-header">
+            <div class="doc-header-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+                <h2>Guia 03 — Como Montar o Dossiê: Compliance por Pilar</h2>
+                <p>Orientações técnicas para cada documento do seu pacote. Siga a ordem e os critérios de qualidade abaixo.</p>
+            </div>
+        </div>
+        <div class="doc-body">
+
+            <h3 style="font-size: 1.2rem; color: var(--hc-forest); margin-bottom: 1.25rem;">Pilar 01 — Médico e Terapêutico</h3>
+            <ul class="instruction-list">
+                <li>
+                    <div class="instr-num">1</div>
+                    <div class="instr-text">
+                        <strong>Laudo Médico Robusto (RDC 1.012/2026)</strong>
+                        <span>O laudo deve ser assinado por médico com CRM ativo e deve conter: diagnóstico detalhado com CID-10, histórico de tratamentos convencionais testados (comprovando <em>refratariedade</em>), justificativa científica para uso de fitocanabinoides citando referências bibliográficas, e data de emissão com, no máximo, <strong>90 dias</strong> de validade.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="instr-num">2</div>
+                    <div class="instr-text">
+                        <strong>Prescrição de Uso Contínuo</strong>
+                        <span>Deve ser uma receita de controle especial (fundo branco, em 2 vias) ou receituário de alta vigilância (dependendo do produto), com indicação de posologia, concentração e justificativa de uso contínuo. É diferente do laudo — ambos são necessários.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="instr-num">3</div>
+                    <div class="instr-text">
+                        <strong>Autorização de Importação ANVISA (se aplicável)</strong>
+                        <span>Se você já solicitou importação ao governo, inclua o protocolo ou autorização. Mesmo que negado, demonstra que você tentou a via administrativa. Acesse: <a href="https://www.gov.br/anvisa" target="_blank" rel="noopener" style="color: var(--hc-forest-mid);">gov.br/anvisa</a>.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="font-size: 1.2rem; color: var(--hc-forest); margin: 1.75rem 0 1.25rem;">Pilar 02 — Técnico e Agronômico</h3>
+            <ul class="instruction-list">
+                <li>
+                    <div class="instr-num">4</div>
+                    <div class="instr-text">
+                        <strong>Certificado de Capacitação Técnica</strong>
+                        <span>Certificados de cursos de cultivo e/ou extração (online ou presencial). São aceitos cursos de horticultura, cultivo medicinal, fitoterapia, boas práticas de fabricação. Objetivo: demonstrar que você pode produzir o remédio com higiene e segurança mínimas.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="instr-num">5</div>
+                    <div class="instr-text">
+                        <strong>Memorial Descritivo do Projeto (Template 02 acima)</strong>
+                        <span>Descreva o growroom detalhadamente. Clareza e precisão técnica demonstram que o projeto é sério, médico e controlado. Fotos do local, planta baixa ou croqui são diferenciais altamente valorizados pelo judiciário.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="font-size: 1.2rem; color: var(--hc-forest); margin: 1.75rem 0 1.25rem;">Pilar 03 — Jurídico e Documental</h3>
+            <ul class="instruction-list">
+                <li>
+                    <div class="instr-num">6</div>
+                    <div class="instr-text">
+                        <strong>Prova de Inacessibilidade Financeira</strong>
+                        <span>Reúna <strong>no mínimo 3 orçamentos</strong> de produtos farmacêuticos de Cannabis disponíveis no mercado (importados / farmácias de manipulação). Calcule o custo mensal total e compare com holerite, extrato bancário ou declaração de IR. O objetivo é demonstrar que o custo representa percentual irrazoável da renda familiar.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="instr-num">7</div>
+                    <div class="instr-text">
+                        <strong>Histórico de Tentativas Administrativas</strong>
+                        <span>Protocolo de solicitação ao SUS, cartas de negativa de convênio, protocolo de pedido de judicialização anterior, tentativas de obter subsídio via RENAME. Quanto mais extensa for a trilha de tentativas frustradas, mais sólido o argumento da <em>ultima ratio</em> do cultivo.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="instr-num">8</div>
+                    <div class="instr-text">
+                        <strong>Certidão de Antecedentes Criminais</strong>
+                        <span>Emita certidões nos âmbitos estadual e federal (Policia Civil, TRF e STJ). Disponíveis gratuitamente online. A ausência de antecedentes é um elemento significativo para concessão do HC.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="font-size: 1.2rem; color: var(--hc-forest); margin: 1.75rem 0 1.25rem;">Tabela de Conformidade — Status Esperado</h3>
+            <table class="dossie-table">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Pilar</th>
+                        <th>Formato Aceito</th>
+                        <th>Validade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Laudo Médico</td>
+                        <td>Médico</td>
+                        <td>Original ou cópia autenticada</td>
+                        <td><span class="status-attn">90 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td>Prescrição Médica</td>
+                        <td>Médico</td>
+                        <td>Receituário original de controle especial</td>
+                        <td><span class="status-attn">30 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td>Comprovante ANVISA</td>
+                        <td>Médico</td>
+                        <td>PDF oficial gov.br com protocolo</td>
+                        <td><span class="status-ok">Sem validade</span></td>
+                    </tr>
+                    <tr>
+                        <td>Memorial Descritivo</td>
+                        <td>Técnico</td>
+                        <td>Documento assinado + fotos</td>
+                        <td><span class="status-ok">Sem validade</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cert. Capacitação</td>
+                        <td>Técnico</td>
+                        <td>Cópia simples do certificado</td>
+                        <td><span class="status-ok">Sem validade</span></td>
+                    </tr>
+                    <tr>
+                        <td>Orçamentos Farmacêuticos</td>
+                        <td>Jurídico</td>
+                        <td>PDFs com data + comprovante de renda</td>
+                        <td><span class="status-attn">60 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td>Negativas SUS/Convênio</td>
+                        <td>Jurídico</td>
+                        <td>Cartas ou protocolos com número</td>
+                        <td><span class="status-ok">Sem validade</span></td>
+                    </tr>
+                    <tr>
+                        <td>Certidão de Antecedentes</td>
+                        <td>Jurídico</td>
+                        <td>Emitida online (federal + estadual)</td>
+                        <td><span class="status-attn">90 dias</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="legal-notice" style="margin-top: 1.75rem;">
+                <i class="fas fa-balance-scale"></i>
+                <div>
+                    <strong>Dica do Compliance</strong>
+                    Organize todos os documentos em uma pasta numerada (Doc. 01, Doc. 02...), correspondente à ordem citada na petição. Autentique eletronicamente quando possível. Mantenha uma cópia impressa e uma digital em nuvem segura.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         DOCUMENTO 4: CHECKLIST FINAL DE ENVIO
+    ═══════════════════════════════════════════ -->
+    <div class="doc-section">
+        <div class="doc-header">
+            <div class="doc-header-icon"><i class="fas fa-list-check"></i></div>
+            <div>
+                <h2>Checklist Final — Antes de Protocolar</h2>
+                <p>Verifique item a item antes de entregar o pacote ao seu advogado ou protocolar no tribunal.</p>
+            </div>
+        </div>
+        <div class="doc-body">
+            <ul class="inner-checklist">
+                <li><i class="fas fa-circle-check"></i><span>Laudo médico com data inferior a 90 dias, assinado e carimbado com CRM</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Prescrição médica original de uso contínuo com indicação de concentração e posologia</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Comprovante de solicitação ou autorização ANVISA (se aplicável)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Mínimo de 3 orçamentos de produtos farmacêuticos disponíveis no mercado, com data</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Comparação de custo com comprovante de renda (holerite, extrato bancário ou IRPF)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Negativa do SUS ou convênio médico (carta, protocolo ou print com número)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Certidão de antecedentes da Polícia Civil estadual</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Certidão de antecedentes federal (disponível no STJ online)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Memorial descritivo agronômico preenchido e assinado</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Certificado(s) de capacitação técnica em cultivo ou extração</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Petição inicial revisada e assinada por advogado habilitado (OAB ativo)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Todos os documentos organizados e numerados sequencialmente (Doc. 01 ao Doc. XX)</span></li>
+                <li><i class="fas fa-circle-check"></i><span>Cópia digital com backup em nuvem segura</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CTA Individual -->
+    <div class="dossie-cta-box">
+        <h3>Precisa de apoio avançado?</h3>
+        <p>O canal exclusivo do Clube Flor de Minas está disponível para dúvidas técnicas e agronômicas. Para suporte jurídico específico ao seu caso, consulte sempre um advogado especializado.</p>
+        <a href="../portal.html" class="btn-gold"><i class="fas fa-arrow-left"></i> Voltar ao Portal do Membro</a>
+    </div>
+
+    </div><!-- /profile-individual -->
+
+    <!-- ═══════════════════════════════════════════
+         PERFIL: ASSOCIAÇÕES
+    ═══════════════════════════════════════════ -->
+    <div class="profile-section" id="profile-assoc">
+
+        <!-- DOC A1: Petição HC Coletivo -->
+        <div class="doc-section">
+            <div class="doc-header">
+                <div class="doc-header-icon"><i class="fas fa-scroll"></i></div>
+                <div>
+                    <span class="profile-badge badge-assoc"><i class="fas fa-building-columns"></i> Associações</span>
+                    <h2>Template A1 — Petição HC Coletivo para Associação</h2>
+                    <p>Modelo de petição de Habeas Corpus preventivo em nome da associação para cultivo coletivo medicinal. Adapte os campos em âmbar ao seu caso.</p>
+                </div>
+            </div>
+            <div class="doc-body">
+                <div class="legal-notice" style="margin-bottom:1.75rem">
+                    <i class="fas fa-info-circle"></i>
+                    <div><strong>Como usar este template</strong> Os campos em <span class="var">destaque âmbar</span> são variáveis a preencher. Não altere a estrutura jurídica dos argumentos sem consultar um advogado especializado em Cannabis medicinal.</div>
+                </div>
+                <div class="template-box">
+                    <span class="template-label"><i class="fas fa-file-alt"></i> Petição HC Coletivo — Associação</span>
+                    <p class="center bold">EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO DA <span class="var">[VARA CRIMINAL]</span> DA COMARCA DE <span class="var">[CIDADE/UF]</span></p>
+                    <br/>
+                    <p><span class="var">[NOME DA ASSOCIAÇÃO]</span>, pessoa jurídica de direito privado, CNPJ nº <span class="var">[NÚMERO]</span>, com sede na <span class="var">[ENDEREÇO COMPLETO]</span>, representada por seu presidente, <span class="var">[NOME COMPLETO, CPF]</span>, por seu procurador, vem impetrar o presente</p>
+                    <p class="center bold">HABEAS CORPUS PREVENTIVO COLETIVO<br/>com pedido de liminar</p>
+                    <p>para garantir o direito de seus associados ao cultivo medicinal coletivo de <em>Cannabis sativa</em>, pelos fatos e fundamentos a seguir:</p>
+                    <br/>
+                    <p class="bold underline">I — DOS FATOS E DA LEGITIMIDADE ASSOCIATIVA</p>
+                    <p>A Impetrante é associação legal e regularmente constituída, com finalidade medicinal e científica, conforme Estatuto Social registrado (Doc. 01). Conta com <span class="var">[NÚMERO]</span> associados pacientes, todos portadores de condições clínicas que respondem favoravelmente ao tratamento com fitocanabinoides, conforme laudos individuais anexos (Doc. 04).</p>
+                    <p>O custo coletivo do tratamento por produtos importados representa encargo financeiro insustentável para seus associados, conforme comprovação socioeconômica (Doc. 07), e o SUS não fornece esses medicamentos (Doc. 08).</p>
+                    <br/>
+                    <p class="bold underline">II — DO DIREITO</p>
+                    <p><span class="bold">II.1 — Direito à Saúde Coletiva (Art. 196, CF/88)</span></p>
+                    <p>A Constituição Federal garante o direito à saúde de forma coletiva. A atuação associativa para garantir medicamentos a pacientes vulneráveis é expressão do direito fundamental à organização e ao acesso à saúde.</p>
+                    <p><span class="bold">II.2 — Legitimidade Associativa (Art. 5º, XXI, CF/88)</span></p>
+                    <p>Associações têm legitimidade para defender os interesses de seus membros em juízo, incluindo direitos individuais homogêneos, como o direito de acesso a tratamento de saúde adequado.</p>
+                    <p><span class="bold">II.3 — RDC nº 1.012/2026 — Cultivo Coletivo</span></p>
+                    <p>O novo marco regulatório da ANVISA reconhece o cultivo associativo para fins medicinais, sinalizando a adequação da conduta ao ordenamento jurídico vigente.</p>
+                    <p><span class="bold">II.4 — Precedentes STJ/STF</span></p>
+                    <p>Os tribunais superiores têm reconhecido a tese do HC coletivo em prol de associados pacientes, especialmente quando há comprovação técnica, médica e de necessidade coletiva. (Ref.: HC <span class="var">[NÚMERO HC PARADIGMA]</span>)</p>
+                    <br/>
+                    <p class="bold underline">III — DO PEDIDO LIMINAR</p>
+                    <p>Requer-se liminar para que a Associação possa cultivar, no endereço <span class="var">[ENDEREÇO DO CULTIVO COLETIVO]</span>, até <span class="var">[NÚMERO]</span> plantas fêmeas de <em>Cannabis sativa</em>, sob responsabilidade técnica de <span class="var">[NOME DO RT, CREA/CRBio]</span>, destinadas exclusivamente à produção de extratos medicinais para os associados listados no Doc. 03.</p>
+                    <br/>
+                    <p class="bold underline">IV — DOCUMENTOS ANEXOS</p>
+                    <div class="indent">
+                        <p>Doc. 01 — Estatuto Social registrado em cartório</p>
+                        <p>Doc. 02 — CNPJ ativo (Receita Federal) + Ata de eleição da diretoria vigente</p>
+                        <p>Doc. 03 — Lista nominal dos associados beneficiários (nome, CPF, patologia)</p>
+                        <p>Doc. 04 — Laudos médicos individuais de cada associado</p>
+                        <p>Doc. 05 — Certidões Negativas de Débito (Federal e Estadual)</p>
+                        <p>Doc. 06 — Regimento Interno de Cultivo Coletivo aprovado em assembleia</p>
+                        <p>Doc. 07 — Comprovação de inacessibilidade financeira coletiva (orçamentos + renda)</p>
+                        <p>Doc. 08 — Negativas do SUS / convênio dos associados</p>
+                        <p>Doc. 09 — Memorial descritivo do espaço de cultivo coletivo (Template A2)</p>
+                        <p>Doc. 10 — Declaração de vínculo do Responsável Técnico (CREA/CRBio)</p>
+                        <p>Doc. 11 — Certidões de antecedentes dos representantes legais</p>
+                        <p>Doc. 12 — <span class="var">[OUTROS DOCUMENTOS PERTINENTES]</span></p>
+                    </div>
+                    <br/>
+                    <p class="bold underline">V — DOS PEDIDOS FINAIS</p>
+                    <p>Ante o exposto, requer:</p>
+                    <p class="indent">a) Concessão de liminar para autorizar o cultivo coletivo conforme item III;</p>
+                    <p class="indent">b) No mérito, concessão definitiva do <em>writ</em>, confirmando-se a liminar;</p>
+                    <p class="indent">c) Notificação da autoridade coatora para prestar informações no prazo legal.</p>
+                    <br/>
+                    <p>Termos em que, pede deferimento.</p>
+                    <br/>
+                    <p><span class="var">[Cidade/UF]</span>, <span class="var">[data]</span>.</p>
+                    <br/>
+                    <p class="center">_______________________________________</p>
+                    <p class="center"><span class="var">[NOME DO ADVOGADO(A)]</span></p>
+                    <p class="center">OAB/<span class="var">[UF]</span> nº <span class="var">[NÚMERO]</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOC A2: Memorial Descritivo Coletivo -->
+        <div class="doc-section">
+            <div class="doc-header">
+                <div class="doc-header-icon">🌱</div>
+                <div>
+                    <span class="profile-badge badge-assoc"><i class="fas fa-building-columns"></i> Associações</span>
+                    <h2>Template A2 — Memorial Descritivo de Cultivo Coletivo</h2>
+                    <p>Documento técnico do espaço de cultivo associativo. Cumpre o requisito do Pilar Técnico do dossiê coletivo.</p>
+                </div>
+            </div>
+            <div class="doc-body">
+                <div class="template-box">
+                    <span class="template-label"><i class="fas fa-seedling"></i> Memorial Descritivo — Cultivo Coletivo</span>
+                    <p class="center bold">MEMORIAL DESCRITIVO DE PROJETO DE CULTIVO MEDICINAL COLETIVO<br/><em>Cannabis sativa</em> L. — Uso Terapêutico Associativo</p>
+                    <br/>
+                    <p class="bold underline">1. IDENTIFICAÇÃO DA ASSOCIAÇÃO</p>
+                    <p><span class="bold">Razão Social:</span> <span class="var">[NOME DA ASSOCIAÇÃO]</span></p>
+                    <p><span class="bold">CNPJ:</span> <span class="var">[NÚMERO]</span></p>
+                    <p><span class="bold">Endereço do cultivo:</span> <span class="var">[ENDEREÇO COMPLETO]</span></p>
+                    <p><span class="bold">Presidente / Representante Legal:</span> <span class="var">[NOME, CPF]</span></p>
+                    <p><span class="bold">Responsável Técnico:</span> <span class="var">[AGRÔNOMO/BIÓLOGO — NOME, CREA/CRBio]</span></p>
+                    <br/>
+                    <p class="bold underline">2. FINALIDADE E DIMENSÃO DO PROJETO</p>
+                    <p>O presente projeto tem como finalidade exclusiva a produção de extratos medicinais de <em>Cannabis sativa</em> para <span class="var">[NÚMERO]</span> associados pacientes, conforme laudos médicos individuais anexos. A produção mensal estimada é de <span class="var">[QUANTIDADE]</span>g de flor seca, necessária para suprir a demanda terapêutica coletiva documentada.</p>
+                    <br/>
+                    <p class="bold underline">3. ESPECIFICAÇÕES DO ESPAÇO DE CULTIVO</p>
+                    <p><span class="bold">Endereço:</span> <span class="var">[ENDEREÇO COMPLETO]</span> — acesso controlado e restrito aos membros habilitados da associação</p>
+                    <p><span class="bold">Área total:</span> <span class="var">[METRAGEM]</span> m² — dividida em área de vegetativo e área de floração</p>
+                    <p><span class="bold">Número máximo de plantas:</span> <span class="var">[NÚMERO]</span> plantas fêmeas em floração simultânea</p>
+                    <p><span class="bold">Isolamento:</span> Ambiente isolado, sem exposição visual externa. Acesso com controle de entrada por <span class="var">[SISTEMA DE CONTROLE]</span>.</p>
+                    <br/>
+                    <p class="bold underline">4. SISTEMA DE ILUMINAÇÃO</p>
+                    <p><span class="bold">Tipo:</span> <span class="var">[LED Full Spectrum / HPS / CMH]</span>, potência <span class="var">[WATTS]</span>W por módulo</p>
+                    <p><span class="bold">Fotoperíodo vegetativo:</span> 18h luz / 6h escuro</p>
+                    <p><span class="bold">Fotoperíodo de floração:</span> 12h luz / 12h escuro</p>
+                    <br/>
+                    <p class="bold underline">5. SISTEMA DE VENTILAÇÃO E CONTROLE DE ODOR</p>
+                    <p><span class="bold">Exaustor(es):</span> <span class="var">[MARCA/MODELO, CFM]</span></p>
+                    <p><span class="bold">Filtros de carvão ativado:</span> <span class="var">[MARCA/DIÂMETRO]</span> — filtração de 100% do ar circulante. Resultado: nenhum odor expelido para área externa.</p>
+                    <br/>
+                    <p class="bold underline">6. RASTREABILIDADE E CONTROLE DE LOTES</p>
+                    <p>Cada lote de produção será identificado com código único, data de plantio, data de colheita, rendimento em gramas e destino (nome do associado + CID). Registros mantidos em planilha eletrônica com backup em nuvem segura.</p>
+                    <br/>
+                    <p class="bold underline">7. PROTOCOLO DE SEGURANÇA E ACESSO</p>
+                    <p>O espaço é de acesso exclusivo dos membros habilitados pela diretoria. Não há circulação de menores. Visitantes externos somente com autorização formal da presidência. Sistema de câmeras instalado para registro de acesso.</p>
+                    <br/>
+                    <p class="bold underline">8. DESTINO DA PRODUÇÃO</p>
+                    <p>100% da produção destina-se ao uso medicinal exclusivo dos associados listados no Doc. 03. É vedado qualquer tipo de venda, doação a não-associados ou distribuição que não esteja documentada. A rastreabilidade garante que cada grama produzida seja vinculada a um paciente com prescrição ativa.</p>
+                    <br/>
+                    <p><span class="var">[Cidade/UF]</span>, <span class="var">[data]</span>.</p>
+                    <br/>
+                    <p class="center">_______________________________________</p>
+                    <p class="center"><span class="var">[NOME DO PRESIDENTE]</span><br/>Presidente da <span class="var">[NOME DA ASSOCIAÇÃO]</span></p>
+                    <p class="center">_______________________________________</p>
+                    <p class="center"><span class="var">[NOME DO RESPONSÁVEL TÉCNICO]</span><br/>CREA/CRBio nº <span class="var">[NÚMERO]</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOC A3: Guia de Compliance Associativo -->
+        <div class="doc-section">
+            <div class="doc-header">
+                <div class="doc-header-icon"><i class="fas fa-shield-halved"></i></div>
+                <div>
+                    <span class="profile-badge badge-assoc"><i class="fas fa-building-columns"></i> Associações</span>
+                    <h2>Guia A3 — Compliance por Pilar para Associações</h2>
+                    <p>Orientações técnicas para cada documento do pacote coletivo. Siga a ordem e os critérios de qualidade.</p>
+                </div>
+            </div>
+            <div class="doc-body">
+                <h3 style="font-size:1.2rem;color:var(--hc-forest);margin-bottom:1.25rem">Pilar 01 — Institucional e Jurídico</h3>
+                <ul class="instruction-list">
+                    <li><div class="instr-num">1</div><div class="instr-text"><strong>Estatuto Social Registrado em Cartório</strong><span>Deve conter cláusula expressa de finalidade medicinal e/ou científica e de não-lucratividade. Utilize cópia autenticada em cartório. Estatutos genéricos sem menção à Cannabis medicinal podem enfraquecer a tese.</span></div></li>
+                    <li><div class="instr-num">2</div><div class="instr-text"><strong>CNPJ Ativo + Ata de Eleição Vigente</strong><span>O comprovante de situação cadastral (Receita Federal) não pode ter mais de 30 dias. A ata de eleição da diretoria deve estar registrada em cartório e o mandato deve estar em vigor na data da impetração.</span></div></li>
+                    <li><div class="instr-num">3</div><div class="instr-text"><strong>Certidões Negativas de Débito (CND)</strong><span>Emita a CND Federal (Receita Federal + PGFN) e a CND Estadual (SEFAZ). Demonstram idoneidade fiscal e fortalecem a credibilidade institucional da associação perante o juízo.</span></div></li>
+                    <li><div class="instr-num">4</div><div class="instr-text"><strong>Regimento Interno de Cultivo Coletivo</strong><span>Documento interno aprovado em assembleia — inclua ata dessa assembleia. Deve conter: critérios de admissão de associados, processo de rastreabilidade, destinação do produto e normas de segurança.</span></div></li>
+                </ul>
+                <h3 style="font-size:1.2rem;color:var(--hc-forest);margin:1.75rem 0 1.25rem">Pilar 02 — Clínico dos Associados</h3>
+                <ul class="instruction-list">
+                    <li><div class="instr-num">5</div><div class="instr-text"><strong>Lista Nominal e Laudos Individuais</strong><span>Um laudo médico por paciente, padrão RDC 1.012/2026 (diagnóstico + CID + refratariedade + indicação de canabinoide). Organize os laudos na mesma ordem da lista nominal para facilitar a triagem pelo juízo.</span></div></li>
+                    <li><div class="instr-num">6</div><div class="instr-text"><strong>Autorizações ANVISA dos Associados</strong><span>Cada associado que já solicitou importação deve incluir o protocolo ou autorização ANVISA. Mesmo as negativas são válidas — demonstram que a via administrativa foi tentada antes do HC.</span></div></li>
+                    <li><div class="instr-num">7</div><div class="instr-text"><strong>Inacessibilidade Financeira Coletiva</strong><span>Reúna orçamentos de produtos farmacêuticos e compare com comprovantes de renda dos associados. Calcule o custo médio por paciente e o impacto percentual na renda. Planilha consolidada é ideal.</span></div></li>
+                </ul>
+                <h3 style="font-size:1.2rem;color:var(--hc-forest);margin:1.75rem 0 1.25rem">Pilar 03 — Técnico e Agronômico</h3>
+                <ul class="instruction-list">
+                    <li><div class="instr-num">8</div><div class="instr-text"><strong>Responsável Técnico Habilitado</strong><span>Agrônomo (CREA) ou Biólogo (CRBio) com declaração de vínculo com a associação. A presença de RT é um dos principais diferenciais de credibilidade técnica para o Judiciário em HC coletivos.</span></div></li>
+                    <li><div class="instr-num">9</div><div class="instr-text"><strong>Memorial Descritivo (Template A2 acima)</strong><span>Inclua fotos do espaço, planta baixa ou croqui. A precisão técnica demonstra seriedade e controle do processo. Quanto mais detalhado, melhor a avaliação judicial.</span></div></li>
+                    <li><div class="instr-num">10</div><div class="instr-text"><strong>Certificados de Capacitação da Equipe</strong><span>Diplomas ou certificados dos membros que atuarão no cultivo e na extração. Cursos de horticultura, boas práticas de fabricação ou cultivo medicinal são aceitos.</span></div></li>
+                </ul>
+                <h3 style="font-size:1.2rem;color:var(--hc-forest);margin:1.75rem 0 1.25rem">Tabela de Conformidade — Associações</h3>
+                <table class="dossie-table">
+                    <thead><tr><th>Documento</th><th>Pilar</th><th>Formato Aceito</th><th>Validade</th></tr></thead>
+                    <tbody>
+                        <tr><td>Estatuto Social</td><td>Institucional</td><td>Cópia autenticada em cartório</td><td><span class="status-ok">Sem validade</span></td></tr>
+                        <tr><td>CNPJ Ativo</td><td>Institucional</td><td>PDF Receita Federal</td><td><span class="status-attn">30 dias</span></td></tr>
+                        <tr><td>Ata de Eleição</td><td>Institucional</td><td>Original ou autenticada</td><td><span class="status-attn">Mandato vigente</span></td></tr>
+                        <tr><td>CND Federal/Estadual</td><td>Institucional</td><td>PDF oficial com código</td><td><span class="status-attn">90 dias</span></td></tr>
+                        <tr><td>Laudos dos Associados</td><td>Clínico</td><td>Original ou cópia autenticada</td><td><span class="status-attn">90 dias cada</span></td></tr>
+                        <tr><td>Orçamentos farmacêuticos</td><td>Clínico</td><td>PDFs com data</td><td><span class="status-attn">60 dias</span></td></tr>
+                        <tr><td>Memorial Descritivo</td><td>Técnico</td><td>Documento assinado + fotos</td><td><span class="status-ok">Sem validade</span></td></tr>
+                        <tr><td>Certid. RT (CREA/CRBio)</td><td>Técnico</td><td>PDF oficial conselho</td><td><span class="status-attn">Situação ativa</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="legal-notice" style="margin-top:1.75rem">
+                    <i class="fas fa-balance-scale"></i>
+                    <div><strong>Dica do Compliance Associativo</strong> Organize os documentos em duas pastas: uma <strong>institucional</strong> (CNPJ, Estatuto, Ata) e uma <strong>clínica por paciente</strong> (laudo + prescrição por associado). Isso facilita muito a análise pelo juízo e pelo advogado.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOC A4: Checklist Final Associação -->
+        <div class="doc-section">
+            <div class="doc-header">
+                <div class="doc-header-icon"><i class="fas fa-list-check"></i></div>
+                <div>
+                    <span class="profile-badge badge-assoc"><i class="fas fa-building-columns"></i> Associações</span>
+                    <h2>Checklist Final — Associação: Antes de Protocolar</h2>
+                    <p>Verifique item a item antes de entregar o pacote ao advogado ou protocolar no tribunal.</p>
+                </div>
+            </div>
+            <div class="doc-body">
+                <ul class="inner-checklist">
+                    <li><i class="fas fa-circle-check"></i><span>Estatuto Social registrado em cartório com cláusula de finalidade medicinal</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Comprovante de CNPJ Ativo (Receita Federal, máx. 30 dias)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Ata de eleição da diretoria vigente, registrada em cartório</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Certidão Negativa de Débitos Federal e Estadual (máx. 90 dias)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Regimento Interno de Cultivo Coletivo + ata de aprovação em assembleia</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Lista nominal de todos os associados beneficiários (nome, CPF, patologia)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Laudo médico individual de cada associado (máx. 90 dias, CRM ativo)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Prescrição médica de uso contínuo de cada associado</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Protocolos ou autorizações ANVISA dos associados (se houver)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Mínimo 3 orçamentos de produtos farmacêuticos + comprovação de renda coletiva</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Negativas do SUS / convênio dos associados</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Memorial descritivo do espaço de cultivo coletivo assinado pelo RT</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Declaração de vínculo do Responsável Técnico (CREA/CRBio ativo)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Certificados de capacitação técnica dos membros da equipe de cultivo</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Certidão de antecedentes criminais dos representantes legais da associação</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Petição inicial revisada e assinada por advogado habilitado (OAB ativo)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Todos os documentos organizados em pastas numeradas (Doc. 01 ao Doc. 12)</span></li>
+                    <li><i class="fas fa-circle-check"></i><span>Cópia digital com backup seguro em nuvem</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA Associação -->
+        <div class="dossie-cta-box">
+            <h3>Sua associação precisa de suporte técnico?</h3>
+            <p>O canal exclusivo do Clube Flor de Minas está disponível para dúvidas sobre cultivo coletivo e compliance associativo. Para suporte jurídico específico, consulte sempre um advogado especializado em Cannabis medicinal.</p>
+            <a href="../portal.html" class="btn-gold"><i class="fas fa-arrow-left"></i> Voltar ao Portal do Membro</a>
+        </div>
+
+    </div><!-- /profile-assoc -->
+
+</div>
+
+<!-- Footer -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-disclaimer-box">
+      <strong>Aviso Importante:</strong> Este conteúdo tem finalidade <strong>exclusivamente educacional e informativa</strong>. Os templates aqui presentes são modelos orientativos e <strong>não constituem aconselhamento jurídico ou médico</strong>. Cada caso é único e exige avaliação de profissionais habilitados (advogado e médico). O cultivo de Cannabis medicinal requer autorização judicial ou regulatória vigente. Baseado nas RDCs 1.012–1.015/2026 (ANVISA).
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Flor de <span>Minas</span></div>
+        <p>Educação e conteúdo técnico-científico sobre Cannabis medicinal no Brasil.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://x.com/flordeminas_" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="../noticias.html">Notícias</a></li>
+          <li><a href="../clube.html">Recursos Premium</a></li>
+          <li><a href="../index.html#guia-paciente">Guia do Paciente</a></li>
+          <li><a href="../mapa-terpenos.html">Mapa de Terpenos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Clube</h4>
+        <ul>
+          <li><a href="../clube.html">Clube Flor de Minas</a></li>
+          <li><a href="../portal.html">Portal do Membro</a></li>
+          <li><a href="../loja.html">Loja</a></li>
+          <li><a href="../parceiros.html">Parceiros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacidade.html">Política de Privacidade</a></li>
+          <li><a href="../termos.html">Termos de Uso</a></li>
+          <li><a href="https://www.gov.br/anvisa/pt-br/assuntos/medicamentos/cannabis-medicinal" target="_blank" rel="noopener">Regulação ANVISA</a></li>
+          <li><a href="../sobre-nos.html">Sobre Nós</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Flor de Minas — Todos os direitos reservados.</span>
+      <span>Conteúdo educacional | Não constitui aconselhamento jurídico ou médico</span>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+<script>
+    function switchProfile(profile) {
+        // Update buttons
+        document.querySelectorAll('.profile-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('tab-' + profile).classList.add('active');
+        // Update sections
+        document.querySelectorAll('.profile-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('profile-' + profile).classList.add('active');
+        // Update hero subtitle
+        const subtitles = {
+            individual: 'Biblioteca completa de templates jurídicos e memorial agronômico para o paciente individual montar seu dossiê de Habeas Corpus com segurança.',
+            assoc: 'Documentação completa para Habeas Corpus Coletivo: petição, memorial de cultivo associativo, guia de compliance e checklist final para sua associação.'
+        };
+        document.getElementById('hero-subtitle').textContent = subtitles[profile];
+        // Scroll to top of container
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
