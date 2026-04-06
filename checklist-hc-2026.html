@@ -272,10 +272,11 @@
                     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
                     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
                     <li><a class="nav-link" href="loja.html">Loja</a></li>
-                    <li><a class="nav-link login-link" href="entrar.html">🔒 Entrar</a></li>
+                    <li><a class="nav-link" href="clube.html">Clube</a></li>
+                    <li><a class="header-cta nav-entrar-mobile" href="entrar.html">🔒 Entrar</a></li>
                 </ul>
 <div class="header-right">
-<a class="header-cta" href="clube.html">Clube</a>
+<a class="header-cta" href="entrar.html">🔒 Entrar</a>
 <button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
 <span></span>
 <span></span>
@@ -289,7 +290,7 @@
     <div class="checklist-hero">
         <div class="container">
             <h1>Checklist Habeas Corpus 2026</h1>
-            <p>A segurança jurídica do seu cultivo doméstico começa com uma documentação impecável. Organize seu dossiê com rigor técnico e conformidade ANVISA.</p>
+            <p id="hero-subtitle">A segurança jurídica do seu cultivo doméstico começa com uma documentação impecável. Organize seu dossiê com rigor técnico e conformidade ANVISA.</p>
         </div>
     </div>
 
@@ -298,13 +299,15 @@
             <button class="profile-btn active" onclick="toggleProfile('individual')" aria-label="Perfil Paciente Individual">
                 <i class="fas fa-user"></i> Paciente Individual
             </button>
-            <button class="profile-btn" onclick="toggleProfile('assoc')" aria-label="Perfil Membro de Associação">
-                <i class="fas fa-users"></i> Membro de Associação
+            <button class="profile-btn" onclick="toggleProfile('assoc')" aria-label="Perfil Associações">
+                <i class="fas fa-building-columns"></i> Associações
             </button>
         </div>
 
-        <!-- Passo 1: Pilar Médico -->
-        <section class="checklist-section">
+        <!-- ==================== INDIVIDUAL SECTIONS ==================== -->
+
+        <!-- Passo 1: Pilar Médico (Individual) -->
+        <section class="checklist-section individual-section">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-hand-holding-medical"></i></div>
                 <h2>01. Pilar Médico e Terapêutico</h2>
@@ -324,7 +327,7 @@
                         <p>Receita médica devidamente preenchida e datada, comprovando a necessidade ininterrupta da medicação.</p>
                     </div>
                 </div>
-                <div class="checklist-item individual-only" onclick="this.classList.toggle('checked')">
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
                     <div class="custom-checkbox"><i class="fas fa-check"></i></div>
                     <div class="item-content">
                         <h3>Autorização de Importação ANVISA</h3>
@@ -334,8 +337,8 @@
             </div>
         </section>
 
-        <!-- Passo 2: Pilar Técnico -->
-        <section class="checklist-section">
+        <!-- Passo 2: Pilar Técnico (Individual) -->
+        <section class="checklist-section individual-section">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-microscope"></i></div>
                 <h2>02. Pilar Técnico e Agronômico</h2>
@@ -348,18 +351,18 @@
                         <p>Diplomas de cursos de cultivo e extração que atestem sua capacidade de produzir o remédio com padrões de segurança e higiene.</p>
                     </div>
                 </div>
-                <div class="checklist-item individual-only" onclick="this.classList.toggle('checked')">
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
                     <div class="custom-checkbox"><i class="fas fa-check"></i></div>
                     <div class="item-content">
                         <h3>Projeto Agronômico / Memorial Descritivo</h3>
-                        <p>Plano técnico detalhando o espaço físico (growroom), sistema de ventilação, iluminação e controle de odor.</p>
+                        <p>Plano técnico detalhando o espaço físico (growroom ou área de cultivo), sistema de ventilação, iluminação e controle de odor.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Passo 3: Pilar Jurídico -->
-        <section class="checklist-section">
+        <!-- Passo 3: Pilar Jurídico (Individual) -->
+        <section class="checklist-section individual-section">
             <div class="section-header">
                 <div class="section-icon"><i class="fas fa-scale-balanced"></i></div>
                 <h2>03. Pilar Jurídico e Documental</h2>
@@ -372,13 +375,6 @@
                         <p>Mínimo de 3 orçamentos de produtos farmacêuticos comparados à sua renda, provando o caráter proibitivo do custo de mercado.</p>
                     </div>
                 </div>
-                <div class="checklist-item assoc-only" style="display: none;" onclick="this.classList.toggle('checked')">
-                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
-                    <div class="item-content">
-                        <h3>Comprovante de Filiação Associativa <span class="tag-assoc">Assoc</span></h3>
-                        <p>Documento oficial emitido pela associação comprovando seu vínculo como paciente acolhido.</p>
-                    </div>
-                </div>
                 <div class="checklist-item" onclick="this.classList.toggle('checked')">
                     <div class="custom-checkbox"><i class="fas fa-check"></i></div>
                     <div class="item-content">
@@ -386,18 +382,148 @@
                         <p>Registros de pedidos negados pelo SUS ou convênio, evidenciando o esgotamento de vias consensuais.</p>
                     </div>
                 </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Documentos Pessoais e Prova de Residência</h3>
+                        <p>RG, CPF e comprovante de endereço atualizado (últimos 90 dias), necessários para qualificação completa na petição.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ASSOCIATION SECTIONS ==================== -->
+
+        <!-- Passo 1: Pilar Institucional (Associação) -->
+        <section class="checklist-section assoc-section" style="display:none">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-building-columns"></i></div>
+                <h2>01. Pilar Institucional e Jurídico</h2>
+            </div>
+            <div class="checklist-items">
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Estatuto Social Registrado em Cartório</h3>
+                        <p>Cópia autenticada do estatuto que comprove a finalidade medicinal/científica da associação, com cláusula expressa de não-lucratividade.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>CNPJ Ativo e Regular</h3>
+                        <p>Comprovante de situação cadastral emitido pela Receita Federal com status "Ativa". Evite certidões com mais de 30 dias.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Ata de Eleição da Diretoria (Vigente)</h3>
+                        <p>Ata registrada em cartório com os nomes e CPFs dos representantes legais atualmente em exercício, com mandato válido.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Certidão Negativa de Débitos (CND Federal e Estadual)</h3>
+                        <p>Regularidade fiscal perante a Receita Federal e a SEFAZ estadual, demonstrando idoneidade institucional.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Regimento Interno de Cultivo Coletivo</h3>
+                        <p>Documento interno aprovado em assembleia que regule o processo de cultivo, destinação do produto e critérios de acesso pelos associados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Passo 2: Pilar dos Associados (Associação) -->
+        <section class="checklist-section assoc-section" style="display:none">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-file-medical"></i></div>
+                <h2>02. Pilar Clínico dos Associados</h2>
+            </div>
+            <div class="checklist-items">
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Lista Nominal dos Pacientes Beneficiários</h3>
+                        <p>Relação com nome completo, CPF e patologia de cada associado que se beneficiará do cultivo coletivo, assinada pelo presidente.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Laudos Médicos Individuales dos Associados</h3>
+                        <p>Um laudo médico por paciente atestando a patologia, refratariedade e indicação de canabinoide — seguindo o padrão RDC 1.012/2026.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Autorizações de Importação ANVISA dos Associados</h3>
+                        <p>Comprovação de que cada beneficiário já possui ou solicitou autorização de importação, reforçando a necessidade clínica coletiva.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Comprovação de Inacessibilidade Financeira Coletiva</h3>
+                        <p>Orçamentos de medicamentos importados confrontados com os dados socioeconômicos dos associados, demonstrando o impacto coletivo do custo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Passo 3: Pilar Técnico (Associação) -->
+        <section class="checklist-section assoc-section" style="display:none">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-microscope"></i></div>
+                <h2>03. Pilar Técnico e Agronômico</h2>
+            </div>
+            <div class="checklist-items">
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Responsável Técnico Habilitado (Agrônomo ou Biólogo)</h3>
+                        <p>Nome, CREA/CRBio e declaração de vínculo do profissional responsável técnico pelo cultivo, extração e controle de qualidade.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Memorial Descritivo do Espaço de Cultivo Coletivo</h3>
+                        <p>Planta baixa ou descrição técnica da área de cultivo (localização, metragem, isolamento), indicando capacidade de produção declarada.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Protocolo de Boas Práticas de Cultivo e Extração</h3>
+                        <p>Documento descrevendo os procedimentos de higiene, rastreabilidade de lotes, controle de pragas e padrões de segurança adotados.</p>
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                    <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                    <div class="item-content">
+                        <h3>Certificados de Capacitação da Equipe</h3>
+                        <p>Diplomas ou certificados dos membros que atuarão no cultivo e processamento, comprovando conhecimento técnico e de segurança.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <div class="download-footer">
             <h3>Quer os modelos de petição?</h3>
-            <p>Membros do Clube possuem acesso exclusivo à nossa biblioteca de templates jurídicos e manuais técnicos de conformidade.</p>
+            <p>Membros do Clube possuem acesso exclusivo à nossa biblioteca de templates jurídicos e manuais técnicos de conformidade — <strong>já disponíveis</strong> no Portal do Membro.</p>
             <a href="clube.html" class="btn btn-primary" style="margin-top: 1.5rem; padding: 1.25rem 3rem;">
-                <i class="fas fa-crown"></i> Assine e Baixe o Dossiê HC
+                <i class="fas fa-crown"></i> Assine e Acesse o Dossiê HC
             </a>
             <div class="premium-notice">
-                <i class="fas fa-info-circle"></i>
-                <span>Os documentos técnicos completos estão disponíveis na área de membros do <strong>Clube Flor de Minas</strong>.</span>
+                <i class="fas fa-check-circle"></i>
+                <span>Membros ativos: acesse diretamente o <a href="guia/dossie-hc-2026.html" style="color: var(--hc-gold); font-weight: 700;">Dossiê HC 2026</a> na área de membros do <strong>Clube Flor de Minas</strong>.</span>
             </div>
         </div>
     </div>
@@ -467,19 +593,22 @@
         function toggleProfile(profile) {
             const btns = document.querySelectorAll('.profile-btn');
             btns.forEach(b => b.classList.remove('active'));
-            
+
             const targetBtn = document.querySelector(`.profile-btn[onclick*="${profile}"]`);
             targetBtn.classList.add('active');
 
-            const individualItems = document.querySelectorAll('.individual-only');
-            const assocItems = document.querySelectorAll('.assoc-only');
+            const individualSections = document.querySelectorAll('.individual-section');
+            const assocSections = document.querySelectorAll('.assoc-section');
+            const subtitle = document.getElementById('hero-subtitle');
 
             if (profile === 'individual') {
-                individualItems.forEach(i => i.style.display = 'flex');
-                assocItems.forEach(i => i.style.display = 'none');
+                individualSections.forEach(s => s.style.display = 'block');
+                assocSections.forEach(s => s.style.display = 'none');
+                subtitle.textContent = 'A segurança jurídica do seu cultivo doméstico começa com uma documentação impecável. Organize seu dossiê com rigor técnico e conformidade ANVISA.';
             } else {
-                individualItems.forEach(i => i.style.display = 'none');
-                assocItems.forEach(i => i.style.display = 'flex');
+                individualSections.forEach(s => s.style.display = 'none');
+                assocSections.forEach(s => s.style.display = 'block');
+                subtitle.textContent = 'Documentação completa para Habeas Corpus Coletivo: o que sua associação precisa para cultivar legalmente para seus associados.';
             }
         }
     </script>
