@@ -347,6 +347,12 @@ nav {
     font-weight: 700;
 }
 
+/* Biblioteca highlight */
+.nav-link-biblioteca {
+    color: var(--secondary-light) !important;
+    font-weight: 700;
+}
+
 .header-cta, .nav-cta {
     display: inline-block;
     background: var(--secondary); /* var(--gold) */

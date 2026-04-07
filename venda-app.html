@@ -3,190 +3,412 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>CultivoApp PRO | O Assistente de Inteligência para Cultivadores</title>
-    <!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
-    <!-- Open Graph / Social Media -->
-<meta content="Flor de Minas — Inteligência Científica em Cannabis medicinal" property="og:title"/>
-<meta content="Flor de Minas: Especialistas em conteúdo técnico, SEO e regulação de Cannabis medicinal no Brasil (RDCs 2026). Ciência, autoridade e compliance." property="og:description"/>
-<meta content="https://portal-flordeminas.com.br/assets/patient_journey_hero.png" property="og:image"/>
-<meta content="https://portal-flordeminas.com.br/" property="og:url"/>
-<meta content="Flor de Minas" property="og:site_name"/>
-<meta content="website" property="og:type"/>
-<!-- Favicon -->
-<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
-    
-    <!-- SEO & Open Graph -->
-    <meta name="description" content="Automatize seu cultivo com o CultivoApp PRO. Cronogramas, BioBizz, Remo, SuperSoil, 165+ genéticas e MIP integrado. O estado da arte no gerenciamento de jardins medicinais.">
-    
+    <title>CultivoApp PRO — O Assistente de Inteligência para Cultivadores | Flor de Minas</title>
+
+    <!-- Google tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+
+    <!-- SEO -->
+    <meta name="description" content="Gerencie seu jardim medicinal com inteligência. 165+ genéticas, protocolos BioBizz/Remo/SuperSoil, MIP integrado e cronograma automático. Versão gratuita disponível — PRO por R$ 29,90/mês.">
+    <meta property="og:title" content="CultivoApp PRO — Flor de Minas 2026">
+    <meta property="og:description" content="O cérebro do seu jardim medicinal. Versão gratuita + PRO com cultivares ilimitados.">
+    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/prints_App/print_doctor.png">
+
     <!-- Favicon -->
     <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
+
     <!-- Styles -->
     <link href="css/index.css?v=2026.0406" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
 
     <style>
         :root {
-            --fm-forest: #15803d;
-            --fm-sage: #86efac;
-            --fm-gold: #fbbf24;
-            --fm-dark: #064e3b;
-            --fm-black: #09090b;
+            --forest:  #064E3B;
+            --sage:    #86efac;
+            --sage2:   #6EE7B7;
+            --gold:    #fbbf24;
+            --dark:    #06110F;
+            --darker:  #030a07;
+            --ink:     #0F172A;
+            --muted:   #475569;
+            --border:  rgba(134,239,172,.15);
+            --card-bg: rgba(255,255,255,.03);
         }
 
-        body.app-sales-page {
-            background-color: var(--fm-black);
-            font-family: 'Inter', sans-serif;
-            color: #f1f5f9;
-            padding-top: 0;
-        }
+        body { background: var(--dark); font-family: 'Inter', sans-serif; color: #e2e8f0; margin: 0; }
 
-        .hero-section {
-            padding: 140px 0 100px;
-            background: radial-gradient(circle at top right, rgba(21, 128, 61, 0.15), transparent),
-                        linear-gradient(180deg, #022c22 0%, #000 100%);
+        /* ===== HERO ===== */
+        .hero {
+            padding: 120px 0 80px;
+            background: radial-gradient(ellipse at top right, rgba(6,78,59,.3), transparent 60%),
+                        linear-gradient(180deg, #022c22 0%, var(--dark) 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -150px; left: 50%;
+            transform: translateX(-50%);
+            width: 800px; height: 400px;
+            background: radial-gradient(circle, rgba(134,239,172,.06) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .app-badge {
-            background: var(--fm-gold);
-            color: #000;
-            padding: 6px 16px;
-            border-radius: 99px;
-            font-size: 0.8rem;
-            font-weight: 800;
+        .app-container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(251,191,36,.12);
+            border: 1px solid rgba(251,191,36,.3);
+            color: var(--gold);
+            padding: .4rem 1.1rem;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .08em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 24px;
+            margin-bottom: 1.75rem;
         }
+        .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; }
 
-        .main-headline {
+        .hero-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(to right, #fff, #86efac);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 900;
+            line-height: 1.07;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, #fff 0%, var(--sage) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .sub-headline {
-            font-size: 1.3rem;
+        .hero-sub {
+            font-size: 1.15rem;
             color: #94a3b8;
-            max-width: 800px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
         }
 
-        .cta-btn {
-            background: var(--fm-gold);
-            color: #000;
-            padding: 20px 48px;
-            border-radius: 16px;
-            font-size: 1.25rem;
-            font-weight: 800;
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-pro {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 0 40px rgba(251, 191, 36, 0.2);
-            transition: all 0.3s ease;
+            gap: .75rem;
+            background: var(--gold);
+            color: #000;
+            padding: 1.1rem 2.5rem;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 0 40px rgba(251,191,36,.25);
+            transition: transform .2s, box-shadow .2s;
         }
+        .btn-pro:hover { transform: scale(1.04); box-shadow: 0 0 60px rgba(251,191,36,.4); text-decoration: none; color: #000; }
 
-        .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 60px rgba(251, 191, 36, 0.4);
-        }
-
-        .prints-showcase {
-            padding: 100px 0;
-            background: #000;
-        }
-
-        .prints-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .print-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .print-card img {
-            width: 100%;
+        .btn-free {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: transparent;
+            color: var(--sage);
+            padding: .85rem 2rem;
             border-radius: 12px;
-            margin-bottom: 20px;
-            filter: brightness(0.9);
+            font-size: .95rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid rgba(134,239,172,.4);
+            transition: background .2s, border-color .2s;
+        }
+        .btn-free:hover { background: rgba(134,239,172,.08); border-color: var(--sage); text-decoration: none; color: var(--sage); }
+
+        .hero-note { margin-top: 1.5rem; color: #475569; font-size: .85rem; }
+        .hero-note i { margin-right: .3rem; }
+
+        /* ===== STATS ===== */
+        .stats-bar { background: rgba(6,78,59,.6); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .stats-grid { display: flex; justify-content: center; flex-wrap: wrap; }
+        .stat-item {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            padding: .75rem 1.5rem;
+            border-right: 1px solid rgba(134,239,172,.12);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--sage2);
+            display: block;
+            line-height: 1;
+        }
+        .stat-label { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: .2rem; }
+
+        /* ===== SECTIONS ===== */
+        .app-section { padding: 80px 0; }
+        .app-section-dark { background: var(--darker); }
+        .app-section-mid { background: #0a1810; }
+
+        .section-head { text-align: center; margin-bottom: 3rem; }
+        .section-head h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .75rem;
+        }
+        .section-head h2 span { color: var(--sage); }
+        .section-head p { color: #64748b; font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+        /* ===== FOR WHOM ===== */
+        .whom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .whom-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: border-color .2s, transform .2s;
+        }
+        .whom-card:hover { border-color: rgba(134,239,172,.4); transform: translateY(-4px); }
+        .whom-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+        .whom-card h3 { color: #fff; font-size: 1rem; margin-bottom: .6rem; font-weight: 700; }
+        .whom-card p { font-size: .875rem; color: #64748b; line-height: 1.65; margin: 0; }
+
+        /* ===== PHONE SHOWCASE ===== */
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .screen-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color .3s, transform .3s;
+        }
+        .screen-card:hover { border-color: rgba(134,239,172,.4); transform: translateY(-6px); }
+        .screen-img-wrap {
+            position: relative;
+            background: #0d1f14;
+            overflow: hidden;
+        }
+        .screen-img-wrap img {
+            width: 100%;
+            display: block;
+            transition: transform .4s;
+        }
+        .screen-card:hover .screen-img-wrap img { transform: scale(1.03); }
+        .screen-chip {
+            position: absolute;
+            top: .75rem; left: .75rem;
+            background: rgba(6,78,59,.85);
+            color: var(--sage2);
+            font-size: .7rem;
+            font-weight: 700;
+            padding: .2rem .65rem;
+            border-radius: 999px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+        .screen-body { padding: 1rem 1.1rem 1.2rem; }
+        .screen-body h4 { color: #fff; font-size: .9rem; margin-bottom: .3rem; font-weight: 700; }
+        .screen-body p { color: #475569; font-size: .8rem; line-height: 1.55; margin: 0; }
+        @media (max-width: 768px) {
+            .screens-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .screens-grid { grid-template-columns: 1fr; }
         }
 
-        .print-card:hover {
-            border-color: var(--fm-sage);
-            transform: translateY(-10px);
+        /* ===== FEATURE LIST ===== */
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: border-color .2s;
         }
+        .feature-card:hover { border-color: rgba(134,239,172,.35); }
+        .feature-card-icon { font-size: 1.75rem; flex-shrink: 0; }
+        .feature-card h4 { color: #fff; font-size: .95rem; margin-bottom: .3rem; font-weight: 700; }
+        .feature-card p { color: #64748b; font-size: .82rem; line-height: 1.55; margin: 0; }
 
-        .print-card:hover img {
-            filter: brightness(1.1);
+        /* ===== FREE VS PRO TABLE ===== */
+        .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 860px; margin: 0 auto; }
+        .plan-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
         }
-
-        .features-section {
-            padding: 100px 0;
-            background: #09090b;
+        .plan-card.pro {
+            border-color: var(--gold);
+            background: rgba(251,191,36,.04);
+            position: relative;
         }
+        .plan-tag {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: #000;
+            font-size: .7rem;
+            font-weight: 800;
+            padding: .25rem .9rem;
+            border-radius: 999px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .plan-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .25rem;
+        }
+        .plan-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--sage2);
+            line-height: 1;
+            margin: 1rem 0;
+        }
+        .plan-price small { font-size: .85rem; font-weight: 400; color: #64748b; }
+        .plan-price.gold { color: var(--gold); }
+        .plan-desc { color: #64748b; font-size: .875rem; margin-bottom: .5rem; }
+        .plan-desc-pro { color: #94a3b8; font-size: .875rem; margin-bottom: .5rem; }
+        .plan-features { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: .6rem;
+            font-size: .875rem;
+            color: #94a3b8;
+            padding: .5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features li i { margin-top: .15rem; flex-shrink: 0; }
+        .plan-features li i.fa-check { color: var(--sage2); }
+        .plan-features li i.fa-times { color: #475569; }
+        .plan-features li span { color: #fff; }
+        .plan-btn {
+            display: block;
+            text-align: center;
+            padding: .9rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: .95rem;
+            text-decoration: none;
+            transition: opacity .2s, transform .2s;
+        }
+        .plan-btn:hover { opacity: .88; transform: translateY(-2px); text-decoration: none; }
+        .plan-btn.free { background: rgba(134,239,172,.1); color: var(--sage); border: 2px solid rgba(134,239,172,.25); }
+        .plan-btn.pro-btn { background: var(--gold); color: #000; }
 
-        .feature-item {
+        /* ===== GUARANTEE ===== */
+        .guarantee-box {
+            background: linear-gradient(135deg, rgba(6,78,59,.4), rgba(6,78,59,.2));
+            border: 1px solid rgba(134,239,172,.2);
+            border-radius: 20px;
+            padding: 2.5rem;
             display: flex;
             align-items: center;
-            gap: 24px;
-            margin-bottom: 40px;
-            background: rgba(255,255,255,0.02);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            gap: 2rem;
+            max-width: 760px;
+            margin: 3rem auto 0;
         }
+        .guarantee-icon { font-size: 4rem; flex-shrink: 0; }
+        .guarantee-box h3 { color: #fff; font-size: 1.25rem; margin-bottom: .4rem; }
+        .guarantee-box p { color: #64748b; font-size: .9rem; margin: 0; line-height: 1.65; }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--fm-sage);
+        /* ===== FAQ ===== */
+        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+        .faq-btn {
+            width: 100%; background: none; border: none;
+            text-align: left; padding: 1.25rem 0;
+            font-size: .95rem; font-weight: 600;
+            color: #e2e8f0; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            font-family: 'Inter', sans-serif;
         }
+        .faq-btn:hover { color: var(--sage); }
+        .faq-icon { color: var(--sage); font-size: 1.2rem; transition: transform .2s; flex-shrink: 0; }
+        .faq-btn.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer { display: none; padding-bottom: 1.25rem; font-size: .9rem; color: #64748b; line-height: 1.7; }
+        .faq-answer.open { display: block; }
 
-        .feature-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background: linear-gradient(180deg, var(--dark) 0%, #022c22 100%);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .final-cta h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
             color: #fff;
+            margin-bottom: 1rem;
         }
-
-        .feature-item p {
-            color: #94a3b8;
-            line-height: 1.5;
+        .final-cta p { color: #64748b; max-width: 520px; margin: 0 auto 2.5rem; }
+        .final-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            line-height: 1;
         }
+        .final-price small { font-size: 1rem; color: #475569; font-weight: 400; }
+        .final-cta-btns { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .btn-pro-lg { font-size: 1.15rem; padding: 1.2rem 3rem; }
 
-        @media (max-width: 768px) {
-            .main-headline { font-size: 2.8rem; }
-            .feature-item { flex-direction: column; text-align: center; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .whom-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .guarantee-box { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .stat-item { min-width: 110px; }
+            .hero-ctas { padding: 0 1rem; }
+            .btn-pro { width: 100%; justify-content: center; }
+            .btn-free { width: 100%; justify-content: center; }
         }
     </style>
 </head>
-<body class="app-sales-page">
+<body>
 
-    <header class="site-header">
+<!-- Header -->
+<header class="site-header">
 <div class="container">
 <nav>
 <a class="logo" href="index.html">Flor de <span>Minas</span></a>
@@ -195,10 +417,10 @@
     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
     <li><a class="nav-link" href="loja.html">Loja</a></li>
-    <li><a class="nav-link" href="biblioteca.html" style="color: var(--fm-gold); font-weight: bold;">Biblioteca</a></li>
+    <li><a class="nav-link nav-link-biblioteca" href="biblioteca.html">Biblioteca</a></li>
 </ul>
 <div class="header-right">
-<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle" type="button">
 <span></span>
 <span></span>
 <span></span>
@@ -208,124 +430,354 @@
 </div>
 </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <span class="app-badge">Software de Inteligência 2026</span>
-                <h1 class="main-headline">O Cérebro do seu Jardim <span style="color: var(--fm-sage)">Digitalizado.</span></h1>
-                <p class="sub-headline">Esqueça os cadernos e a adivinhação. O CultivoApp PRO traz o banco de dados mestre de 165+ genéticas e algoritmos de cronograma para o seu bolso.</p>
-                <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-                    <a href="https://pay.hotmart.com/L92582136G?checkoutMode=10" class="cta-btn">Assinar Versão Completa — R$ 29,90/mês</a>
-                    <a href="App/index.html" class="btn-outline" style="padding: 15px 30px; border-radius: 12px; font-weight: 700; color: var(--fm-sage); border: 2px solid var(--fm-sage);">Teste a versão gratuita</a>
-                </div>
-                <p style="margin-top: 24px; color: #64748b; font-size: 0.9rem;"><i class="fas fa-lock"></i> Pagamento Seguro via Hotmart | Cancelamento a qualquer momento</p>
-            </div>
-        </section>
+<main>
 
-        <section class="features-section">
-            <div class="container">
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
-                        <div>
-                            <h3>Cronograma Automático</h3>
-                            <p>O algoritmo calcula as transições de luz e fertilização baseado na morfologia da planta e linhagem genética.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-vial"></i></div>
-                        <div>
-                            <h3>Calculadora de Fertilizantes</h3>
-                            <p>Módulos integrados para BioBizz, Remo Nutrients e SuperSoil. Saiba exatamente quanto despejar em cada fase.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-bug"></i></div>
-                        <div>
-                            <h3>MIP & Prevenção</h3>
-                            <p>Banco de dados de pragas e doenças com protocolos orgânicos de tratamento e calendários preventivos.</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="app-container">
+            <span class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Software de Inteligência · Edição 2026
+            </span>
+            <h1 class="hero-title">O Cérebro do<br>seu Jardim <br>Medicinal.</h1>
+            <p class="hero-sub">
+                Esqueça cadernos e adivinhação. O CultivoApp conecta 165+ genéticas, protocolos de adubação e controle de pragas em uma única ferramenta — no seu bolso.
+            </p>
+            <div class="hero-ctas">
+                <a href="https://pay.hotmart.com/L92582136G?checkoutMode=10" class="btn-pro" target="_blank" rel="noopener">
+                    <i class="fas fa-rocket"></i>
+                    Assinar PRO — R$ 29,90/mês
+                </a>
+                <a href="App/index.html" class="btn-free">
+                    <i class="fas fa-seedling"></i>
+                    Experimentar versão gratuita
+                </a>
             </div>
-        </section>
+            <p class="hero-note"><i class="fas fa-lock"></i> Pagamento seguro via Hotmart · Cancele quando quiser</p>
+        </div>
+    </section>
 
-        <section class="prints-showcase">
-            <div class="container">
-                <div style="text-align: center; margin-bottom: 60px;">
-                    <h2 style="font-family: 'Outfit'; font-size: 2.5rem;">Por dentro do App</h2>
-                    <p style="color: #94a3b8;">Veja como é simples gerenciar jardins profissionais.</p>
+    <!-- ===== STATS ===== -->
+    <div class="stats-bar">
+        <div class="app-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-num">165+</span>
+                    <div class="stat-label">Genéticas no banco</div>
                 </div>
-                <style>
-                    .phone-mockup {
-                        flex: 0 0 280px; 
-                        scroll-snap-align: center; 
-                        background: #0f172a; /* Slate 900 */
-                        border: 2px solid #334155; 
-                        border-radius: 40px; 
-                        padding: 10px; 
-                        box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05); 
-                        position: relative;
-                        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    }
-                    .phone-mockup:hover {
-                        transform: translateY(-15px) !important;
-                        border-color: var(--fm-sage);
-                        box-shadow: 0 40px 60px rgba(134,239,172,0.1), inset 0 0 20px rgba(255,255,255,0.05);
-                    }
-                    .phone-mockup img {
-                        width: 100%; 
-                        border-radius: 30px; 
-                        display: block;
-                    }
-                    /* Add dynamic notch */
-                    .phone-mockup::before {
-                        content: '';
-                        position: absolute;
-                        top: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 40%;
-                        height: 25px;
-                        background: #0f172a;
-                        border-bottom-left-radius: 12px;
-                        border-bottom-right-radius: 12px;
-                        z-index: 10;
-                    }
-                </style>
-                <div style="display: flex; gap: 30px; overflow-x: auto; padding: 40px 20px; max-width: 100%; margin: 0 auto; scroll-snap-type: x mandatory; align-items: center;">
-                    <div class="phone-mockup">
-                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.48.jpeg" alt="Cronograma IA" />
-                    </div>
-                    <div class="phone-mockup" style="transform: translateY(30px);">
-                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.32.20.jpeg" alt="Calculadora Nutricional" />
-                    </div>
-                    <div class="phone-mockup">
-                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.07.jpeg" alt="Inteligência de Genética" />
-                    </div>
-                    <div class="phone-mockup" style="transform: translateY(30px);">
-                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.28.08.jpeg" alt="Previsão de Colheita" />
-                    </div>
-                    <div class="phone-mockup">
-                        <img src="assets/prints_App/print_doctor.png" alt="Acesso de Médicos e Profissionais" />
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-num">3</span>
+                    <div class="stat-label">Protocolos de adubação</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">∞</span>
+                    <div class="stat-label">Cultivos simultâneos (PRO)</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">MIP</span>
+                    <div class="stat-label">Banco de pragas e doenças</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">☁️</span>
+                    <div class="stat-label">Sincronização em nuvem</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section style="padding: 100px 0; background: linear-gradient(180deg, #000 0%, #022c22 100%); text-align: center;">
-            <div class="container">
-                <h2 style="font-family: 'Outfit'; font-size: 2.5rem; margin-bottom: 20px; color: #fff;">Pronto para profissionalizar sua colheita?</h2>
-                <p style="color: #94a3b8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Junte-se a centenas de cultivadores que já automatizaram seus jardins com a Flor de Minas.</p>
-                <div style="font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 20px;">R$ 29,90 <span style="font-size: 1rem; color: #64748b; font-weight: 400;">POR MÊS</span></div>
-                <a href="https://pay.hotmart.com/L92582136G?checkoutMode=10" class="cta-btn" style="background: #fff; color: #000;">Assinar Agora</a>
-                <div style="margin-top: 20px;">
-                    <a href="App/index.html" style="color: var(--fm-sage); font-weight: 600; text-decoration: underline;">Ou testar versão gratuita primeiro</a>
+    <!-- ===== PARA QUEM É ===== -->
+    <section class="app-section app-section-dark">
+        <div class="app-container">
+            <div class="section-head">
+                <h2>Para quem é o <span>CultivoApp</span>?</h2>
+                <p>Desenvolvido para o ecossistema completo do cultivo medicinal no Brasil.</p>
+            </div>
+            <div class="whom-grid">
+                <div class="whom-card">
+                    <div class="whom-icon">🌱</div>
+                    <h3>Cultivadores Medicinais</h3>
+                    <p>Pacientes autorizados por Habeas Corpus ou prescrição médica que cultivam em casa e precisam de precisão nos cronogramas, adubação e controle de cada fase do ciclo.</p>
+                </div>
+                <div class="whom-card">
+                    <div class="whom-icon">🧑‍⚕️</div>
+                    <h3>Associações e Coletivos</h3>
+                    <p>Clubes e associações de Cannabis medicinal que gerenciam múltiplos jardins e precisam de rastreabilidade, protocolos padronizados e documentação de cada cultivo.</p>
+                </div>
+                <div class="whom-card">
+                    <div class="whom-icon">🔬</div>
+                    <h3>Profissionais de Saúde</h3>
+                    <p>Médicos e farmacêuticos que acompanham pacientes cultivadores e querem visualizar o perfil genético, protocolos aplicados e histórico de cada cultivo prescrito.</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- ===== SCREENSHOTS ===== -->
+    <section class="app-section app-section-mid">
+        <div class="app-container">
+            <div class="section-head">
+                <h2>O App por <span>dentro</span></h2>
+                <p>Interface projetada para cultivadores — não para engenheiros.</p>
+            </div>
+            <div class="screens-grid">
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.48.jpeg" alt="Guia rápido de parâmetros">
+                        <span class="screen-chip">Guia</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Guia Rápido de Parâmetros</h4>
+                        <p>Temperatura, umidade, pH e EC ideais por fase — sempre à mão durante o cultivo.</p>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.32.20.jpeg" alt="Manual de instruções do cultivo">
+                        <span class="screen-chip">Manual</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Manual de Instruções</h4>
+                        <p>O que é "Dia 1", como funciona cada fase e o que cada indicador do app significa.</p>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.31.07.jpeg" alt="Controle de pragas MIP">
+                        <span class="screen-chip">MIP</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Controle de Pragas</h4>
+                        <p>Protocolos com Nim, Beauveria bassiana e outros — via, dose e frequência para cada problema.</p>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.28.08.jpeg" alt="Progresso do cultivo">
+                        <span class="screen-chip">Cultivo</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Progresso do Cultivo</h4>
+                        <p>Percentual de floração, dias totais, fase atual e previsão de colheita em tempo real.</p>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/WhatsApp Image 2026-03-29 at 11.28.43.jpeg" alt="Ficha da genética">
+                        <span class="screen-chip">Genéticas</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Ficha Completa da Genética</h4>
+                        <p>THC, CBD, linhagem, terpenos dominantes, efeito, aroma e dica de cultivo por strain.</p>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-img-wrap">
+                        <img src="assets/prints_App/print_doctor.png" alt="Modo médico e profissional">
+                        <span class="screen-chip">Modo Médico</span>
+                    </div>
+                    <div class="screen-body">
+                        <h4>Interface para Profissionais</h4>
+                        <p>Visão clínica com dados da genética, histórico e início de consulta para o médico prescritor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FUNCIONALIDADES ===== -->
+    <section class="app-section app-section-dark">
+        <div class="app-container">
+            <div class="section-head">
+                <h2>Tudo que você precisa para <span>cultivar com precisão</span></h2>
+                <p>Cada funcionalidade foi desenhada a partir da necessidade real de cultivadores medicinais.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">📅</div>
+                    <div>
+                        <h4>Cronograma Automático</h4>
+                        <p>O algoritmo calcula as transições de luz e fertilização com base na morfologia da planta, linhagem genética e semana do ciclo. Zero adivinhação.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🧪</div>
+                    <div>
+                        <h4>Calculadora de Fertilizantes</h4>
+                        <p>Módulos integrados para BioBizz, Remo Nutrients e SuperSoil. Dosa com precisão cada fase — vegetativo, floração, flush e pré-colheita.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🌿</div>
+                    <div>
+                        <h4>Banco de 165+ Genéticas</h4>
+                        <p>Fichas completas com THC, CBD, tempo de floração, aroma, efeito e dicas de cultivo para mais de 165 variedades catalogadas.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🐛</div>
+                    <div>
+                        <h4>MIP — Manejo Integrado de Pragas</h4>
+                        <p>Banco de dados de pragas e doenças com protocolos orgânicos de tratamento, dosagens e calendários preventivos para cada problema.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">☁️</div>
+                    <div>
+                        <h4>Sincronização em Nuvem</h4>
+                        <p>Seus cultivos salvos e acessíveis de qualquer dispositivo. Nunca perca o histórico de um jardim por troca de celular ou reinstalação.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">👨‍⚕️</div>
+                    <div>
+                        <h4>Modo Médico</h4>
+                        <p>Interface dedicada para médicos e profissionais de saúde consultarem o perfil genético e histórico de cultivo dos pacientes que acompanham.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLANOS ===== -->
+    <section class="app-section app-section-mid">
+        <div class="app-container">
+            <div class="section-head">
+                <h2>Gratuito ou <span>PRO</span>?</h2>
+                <p>Comece grátis, evolua quando precisar de mais poder.</p>
+            </div>
+            <div class="plans-grid">
+                <!-- FREE -->
+                <div class="plan-card">
+                    <div class="plan-name">Versão Gratuita</div>
+                    <p class="plan-desc">Para começar e explorar</p>
+                    <div class="plan-price">R$ 0<small>/mês</small></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> <span>1 cultivo ativo</span></li>
+                        <li><i class="fas fa-check"></i> <span>Cronograma básico</span></li>
+                        <li><i class="fas fa-check"></i> <span>Banco de genéticas (limitado)</span></li>
+                        <li><i class="fas fa-times"></i> Adubação (BioBizz / Remo / SuperSoil)</li>
+                        <li><i class="fas fa-times"></i> MIP — controle de pragas</li>
+                        <li><i class="fas fa-times"></i> Cultivos ilimitados</li>
+                        <li><i class="fas fa-times"></i> Sincronização em nuvem</li>
+                        <li><i class="fas fa-times"></i> Modo Médico</li>
+                    </ul>
+                    <a href="App/index.html" class="plan-btn free">Acessar Gratuitamente</a>
+                </div>
+                <!-- PRO -->
+                <div class="plan-card pro">
+                    <div class="plan-tag">Mais Popular</div>
+                    <div class="plan-name">CultivoApp PRO</div>
+                    <p class="plan-desc-pro">Para cultivadores sérios</p>
+                    <div class="plan-price gold">R$ 29,90<small>/mês</small></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> <span>Cultivos ilimitados</span></li>
+                        <li><i class="fas fa-check"></i> <span>Cronograma automático completo</span></li>
+                        <li><i class="fas fa-check"></i> <span>165+ genéticas completas</span></li>
+                        <li><i class="fas fa-check"></i> <span>Adubação BioBizz + Remo + SuperSoil</span></li>
+                        <li><i class="fas fa-check"></i> <span>MIP — banco de pragas e doenças</span></li>
+                        <li><i class="fas fa-check"></i> <span>Sincronização em nuvem</span></li>
+                        <li><i class="fas fa-check"></i> <span>Modo Médico para profissionais</span></li>
+                        <li><i class="fas fa-check"></i> <span>Cancele quando quiser</span></li>
+                    </ul>
+                    <a href="https://pay.hotmart.com/L92582136G?checkoutMode=10" class="plan-btn pro-btn" target="_blank" rel="noopener">
+                        <i class="fas fa-rocket"></i> Assinar PRO Agora
+                    </a>
+                </div>
+            </div>
+
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <div>
+                    <h3>Cancele quando quiser, sem burocracia</h3>
+                    <p>Assinatura mensal sem fidelidade. Cancele a qualquer momento diretamente pela plataforma Hotmart sem precisar falar com ninguém. Sem taxa de cancelamento, sem aviso prévio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="app-section app-section-dark">
+        <div class="app-container">
+            <div class="section-head">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button type="button" class="faq-btn">
+                        Preciso ter cadastro para usar a versão gratuita?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim. A versão gratuita requer criação de conta com e-mail e senha para salvar os dados do seu cultivo. O cadastro é gratuito e sem necessidade de cartão de crédito.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-btn">
+                        O App funciona no celular e no computador?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim. O CultivoApp é um Progressive Web App (PWA) que funciona em qualquer navegador — celular, tablet ou computador. Na versão PRO com sincronização em nuvem, seus dados ficam disponíveis em todos os dispositivos automaticamente.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-btn">
+                        Posso cancelar a assinatura PRO a qualquer momento?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim, sem complicação. O cancelamento é feito diretamente pelo painel da Hotmart, sem precisar entrar em contato com suporte. Não há fidelidade ou multa. Após cancelar, você mantém o acesso PRO até o fim do período já pago.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-btn">
+                        Os protocolos de adubação são para cultivo orgânico?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        O App inclui protocolos para BioBizz (linha orgânica), Remo Nutrients e SuperSoil (no-till / solo vivo). Os protocolos são baseados nas recomendações oficiais de cada fabricante, adaptados para as fases do cultivo de Cannabis medicinal.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-btn">
+                        Posso usar o App se sou médico e não cultivo?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim. O Modo Médico foi desenvolvido especificamente para profissionais de saúde que acompanham pacientes cultivadores. Ele oferece uma visão do perfil genético dos cultivares e do histórico de cultivo, sem exibir as telas de gerenciamento de jardim.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta">
+        <div class="app-container">
+            <h2>Seu jardim medicinal merece<br>mais do que um caderno.</h2>
+            <p>Comece hoje. Cancele quando quiser.</p>
+            <div class="final-price">R$ 29,90 <small>/ mês</small></div>
+            <div class="final-cta-btns">
+                <a href="https://pay.hotmart.com/L92582136G?checkoutMode=10" class="btn-pro btn-pro-lg" target="_blank" rel="noopener">
+                    <i class="fas fa-rocket"></i>
+                    Assinar CultivoApp PRO
+                </a>
+                <a href="App/index.html" class="btn-free">
+                    Ou experimentar grátis primeiro
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
 
@@ -384,5 +836,20 @@
   </div>
 </footer>
 
+<script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('open'));
+      if (!isOpen) {
+        answer.classList.add('open');
+        btn.classList.add('open');
+      }
+    });
+  });
+</script>
 </body>
 </html>

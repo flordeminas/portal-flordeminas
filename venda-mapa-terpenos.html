@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>O Efeito Entourage — Guia Científico Completo | Flor de Minas</title>
+    <title>Kit Mapa de Terpenos — Guia Científico para Imprimir | Flor de Minas</title>
 
     <!-- Google tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
 
     <!-- SEO -->
-    <meta name="description" content="Domine a sinergia entre canabinoides e terpenos. O guia científico completo sobre o Efeito Entourage — 13 capítulos, 39 páginas, referências com DOI. Download imediato em PDF.">
-    <meta property="og:title" content="O Efeito Entourage — Guia Científico Completo">
-    <meta property="og:description" content="A ciência que define o sucesso clínico de cada tratamento com Cannabis medicinal.">
-    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/ebook/ebook_cover_2d_flat.png">
+    <meta name="description" content="O guia visual mais completo sobre terpenos da Cannabis. 12 terpenos, evidências científicas, Tabela Mestra e guia de aromas — pronto para imprimir em A4. Download imediato em PDF.">
+    <meta property="og:title" content="Kit Mapa de Terpenos — Guia Científico Flor de Minas 2026">
+    <meta property="og:description" content="12 terpenos. Tabela Mestra. Guia de aromas. Pronto para imprimir.">
+    <meta property="og:image" content="https://portal-flordeminas.com.br/assets/terpene_map_tool.png">
 
     <!-- Favicon -->
     <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
@@ -145,7 +145,7 @@
         .eb-trust-item { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
         .eb-trust-item i { color: var(--green-mid); }
 
-        /* Mockup */
+        /* Cover image */
         .eb-book-wrap {
             position: relative;
             padding-bottom: 0;
@@ -208,7 +208,7 @@
         }
         .eb-stat-label { font-size: .75rem; color: rgba(255,255,255,.7); margin-top: .2rem; }
 
-        /* ===== FOR WHOM ===== */
+        /* ===== SECTIONS ===== */
         .eb-section { padding: 80px 0; }
         .eb-section-alt { background: #F1F5F9; }
 
@@ -238,7 +238,7 @@
         .eb-whom-card h3 { font-size: 1.05rem; color: var(--green); margin-bottom: .6rem; font-family: 'Merriweather', serif; }
         .eb-whom-card p { font-size: .875rem; color: var(--muted); line-height: 1.65; margin: 0; }
 
-        /* ===== PREVIEW / INSIDE ===== */
+        /* ===== PREVIEW (dark) ===== */
         .eb-dark { background: #080f1a; padding: 80px 0; }
         .eb-dark .eb-section-head h2 { color: #fff; }
         .eb-dark .eb-section-head p { color: #94a3b8; }
@@ -256,7 +256,7 @@
             transition: border-color .3s, transform .3s;
         }
         .eb-preview-card:hover { border-color: #6EE7B7; transform: translateY(-6px); }
-        .eb-preview-img-wrap { position: relative; overflow: hidden; aspect-ratio: 1/1; }
+        .eb-preview-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; background: #0f1f1a; display: flex; align-items: center; justify-content: center; }
         .eb-preview-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
         .eb-preview-card:hover .eb-preview-img-wrap img { transform: scale(1.05); }
         .eb-preview-ch {
@@ -270,17 +270,21 @@
             border-radius: 999px;
             letter-spacing: .05em;
         }
+        .eb-preview-icon {
+            font-size: 3.5rem;
+            opacity: .25;
+        }
         .eb-preview-body { padding: 1.25rem; }
         .eb-preview-body h4 { color: #fff; font-size: .95rem; margin-bottom: .4rem; }
         .eb-preview-body p { color: #64748b; font-size: .8rem; line-height: 1.6; margin: 0; }
 
-        /* ===== CHAPTERS ===== */
-        .eb-chapters-grid {
+        /* ===== WHAT'S INCLUDED ===== */
+        .eb-includes-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: .75rem;
         }
-        .eb-chapter {
+        .eb-include {
             display: flex;
             align-items: flex-start;
             gap: 1rem;
@@ -290,19 +294,34 @@
             padding: 1.1rem 1.25rem;
             transition: border-color .2s;
         }
-        .eb-chapter:hover { border-color: var(--green-pale); }
-        .eb-chapter-num {
-            font-family: 'Outfit', sans-serif;
+        .eb-include:hover { border-color: var(--green-pale); }
+        .eb-include-icon {
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--green-pale);
-            line-height: 1;
             flex-shrink: 0;
-            width: 2rem;
+            width: 2.2rem;
             text-align: center;
         }
-        .eb-chapter h4 { font-size: .9rem; color: var(--green); margin-bottom: .25rem; font-weight: 700; }
-        .eb-chapter p { font-size: .8rem; color: var(--muted); margin: 0; line-height: 1.5; }
+        .eb-include h4 { font-size: .9rem; color: var(--green); margin-bottom: .25rem; font-weight: 700; }
+        .eb-include p { font-size: .8rem; color: var(--muted); margin: 0; line-height: 1.5; }
+
+        /* ===== TERPENE LIST ===== */
+        .eb-terp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .eb-terp-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .eb-terp-card:hover { border-color: var(--green-pale); box-shadow: 0 6px 18px rgba(0,0,0,.07); }
+        .eb-terp-emoji { font-size: 2rem; margin-bottom: .5rem; }
+        .eb-terp-name { font-size: .85rem; font-weight: 700; color: var(--green); margin-bottom: .25rem; }
+        .eb-terp-aroma { font-size: .75rem; color: var(--muted); line-height: 1.4; }
 
         /* ===== GUARANTEE ===== */
         .eb-guarantee {
@@ -320,9 +339,7 @@
 
         /* ===== FAQ ===== */
         .eb-faq-list { max-width: 720px; margin: 0 auto; }
-        .eb-faq-item {
-            border-bottom: 1px solid var(--border);
-        }
+        .eb-faq-item { border-bottom: 1px solid var(--border); }
         .eb-faq-btn {
             width: 100%;
             background: none;
@@ -365,22 +382,6 @@
         }
         .eb-final p { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 2.5rem; }
 
-        .eb-btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            background: transparent;
-            color: var(--green);
-            padding: .85rem 1.75rem;
-            border-radius: 10px;
-            font-size: .95rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: 2px solid var(--green);
-            transition: background .2s, color .2s;
-        }
-        .eb-btn-secondary:hover { background: var(--green); color: #fff; text-decoration: none; }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .eb-hero-grid { grid-template-columns: 1fr; }
@@ -392,12 +393,14 @@
             .eb-book-img { border-radius: 16px; transform: none; }
             .eb-whom-grid { grid-template-columns: 1fr; }
             .eb-preview-grid { grid-template-columns: 1fr 1fr; }
-            .eb-chapters-grid { grid-template-columns: 1fr; }
+            .eb-includes-grid { grid-template-columns: 1fr; }
+            .eb-terp-grid { grid-template-columns: repeat(2, 1fr); }
             .eb-guarantee { flex-direction: column; text-align: center; }
         }
         @media (max-width: 600px) {
             .eb-preview-grid { grid-template-columns: 1fr; }
             .eb-stat { min-width: 110px; }
+            .eb-terp-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -436,38 +439,38 @@
                 <div class="eb-hero-text">
                     <span class="eb-badge">
                         <span class="eb-badge-dot"></span>
-                        Guia Científico · Edição 2026 · PDF Imediato
+                        Guia Visual · Edição 2026 · PDF para Imprimir
                     </span>
                     <h1 class="eb-headline">
-                        O Efeito<br>Entourage<br>
-                        <em>Decifrado.</em>
+                        12 Terpenos.<br>Uma Tabela.<br>
+                        <em>Tudo Claro.</em>
                     </h1>
                     <p class="eb-sub">
-                        A ciência que conecta canabinoides e terpenos ao resultado clínico real. 13 capítulos com evidência publicada, diagramas fisiológicos e o guia completo de leitura de laudos de laboratório.
+                        O guia científico visual mais completo sobre terpenos da Cannabis — com fichas detalhadas, evidências publicadas, guia de aromas e Tabela Mestra. Pronto para imprimir em A4 e usar na consulta, no estudo ou no cuidado diário.
                     </p>
 
                     <div class="eb-cta-box">
                         <div class="eb-price">
-                            <span class="eb-price-old">De R$ 97,00</span>
-                            <span class="eb-price-new">R$ 67<small>,00</small></span>
+                            <span class="eb-price-old">De R$ 77,00</span>
+                            <span class="eb-price-new">R$ 47<small>,00</small></span>
                         </div>
-                        <a href="https://pay.hotmart.com/M105173735E" class="eb-btn-buy" target="_blank" rel="noopener">
+                        <a href="https://pay.hotmart.com/M105174742Q?bid=1775525510329" class="eb-btn-buy" target="_blank" rel="noopener">
                             <i class="fas fa-download"></i>
-                            Garantir meu acesso agora
+                            Baixar meu Kit agora
                         </a>
                     </div>
 
                     <div class="eb-trust">
                         <span class="eb-trust-item"><i class="fas fa-shield-alt"></i> Compra segura via Hotmart</span>
-                        <span class="eb-trust-item"><i class="fas fa-bolt"></i> Download imediato em PDF</span>
+                        <span class="eb-trust-item"><i class="fas fa-print"></i> PDF pronto para impressão A4</span>
                         <span class="eb-trust-item"><i class="fas fa-undo"></i> Garantia de 7 dias</span>
                     </div>
                 </div>
 
                 <div class="eb-book-wrap">
                     <div class="eb-book-badge">EDIÇÃO<br>2026</div>
-                    <img src="assets/ebook/ebook_cover_2d_flat.png"
-                         alt="Capa do ebook O Efeito Entourage — Flor de Minas 2026"
+                    <img src="assets/terpene_map_tool.png"
+                         alt="Kit Mapa de Terpenos da Cannabis — Flor de Minas 2026"
                          class="eb-book-img"
                          width="420">
                 </div>
@@ -481,20 +484,20 @@
         <div class="eb-container">
             <div class="eb-stats-grid">
                 <div class="eb-stat">
-                    <span class="eb-stat-num">13</span>
-                    <div class="eb-stat-label">Capítulos científicos</div>
+                    <span class="eb-stat-num">12</span>
+                    <div class="eb-stat-label">Terpenos mapeados</div>
                 </div>
                 <div class="eb-stat">
-                    <span class="eb-stat-num">39</span>
-                    <div class="eb-stat-label">Páginas com referências</div>
+                    <span class="eb-stat-num">10</span>
+                    <div class="eb-stat-label">Páginas A4 para imprimir</div>
                 </div>
                 <div class="eb-stat">
-                    <span class="eb-stat-num">5</span>
-                    <div class="eb-stat-label">Terpenos detalhados</div>
+                    <span class="eb-stat-num">200+</span>
+                    <div class="eb-stat-label">Compostos identificados na Cannabis</div>
                 </div>
                 <div class="eb-stat">
-                    <span class="eb-stat-num">30×</span>
-                    <div class="eb-stat-label">Mais potente que aspirina (canflavinas)</div>
+                    <span class="eb-stat-num">4</span>
+                    <div class="eb-stat-label">Níveis de evidência científica</div>
                 </div>
                 <div class="eb-stat">
                     <span class="eb-stat-num">DOI</span>
@@ -504,339 +507,295 @@
         </div>
     </div>
 
-    <!-- ===== PARA QUEM ===== -->
+    <!-- ===== FOR WHOM ===== -->
     <section class="eb-section">
         <div class="eb-container">
             <div class="eb-section-head">
                 <h2>Para quem é este guia?</h2>
-                <p>Material técnico escrito para quem quer tomar decisões baseadas em evidência, não em achismo.</p>
+                <p>Feito para quem quer usar o aroma como ferramenta clínica real — não como curiosidade.</p>
             </div>
             <div class="eb-whom-grid">
                 <div class="eb-whom-card">
-                    <div class="eb-whom-icon">🏥</div>
+                    <div class="eb-whom-icon">🌿</div>
                     <h3>Pacientes em Tratamento</h3>
-                    <p>Você usa Cannabis medicinal mas não sabe por que certos produtos funcionam melhor do que outros. Este guia explica a bioquímica por trás de cada escolha — para que você possa conversar com seu médico com clareza e autonomia.</p>
+                    <p>Você já usa Cannabis medicinal mas não entende por que um óleo funciona diferente do outro. Este guia traduz o aroma do produto em informação terapêutica objetiva.</p>
+                </div>
+                <div class="eb-whom-card">
+                    <div class="eb-whom-icon">👨‍⚕️</div>
+                    <h3>Profissionais de Saúde</h3>
+                    <p>Médicos, farmacêuticos e enfermeiros que prescrevem ou acompanham pacientes com Cannabis medicinal e precisam de um material visual para a consulta.</p>
                 </div>
                 <div class="eb-whom-card">
                     <div class="eb-whom-icon">👨‍👩‍👧</div>
                     <h3>Cuidadores e Familiares</h3>
-                    <p>Quem cuida de uma criança com epilepsia refratária, de um parente com dor crônica ou doença neurodegenerativa precisa entender a diferença entre isolado e full spectrum, entre mirceno e linalol. Aqui, você aprende isso.</p>
-                </div>
-                <div class="eb-whom-card">
-                    <div class="eb-whom-icon">🩺</div>
-                    <h3>Prescritores e Estudantes</h3>
-                    <p>Médicos, farmacêuticos e profissionais de saúde que precisam de uma referência técnica atualizada sobre a fitoquímica da Cannabis — com fontes publicadas e linguagem clínica precisa.</p>
+                    <p>Pais, cuidadores e familiares que precisam entender o perfil terpênico dos produtos para tomar decisões informadas ao lado do médico responsável.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== POR DENTRO DO GUIA ===== -->
+    <!-- ===== PREVIEW (dark) ===== -->
     <section class="eb-dark">
         <div class="eb-container">
             <div class="eb-section-head">
-                <h2>Por dentro do guia</h2>
-                <p>Imagens reais das páginas. Ciência real. Nenhuma ilustração genérica.</p>
+                <h2>O que você vai receber</h2>
+                <p>10 páginas A4 em alta resolução, prontas para impressão colorida ou preto e branco.</p>
             </div>
-
             <div class="eb-preview-grid">
-
                 <div class="eb-preview-card">
                     <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch2_img1.png"
-                             alt="Diagrama clínico do Sistema Endocanabinoide — Capítulo 2"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 2</span>
+                        <img src="assets/terpene_map_tool.png" alt="Capa do Kit Mapa de Terpenos">
+                        <span class="eb-preview-ch">Capa</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>O Sistema Endocanabinoide</h4>
-                        <p>Diagrama fisiológico completo mostrando a distribuição dos receptores CB1 (cérebro, SNC) e CB2 (sistema imune, periférico) no corpo humano — com indicação dos órgãos alvo de cada canabinoide principal.</p>
+                        <h4>Capa Profissional</h4>
+                        <p>Design escuro com tipografia científica. Ideal para encadernar e usar como material de referência permanente.</p>
                     </div>
                 </div>
-
                 <div class="eb-preview-card">
                     <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch3_img1.png"
-                             alt="Árvore genealógica dos canabinoides — Capítulo 3"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 3</span>
+                        <img src="assets/hero_terpenos_2026.png" alt="Fichas dos 12 Terpenos">
+                        <span class="eb-preview-ch">Fichas · Págs. 3–8</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>Árvore Genealógica dos Canabinoides</h4>
-                        <p>Mapa completo da biossíntese: como o CBGA (canabinoide "mãe") se transforma em THCA, CBDA e CBCA via enzimas específicas, e como o calor (descarboxilação) converte esses ácidos em THC, CBD e CBC ativos.</p>
+                        <h4>12 Fichas de Terpenos</h4>
+                        <p>Cada terpeno em ficha individual: aroma, temperatura de vaporização, cepas típicas, benefícios com nível de evidência e sinergias.</p>
                     </div>
                 </div>
-
                 <div class="eb-preview-card">
                     <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch4_img1.png"
-                             alt="Microscopia de tricoma — Capítulo 4"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 4</span>
+                        <img src="assets/terpenes_hero_v3.png" alt="Tabela Mestra dos 12 Terpenos">
+                        <span class="eb-preview-ch">Tabela Mestra · Pág. 9</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>Onde os Terpenos Nascem</h4>
-                        <p>Fotomicrografia de tricoma glandular mostrando a "cabeça" translúcida onde são produzidos e armazenados os canabinoides e terpenos — estrutura que determina toda a potência e o perfil aromático da planta.</p>
+                        <h4>Tabela Mestra dos 12 Terpenos</h4>
+                        <p>Comparativo completo: todos os terpenos em uma única página. Perfeito para afixar na parede e consultar rapidamente.</p>
                     </div>
                 </div>
-
                 <div class="eb-preview-card">
                     <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch5_img1.png"
-                             alt="Mirceno — estrutura molecular e fontes naturais — Capítulo 5"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 5</span>
+                        <img src="assets/terpenes_laboratory.png" alt="Guia de Aromas">
+                        <span class="eb-preview-ch">Guia de Aromas · Pág. 10</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>Mirceno: O Terpeno Dominante</h4>
-                        <p>Estrutura molecular (C₁₀H₁₆ — Monoterpeno) com suas fontes naturais: manga, lúpulo e ervas herbais. O capítulo explica por que o mirceno responde por mais de 50% do perfil de muitas cultivares e seu mecanismo sedativo.</p>
+                        <h4>Guia "Sinto Este Aroma → Uso Para"</h4>
+                        <p>Se você sente aroma cítrico, terroso, floral ou picante — este guia conecta diretamente o olfato ao benefício terapêutico esperado.</p>
                     </div>
                 </div>
-
                 <div class="eb-preview-card">
                     <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch9_img1.png"
-                             alt="β-Cariofileno — único terpeno-canabinoide — Capítulo 9"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 9</span>
+                        <img src="assets/ebook_cover_terpenos.png" alt="Efeito Entourage e sinergias">
+                        <span class="eb-preview-ch">Introdução · Pág. 2</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>β-Cariofileno: O Terpeno-Canabinoide</h4>
-                        <p>O único terpeno que age diretamente no receptor CB2 do sistema endocanabinoide. O capítulo detalha sua estrutura sesquiterpênica, o mecanismo de agonismo CB2 e por que é classificado como "canabinoide dietético" desde 2008.</p>
+                        <h4>O Efeito Entourage Explicado</h4>
+                        <p>Fundamentos científicos: o que são terpenos, como interagem com canabinoides e como usar o Efeito Entourage a seu favor.</p>
                     </div>
                 </div>
-
                 <div class="eb-preview-card">
-                    <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch10_img1.png"
-                             alt="Gráfico Full Spectrum vs Isolado — Capítulo 10"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 10</span>
+                    <div class="eb-preview-img-wrap" style="background: #0a1a12;">
+                        <span class="eb-preview-icon">📚</span>
+                        <span class="eb-preview-ch">Referências · Pág. 11</span>
                     </div>
                     <div class="eb-preview-body">
-                        <h4>Full Spectrum vs. Isolado</h4>
-                        <p>Gráfico comparativo das curvas de dose-resposta: o Efeito Sino do CBD isolado (eficácia cai em doses altas) versus a curva contínua do Full Spectrum — com sinergia de terpenos e canabinoides menores sustentando a eficácia.</p>
+                        <h4>Referências Bibliográficas com DOI</h4>
+                        <p>Cada afirmação do guia está ancorada em estudos publicados, com links para as fontes originais. Ciência verificável.</p>
                     </div>
                 </div>
-
-                <div class="eb-preview-card">
-                    <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch12_img1.png"
-                             alt="Leitura de COA — laudo de laboratório — Capítulo 12"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 12</span>
-                    </div>
-                    <div class="eb-preview-body">
-                        <h4>Manual de Leitura de Laudo (COA)</h4>
-                        <p>Guia visual para interpretar um Certificate of Analysis: onde encontrar o perfil terpênico, o que significa cada concentração, como identificar adulteração e por que o método GC-MS é mais confiável que HPLC para terpenos.</p>
-                    </div>
-                </div>
-
-                <div class="eb-preview-card">
-                    <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch13_img1.png"
-                             alt="Algoritmo de Terpene Matching — Capítulo 13"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 13</span>
-                    </div>
-                    <div class="eb-preview-body">
-                        <h4>Terpene Matching: O Futuro da Prescrição</h4>
-                        <p>O conceito de combinar o perfil terpênico da cultivar ao perfil clínico do paciente — correlacionando sintomas, genética do receptor e resposta neuroendócrina para personalizar o tratamento canabinoide de 2026.</p>
-                    </div>
-                </div>
-
-                <div class="eb-preview-card">
-                    <div class="eb-preview-img-wrap">
-                        <img src="assets/ebook/ch1_img1.png"
-                             alt="Estudo original de Mechoulam e Ben-Shabat — Capítulo 1"
-                             loading="lazy">
-                        <span class="eb-preview-ch">CAP. 1</span>
-                    </div>
-                    <div class="eb-preview-body">
-                        <h4>A Origem: Mechoulam &amp; Ben-Shabat</h4>
-                        <p>Reprodução do estudo seminal de 1998 que cunhou o termo "Entourage Effect" — com as estruturas moleculares do 2-AG e da anandamida, e o diagrama original da sinergia entre canabinoides e moléculas acompanhantes.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div style="text-align:center; margin-top: 3.5rem;">
-                <a href="https://pay.hotmart.com/M105173735E" class="eb-btn-buy" target="_blank" rel="noopener" style="font-size:1.1rem; padding: 1.1rem 2.5rem; background:#6EE7B7; color:#064E3B;">
-                    <i class="fas fa-download"></i>
-                    Quero o guia completo em PDF
-                </a>
-                <p style="color:#64748b; font-size:.85rem; margin-top:1rem;">Download imediato após confirmação do pagamento.</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== SUMÁRIO ===== -->
+    <!-- ===== OS 12 TERPENOS ===== -->
     <section class="eb-section eb-section-alt">
         <div class="eb-container">
             <div class="eb-section-head">
-                <h2>O que você vai estudar</h2>
-                <p>13 capítulos organizados para conduzir do fundamento teórico à aplicação clínica prática.</p>
+                <h2>Os 12 Terpenos Mapeados</h2>
+                <p>Cada um com ficha completa: aroma, cepas típicas, benefícios, nível de evidência e sinergia com canabinoides.</p>
             </div>
-            <div class="eb-chapters-grid">
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">01</div>
+            <div class="eb-terp-grid">
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌿</div>
+                    <div class="eb-terp-name">Mirceno</div>
+                    <div class="eb-terp-aroma">Terra · Musgo · Manga</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🍋</div>
+                    <div class="eb-terp-name">Limoneno</div>
+                    <div class="eb-terp-aroma">Cítrico · Limão · Laranja</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌲</div>
+                    <div class="eb-terp-name">Pineno</div>
+                    <div class="eb-terp-aroma">Pinheiro · Floresta · Fresco</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">💜</div>
+                    <div class="eb-terp-name">Linalol</div>
+                    <div class="eb-terp-aroma">Lavanda · Floral · Suave</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌶️</div>
+                    <div class="eb-terp-name">Cariofileno</div>
+                    <div class="eb-terp-aroma">Pimenta · Cravo · Especiaria</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌺</div>
+                    <div class="eb-terp-name">Terpinoleno</div>
+                    <div class="eb-terp-aroma">Floral · Herbal · Cítrico suave</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🍺</div>
+                    <div class="eb-terp-name">Humuleno</div>
+                    <div class="eb-terp-aroma">Lúpulo · Madeira · Terroso</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌸</div>
+                    <div class="eb-terp-name">Ocimeno</div>
+                    <div class="eb-terp-aroma">Doce · Herbal · Frutal</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🍎</div>
+                    <div class="eb-terp-name">Bisabolol</div>
+                    <div class="eb-terp-aroma">Camomila · Delicado · Floral</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌙</div>
+                    <div class="eb-terp-name">Nerolidol</div>
+                    <div class="eb-terp-aroma">Madeiroso · Floral · Frutado</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌹</div>
+                    <div class="eb-terp-name">Geraniol</div>
+                    <div class="eb-terp-aroma">Rosa · Geranio · Floral doce</div>
+                </div>
+                <div class="eb-terp-card">
+                    <div class="eb-terp-emoji">🌿</div>
+                    <div class="eb-terp-name">Δ3-Careno</div>
+                    <div class="eb-terp-aroma">Pinheiro · Cítrico · Terroso</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== O QUE INCLUI ===== -->
+    <section class="eb-section">
+        <div class="eb-container">
+            <div class="eb-section-head">
+                <h2>O que está incluído no Kit</h2>
+                <p>Um material completo para quem quer levar a ciência dos terpenos para a prática clínica real.</p>
+            </div>
+            <div class="eb-includes-grid">
+                <div class="eb-include">
+                    <div class="eb-include-icon">🗂️</div>
                     <div>
-                        <h4>A Origem do Termo</h4>
-                        <p>De Shimon Ben-Shabat a Raphael Mechoulam — o estudo de 1998 que provou que a Cannabis é uma polifarmácia botânica.</p>
+                        <h4>12 Fichas de Terpenos</h4>
+                        <p>Aromas, cepas típicas, temperatura de vaporização, benefícios documentados e nível de evidência científica para cada terpeno.</p>
                     </div>
                 </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">02</div>
+                <div class="eb-include">
+                    <div class="eb-include-icon">📊</div>
                     <div>
-                        <h4>O Sistema Endocanabinoide</h4>
-                        <p>O sistema mestre de homeostase do corpo — receptores CB1/CB2, endocanabinoides e como a planta "conversa" com eles.</p>
+                        <h4>Tabela Mestra Comparativa</h4>
+                        <p>Todos os 12 terpenos lado a lado em uma única página — ideal para afixar no consultório ou deixar visível durante a consulta.</p>
                     </div>
                 </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">03</div>
+                <div class="eb-include">
+                    <div class="eb-include-icon">👃</div>
                     <div>
-                        <h4>Canabinoides Principais</h4>
-                        <p>Além do CBD e THC: CBG, CBN, THCV e outros 100+ compostos com atividade farmacológica mapeada.</p>
+                        <h4>Guia de Seleção por Aroma</h4>
+                        <p>"Se sinto este aroma → provavelmente é este terpeno → benefício esperado". O olfato como ferramenta diagnóstica real.</p>
                     </div>
                 </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">04</div>
+                <div class="eb-include">
+                    <div class="eb-include-icon">🔬</div>
                     <div>
-                        <h4>A Química dos Terpenos</h4>
-                        <p>Como os compostos aromáticos alteram a permeabilidade de membranas e modulam a passagem de canabinoides pela barreira hematoencefálica.</p>
+                        <h4>Fundamentos Científicos</h4>
+                        <p>Introdução ao Efeito Entourage com base no artigo de Russo (2011) — com linguagem acessível e aplicação clínica direta.</p>
                     </div>
                 </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">05</div>
+                <div class="eb-include">
+                    <div class="eb-include-icon">🧪</div>
                     <div>
-                        <h4>Mirceno: O Relaxante</h4>
-                        <p>O terpeno mais abundante da Cannabis — mecanismo sedativo, potencialização do THC e fontes naturais (manga, lúpulo).</p>
+                        <h4>Sinergias Terpeno × Canabinoide</h4>
+                        <p>Quais terpenos potencializam o CBD, quais amplificam o THC, e quais são essenciais para o tratamento de dor, insônia ou ansiedade.</p>
                     </div>
                 </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">06</div>
+                <div class="eb-include">
+                    <div class="eb-include-icon">📚</div>
                     <div>
-                        <h4>Limoneno: O Antidepressivo Cítrico</h4>
-                        <p>Ação serotoninérgica (5-HT1A), redução de estresse por aromaterapia e evidências clínicas para transtornos de humor.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">07</div>
-                    <div>
-                        <h4>Pineno: Foco e Memória</h4>
-                        <p>Inibição da acetilcolinesterase — o mesmo mecanismo de medicamentos para Alzheimer — e como o α-Pineno contrabalança a névoa cognitiva do THC.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">08</div>
-                    <div>
-                        <h4>Linalol: A Calma da Lavanda</h4>
-                        <p>Mecanismo GABAérgico bem caracterizado, evidências anticonvulsivantes e por que cultivares com aroma de lavanda são indicadas para ansiedade.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">09</div>
-                    <div>
-                        <h4>β-Cariofileno: O Terpeno-Canabinoide</h4>
-                        <p>O único terpeno agonista do receptor CB2 — classificado como "canabinoide dietético" em 2008 (Gertsch et al., PNAS).</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">10</div>
-                    <div>
-                        <h4>Sinergia: Planta-Total vs. Isolados</h4>
-                        <p>A evidência do Efeito Sino em CBD isolado versus a curva linear do Full Spectrum — e o que isso significa para a dosagem.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">11</div>
-                    <div>
-                        <h4>Flavonoides: Pigmentos da Cura</h4>
-                        <p>Canflavinas A e B — compostos até 30x mais potentes que a aspirina na inibição de prostaglandinas inflamatórias.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">12</div>
-                    <div>
-                        <h4>Manual de Leitura de COA</h4>
-                        <p>Como interpretar um laudo de laboratório: perfil terpênico, concentrações, métodos analíticos e sinais de adulteração.</p>
-                    </div>
-                </div>
-                <div class="eb-chapter">
-                    <div class="eb-chapter-num">13</div>
-                    <div>
-                        <h4>O Futuro: Terpene Matching</h4>
-                        <p>A prescrição personalizada por perfil botânico — combinando o terpeno certo com a patologia certa para otimizar o tratamento.</p>
+                        <h4>Referências Bibliográficas com DOI</h4>
+                        <p>Toda afirmação do guia tem respaldo em literatura científica revisada por pares — com links para acesso à fonte original.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Garantia -->
+            <!-- Guarantee -->
             <div class="eb-guarantee">
                 <div class="eb-guarantee-icon">🛡️</div>
                 <div>
-                    <h3>Garantia incondicional de 7 dias</h3>
-                    <p>Se por qualquer motivo o guia não atender às suas expectativas, basta enviar um e-mail em até 7 dias após a compra e devolvemos 100% do valor pago — sem perguntas, sem burocracia. Risco zero para você.</p>
+                    <h3>Garantia de 7 dias sem questionamentos</h3>
+                    <p>Se por qualquer motivo você não ficar satisfeito com o material, basta pedir reembolso em até 7 dias corridos após a compra. 100% do valor devolvido, sem burocracia — direto pela plataforma Hotmart.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section class="eb-section">
+    <section class="eb-section eb-section-alt">
         <div class="eb-container">
             <div class="eb-section-head">
-                <h2>Perguntas frequentes</h2>
+                <h2>Perguntas Frequentes</h2>
             </div>
             <div class="eb-faq-list">
 
                 <div class="eb-faq-item">
                     <button type="button" class="eb-faq-btn">
-                        Como recebo o material após a compra?
+                        O que é exatamente o produto que vou receber?
                         <span class="eb-faq-icon">+</span>
                     </button>
                     <div class="eb-faq-answer">
-                        Imediatamente após a confirmação do pagamento, você recebe um e-mail da Hotmart com o link para download do PDF. O acesso é vitalício — você pode baixar novamente quando quiser.
+                        Um arquivo PDF com 10 páginas A4 em alta resolução, pronto para impressão colorida ou preto e branco. Inclui capa, introdução científica, 6 páginas de fichas de terpenos (2 por página), Tabela Mestra, guia de aromas e referências bibliográficas com DOI.
                     </div>
                 </div>
 
                 <div class="eb-faq-item">
                     <button type="button" class="eb-faq-btn">
-                        É adequado para quem não tem formação científica?
+                        Preciso ter conhecimento técnico para entender o guia?
                         <span class="eb-faq-icon">+</span>
                     </button>
                     <div class="eb-faq-answer">
-                        Sim. O guia foi escrito para ser tecnicamente preciso mas acessível — pacientes e cuidadores conseguem acompanhar os capítulos com facilidade. Para profissionais de saúde, o rigor científico e as referências com DOI permitem uso como material de referência clínica.
+                        Não. O material foi desenvolvido para ser acessível a pacientes, cuidadores e familiares sem formação em saúde, mas com profundidade suficiente para uso por profissionais. Cada conceito técnico vem acompanhado de linguagem clara e exemplos práticos.
                     </div>
                 </div>
 
                 <div class="eb-faq-item">
                     <button type="button" class="eb-faq-btn">
-                        As informações são baseadas em estudos publicados?
+                        Como imprimo o guia depois de baixar?
                         <span class="eb-faq-icon">+</span>
                     </button>
                     <div class="eb-faq-answer">
-                        Todas as afirmações científicas do guia são referenciadas com DOI de periódicos revisados por pares — incluindo estudos publicados no <em>PNAS</em>, <em>British Journal of Pharmacology</em>, <em>Frontiers in Nutrition</em> e outros. Sem achismos, sem especulação.
+                        Abra o PDF em qualquer leitor (Adobe Reader, navegador, etc.), vá em Arquivo → Imprimir, selecione o tamanho A4 e impressão colorida para melhor resultado visual. As páginas são otimizadas para impressão em casa ou em gráfica.
                     </div>
                 </div>
 
                 <div class="eb-faq-item">
                     <button type="button" class="eb-faq-btn">
-                        Qual é o formato do arquivo?
+                        Os terpenos têm respaldo científico real?
                         <span class="eb-faq-icon">+</span>
                     </button>
                     <div class="eb-faq-answer">
-                        PDF otimizado para leitura em tela e impressão. Funciona em celular, tablet, computador e e-reader — sem necessidade de aplicativo especial.
+                        Sim. Cada ficha de terpeno especifica o nível de evidência disponível (I a III, de pré-clínico a estudos clínicos) e todas as afirmações de benefício usam linguagem hedged ("estudos indicam", "evidências sugerem") porque a ciência dos terpenos está em desenvolvimento ativo. As referências completas com DOI estão na última página do guia.
                     </div>
                 </div>
 
                 <div class="eb-faq-item">
                     <button type="button" class="eb-faq-btn">
-                        O guia substitui orientação médica?
+                        Posso usar este guia junto com o meu médico?
                         <span class="eb-faq-icon">+</span>
                     </button>
                     <div class="eb-faq-answer">
-                        Não. Este é um material exclusivamente educacional e informativo. O uso de Cannabis medicinal requer prescrição médica e acompanhamento profissional. O guia serve para que você chegue melhor preparado às consultas — não para substituí-las.
+                        Esse é exatamente o uso ideal. O guia foi desenhado para ser levado à consulta — impresso ou no celular — para auxiliar a conversa com o médico sobre o perfil terpênico dos produtos disponíveis. Ele não substitui a prescrição médica, mas enriquece muito a decisão clínica compartilhada.
                     </div>
                 </div>
 
@@ -847,26 +806,19 @@
     <!-- ===== FINAL CTA ===== -->
     <section class="eb-final">
         <div class="eb-container">
-            <h2>Pronto para entender a ciência que define o seu tratamento?</h2>
-            <p>13 capítulos. 39 páginas. Referências DOI. Download imediato.</p>
-
-            <div style="display:flex; justify-content:center; gap:1.25rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-                <a href="https://pay.hotmart.com/M105173735E" class="eb-btn-buy" target="_blank" rel="noopener" style="font-size:1.1rem; padding:1.1rem 2.5rem;">
+            <h2>Seu tratamento merece informação de qualidade.</h2>
+            <p>12 terpenos. Tabela Mestra. Guia de aromas. Referências DOI. Download imediato.</p>
+            <div>
+                <a href="https://pay.hotmart.com/M105174742Q?bid=1775525510329" class="eb-btn-buy" target="_blank" rel="noopener" style="font-size:1.1rem; padding:1.1rem 2.5rem;">
                     <i class="fas fa-download"></i>
-                    Garantir meu guia por R$ 67
+                    Baixar o Kit por R$ 47
                 </a>
-
             </div>
-
-            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
-                <span class="eb-trust-item" style="color:var(--muted);"><i class="fas fa-shield-alt" style="color:var(--green-mid);"></i> 7 dias de garantia</span>
-                <span class="eb-trust-item" style="color:var(--muted);"><i class="fas fa-lock" style="color:var(--green-mid);"></i> Pagamento seguro</span>
-                <span class="eb-trust-item" style="color:var(--muted);"><i class="fas fa-bolt" style="color:var(--green-mid);"></i> Acesso imediato</span>
+            <div class="eb-trust" style="justify-content:center; margin-top:1.5rem;">
+                <span class="eb-trust-item"><i class="fas fa-shield-alt"></i> Compra segura via Hotmart</span>
+                <span class="eb-trust-item"><i class="fas fa-print"></i> PDF pronto para impressão A4</span>
+                <span class="eb-trust-item"><i class="fas fa-undo"></i> Garantia de 7 dias</span>
             </div>
-
-            <p style="margin-top:2rem; font-size:.78rem; color:var(--light); max-width:520px; margin-left:auto; margin-right:auto;">
-                Conteúdo exclusivamente educacional. Não constitui diagnóstico, prescrição ou aconselhamento médico. Baseado nas RDCs 1.012–1.015/2026 (ANVISA).
-            </p>
         </div>
     </section>
 
@@ -933,23 +885,18 @@
 
 <script src="js/main.js"></script>
 <script>
-  // FAQ accordion
   document.querySelectorAll('.eb-faq-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const answer = this.nextElementSibling;
-      const isOpen = this.classList.contains('open');
-      // fecha todos
-      document.querySelectorAll('.eb-faq-btn.open').forEach(b => {
-        b.classList.remove('open');
-        b.nextElementSibling.classList.remove('open');
-      });
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.eb-faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.eb-faq-btn').forEach(b => b.classList.remove('open'));
       if (!isOpen) {
-        this.classList.add('open');
         answer.classList.add('open');
+        btn.classList.add('open');
       }
     });
   });
 </script>
-
 </body>
 </html>
