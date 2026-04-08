@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infográfico: O Escudo de Anandamida | Flor de Minas</title>
+    <!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
+    <!-- Open Graph / Social Media -->
+<meta content="Flor de Minas — Inteligência Científica em Cannabis medicinal" property="og:title"/>
+<meta content="Flor de Minas: Especialistas em conteúdo técnico, SEO e regulação de Cannabis medicinal no Brasil (RDCs 2026). Ciência, autoridade e compliance." property="og:description"/>
+<meta content="https://portal-flordeminas.com.br/assets/patient_journey_hero.png" property="og:image"/>
+<meta content="https://portal-flordeminas.com.br/" property="og:url"/>
+<meta content="Flor de Minas" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<!-- Favicon -->
+<link href="../assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #1A3A2A;
+      --forest-mid: #2D5A3F;
+      --sage: #6B8F6E;
+      --sage-light: #A8C4A2;
+      --gold: #E8A43A;
+      --gold-light: #F5C56A;
+      --creme: #FDFCF8;
+      --creme-dark: #F4F0E8;
+      --white: #FFFFFF;
+      --text-dark: #1A2C1F;
+    }
+
+    body {
+      background: #E8E4DC;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 4rem;
+      min-height: 100vh;
+    }
+
+    /* ─── TOOLBAR (fora do infográfico) ─── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1080px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .toolbar-info { font-size: .85rem; color: #5a5a5a; }
+    .toolbar-info strong { color: var(--forest); }
+    .btn-download {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--forest); color: #fff;
+      padding: .65rem 1.5rem; border-radius: 999px;
+      font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 700;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background .2s ease;
+    }
+    .btn-download:hover { background: var(--forest-mid); }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--forest); font-size: .85rem; font-weight: 600;
+      text-decoration: none; border: 2px solid var(--forest);
+      padding: .5rem 1.25rem; border-radius: 999px;
+      transition: all .2s;
+    }
+    .btn-back:hover { background: var(--forest); color: #fff; }
+
+    /* ─── INFOGRÁFICO: CONTAINER FIXO 1080×1350 ─── */
+    #infografico {
+      width: 1080px;
+      height: 1350px;
+      background: var(--creme);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 60px rgba(0,0,0,.25);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── HEADER STRIP ─── */
+    .ig-header {
+      background: var(--forest);
+      padding: 2rem 3rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .ig-brand { display: flex; flex-direction: column; gap: .25rem; }
+    .ig-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--creme); letter-spacing: .04em;
+    }
+    .ig-brand-name span { color: var(--gold); }
+    .ig-brand-sub { font-size: .72rem; color: rgba(255,255,255,.55); letter-spacing: .06em; text-transform: uppercase; }
+    .ig-badge {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.8);
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .3rem .85rem; border-radius: 999px;
+    }
+
+    /* ─── TÍTULO HERO ─── */
+    .ig-hero {
+      background: var(--forest);
+      padding: 1rem 3rem 2.5rem;
+      flex-shrink: 0;
+    }
+    .ig-hero-eyebrow {
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .6rem;
+    }
+    .ig-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; font-weight: 900; line-height: 1.05;
+      color: var(--white);
+    }
+    .ig-hero-title em { color: var(--gold); font-style: normal; }
+    .ig-hero-subtitle {
+      font-size: .95rem; color: rgba(255,255,255,.75);
+      margin-top: .75rem; line-height: 1.5; max-width: 520px;
+    }
+
+    /* Gold divider wave */
+    .ig-wave {
+      width: 100%; flex-shrink: 0;
+      display: block; margin-top: -1px;
+    }
+
+    /* ─── BODY: 4 SEÇÕES ─── */
+    .ig-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0;
+      background: var(--creme);
+    }
+
+    .ig-section {
+      padding: 2rem 2.2rem 1.8rem;
+      border: 1px solid rgba(26,58,42,.08);
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .ig-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .s1::before { background: var(--sage); }
+    .s2::before { background: #C4392A; }
+    .s3::before { background: var(--gold); }
+    .s4::before { background: var(--forest); }
+
+    .ig-section-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: -.25rem;
+    }
+    .s2 .ig-section-num { color: #C4392A; }
+    .s3 .ig-section-num { color: var(--gold); }
+    .s4 .ig-section-num { color: var(--forest); }
+
+    .ig-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; line-height: 1.2;
+      color: var(--forest);
+    }
+    .ig-section-body {
+      font-size: .85rem; color: #3A4A3E;
+      line-height: 1.65; flex: 1;
+    }
+    .ig-section-body strong { color: var(--forest); font-weight: 700; }
+
+    /* Illustration area */
+    .ig-illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: .5rem 0;
+    }
+
+    /* Keyword highlight */
+    .ig-keyword {
+      display: inline-block;
+      background: var(--creme-dark);
+      border-left: 3px solid var(--sage);
+      padding: .4rem .75rem;
+      font-size: .8rem; font-weight: 600; color: var(--forest);
+      border-radius: 0 6px 6px 0;
+      margin-top: .25rem;
+    }
+    .s2 .ig-keyword { border-color: #C4392A; }
+    .s3 .ig-keyword { border-color: var(--gold); }
+    .s4 .ig-keyword { border-color: var(--forest); background: var(--forest); color: var(--gold); }
+
+    /* ─── FOOTER STRIP ─── */
+    .ig-footer {
+      background: var(--forest);
+      padding: .85rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .ig-footer-left { font-size: .72rem; color: rgba(255,255,255,.55); }
+    .ig-footer-left strong { color: rgba(255,255,255,.8); }
+    .ig-footer-handle { font-size: .82rem; font-weight: 700; color: var(--gold); }
+    .ig-footer-url { font-size: .7rem; color: rgba(255,255,255,.45); margin-top: .1rem; }
+
+    /* ─── PRINT STYLES ─── */
+    @media print {
+      body { background: white; padding: 0; }
+      .toolbar { display: none; }
+      #infografico {
+        width: 100%; height: auto;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+      .ig-body { grid-template-rows: auto auto; }
+      .ig-section { break-inside: avoid; }
+    }
+
+    /* ─── RESPONSIVE SCALE ─── */
+    @media (max-width: 1120px) {
+      #infografico {
+        width: 100%;
+        height: auto;
+        max-width: 1080px;
+      }
+      .ig-hero-title { font-size: 2.4rem; }
+      .ig-body { grid-template-rows: auto auto; }
+    }
+    @media (max-width: 600px) {
+      .ig-body { grid-template-columns: 1fr; }
+      .ig-header, .ig-hero, .ig-section, .ig-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .ig-hero-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOOLBAR (não aparece no print) -->
+<div class="toolbar">
+  <div style="display:flex; gap:.75rem; align-items:center;">
+    <a class="btn-back" href="guia-sinergia-anandamida.html">← Voltar ao Guia</a>
+    <span class="toolbar-info">Formato: <strong>1080 × 1350px</strong> · 4:5 Instagram</span>
+  </div>
+  <button class="btn-download" onclick="window.print()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Salvar / Imprimir
+  </button>
+</div>
+
+<!-- INFOGRÁFICO -->
+<div id="infografico">
+
+  <!-- HEADER -->
+  <div class="ig-header">
+    <div class="ig-brand">
+      <div class="ig-brand-name">Flor de <span>Minas</span></div>
+      <div class="ig-brand-sub">Inteligência Científica · Cannabis Medicinal</div>
+    </div>
+    <div class="ig-badge">Guia Gratuito · 2026</div>
+  </div>
+
+  <!-- HERO TITLE -->
+  <div class="ig-hero">
+    <div class="ig-hero-eyebrow">Sistema Endocanabinoide · Mecanismo de Ação</div>
+    <div class="ig-hero-title">O Escudo de<br><em>Anandamida</em></div>
+    <div class="ig-hero-subtitle">Como o CBD bloqueia a enzima que destrói sua molécula da felicidade — e por que o movimento amplifica tudo.</div>
+  </div>
+
+  <!-- WAVE DIVIDER -->
+  <svg class="ig-wave" viewBox="0 0 1080 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L1080,0 L1080,18 Q810,36 540,18 Q270,0 0,18 Z" fill="#1A3A2A"/>
+    <path d="M0,18 Q270,0 540,18 Q810,36 1080,18 L1080,36 L0,36 Z" fill="#FDFCF8"/>
+    <path d="M0,20 Q270,4 540,20 Q810,36 1080,20" fill="none" stroke="#E8A43A" stroke-width="1.5" opacity=".6"/>
+  </svg>
+
+  <!-- 4 SECTIONS GRID -->
+  <div class="ig-body">
+
+    <!-- S1: O QUE É ANANDAMIDA -->
+    <div class="ig-section s1">
+      <div class="ig-section-num">01 · Definição</div>
+      <div class="ig-section-title">O Que é Anandamida?</div>
+
+      <div class="ig-illustration">
+        <!-- SVG: neurônio estilizado -->
+        <svg width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ng1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#A8C4A2" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#6B8F6E" stop-opacity=".1"/>
+            </radialGradient>
+          </defs>
+          <!-- Axônio principal -->
+          <path d="M20,50 C50,50 60,30 80,30 C100,30 110,70 130,70 C145,70 150,55 155,50" stroke="#6B8F6E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Dendrites -->
+          <path d="M80,30 C75,15 65,10 55,8" stroke="#A8C4A2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M80,30 C85,12 92,8 100,6" stroke="#A8C4A2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M130,70 C125,85 115,90 108,92" stroke="#A8C4A2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M130,70 C138,88 145,90 150,88" stroke="#A8C4A2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Núcleo -->
+          <circle cx="80" cy="50" r="14" fill="url(#ng1)" stroke="#6B8F6E" stroke-width="2"/>
+          <!-- Molécula de Anandamida (simplificada) -->
+          <circle cx="80" cy="50" r="5" fill="#E8A43A"/>
+          <circle cx="72" cy="46" r="3" fill="#E8A43A" opacity=".7"/>
+          <circle cx="88" cy="46" r="3" fill="#E8A43A" opacity=".7"/>
+          <circle cx="76" cy="57" r="2.5" fill="#E8A43A" opacity=".5"/>
+          <circle cx="84" cy="57" r="2.5" fill="#E8A43A" opacity=".5"/>
+          <!-- Label -->
+          <text x="80" y="85" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#6B8F6E">Anandamida</text>
+          <!-- Pulso animado -->
+          <circle cx="80" cy="50" r="14" fill="none" stroke="#E8A43A" stroke-width="1" opacity=".4">
+            <animate attributeName="r" values="14;22;14" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".4;0;.4" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+
+      <div class="ig-section-body">
+        Do sânscrito <strong>Ananda</strong> = bem-aventurança. Endocanabinoide produzido pelo próprio organismo que regula <strong>humor, percepção da dor e consolidação da memória</strong> via receptores CB1 e CB2.
+      </div>
+      <div class="ig-keyword">↳ Você já produz. O problema é a duração.</div>
+    </div>
+
+    <!-- S2: O PROBLEMA — FAAH -->
+    <div class="ig-section s2">
+      <div class="ig-section-num">02 · O Sabotador</div>
+      <div class="ig-section-title">A Enzima FAAH</div>
+
+      <div class="ig-illustration">
+        <!-- SVG: tesoura/enzima cortando molécula -->
+        <svg width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Molécula (antes do corte) -->
+          <circle cx="40" cy="50" r="10" fill="#E8A43A" opacity=".9"/>
+          <circle cx="35" cy="42" r="6" fill="#F5C56A" opacity=".7"/>
+          <circle cx="45" cy="42" r="6" fill="#F5C56A" opacity=".7"/>
+          <circle cx="32" cy="56" r="5" fill="#F5C56A" opacity=".5"/>
+          <circle cx="48" cy="56" r="5" fill="#F5C56A" opacity=".5"/>
+          <!-- Label molécula -->
+          <text x="40" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#E8A43A">Anandamida</text>
+
+          <!-- Linha de corte -->
+          <line x1="80" y1="15" x2="80" y2="85" stroke="#C4392A" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>
+
+          <!-- FAAH (tesoura estilizada) -->
+          <g transform="translate(80, 50)">
+            <!-- Corpo da enzima -->
+            <ellipse cx="0" cy="0" rx="18" ry="12" fill="#C4392A" opacity=".15" stroke="#C4392A" stroke-width="1.5"/>
+            <!-- Lâminas -->
+            <path d="M-10,-4 L10,4" stroke="#C4392A" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-10,4 L10,-4" stroke="#C4392A" stroke-width="3" stroke-linecap="round"/>
+            <!-- Centro -->
+            <circle cx="0" cy="0" r="4" fill="#C4392A"/>
+            <circle cx="0" cy="0" r="2" fill="white"/>
+          </g>
+          <text x="80" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#C4392A">FAAH</text>
+
+          <!-- Fragmentos (depois do corte) -->
+          <circle cx="120" cy="42" r="6" fill="#C4392A" opacity=".25"/>
+          <circle cx="130" cy="55" r="4" fill="#C4392A" opacity=".2"/>
+          <circle cx="116" cy="58" r="3" fill="#C4392A" opacity=".15"/>
+          <text x="122" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#C4392A" opacity=".7">Destruída</text>
+
+          <!-- Seta -->
+          <path d="M55,50 L68,50" stroke="#C4392A" stroke-width="2" marker-end="url(#arr-red)" opacity=".7"/>
+          <defs>
+            <marker id="arr-red" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#C4392A"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="ig-section-body">
+        A <strong>Fatty Acid Amide Hydrolase</strong> degrada a Anandamida rapidamente após síntese. Estresse crônico <em>upregula</em> a FAAH — criando o ciclo vicioso: <strong>menos Anandamida → mais ansiedade → mais FAAH.</strong>
+      </div>
+      <div class="ig-keyword">↳ Bem-estar curto. Alta reatividade ao estresse.</div>
+    </div>
+
+    <!-- S3: A SOLUÇÃO — CBD -->
+    <div class="ig-section s3">
+      <div class="ig-section-num">03 · O Escudo</div>
+      <div class="ig-section-title">CBD Bloqueia a FAAH</div>
+
+      <div class="ig-illustration">
+        <!-- SVG: escudo protegendo molécula -->
+        <svg width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="sg1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F5C56A" stop-opacity=".3"/>
+              <stop offset="100%" stop-color="#E8A43A" stop-opacity=".05"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Escudo (CBD) -->
+          <path d="M80,10 L105,20 L105,52 Q105,70 80,82 Q55,70 55,52 L55,20 Z" fill="url(#sg1)" stroke="#E8A43A" stroke-width="2.5"/>
+          <!-- Folha de cannabis dentro do escudo -->
+          <g transform="translate(80,46) scale(0.85)">
+            <path d="M0,-18 C3,-10 12,-8 10,0 C12,-8 18,-2 14,4 C18,-2 16,6 10,8 C16,6 12,14 6,12 C8,18 4,22 0,24 C-4,22 -8,18 -6,12 C-12,14 -16,6 -10,8 C-16,6 -18,-2 -14,4 C-18,-2 -12,-8 -10,0 C-12,-8 -3,-10 0,-18 Z" fill="#E8A43A" opacity=".8"/>
+            <line x1="0" y1="-14" x2="0" y2="22" stroke="#E8A43A" stroke-width="1" opacity=".5"/>
+          </g>
+          <!-- Label CBD -->
+          <text x="80" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#E8A43A">CBD</text>
+
+          <!-- FAAH bloqueada (X) -->
+          <circle cx="130" cy="35" r="13" fill="#C4392A" opacity=".12" stroke="#C4392A" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <line x1="123" y1="28" x2="137" y2="42" stroke="#C4392A" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+          <line x1="137" y1="28" x2="123" y2="42" stroke="#C4392A" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+          <text x="130" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="700" fill="#C4392A" opacity=".7">FAAH ✗</text>
+
+          <!-- Molécula protegida -->
+          <circle cx="30" cy="45" r="9" fill="#E8A43A" opacity=".9"/>
+          <circle cx="30" cy="45" r="15" fill="none" stroke="#E8A43A" stroke-width="1" opacity=".3">
+            <animate attributeName="r" values="15;20;15" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".3;0;.3" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="30" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#6B8F6E">Protegida</text>
+        </svg>
+      </div>
+
+      <div class="ig-section-body">
+        O CBD atua como <strong>inibidor indireto da FAAH</strong>. Não substitui a Anandamida — <em>protege a que já existe</em>. O bem-estar natural dura mais. <strong>Sem psicoatividade. Sem dependência.</strong>
+      </div>
+      <div class="ig-keyword">↳ Você não cria nada artificial. Protege o que é seu.</div>
+    </div>
+
+    <!-- S4: PROTOCOLO PRÁTICO -->
+    <div class="ig-section s4" style="background: var(--forest);">
+      <div class="ig-section-num" style="color: var(--gold-light);">04 · Protocolo</div>
+      <div class="ig-section-title" style="color: var(--white);">A Fórmula na Prática</div>
+
+      <div class="ig-illustration">
+        <!-- SVG: figura em meditação + timer -->
+        <svg width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Timer / relógio -->
+          <circle cx="38" cy="48" r="26" fill="none" stroke="#E8A43A" stroke-width="2.5" opacity=".4"/>
+          <circle cx="38" cy="48" r="20" fill="rgba(232,164,58,.08)" stroke="#E8A43A" stroke-width="1.5"/>
+          <!-- Ponteiros -->
+          <line x1="38" y1="48" x2="38" y2="32" stroke="#E8A43A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="38" y1="48" x2="50" y2="52" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="38" cy="48" r="2.5" fill="#E8A43A"/>
+          <!-- Marcações -->
+          <line x1="38" y1="30" x2="38" y2="33" stroke="#E8A43A" stroke-width="1.5" opacity=".6"/>
+          <line x1="56" y1="48" x2="53" y2="48" stroke="#E8A43A" stroke-width="1.5" opacity=".6"/>
+          <line x1="38" y1="66" x2="38" y2="63" stroke="#E8A43A" stroke-width="1.5" opacity=".6"/>
+          <line x1="20" y1="48" x2="23" y2="48" stroke="#E8A43A" stroke-width="1.5" opacity=".6"/>
+          <!-- Label timer -->
+          <text x="38" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#E8A43A">T – 30 min</text>
+
+          <!-- Figura meditando -->
+          <g transform="translate(115, 48)">
+            <!-- Cabeça -->
+            <circle cx="0" cy="-28" r="9" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"/>
+            <!-- Corpo / postura lótus -->
+            <path d="M-18,0 Q-10,-8 0,-10 Q10,-8 18,0 Q10,2 0,4 Q-10,2 -18,0 Z" fill="rgba(232,164,58,.2)" stroke="#E8A43A" stroke-width="1.5"/>
+            <!-- Pernas cruzadas -->
+            <path d="M-18,0 Q-22,8 -18,14" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M18,0 Q22,8 18,14" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Braços (mudra) -->
+            <path d="M-10,-8 Q-20,-4 -22,2" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M10,-8 Q20,-4 22,2" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Aura -->
+            <circle cx="0" cy="-12" r="30" fill="none" stroke="#E8A43A" stroke-width="1" opacity=".2">
+              <animate attributeName="r" values="30;38;30" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".2;0;.2" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Seta entre os dois -->
+          <path d="M68,48 L88,48" stroke="#E8A43A" stroke-width="1.5" stroke-dasharray="3 2" opacity=".6"/>
+          <text x="78" y="44" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#E8A43A" opacity=".7">+</text>
+        </svg>
+      </div>
+
+      <div class="ig-section-body" style="color: rgba(255,255,255,.82);">
+        Tome <strong style="color:var(--gold);">15mg CBD Full Spectrum</strong> sublingual 30 minutos antes de <strong style="color:var(--gold);">20 min de meditação</strong> guiada ou Vinyasa Yoga.
+        <br><br>
+        O CBD cria o escudo ANTES que o estresse ative a FAAH. O movimento induz a produção de Anandamida via Nervo Vago.
+      </div>
+      <div class="ig-keyword">↳ Tonalidade Endocanabinoide Otimizada.</div>
+    </div>
+
+  </div><!-- /ig-body -->
+
+  <!-- FOOTER -->
+  <div class="ig-footer">
+    <div class="ig-footer-left">
+      <strong>Conteúdo educativo.</strong> Não substitui orientação médica. ANVISA RDC 1.014/2026.
+    </div>
+    <div>
+      <div class="ig-footer-handle">@flordeminas2026</div>
+      <div class="ig-footer-url">portal-flordeminas.com.br</div>
+    </div>
+  </div>
+
+</div><!-- /infografico -->
+
+<script>
+  // Instrução de print otimizada
+  document.querySelector('.btn-download').addEventListener('click', function() {
+    const orig = document.title;
+    document.title = 'Infografico-EscudoAnandamida-FlorDeMinas-2026';
+    window.print();
+    document.title = orig;
+  });
+</script>
+
+</body>
+</html>

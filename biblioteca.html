@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Biblioteca Flor de Minas | Inteligência Aberta</title>
+    <title>Biblioteca | Flor de Minas — Conhecimento Aberto</title>
     <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NEBGFQHKZ3"></script>
     <!-- Open Graph / Social Media -->
@@ -15,156 +15,280 @@
 <meta content="website" property="og:type"/>
 <!-- Favicon -->
 <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
-    
     <!-- Styles -->
     <link href="css/index.css?v=2026.0406" rel="stylesheet"/>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
 
     <style>
-        :root {
-            --fm-dark-accent: #022c22;
-        }
+                /* ── PAGE BASE ── */
+        body { background: #fdfcf8; color: #1e293b; min-height: 100vh; }
 
-        body {
-            background-color: var(--fm-dark-accent) !important;
-            color: #fff;
-            min-height: 100vh;
-        }
-
-        main {
-            max-width: 1200px;
+        .bib-wrap {
+            max-width: 1160px;
             margin: 0 auto;
-            padding: 100px 20px 40px;
+            padding: 140px 20px 80px;
         }
 
-        .welcome-section {
+        /* ── HERO ── */
+        .bib-hero {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 64px;
         }
-
-        .welcome-section h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.8rem;
+        .bib-hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(45, 90, 68, 0.08);
+            border: 1px solid rgba(45, 90, 68, 0.15);
+            color: #2d5a44;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 50px;
+            margin-bottom: 22px;
+        }
+        .bib-hero h1 {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--fm-gold);
+            line-height: 1.2;
+            color: #1a3a2a;
+            margin: 0 0 20px;
         }
-
-        .welcome-section p {
-            color: #94a3b8;
+        .bib-hero h1 span { color: var(--fm-gold, #F59E0B); }
+        .bib-hero p {
+            color: #475569;
             font-size: 1.15rem;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.8;
         }
 
-        .journey-step {
-            margin-bottom: 60px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 40px;
-        }
-
-        .journey-step-header {
-            margin-bottom: 30px;
-        }
-
-        .journey-step-header h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            color: #fff;
+        /* ── FILTER TABS ── */
+        .bib-filters {
             display: flex;
-            align-items: center;
+            justify-content: center;
             gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+        .bib-filter-btn {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: .875rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .bib-filter-btn:hover {
+            border-color: #2d5a44;
+            color: #2d5a44;
+            background: #f8fafc;
+        }
+        .bib-filter-btn.active {
+            background: #2d5a44;
+            border-color: #2d5a44;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(45, 90, 68, 0.2);
         }
 
-        .journey-step-header p {
-            color: #94a3b8;
-        }
-
-        .grid-container {
+        /* ── GRID ── */
+        .bib-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
 
-        .resource-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
+        /* ── CARD ── */
+        .bib-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
             display: flex;
             flex-direction: column;
-            position: relative;
             overflow: hidden;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        }
+        .bib-card:hover {
+            transform: translateY(-8px);
+            border-color: #2d5a44;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
 
-        .resource-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.05);
-            border-color: var(--fm-sage);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--fm-sage);
-        }
-
-        .resource-card h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .resource-card p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .btn-action {
+        /* accent stripe at top */
+        .bib-card-stripe {
+            height: 6px;
             width: 100%;
-            background: var(--fm-dark);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
+        }
+        .stripe-science  { background: #2d5a44; }
+        .stripe-legal    { background: #1a3a2a; }
+        .stripe-tools    { background: #e8a43a; }
+
+        .bib-card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
-        .btn-action:hover {
-            background: var(--fm-forest);
-            border-color: var(--fm-sage);
+        .bib-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 22px;
         }
-
-        .tag-free {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--fm-gold);
-            color: #000;
-            font-size: 0.65rem;
+        .bib-card-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+        .bib-badge {
+            font-size: .65rem;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 50px;
+            letter-spacing: .1em;
             text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .badge-science { background: rgba(45, 90, 68, 0.1); color: #2d5a44; }
+        .badge-legal   { background: rgba(26, 58, 42, 0.1); color: #1a3a2a; }
+        .badge-tools   { background: rgba(232, 164, 58, 0.15); color: #b47d2c; }
+
+        .bib-card h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1a3a2a;
+            margin: 0 0 12px;
+            line-height: 1.4;
+        }
+        .bib-card-desc {
+            color: #475569;
+            font-size: .95rem;
+            line-height: 1.7;
+            margin: 0 0 22px;
         }
 
-        @media (max-width: 768px) {
-            main { padding-top: 80px; }
-            .grid-container { grid-template-columns: 1fr; }
-            .journey-step { padding: 20px; }
+        .bib-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        .bib-benefits li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: .9rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .bib-benefits li i {
+            color: #2d5a44;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .bib-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: .95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all .25s;
+            border: 2px solid transparent;
+        }
+        .btn-science {
+            background: #2d5a44;
+            color: #ffffff;
+        }
+        .btn-science:hover { background: #1a3a2a; transform: scale(1.02); }
+
+        .btn-legal {
+            background: #1a3a2a;
+            color: #ffffff;
+        }
+        .btn-legal:hover { background: #0d2117; transform: scale(1.02); }
+
+        .btn-tools {
+            background: #e8a43a;
+            color: #ffffff;
+        }
+        .btn-tools:hover { background: #d4932d; transform: scale(1.02); }
+
+        /* ── FOOTER DIVIDER / LOJA NUDGE ── */
+        .bib-loja-nudge {
+            margin-top: 80px;
+            text-align: center;
+            padding: 60px 40px;
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.05);
+        }
+        .bib-loja-nudge p {
+            color: #7a5c00;
+            font-size: 1.1rem;
+            margin: 10px 0 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bib-loja-nudge h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            color: #b47d2c;
+            margin: 0;
+        }
+        .btn-loja {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #e8a43a;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 16px 40px;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all .3s;
+            box-shadow: 0 10px 20px rgba(232, 164, 58, 0.2);
+        }
+        .btn-loja:hover { background: #d4932d; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(232, 164, 58, 0.3); }
+
+        /* Icon color helpers */
+        .icon-science { color: #2d5a44; }
+        .icon-legal   { color: #1a3a2a; }
+        .icon-tools   { color: #e8a43a; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+            .bib-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .bib-wrap { padding-top: 88px; }
+            .bib-grid { grid-template-columns: 1fr; }
+            .bib-card-body { padding: 22px 20px 20px; }
         }
     </style>
 </head>
@@ -173,16 +297,19 @@
 <header class="site-header">
 <div class="container">
 <nav>
-<a class="logo" href="index.html">Flor de <span>Minas</span></a>
+<a class="logo" href="index.html">
+    <img src="assets/logo_fundo_branco.png" alt="Flor de Minas Logo" class="brand-logo-header">
+    Flor de <span>Minas</span>
+</a>
 <ul class="nav-links">
     <li><a class="nav-link" href="noticias.html">Notícias</a></li>
     <li><a class="nav-link" href="parceiros.html">Parceiros</a></li>
     <li><a class="nav-link" href="eventos.html">Eventos</a></li>
     <li><a class="nav-link" href="loja.html">Loja</a></li>
-    <li><a class="nav-link" href="biblioteca.html" style="color: var(--fm-gold); font-weight: bold;">Biblioteca</a></li>
+    <li><a class="nav-link nav-link-biblioteca" href="biblioteca.html">Biblioteca</a></li>
 </ul>
 <div class="header-right">
-<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle">
+<button aria-label="Abrir menu" class="menu-toggle" id="menu-toggle" type="button">
 <span></span>
 <span></span>
 <span></span>
@@ -192,78 +319,147 @@
 </div>
 </header>
 
-<main>
-    <section class="welcome-section">
-        <h1>Biblioteca Aberta</h1>
-        <p>Conhecimento cura. Todas as ferramentas, mapas e documentos jurídicos da Associação são abertos para o uso livre de pacientes e médicos.</p>
+<main class="bib-wrap">
+
+    <!-- HERO -->
+    <section class="bib-hero">
+        <div class="bib-hero-eyebrow">
+            <i class="fas fa-book-open"></i> Acesso 100% Gratuito
+        </div>
+        <h1>Conhecimento que <span>liberta</span></h1>
+        <p>Ferramentas, artigos científicos e kits jurídicos produzidos pela Flor de Minas. Abertos para pacientes, cultivadores e profissionais de saúde.</p>
     </section>
 
-    <!-- STEP 1: Acolhimento -->
-    <div class="journey-step">
-        <div class="journey-step-header">
-            <h2><i class="fas fa-seedling"></i> Fase 1: Entendendo o Remédio</h2>
-            <p>Os recursos essenciais para quem sofre de ansiedade, insônia e quer entender qual o tratamento ideal.</p>
-        </div>
-        <div class="grid-container">
-            <div class="resource-card">
-                <span class="tag-free">Básico</span>
-                <div class="card-icon">🗺️</div>
+    <!-- FILTERS -->
+    <div class="bib-filters">
+        <button type="button" class="bib-filter-btn active" data-filter="all">Tudo</button>
+        <button type="button" class="bib-filter-btn" data-filter="science">Ciência</button>
+        <button type="button" class="bib-filter-btn" data-filter="legal">Jurídico</button>
+        <button type="button" class="bib-filter-btn" data-filter="tools">Ferramentas</button>
+    </div>
+
+    <!-- GRID -->
+    <div class="bib-grid" id="bib-grid">
+
+        <!-- 1 — Mapa Interativo de Terpenos -->
+        <div class="bib-card cat-science" data-cat="science">
+            <div class="bib-card-stripe stripe-science"></div>
+            <div class="bib-card-body">
+                <div class="bib-card-top">
+                    <div class="bib-card-icon">🗺️</div>
+                    <span class="bib-badge badge-science">Ciência</span>
+                </div>
                 <h3>Mapa Interativo de Terpenos</h3>
-                <p>Descubra exatamente qual composto da planta afeta a sua dor. Explore correlações para Ansiedade e Dor Crônica.</p>
-                <a href="mapa-terpenos.html" class="btn-action">Acessar Mapa de Bolso</a>
+                <p class="bib-card-desc">Explore os compostos da planta em tempo real. Filtre por sintoma, benefício e cepa.</p>
+                <ul class="bib-benefits">
+                    <li><i class="fas fa-check-circle"></i> 12 terpenos com perfis completos</li>
+                    <li><i class="fas fa-check-circle"></i> Filtros por sintoma: ansiedade, dor, sono</li>
+                    <li><i class="fas fa-check-circle"></i> Funciona no celular, sem cadastro</li>
+                </ul>
+                <a href="mapa-terpenos.html" class="bib-btn btn-science">
+                    <i class="fas fa-map-marked-alt"></i> Abrir o Mapa
+                </a>
             </div>
-            
-            <div class="resource-card">
-                <div class="card-icon"><i class="fas fa-book-medical"></i></div>
+        </div>
+
+        <!-- 2 — Artigo: O Efeito Entourage -->
+        <div class="bib-card cat-science" data-cat="science">
+            <div class="bib-card-stripe stripe-science"></div>
+            <div class="bib-card-body">
+                <div class="bib-card-top">
+                    <div class="bib-card-icon"><i class="fas fa-dna icon-science"></i></div>
+                    <span class="bib-badge badge-science">Artigo Clínico</span>
+                </div>
                 <h3>O Efeito Entourage</h3>
-                <p>O conceito mais importante da biologia. Entenda por que o óleo natural é superior aos isolados fabricados na farmácia.</p>
-                <a href="artigos/artigo-entourage-clinico.html" class="btn-action">Ler o Artigo Clínico</a>
+                <p class="bib-card-desc">Por que o óleo natural supera os isolados. A sinergia canabinóide explicada com base científica.</p>
+                <ul class="bib-benefits">
+                    <li><i class="fas fa-microscope"></i> Base: Russo et al. Br J Pharmacol 2011</li>
+                    <li><i class="fas fa-link"></i> Sinergias documentadas CBD + terpenos</li>
+                    <li><i class="fas fa-clock"></i> Leitura de 8 minutos, linguagem acessível</li>
+                </ul>
+                <a href="artigos/artigo-entourage-clinico.html" class="bib-btn btn-science">
+                    <i class="fas fa-book-open"></i> Ler o Artigo
+                </a>
             </div>
         </div>
-    </div>
 
-    <!-- STEP 2: Direito -->
-    <div class="journey-step">
-        <div class="journey-step-header">
-            <h2><i class="fas fa-balance-scale"></i> Fase 2: Blindagem Legal</h2>
-            <p>Seja você um cultivador com medo, ou alguém querendo levantar uma Associação. Tudo se baseia em proteção jurídica.</p>
-        </div>
-        <div class="grid-container">
-            <div class="resource-card">
-                <div class="card-icon"><i class="fas fa-scroll"></i></div>
-                <h3>Dossiê HC (Habeas Corpus)</h3>
-                <p>Todas as peças liminares e atestados necessários (versões MS Word) para você entregar nas mãos do seu advogado processar.</p>
-                <a href="guia/dossie-hc-2026.html" class="btn-action">Baixar Peças Criminais</a>
+        <!-- 3 — Dossiê HC 2026 -->
+        <div class="bib-card cat-legal" data-cat="legal">
+            <div class="bib-card-stripe stripe-legal"></div>
+            <div class="bib-card-body">
+                <div class="bib-card-top">
+                    <div class="bib-card-icon"><i class="fas fa-scroll icon-legal"></i></div>
+                    <span class="bib-badge badge-legal">Jurídico</span>
+                </div>
+                <h3>Dossiê HC 2026</h3>
+                <p class="bib-card-desc">Kit completo de Habeas Corpus para cultivadores e pacientes. Pronto para entregar ao advogado.</p>
+                <ul class="bib-benefits">
+                    <li><i class="fas fa-file-word"></i> Peças liminares editáveis (MS Word)</li>
+                    <li><i class="fas fa-file-signature"></i> Laudos e atestados médicos modelo</li>
+                    <li><i class="fas fa-gavel"></i> Fundamentação atualizada RDC 2026</li>
+                </ul>
+                <a href="guia/dossie-hc-2026.html" class="bib-btn btn-legal">
+                    <i class="fas fa-download"></i> Baixar o Dossiê
+                </a>
             </div>
+        </div>
 
-            <div class="resource-card">
-                <span class="tag-free">Inédito</span>
-                <div class="card-icon"><i class="fas fa-landmark"></i></div>
+        <!-- 4 — Kit Fundação de Associação -->
+        <div class="bib-card cat-legal" data-cat="legal">
+            <div class="bib-card-stripe stripe-legal"></div>
+            <div class="bib-card-body">
+                <div class="bib-card-top">
+                    <div class="bib-card-icon"><i class="fas fa-landmark icon-legal"></i></div>
+                    <span class="bib-badge badge-legal">Inédito</span>
+                </div>
                 <h3>Kit Fundação de Associação</h3>
-                <p>Modelos de Estatuto Social e Ata de Fundação totalmente blindados e formatados para as exigências brutais da ANVISA 2026.</p>
-                <a href="guia/kit-fundacao-associacao.html" class="btn-action">Montar Nova Entidade</a>
+                <p class="bib-card-desc">Documentos prontos para abrir uma associação de Cannabis medicinal dentro da lei.</p>
+                <ul class="bib-benefits">
+                    <li><i class="fas fa-shield-halved"></i> Estatuto Social blindado ANVISA 2026</li>
+                    <li><i class="fas fa-handshake"></i> Ata de Fundação completa e editável</li>
+                    <li><i class="fas fa-book"></i> Regimento Interno modelo</li>
+                </ul>
+                <a href="guia/kit-fundacao-associacao.html" class="bib-btn btn-legal">
+                    <i class="fas fa-folder-open"></i> Acessar o Kit
+                </a>
             </div>
         </div>
+
+        <!-- 5 — CultivoApp -->
+        <div class="bib-card cat-tools" data-cat="tools">
+            <div class="bib-card-stripe stripe-tools"></div>
+            <div class="bib-card-body">
+                <div class="bib-card-top">
+                    <div class="bib-card-icon"><i class="fas fa-mobile-alt icon-tools"></i></div>
+                    <span class="bib-badge badge-tools">Ferramenta</span>
+                </div>
+                <h3>CultivoApp — Versão Livre</h3>
+                <p class="bib-card-desc">Sistema de controle de cultivo desenvolvido pela Flor de Minas. Sem assinatura.</p>
+                <ul class="bib-benefits">
+                    <li><i class="fas fa-droplet"></i> Log de rega, PPM, pH e ciclos</li>
+                    <li><i class="fas fa-calendar-days"></i> Calendário visual de floração</li>
+                    <li><i class="fas fa-bolt"></i> 1 cultivo ativo, roda no navegador</li>
+                </ul>
+                <a href="App/index.html" class="bib-btn btn-tools">
+                    <i class="fas fa-seedling"></i> Abrir o App
+                </a>
+            </div>
+        </div>
+
+    </div><!-- /bib-grid -->
+
+    <!-- NUDGE PARA LOJA -->
+    <div class="bib-loja-nudge">
+        <h3>Quer ir além?</h3>
+        <p>O guia clínico completo, o kit de mapas para impressão e a versão PRO do App estão disponíveis na nossa loja de apoio.</p>
+        <a href="loja.html" class="btn-loja">
+            <i class="fas fa-store"></i> Ver a Loja
+        </a>
     </div>
 
-    <!-- STEP 3: Cultivo -->
-    <div class="journey-step">
-        <div class="journey-step-header">
-            <h2><i class="fas fa-leaf"></i> Fase 3: Plantando e Controlando</h2>
-            <p>Material de engenharia e controle de processo para garantir colheitas terapêuticas livres de contaminação.</p>
-        </div>
-        <div class="grid-container">
-            <div class="resource-card">
-                <span class="tag-free">Software Aberto</span>
-                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3>CultivoApp (Web)</h3>
-                <p>Ferramenta da Flor de Minas para logar dias de rega, PPM, PH e ciclos de floração. A ciência de dados por trás de uma cama viva (no-till).</p>
-                <a href="App/index.html" class="btn-action">Abrir o Sistema</a>
-            </div>
-        </div>
-    </div>
 </main>
 
+<!-- Footer -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
 
@@ -273,7 +469,10 @@
 
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="footer-logo">Flor de <span>Minas</span></div>
+        <div class="footer-logo">
+            <img src="assets/logo_fundo_branco.png" alt="Flor de Minas Logo" class="brand-logo-footer">
+            Flor de <span>Minas</span>
+        </div>
         <p>O primeiro movimento vivo e aberto de Inteligência Integrativa em Saúde do Brasil. Ciência livre para quem precisa.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/flordeminas2026/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -321,6 +520,23 @@
     </div>
   </div>
 </footer>
+
 <script src="js/main.js"></script>
+<script>
+    // Filter tabs
+    const filterBtns = document.querySelectorAll('.bib-filter-btn');
+    const cards = document.querySelectorAll('.bib-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            cards.forEach(card => {
+                card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'flex' : 'none';
+            });
+        });
+    });
+</script>
 </body>
 </html>
