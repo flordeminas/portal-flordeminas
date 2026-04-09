@@ -28,7 +28,7 @@
     --radius-sm: 8px;
     --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
     --shadow-hover: 0 4px 12px rgba(0,0,0,.12), 0 8px 32px rgba(0,0,0,.1);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
     --header-bg: #2d5a44; /* Sage Green Header */
 }
 
@@ -235,6 +235,120 @@ a {
     
     .nav-next {
         text-align: center;
+    }
+}
+
+.info-box {
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    background: var(--bg-neutral);
+    border: 1px solid var(--border);
+}
+
+.info-box.accent {
+    background: rgba(209, 250, 229, 0.4);
+    border-left: 4px solid var(--primary);
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.cta-box {
+    background: var(--primary-pale);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.cta-box h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.cta-box .btn-library {
+    background: var(--secondary);
+    border: none;
+    color: white;
+}
+
+.cta-box .btn-library:hover {
+    background: var(--secondary-dark);
+}
+
+/* Authorship Card */
+.author-card {
+    background: var(--bg-neutral);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    margin: 4rem 0 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+}
+
+.author-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    border: 4px solid white;
+    box-shadow: var(--shadow);
+}
+
+.author-info h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.author-role {
+    display: inline-block;
+    background: var(--primary-pale);
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.author-bio {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+.author-crea {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media (max-width: 767px) {
+    .author-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .author-image {
+        margin: 0 auto;
     }
 }
 
@@ -524,6 +638,36 @@ nav {
     color: var(--text-muted);
     margin-bottom: 2.5rem;
     max-width: 800px; /* Increased from 600px for better flow on centered text */
+}
+
+/* New Face: Animations & Colors */
+.color-fm-green {
+    color: #1a3a2a !important; /* Deep Moss Green - Resistência */
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: revealUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-actions {

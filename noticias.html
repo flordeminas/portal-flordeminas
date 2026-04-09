@@ -60,8 +60,23 @@
 </div>
 </div>
 </section>
+<!-- Filters Section -->
+<div class="container" style="margin-top: -2rem; position: relative; z-index: 10; margin-bottom: 3rem; text-align: center;">
+    <div class="filter-tabs" style="display: inline-flex; gap: 0.5rem; background: #fff; padding: 0.5rem; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <button class="filter-btn active" data-target="all" id="filter-all" style="padding: 0.75rem 1.5rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 700; background: var(--fm-gold); color: #000; transition: all 0.3s ease;">
+            <i class="fas fa-th-large" style="margin-right: 8px;"></i>Tudo
+        </button>
+        <button class="filter-btn" data-target="artigos" id="filter-artigos" style="padding: 0.75rem 1.5rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 700; background: transparent; color: #64748b; transition: all 0.3s ease;">
+            <i class="fas fa-file-alt" style="margin-right: 8px;"></i>Artigos Clínicos
+        </button>
+        <button class="filter-btn" data-target="recursos" id="filter-recursos" style="padding: 0.75rem 1.5rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 700; background: transparent; color: #64748b; transition: all 0.3s ease;">
+            <i class="fas fa-tools" style="margin-right: 8px;"></i>Recursos & Ferramentas
+        </button>
+    </div>
+</div>
+
 <!-- Articles Grid -->
-<section class="section-neutral" id="artigos">
+<section class="section-neutral" id="artigos-section">
 <div class="container">
 <div class="articles-grid">
 <!-- Artigo 12 — NOVO: Yoga e Cannabis -->
@@ -260,7 +275,7 @@
 </div> <!-- container -->
 </section>
 <!-- Recursos e Produtos Digitais -->
-<section class="section-neutral section-no-top-pad" id="recursos">
+<section class="section-neutral section-no-top-pad" id="recursos-section">
 <div class="container">
 <div class="section-header">
 <h2>Recursos &amp; Ferramentas Profissionais</h2>
@@ -396,5 +411,55 @@
 </footer>
 <!-- JS -->
 <script src="js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = {
+            artigos: document.getElementById('artigos-section'),
+            recursos: document.getElementById('recursos-section')
+        };
+
+        const setActiveFilter = (target) => {
+            filterBtns.forEach(btn => {
+                const isActive = btn.getAttribute('data-target') === target;
+                btn.classList.toggle('active', isActive);
+                btn.style.background = isActive ? 'var(--fm-gold)' : 'transparent';
+                btn.style.color = isActive ? '#000' : '#64748b';
+            });
+
+            if (target === 'all') {
+                sections.artigos.style.display = 'block';
+                sections.recursos.style.display = 'block';
+            } else if (target === 'artigos') {
+                sections.artigos.style.display = 'block';
+                sections.recursos.style.display = 'none';
+            } else if (target === 'recursos') {
+                sections.artigos.style.display = 'none';
+                sections.recursos.style.display = 'block';
+            }
+        };
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                setActiveFilter(target);
+                
+                // Optional: Smooth scroll adjustment
+                if (target !== 'all') {
+                    const activeSection = sections[target];
+                    window.scrollTo({
+                        top: activeSection.offsetTop - 150,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle URL hash for deep linking (e.g. noticias.html#recursos)
+        if (window.location.hash === '#recursos') {
+            setActiveFilter('recursos');
+        }
+    });
+</script>
 </body>
 </html>
