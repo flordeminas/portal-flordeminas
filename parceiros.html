@@ -862,7 +862,7 @@
       if (e.key === 'Escape') fecharModal();
     });
 
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const nome = document.getElementById('f-nome').value.trim();
@@ -884,29 +884,41 @@
       const areas = Array.from(form.querySelectorAll('.form-checkboxes input:checked'))
         .map(cb => cb.value).join(', ') || 'Não informado';
 
-      const corpo =
-        'Olá, equipe Flor de Minas!\n\n' +
-        'Gostaria de cadastrar minha associação na página de parceiros:\n\n' +
-        '— INFORMAÇÕES DA ASSOCIAÇÃO —\n\n' +
-        'Nome: ' + nome + '\n' +
-        'Cidade: ' + cidade + '\n' +
-        'Estado: ' + estado + '\n' +
-        'Site: ' + (site || 'Não informado') + '\n' +
-        'Instagram: ' + (instagram || 'Não informado') + '\n' +
-        'Telefone/WhatsApp: ' + (telefone || 'Não informado') + '\n' +
-        'E-mail de contato: ' + (email || 'Não informado') + '\n' +
-        'Áreas de atuação: ' + areas + '\n\n' +
-        'Descrição:\n' + descricao + '\n\n' +
-        '— RESPONSÁVEL PELO CADASTRO —\n' +
-        contato + '\n\n' +
-        'Aguardo o contato da equipe. Obrigado(a)!';
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
 
-      const assunto = 'Cadastro de Associação — ' + nome + ' (' + estado + ')';
+      try {
+        const res = await fetch('https://eqyhbbiizmckjcfuqwrv.supabase.co/functions/v1/send-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'Cadastro de Associação Parceira',
+            fields: {
+              'Nome da Associação': nome,
+              'Cidade': cidade,
+              'Estado': estado,
+              'Site': site || 'Não informado',
+              'Instagram': instagram || 'Não informado',
+              'Telefone/WhatsApp': telefone || 'Não informado',
+              'E-mail de contato': email || 'Não informado',
+              'Áreas de atuação': areas,
+              'Descrição': descricao,
+              'Responsável pelo cadastro': contato,
+            }
+          })
+        });
 
-      window.location.href =
-        'mailto:flor-de-minas@protonmail.com' +
-        '?subject=' + encodeURIComponent(assunto) +
-        '&body=' + encodeURIComponent(corpo);
+        if (res.ok) {
+          form.innerHTML = '<p style="text-align:center;color:#065F46;font-weight:700;font-size:1.1rem;padding:2rem 0">✅ Enviado com sucesso!<br><span style="font-weight:400;font-size:.9rem;color:#475569">Nossa equipe entrará em contato em breve.</span></p>';
+        } else {
+          throw new Error('Erro no servidor');
+        }
+      } catch (err) {
+        alert('Erro ao enviar. Tente novamente ou entre em contato pelo e-mail flor-de-minas@protonmail.com');
+        btn.disabled = false;
+        btn.textContent = 'Enviar para a equipe Flor de Minas →';
+      }
     });
   })();
 </script>
