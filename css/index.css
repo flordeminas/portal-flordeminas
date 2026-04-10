@@ -2015,6 +2015,33 @@ header.scrolled .logo img {
     color: var(--primary-light);
 }
 
+.references-section {
+    margin-top: 2rem;
+}
+
+.references-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.references-section > p {
+    font-size: 0.9rem;
+    color: var(--text-muted, #666);
+    margin-bottom: 1.5rem;
+}
+
+.references-list {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    padding-left: 1.4rem;
+}
+
+hr.references-divider {
+    margin: 2.5rem 0;
+    border: none;
+    border-top: 1px solid var(--border-color, #e0e0e0);
+}
+
 .back-link {
     display: inline-flex;
     align-items: center;
